@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Fetch pinned SLA input corpus
@@ -23,12 +23,19 @@ jobs:
           git -C Fission fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
           git -C Fission checkout --detach FETCH_HEAD
       - run: make test reproduce
+      - name: Preserve reproduction report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: historical-artifacts-report
+          path: artifacts/reproduction.json
+          if-no-files-found: ignore
   sop2-and-fir:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
       - name: Fetch pinned experimental compiler
@@ -42,8 +49,15 @@ jobs:
       - name: Build and validate FIR execution and recompilation
         working-directory: .compiler
         run: |
-          rustup update stable --no-self-update
-          cargo +stable build --locked -p fission-fsl --bin fslc
-          cargo +stable test --locked -p fission-fsl -- --nocapture
+          rustup toolchain install 1.98.1 --profile minimal --no-self-update
+          cargo +1.98.1 build --locked -p fission-fsl --bin fslc
+          cargo +1.98.1 test --locked -p fission-fsl -- --nocapture
       - name: Compare SOP2 decode and reencoding against LLVM
         run: python3 tools/gfx900_sop2_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18 --llvm-objdump llvm-objdump-18
+      - name: Preserve SOP2 report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: gfx900-sop2-report
+          path: artifacts/gfx900-sop2.json
+          if-no-files-found: ignore

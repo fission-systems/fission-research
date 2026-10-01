@@ -33,7 +33,7 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 
 The second CI job fetches Fission compiler commit
 `bf49f27a9b8f0fdafedeba0c88a232522a39f267` separately into `.compiler/`. It builds
-`fslc`, runs its existing FIR execution/recompilation tests, then validates the
+`fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
 
@@ -52,3 +52,12 @@ alone cannot pass that gate.
 When probes or scope intentionally change, review newly generated artifacts and
 input/output hashes together before updating the lock. Never refresh hashes
 merely to silence a failed CI run.
+
+## Observed remote reproduction
+
+[Run 36801812921](https://github.com/fission-systems/fission-research/actions/runs/36801812921)
+passed both jobs at research commit `ccfcbab82a02c50ebd41b806f14f220b66f14ada`.
+The Ubuntu oracle was LLVM 18.1.3 and the Rust compiler was 1.98.1. Its package
+and corpus hashes matched the macOS LLVM 22.1.8 observations. Subsequent runs
+preserve reports as GitHub Actions artifacts; runtime/tool versions remain part
+of each report or job log.
