@@ -32,7 +32,7 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 ## Encoding and execution gates
 
 The second CI job fetches Fission compiler commit
-`5376310b2077807de713d908ea100411efd73ef9` separately into `.compiler/`. It builds
+`bf49f27a9b8f0fdafedeba0c88a232522a39f267` separately into `.compiler/`. It builds
 `fslc`, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.

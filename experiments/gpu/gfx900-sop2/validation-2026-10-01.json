@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "profile": "amdgcn.gfx900.sop2",
+  "instructions": 32,
+  "corpus_cases": 256,
+  "decode_field_comparisons": 256,
+  "unchanged_roundtrips": 256,
+  "edited_oracle_comparisons": 256,
+  "rejected_inputs": 99,
+  "extensions": {
+    "spec_only": 32,
+    "generic_primitive": 0,
+    "architecture_escape": 0
+  },
+  "scope": "SGPR 0..95, aligned pairs; register-only encoding",
+  "gpu_execution_semantics": "unsupported",
+  "oracle_limit": "Separate LLVM executable; FSL opcode reference shares LLVM lineage.",
+  "source_sha256": "35c9cc302f0526301f3f6591df495a98c85a509596c6805a0eed8d213bc403ab",
+  "package_sha256": "564cb1461c1d11ca356bf051ce512a71b25c1da7b8e5a5580617a682f5568f4b",
+  "corpus_sha256": "92c2564162f0326a5b6e6b5855b4de81283e9db198692bfddc412d2e0d363828",
+  "fslc_binary_sha256": "17917043b3c7b4a62a88dae266c5945b8a310b81d6c15fa28d498113efebaf6b",
+  "llvm_mc_version": "Homebrew LLVM version 22.1.8",
+  "llvm_objdump_version": "Homebrew LLVM version 22.1.8",
+  "compiler_commit": "bf49f27a9b8f0fdafedeba0c88a232522a39f267",
+  "compiler_runtime_baseline": "5376310b2077807de713d908ea100411efd73ef9",
+  "compiler_runtime_changes": false
+}

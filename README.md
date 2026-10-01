@@ -12,7 +12,7 @@
 |---|---|
 | FSL 문법 / 컴파일러 | 실험 문법 / Rust 프로토타입; 초기 TOML 프로브와 구분 |
 | FIR | 단일 의미 소유자 프로토타입; 실행 지원은 제한된 정수·스택 연산 |
-| GFX900 디코드 | 네 명령의 고정폭 인코딩 slice |
+| GFX900 디코드 | 기존 4개 + SOP2 32개 register-only 인코딩 |
 | JVM 디코드 | `iadd` 한 opcode |
 | GPU 실행 의미 | 미구현; 현재 FIR body는 `unsupported` |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
@@ -63,6 +63,10 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 
 초기 우선순위와 경계는 [`docs/research-architecture.md`](docs/research-architecture.md)를 본다. 초기에 모든 ISA를 지원하려고 하지 않고, 공통 디코드/의미 모델을 검증한 다음 서로 다른 도메인으로 확장한다.
 
+## SOP2 명세 확장
+
+[32개 SOP2 규칙](specs/gpu/amdgcn/gfx900-sop2.fsl)은 Rust FSL 컴파일러를 수정하지 않고 추가했다. [실험 기록](experiments/gpu/gfx900-sop2/README.md)은 LLVM 비교, 바이트 round-trip, 확장 분류와 GPU 실행 의미 미지원 범위를 기록한다.
+
 ## 자동 재현
 
 `make test reproduce`는 고정 입력에서 기존 artifact 9개를 임시 디렉터리에 재생성하고 SHA-256을 비교한다. 준비 방법과 검증 범위는 [재현 문서](docs/reproduction.md)에 있다. GitHub Actions에서 같은 명령을 실행한다.
@@ -86,7 +90,7 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 - [x] HIP/HSA runtime부터 Linux AMDKFD queue setup과 사용자 공간 AQL dispatch까지 소스 경로 추적
 - [x] 64-byte HSA AQL kernel-dispatch packet 독립 parser와 명시적 synthetic fixture 작성
 - [ ] v4 packed 태그 전체를 공식 형식 상수와 대조해 스키마화
-- [ ] FSL 최소 문법 초안
+- [x] Rust 텍스트 FSL 최소 문법과 바이너리 패키지 프로토타입 (Fission 실험 브랜치)
 - [x] 제한형 FSL/TOML 원문 → 정적 검증된 패턴 패키지 → 데이터 기반 GFX900 디코드 수직 단면
 - [x] GFX900 register class와 source-selector 범위/예외를 선언형으로 기술하고 generic decoder에서 사용
 - [ ] bitfield 조합·상대 주소·확장 워드까지 FSL primitive를 넓혀 새로운 opcode에서 코드 수정 제거
@@ -97,3 +101,7 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 - [x] JVM SE 26 `iadd` 한 opcode의 FSL profile, 8-bit fixed-width decode, FIR multi-projection 후보
 - [ ] FSL 원문 문법/컴파일러 및 확장 워드까지 포함한 GFX9 decoder
 - [ ] JVM·CPython 바이트코드 도메인에 같은 provenance/IR 접근 적용
+
+- [x] 기존 artifact 9개 자동 재현 및 입력·출력 SHA-256 CI gate
+- [x] SOP2 32개 명세 추가·LLVM 인코딩 oracle 비교·바이트 round-trip
+- [x] GPU unsupported 실행 거부 회귀 검사와 기존 FIR 재컴파일 검사 연결

@@ -1,0 +1,6 @@
+url = "https://raw.githubusercontent.com/llvm/llvm-project/llvmorg-22.1.0/llvm/lib/Target/AMDGPU/SOPInstructions.td"
+sha256 = "a63b8ae20e235443dd45b3b962afa58219dd6e78ee2e4ad1bdfb77aec6b712d5"
+compiler_commit = "bf49f27a9b8f0fdafedeba0c88a232522a39f267"
+package_sha256 = "564cb1461c1d11ca356bf051ce512a71b25c1da7b8e5a5580617a682f5568f4b"
+corpus_sha256 = "92c2564162f0326a5b6e6b5855b4de81283e9db198692bfddc412d2e0d363828"
+compiler_runtime_baseline = "5376310b2077807de713d908ea100411efd73ef9"
