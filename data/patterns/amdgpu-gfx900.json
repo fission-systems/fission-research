@@ -1,0 +1,419 @@
+{
+  "architecture": {
+    "endianness": "little",
+    "family": "GCN5/Vega",
+    "instruction_word_bits": 32,
+    "processor": "gfx900",
+    "scope": "Four 32-bit GFX900 patterns; decoder/compiler research slice, not a complete ISA definition.",
+    "target": "amdgcn-amd-amdhsa--gfx900",
+    "vendor": "AMD"
+  },
+  "compiled_from": {
+    "format": "fission_fsl_experimental",
+    "language_version": "0.0.1",
+    "path": "specs/gpu/amdgcn/gfx900-first.fsl",
+    "sha256": "6de4c5bbd93f2c98e7ba30331752dae5444d84534f808958314bac9c39249519"
+  },
+  "compiler": {
+    "name": "fslc_probe",
+    "version": "0.0.1"
+  },
+  "format": "fission_research_isa_pattern_db",
+  "patterns": [
+    {
+      "decode": {
+        "operands": [
+          {
+            "field": "destination",
+            "name": "destination",
+            "register_class": "sgpr",
+            "transform": "register_index"
+          },
+          {
+            "field": "source",
+            "name": "source",
+            "table": "amdgcn_ssrc",
+            "transform": "selector_table"
+          }
+        ],
+        "render": "{mnemonic} {destination}, {source}"
+      },
+      "fields": {
+        "destination": {
+          "name": "SDST",
+          "start_bit": 16,
+          "width": 7
+        },
+        "source": {
+          "name": "SSRC0",
+          "start_bit": 0,
+          "width": 8
+        }
+      },
+      "fir_effect": {
+        "domain": "scalar",
+        "operation": "copy",
+        "reads": "source_operand",
+        "width_bits": 32,
+        "writes": "destination_sgpr"
+      },
+      "match": {
+        "mask": "0xff80ff00",
+        "value": "0xbe800000"
+      },
+      "mnemonic": "s_mov_b32",
+      "pattern_id": "amdgcn.gfx900.s_mov_b32",
+      "provenance": [
+        {
+          "claim": "SOP1 field layout, S_MOV_B32 opcode, and SSRC0 inline integer encoding",
+          "source_id": "amd-vega-isa"
+        },
+        {
+          "claim": "The local encoding s_mov_b32 s0, 1 is 0xbe800081 in little-endian word order",
+          "source_id": "llvm-22-probe"
+        }
+      ]
+    },
+    {
+      "decode": {
+        "operands": [
+          {
+            "field": "destination",
+            "name": "destination",
+            "register_class": "vgpr",
+            "transform": "register_index"
+          },
+          {
+            "field": "source0",
+            "name": "source0",
+            "table": "amdgcn_ssrc",
+            "transform": "selector_table"
+          },
+          {
+            "field": "source1",
+            "name": "source1",
+            "register_class": "vgpr",
+            "transform": "register_index"
+          }
+        ],
+        "render": "{mnemonic}_e32 {destination}, {source0}, {source1}"
+      },
+      "fields": {
+        "destination": {
+          "name": "VDST",
+          "start_bit": 17,
+          "width": 8
+        },
+        "opcode": {
+          "name": "OP",
+          "start_bit": 25,
+          "value": 52,
+          "width": 6
+        },
+        "source0": {
+          "name": "SRC0",
+          "start_bit": 0,
+          "width": 9
+        },
+        "source1": {
+          "name": "VSRC1",
+          "start_bit": 9,
+          "width": 8
+        }
+      },
+      "fir_effect": {
+        "arithmetic": "unsigned modular addition",
+        "domain": "vector",
+        "operation": "add",
+        "reads": [
+          "source0",
+          "source1"
+        ],
+        "width_bits": 32,
+        "writes": "destination_vgpr_per_active_lane"
+      },
+      "match": {
+        "mask": "0xfe000000",
+        "value": "0x68000000"
+      },
+      "mnemonic": "v_add_u32",
+      "pattern_id": "amdgcn.gfx900.v_add_u32",
+      "provenance": [
+        {
+          "claim": "VOP2 field layout; opcode 52 is V_ADD_U32 with D.u = S0.u + S1.u",
+          "source_id": "amd-vega-isa"
+        },
+        {
+          "claim": "The local encoding v_add_u32_e32 v0, v1, v2 is 0x68000501",
+          "source_id": "llvm-22-probe"
+        }
+      ]
+    },
+    {
+      "decode": {
+        "constraints": [
+          {
+            "equals": 0,
+            "field": "raw_imm16"
+          }
+        ],
+        "render": "{mnemonic}",
+        "reserved_fields": [
+          "raw_imm16"
+        ]
+      },
+      "fields": {
+        "raw_imm16": {
+          "name": "SIMM16",
+          "start_bit": 0,
+          "status": "preserved_not_interpreted",
+          "width": 16
+        }
+      },
+      "fir_effect": {
+        "domain": "workgroup_control",
+        "memory_ordering": "not_inferred",
+        "operation": "barrier",
+        "participants": "waves_in_threadgroup"
+      },
+      "match": {
+        "mask": "0xffff0000",
+        "value": "0xbf8a0000"
+      },
+      "mnemonic": "s_barrier",
+      "pattern_id": "amdgcn.gfx900.s_barrier",
+      "provenance": [
+        {
+          "claim": "SOPP opcode 10 synchronizes waves within a threadgroup; preserve edge cases from the full manual for later modeling",
+          "source_id": "amd-vega-isa"
+        },
+        {
+          "claim": "The local encoding s_barrier is 0xbf8a0000",
+          "source_id": "llvm-22-probe"
+        }
+      ]
+    },
+    {
+      "decode": {
+        "constraints": [
+          {
+            "equals": 0,
+            "field": "raw_imm16"
+          }
+        ],
+        "render": "{mnemonic}",
+        "reserved_fields": [
+          "raw_imm16"
+        ],
+        "unsupported_behavior": [
+          "Unknown instruction words stop decoding because instruction length and extension words are not known.",
+          "VOP2/SOP1 literal constants, SDWA/DPP extensions, relocations, branch targets, and the broader GFX9 opcode space are not implemented.",
+          "The FIR effects are candidate summaries, not an executable wavefront semantics model."
+        ]
+      },
+      "fields": {
+        "raw_imm16": {
+          "name": "SIMM16",
+          "start_bit": 0,
+          "status": "preserved_not_interpreted",
+          "width": 16
+        }
+      },
+      "fir_effect": {
+        "domain": "wavefront_control",
+        "operation": "terminate",
+        "target": "current_wavefront"
+      },
+      "match": {
+        "mask": "0xffff0000",
+        "value": "0xbf810000"
+      },
+      "mnemonic": "s_endpgm",
+      "pattern_id": "amdgcn.gfx900.s_endpgm",
+      "provenance": [
+        {
+          "claim": "SOPP opcode 1 terminates the wavefront",
+          "source_id": "amd-vega-isa"
+        },
+        {
+          "claim": "The local encoding s_endpgm is 0xbf810000",
+          "source_id": "llvm-22-probe"
+        }
+      ]
+    }
+  ],
+  "profile_id": "amdgcn.gfx900.first-slice",
+  "register_classes": {
+    "sgpr": {
+      "count": 106,
+      "prefix": "s",
+      "width_bits": 32
+    },
+    "ttmp": {
+      "count": 16,
+      "prefix": "ttmp",
+      "width_bits": 32
+    },
+    "vgpr": {
+      "count": 256,
+      "prefix": "v",
+      "width_bits": 32
+    }
+  },
+  "schema_version": 1,
+  "selector_tables": {
+    "amdgcn_ssrc": {
+      "cases": [
+        {
+          "code": 106,
+          "kind": "special_register",
+          "name": "vcc_lo",
+          "text": "vcc_lo"
+        },
+        {
+          "code": 107,
+          "kind": "special_register",
+          "name": "vcc_hi",
+          "text": "vcc_hi"
+        },
+        {
+          "code": 124,
+          "kind": "special_register",
+          "name": "m0",
+          "text": "m0"
+        },
+        {
+          "code": 126,
+          "kind": "special_register",
+          "name": "exec_lo",
+          "text": "exec_lo"
+        },
+        {
+          "code": 127,
+          "kind": "special_register",
+          "name": "exec_hi",
+          "text": "exec_hi"
+        },
+        {
+          "code": 128,
+          "kind": "inline_integer",
+          "text": "0",
+          "value": 0
+        },
+        {
+          "code": 235,
+          "kind": "special_register",
+          "name": "shared_base",
+          "text": "shared_base"
+        },
+        {
+          "code": 236,
+          "kind": "special_register",
+          "name": "shared_limit",
+          "text": "shared_limit"
+        },
+        {
+          "code": 237,
+          "kind": "special_register",
+          "name": "private_base",
+          "text": "private_base"
+        },
+        {
+          "code": 238,
+          "kind": "special_register",
+          "name": "private_limit",
+          "text": "private_limit"
+        },
+        {
+          "code": 251,
+          "kind": "special_register",
+          "name": "vccz",
+          "text": "vccz"
+        },
+        {
+          "code": 252,
+          "kind": "special_register",
+          "name": "execz",
+          "text": "execz"
+        },
+        {
+          "code": 253,
+          "kind": "special_register",
+          "name": "scc",
+          "text": "scc"
+        },
+        {
+          "code": 255,
+          "kind": "unsupported",
+          "reason": "literal selector requires an extension word"
+        }
+      ],
+      "fallback": "unsupported",
+      "input_bits": 9,
+      "ranges": [
+        {
+          "end": 105,
+          "kind": "sgpr",
+          "offset": 0,
+          "render": "s{value}",
+          "scale": 1,
+          "start": 0
+        },
+        {
+          "end": 123,
+          "kind": "ttmp",
+          "offset": -108,
+          "render": "ttmp{value}",
+          "scale": 1,
+          "start": 108
+        },
+        {
+          "end": 192,
+          "kind": "inline_integer",
+          "offset": -128,
+          "render": "{value}",
+          "scale": 1,
+          "start": 129
+        },
+        {
+          "end": 208,
+          "kind": "inline_integer",
+          "offset": 192,
+          "render": "{value}",
+          "scale": -1,
+          "start": 193
+        },
+        {
+          "end": 511,
+          "kind": "vgpr",
+          "offset": -256,
+          "render": "v{value}",
+          "scale": 1,
+          "start": 256
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "kind": "primary_isa",
+      "license_note": "Reference metadata only; no manual text is copied into this database.",
+      "revision": "AMD Vega Shader ISA, document 70656, 2020-01-27",
+      "source_id": "amd-vega-isa",
+      "url": "https://www.amd.com/content/dam/amd/en/documents/radeon-tech-docs/instruction-set-architectures/vega-shader-instruction-set-architecture.pdf"
+    },
+    {
+      "kind": "toolchain_documentation",
+      "revision": "LLVM AMDGPU GFX9 assembly syntax documentation",
+      "source_id": "llvm-gfx9-syntax",
+      "url": "https://rocm.docs.amd.com/projects/llvm-project/en/docs-7.2.0/LLVM/llvm/html/AMDGPU/AMDGPUAsmGFX9.html"
+    },
+    {
+      "artifact": "experiments/gpu/amdgpu-gfx900/probe.encoding.txt",
+      "kind": "local_encoder_observation",
+      "source_id": "llvm-22-probe",
+      "tool": "Homebrew LLVM 22.1.8 llvm-mc --triple=amdgcn-amd-amdhsa -mcpu=gfx900 -show-encoding"
+    }
+  ],
+  "unsupported_behavior": []
+}

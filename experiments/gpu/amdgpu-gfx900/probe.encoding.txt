@@ -1,0 +1,10 @@
+	.amdgcn_target "amdgcn-amd-amdhsa--gfx900"
+
+	.text
+	.globl	fsl_gpu_probe
+	.type	fsl_gpu_probe,@function
+fsl_gpu_probe:
+	s_mov_b32 s0, 1                         ; encoding: [0x81,0x00,0x80,0xbe]
+	v_add_u32_e32 v0, v1, v2                ; encoding: [0x01,0x05,0x00,0x68]
+	s_barrier                               ; encoding: [0x00,0x00,0x8a,0xbf]
+	s_endpgm                                ; encoding: [0x00,0x00,0x81,0xbf]

@@ -1,0 +1,13 @@
+
+experiments/gpu/amdgpu-gfx900/add_kernel.o:	file format elf64-amdgpu
+
+Disassembly of section .text:
+
+0000000000000000 <add>:
+	s_load_dwordx4 s[0:3], s[8:9], 0x0                         // 000000000000: C00A0004 00000000
+	v_mov_b32_e32 v0, 0                                        // 000000000008: 7E000280
+	s_waitcnt lgkmcnt(0)                                       // 00000000000C: BF8CC07F
+	s_add_i32 s2, s2, s3                                       // 000000000010: 81020302
+	v_mov_b32_e32 v1, s2                                       // 000000000014: 7E020202
+	global_store_dword v0, v1, s[0:1]                          // 000000000018: DC708000 00000100
+	s_endpgm                                                   // 000000000020: BF810000

@@ -1,0 +1,169 @@
+format = "fission_fsl_experimental"
+language_version = "0.0.1"
+profile_id = "amdgcn.gfx900.first-slice"
+
+[architecture]
+vendor = "AMD"
+family = "GCN5/Vega"
+processor = "gfx900"
+target = "amdgcn-amd-amdhsa--gfx900"
+endianness = "little"
+instruction_word_bits = 32
+scope = "Four 32-bit GFX900 patterns; decoder/compiler research slice, not a complete ISA definition."
+
+[register_classes.sgpr]
+count = 106
+width_bits = 32
+prefix = "s"
+
+[register_classes.vgpr]
+count = 256
+width_bits = 32
+prefix = "v"
+
+[register_classes.ttmp]
+count = 16
+width_bits = 32
+prefix = "ttmp"
+
+[selector_tables.amdgcn_ssrc]
+input_bits = 9
+fallback = "unsupported"
+ranges = [
+  { start = 0, end = 105, kind = "sgpr", scale = 1, offset = 0, render = "s{value}" },
+  { start = 108, end = 123, kind = "ttmp", scale = 1, offset = -108, render = "ttmp{value}" },
+  { start = 129, end = 192, kind = "inline_integer", scale = 1, offset = -128, render = "{value}" },
+  { start = 193, end = 208, kind = "inline_integer", scale = -1, offset = 192, render = "{value}" },
+  { start = 256, end = 511, kind = "vgpr", scale = 1, offset = -256, render = "v{value}" }
+]
+cases = [
+  { code = 106, kind = "special_register", name = "vcc_lo", text = "vcc_lo" },
+  { code = 107, kind = "special_register", name = "vcc_hi", text = "vcc_hi" },
+  { code = 124, kind = "special_register", name = "m0", text = "m0" },
+  { code = 126, kind = "special_register", name = "exec_lo", text = "exec_lo" },
+  { code = 127, kind = "special_register", name = "exec_hi", text = "exec_hi" },
+  { code = 128, kind = "inline_integer", value = 0, text = "0" },
+  { code = 235, kind = "special_register", name = "shared_base", text = "shared_base" },
+  { code = 236, kind = "special_register", name = "shared_limit", text = "shared_limit" },
+  { code = 237, kind = "special_register", name = "private_base", text = "private_base" },
+  { code = 238, kind = "special_register", name = "private_limit", text = "private_limit" },
+  { code = 251, kind = "special_register", name = "vccz", text = "vccz" },
+  { code = 252, kind = "special_register", name = "execz", text = "execz" },
+  { code = 253, kind = "special_register", name = "scc", text = "scc" },
+  { code = 255, kind = "unsupported", reason = "literal selector requires an extension word" }
+]
+
+[[sources]]
+source_id = "amd-vega-isa"
+kind = "primary_isa"
+url = "https://www.amd.com/content/dam/amd/en/documents/radeon-tech-docs/instruction-set-architectures/vega-shader-instruction-set-architecture.pdf"
+revision = "AMD Vega Shader ISA, document 70656, 2020-01-27"
+license_note = "Reference metadata only; no manual text is copied into this database."
+
+[[sources]]
+source_id = "llvm-gfx9-syntax"
+kind = "toolchain_documentation"
+url = "https://rocm.docs.amd.com/projects/llvm-project/en/docs-7.2.0/LLVM/llvm/html/AMDGPU/AMDGPUAsmGFX9.html"
+revision = "LLVM AMDGPU GFX9 assembly syntax documentation"
+
+[[sources]]
+source_id = "llvm-22-probe"
+kind = "local_encoder_observation"
+artifact = "experiments/gpu/amdgpu-gfx900/probe.encoding.txt"
+tool = "Homebrew LLVM 22.1.8 llvm-mc --triple=amdgcn-amd-amdhsa -mcpu=gfx900 -show-encoding"
+
+[[patterns]]
+pattern_id = "amdgcn.gfx900.s_mov_b32"
+mnemonic = "s_mov_b32"
+match = { mask = "0xff80ff00", value = "0xbe800000" }
+fields = { source = { start_bit = 0, width = 8, name = "SSRC0" }, destination = { start_bit = 16, width = 7, name = "SDST" } }
+fir_effect = { operation = "copy", domain = "scalar", width_bits = 32, writes = "destination_sgpr", reads = "source_operand" }
+provenance = [
+  { source_id = "amd-vega-isa", claim = "SOP1 field layout, S_MOV_B32 opcode, and SSRC0 inline integer encoding" },
+  { source_id = "llvm-22-probe", claim = "The local encoding s_mov_b32 s0, 1 is 0xbe800081 in little-endian word order" }
+]
+
+[patterns.decode]
+render = "{mnemonic} {destination}, {source}"
+
+[[patterns.decode.operands]]
+name = "destination"
+field = "destination"
+transform = "register_index"
+register_class = "sgpr"
+
+[[patterns.decode.operands]]
+name = "source"
+field = "source"
+transform = "selector_table"
+table = "amdgcn_ssrc"
+
+[[patterns]]
+pattern_id = "amdgcn.gfx900.v_add_u32"
+mnemonic = "v_add_u32"
+match = { mask = "0xfe000000", value = "0x68000000" }
+fields = { source0 = { start_bit = 0, width = 9, name = "SRC0" }, source1 = { start_bit = 9, width = 8, name = "VSRC1" }, destination = { start_bit = 17, width = 8, name = "VDST" }, opcode = { start_bit = 25, width = 6, name = "OP", value = 52 } }
+fir_effect = { operation = "add", domain = "vector", width_bits = 32, arithmetic = "unsigned modular addition", writes = "destination_vgpr_per_active_lane", reads = ["source0", "source1"] }
+provenance = [
+  { source_id = "amd-vega-isa", claim = "VOP2 field layout; opcode 52 is V_ADD_U32 with D.u = S0.u + S1.u" },
+  { source_id = "llvm-22-probe", claim = "The local encoding v_add_u32_e32 v0, v1, v2 is 0x68000501" }
+]
+
+[patterns.decode]
+render = "{mnemonic}_e32 {destination}, {source0}, {source1}"
+
+[[patterns.decode.operands]]
+name = "destination"
+field = "destination"
+transform = "register_index"
+register_class = "vgpr"
+
+[[patterns.decode.operands]]
+name = "source0"
+field = "source0"
+transform = "selector_table"
+table = "amdgcn_ssrc"
+
+[[patterns.decode.operands]]
+name = "source1"
+field = "source1"
+transform = "register_index"
+register_class = "vgpr"
+
+[[patterns]]
+pattern_id = "amdgcn.gfx900.s_barrier"
+mnemonic = "s_barrier"
+match = { mask = "0xffff0000", value = "0xbf8a0000" }
+fields = { raw_imm16 = { start_bit = 0, width = 16, name = "SIMM16", status = "preserved_not_interpreted" } }
+fir_effect = { operation = "barrier", domain = "workgroup_control", participants = "waves_in_threadgroup", memory_ordering = "not_inferred" }
+provenance = [
+  { source_id = "amd-vega-isa", claim = "SOPP opcode 10 synchronizes waves within a threadgroup; preserve edge cases from the full manual for later modeling" },
+  { source_id = "llvm-22-probe", claim = "The local encoding s_barrier is 0xbf8a0000" }
+]
+
+[patterns.decode]
+render = "{mnemonic}"
+reserved_fields = ["raw_imm16"]
+constraints = [{ field = "raw_imm16", equals = 0 }]
+
+[[patterns]]
+pattern_id = "amdgcn.gfx900.s_endpgm"
+mnemonic = "s_endpgm"
+match = { mask = "0xffff0000", value = "0xbf810000" }
+fields = { raw_imm16 = { start_bit = 0, width = 16, name = "SIMM16", status = "preserved_not_interpreted" } }
+fir_effect = { operation = "terminate", domain = "wavefront_control", target = "current_wavefront" }
+provenance = [
+  { source_id = "amd-vega-isa", claim = "SOPP opcode 1 terminates the wavefront" },
+  { source_id = "llvm-22-probe", claim = "The local encoding s_endpgm is 0xbf810000" }
+]
+
+[patterns.decode]
+render = "{mnemonic}"
+reserved_fields = ["raw_imm16"]
+constraints = [{ field = "raw_imm16", equals = 0 }]
+
+unsupported_behavior = [
+  "Unknown instruction words stop decoding because instruction length and extension words are not known.",
+  "VOP2/SOP1 literal constants, SDWA/DPP extensions, relocations, branch targets, and the broader GFX9 opcode space are not implemented.",
+  "The FIR effects are candidate summaries, not an executable wavefront semantics model."
+]

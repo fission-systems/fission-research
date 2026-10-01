@@ -1,0 +1,173 @@
+format = "fission.gpu-references.v1"
+captured_at = "2026-10-01T00:43:19.833207+00:00"
+purpose = "source reference; no runtime integration"
+
+[[repository]]
+name = "envytools"
+vendor = "nvidia"
+path = "Vendor/envytools"
+url = "https://github.com/envytools/envytools.git"
+commit = "f102b82381f3f11cee113d16374c87091db039d9"
+shallow = true
+license_file = "COPYING"
+license_sha256 = "51ab82ea0c4d850ab5326da7fa02daa5d5f6f02b677831a8e37be93cc7a89493"
+working_tree_status = "M nvbios/D.c"
+
+[[repository]]
+name = "CuAssembler"
+vendor = "nvidia"
+path = "Vendor/CuAssembler"
+url = "https://github.com/cloudcores/CuAssembler.git"
+commit = "96a9f72baf00f40b9b299653fcef8d3e2b4a3d49"
+shallow = true
+license_file = "LICENCE.md"
+license_sha256 = "2e4a290cc86b2ed281cc200b00a8ef8d13afaf26207f6b857bc330c555d91b23"
+working_tree_status = ""
+
+[[repository]]
+name = "isa_spec_manager"
+vendor = "amd"
+path = "Vendor/isa_spec_manager"
+url = "https://github.com/GPUOpen-Tools/isa_spec_manager.git"
+commit = "452645535ac05f466b06a13e5eafeb5a86d3ad11"
+shallow = true
+license_file = "LICENSE"
+license_sha256 = "6a86faf98a4909cc6341592da475f17fc2f9e18d21b59f30a5a62314c6a8c216"
+working_tree_status = ""
+
+[[repository]]
+name = "radeon_gpu_analyzer"
+vendor = "amd"
+path = "Vendor/radeon_gpu_analyzer"
+url = "https://github.com/GPUOpen-Tools/radeon_gpu_analyzer.git"
+commit = "39688b004af6993f7146dd8e26b52994ec020fe6"
+shallow = true
+license_file = "LICENSE.txt"
+license_sha256 = "23a6e8fc35de67d8c703134a6539736317438a5d9f90ab9ca9d04236ebf6ac81"
+working_tree_status = ""
+
+[[repository]]
+name = "intel-graphics-compiler"
+vendor = "intel"
+path = "Vendor/intel-graphics-compiler"
+url = "https://github.com/intel/intel-graphics-compiler.git"
+commit = "23925ac7d69262b9aff34360b5b2fd12b4f9bf4e"
+shallow = true
+license_file = "LICENSE.md"
+license_sha256 = "8b2cd951f44d1fbe6adcf112e1f3a0cc989c89c8889a1c48dea5f7ece10ba9c9"
+working_tree_status = ""
+
+[amd_xml_archive]
+source_url = "https://gpuopen.com/download/machine-readable-isa/latest/"
+path = "Vendor/amd-machine-readable-isa/specs.zip"
+sha256 = "82404f1126761b7877595b622afa7e1f311f2f41e89a3abe9aaf8ad045c082e2"
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_cdna1.xml"
+sha256 = "7522b4fdb5b388153450abd3470e6eafa82b87d3ffed13929ea090ee93ddb815"
+architecture = "AMD CDNA 1"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1183
+encoding_records = 35
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_cdna2.xml"
+sha256 = "4d19245e6e1ee4faa682b560b7e2a35a3532e4e5828464931a96eb957a3a0f0f"
+architecture = "AMD CDNA 2"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1133
+encoding_records = 33
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_cdna3.xml"
+sha256 = "af24feb95c9230a87f694c814b0035e7448a57f8503b059f0282dba1e5f20d9c"
+architecture = "AMD CDNA 3"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1150
+encoding_records = 32
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_cdna4.xml"
+sha256 = "bb2a96f3db5c67d7c9b90e34559045c272f3536acdb03d16bc455f2f5b0a1597"
+architecture = "AMD CDNA 4"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1240
+encoding_records = 33
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_cdna5.xml"
+sha256 = "0f2895ac52907c40dc81f26301933dcaa1d95e0327f19965ad105cc7168b22a2"
+architecture = "AMD CDNA 5"
+schema = "1.2.0"
+release_date = "2026-08-03"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1325
+encoding_records = 53
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_rdna1.xml"
+sha256 = "f60248605e8c4cb9ae29130ce3114142467d953a3f1c57a1b0ca6d8de014e722"
+architecture = "AMD RDNA 1"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1149
+encoding_records = 42
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_rdna2.xml"
+sha256 = "d671ecbc36543674ab59e9b2feffd56718fd2137e7ad913c314f2e2508b9f4f7"
+architecture = "AMD RDNA 2"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1153
+encoding_records = 42
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_rdna3.xml"
+sha256 = "6eee5f8737172adf08c0e7d5994ea916e9555b9c23ccb9ec80d9ee38678733b4"
+architecture = "AMD RDNA 3"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1148
+encoding_records = 47
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_rdna3_5.xml"
+sha256 = "c36b6d79b1e940d74107221c985f5a7fde248025da251d2c6ef756c4cd31391a"
+architecture = "AMD RDNA 3.5"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1208
+encoding_records = 47
+
+[[amd_xml]]
+path = "Vendor/amd-machine-readable-isa/extracted/amdgpu_isa_rdna4.xml"
+sha256 = "f8a290c8471e26a1071b08b61a33e4d9efa46ec6cedcdb8e5ba57d7969b60692"
+architecture = "AMD RDNA 4"
+schema = "1.1.1"
+release_date = "2026-02-20"
+license = "MIT"
+copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
+instruction_records = 1264
+encoding_records = 46

@@ -1,0 +1,89 @@
+{
+  "elf": {
+    "abi_version": 4,
+    "byte_order": "little",
+    "class": "ELF64",
+    "entry": "0x0",
+    "flags": "0x12c",
+    "machine": 224,
+    "osabi": 64,
+    "program_header_count": 0,
+    "program_header_entry_size": 0,
+    "program_header_offset": 0,
+    "type": "ET_REL",
+    "version": 1
+  },
+  "notes": [],
+  "path": "experiments/gpu/amdgpu-gfx900/probe.o",
+  "sections": [
+    {
+      "address": "0x0",
+      "alignment": 0,
+      "entry_size": 0,
+      "flags": "0x0",
+      "index": 0,
+      "name": "",
+      "offset": 0,
+      "size": 0,
+      "type": 0
+    },
+    {
+      "address": "0x0",
+      "alignment": 1,
+      "entry_size": 0,
+      "flags": "0x0",
+      "index": 1,
+      "name": ".strtab",
+      "offset": 128,
+      "size": 37,
+      "type": 3
+    },
+    {
+      "address": "0x0",
+      "alignment": 4,
+      "content_sha256": "bf545049f82875a073eb48c2e2bd5f0e58ae4af81b156ed10c3bdac618b17a18",
+      "entry_size": 0,
+      "flags": "0x6",
+      "index": 2,
+      "name": ".text",
+      "offset": 64,
+      "size": 16,
+      "type": 1
+    },
+    {
+      "address": "0x0",
+      "alignment": 8,
+      "entry_size": 24,
+      "flags": "0x0",
+      "index": 3,
+      "name": ".symtab",
+      "offset": 80,
+      "size": 48,
+      "type": 2
+    }
+  ],
+  "sha256": "66d22ffb630ddee3a6a381bd8aee87457447fb69bbea319ffa790c76c958295f",
+  "size": 424,
+  "symbols": [
+    {
+      "binding": 0,
+      "name": "",
+      "section": "",
+      "size": 0,
+      "table_section": 3,
+      "type": 0,
+      "value": "0x0",
+      "visibility": 0
+    },
+    {
+      "binding": 1,
+      "name": "fsl_gpu_probe",
+      "section": ".text",
+      "size": 0,
+      "table_section": 3,
+      "type": 2,
+      "value": "0x0",
+      "visibility": 0
+    }
+  ]
+}

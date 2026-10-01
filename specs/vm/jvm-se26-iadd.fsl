@@ -1,0 +1,36 @@
+format = "fission_fsl_experimental"
+language_version = "0.0.1"
+profile_id = "jvm.se26.iadd.first-slice"
+
+unsupported_behavior = [
+  "Only fixed-width 8-bit opcode words are decoded; JVM instructions with operand bytes and variable-length forms are outside this slice.",
+  "The effect is a spec-derived FIR candidate, not a verifier, class-file parser, or executable JVM semantics model."
+]
+
+[architecture]
+vendor = "Oracle / Java Platform"
+family = "Java Virtual Machine bytecode"
+processor = "Java SE 26"
+target = "jvm-classfile-se26"
+endianness = "big"
+instruction_word_bits = 8
+scope = "Single one-byte iadd opcode from JVMS Java SE 26; no class-file framing or method decoding."
+
+[[sources]]
+source_id = "oracle-jvms-26"
+kind = "primary_specification"
+url = "https://docs.oracle.com/javase/specs/jvms/se26/html/jvms-6.html"
+revision = "Java SE 26, JVMS Chapter 6, iadd entry"
+
+[[patterns]]
+pattern_id = "jvm.se26.iadd"
+mnemonic = "iadd"
+match = { mask = "0xff", value = "0x60" }
+fields = {}
+fir_effect = { operation = "arith.add", domain = "vm_operand_stack", input_type = "int32", output_type = "int32", pops = ["int32", "int32"], pushes = ["int32"], overflow = "wrap_low_32_bits", runtime_exception = "none" }
+provenance = [
+  { source_id = "oracle-jvms-26", claim = "iadd opcode is 0x60; it pops two int values and pushes their sum's low 32 bits, with no runtime exception for this instruction" }
+]
+
+[patterns.decode]
+render = "{mnemonic}"

@@ -1,0 +1,9 @@
+/Fission/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local upstream reference checkouts and downloaded ISA data.
+/Vendor/*
+!/Vendor/README.md
+!/Vendor/references.lock.toml

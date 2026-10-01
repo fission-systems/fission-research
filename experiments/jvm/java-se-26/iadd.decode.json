@@ -1,0 +1,65 @@
+{
+  "compiled_from": {
+    "format": "fission_fsl_experimental",
+    "language_version": "0.0.1",
+    "path": "specs/vm/jvm-se26-iadd.fsl",
+    "sha256": "2d6727abcc5fd7eeb084ca9838aab53bc7dfce487aa582464472d4c26dc91c63"
+  },
+  "compiler": {
+    "name": "fslc_probe",
+    "version": "0.0.1"
+  },
+  "endianness": "big",
+  "execution_performed": false,
+  "format": "fission_research_fsl_decode_probe",
+  "format_version": 1,
+  "input": {
+    "name": "iadd.bin",
+    "offset": 0,
+    "sha256": "8d33f520a3c4cef80d2453aef81b612bfe1cb44c8b2025630ad38662763f13d3",
+    "size": 1
+  },
+  "instruction_word_bits": 8,
+  "instructions": [
+    {
+      "fir_effect_candidate": {
+        "domain": "vm_operand_stack",
+        "input_type": "int32",
+        "operation": "arith.add",
+        "output_type": "int32",
+        "overflow": "wrap_low_32_bits",
+        "pops": [
+          "int32",
+          "int32"
+        ],
+        "pushes": [
+          "int32"
+        ],
+        "runtime_exception": "none"
+      },
+      "mnemonic": "iadd",
+      "offset": 0,
+      "operands": [],
+      "pattern_id": "jvm.se26.iadd",
+      "provenance": [
+        {
+          "claim": "iadd opcode is 0x60; it pops two int values and pushes their sum's low 32 bits, with no runtime exception for this instruction",
+          "source_id": "oracle-jvms-26",
+          "source_metadata": {
+            "kind": "primary_specification",
+            "revision": "Java SE 26, JVMS Chapter 6, iadd entry",
+            "url": "https://docs.oracle.com/javase/specs/jvms/se26/html/jvms-6.html"
+          }
+        }
+      ],
+      "raw_bytes": "60",
+      "raw_word": "0x60",
+      "rendered": "iadd",
+      "reserved_or_uninterpreted": {},
+      "size": 1
+    }
+  ],
+  "pattern_profile_sha256": "5a95707f76db0278c3ef24bf990b625aeb568df6f799e55614b5a5b14db7dc9d",
+  "profile_id": "jvm.se26.iadd.first-slice",
+  "target": "jvm-classfile-se26"
+}

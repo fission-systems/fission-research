@@ -1,0 +1,51 @@
+{
+  "byte_order": "little",
+  "format": "hsa_aql_kernel_dispatch_packet",
+  "format_version": 1,
+  "input": {
+    "name": "dispatch_packet.sample.bin",
+    "offset": 0,
+    "sha256": "21f9531a7163d304a8015649ed44e5f8ce555151a106944d6fb2640c17705595",
+    "size": 64
+  },
+  "packet_size": 64,
+  "packets": [
+    {
+      "completion_signal": "0x0000000000000000",
+      "file_offset": 0,
+      "grid_size": [
+        64,
+        1,
+        1
+      ],
+      "group_segment_size": 0,
+      "header": {
+        "acquire_fence_scope": "system",
+        "barrier": true,
+        "packet_type": "kernel_dispatch",
+        "raw": "0x1502",
+        "release_fence_scope": "system",
+        "reserved_bits": 0
+      },
+      "index": 0,
+      "kernarg_address": "0x00000000abcdef00",
+      "kernel_object": "0x123456789abcdef0",
+      "private_segment_size": 0,
+      "raw_hex": "0215010040000100010000004000000001000000010000000000000000000000f0debc9a7856341200efcdab0000000000000000000000000000000000000000",
+      "reserved0": 0,
+      "reserved1": null,
+      "reserved2": "0x0000000000000000",
+      "setup": {
+        "dimensions": 1,
+        "raw": "0x0001",
+        "reserved_bits": 0
+      },
+      "workgroup_size": [
+        64,
+        1,
+        1
+      ]
+    }
+  ],
+  "pointer_model_bits": 64
+}

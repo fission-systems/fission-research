@@ -1,0 +1,1347 @@
+{
+  "source_root": "Fission/utils/sleigh-specs/compiled",
+  "file_count": 133,
+  "parsed_count": 133,
+  "error_count": 0,
+  "versions": {
+    "4": 133
+  },
+  "totals": {
+    "file_bytes": 11701978,
+    "payload_bytes": 90892867,
+    "element_nodes": 13767725
+  },
+  "artifacts": [
+    {
+      "path": "6502/6502.sla",
+      "format_version": 4,
+      "file_size": 5094,
+      "payload_size": 30006,
+      "element_node_count": 5228,
+      "max_depth": 11,
+      "file_sha256": "6e9528e7f417b815f7dfdaaec357a5ebd975525e31c4d7c456694c1e99743d92",
+      "payload_sha256": "f7a74f7ba94a39456a03a0e06248b824766893ad7e940e18e278f3e57d30de98"
+    },
+    {
+      "path": "6502/65c02.sla",
+      "format_version": 4,
+      "file_size": 7060,
+      "payload_size": 42427,
+      "element_node_count": 7418,
+      "max_depth": 12,
+      "file_sha256": "6995ea3f14fc851009924d69ab06d47fee611dca50614c7e6761f555d8fc5ac1",
+      "payload_sha256": "fc0e399ff6348aebc0ae134fdd47c537854d3234d9b105873350c0ca917cc6f8"
+    },
+    {
+      "path": "68000/68020.sla",
+      "format_version": 4,
+      "file_size": 67679,
+      "payload_size": 502402,
+      "element_node_count": 79488,
+      "max_depth": 17,
+      "file_sha256": "f903d2609c6d925222226596c858145847e70213fb191b3ff47d5b0bd196519c",
+      "payload_sha256": "736c6354bde8e5f9a14e746ef33dca2905ea0c3f7ea888b63e3db7a47090daff"
+    },
+    {
+      "path": "68000/68030.sla",
+      "format_version": 4,
+      "file_size": 70050,
+      "payload_size": 524866,
+      "element_node_count": 82144,
+      "max_depth": 19,
+      "file_sha256": "112cf04b7689d46d14fa9d77b9b4bb8b7e91ae0e5fa4975424f6f4662ab1d881",
+      "payload_sha256": "50cee8715d36321768fa7437c431016e2065962fbe1e34d7125540d6c7b8af7f"
+    },
+    {
+      "path": "68000/68040.sla",
+      "format_version": 4,
+      "file_size": 71641,
+      "payload_size": 532360,
+      "element_node_count": 83759,
+      "max_depth": 18,
+      "file_sha256": "f771dec87baca67acf63876f3a05319c44f893de6fdeb50efba80440add93f98",
+      "payload_sha256": "7848519672cf766d617909aca2919c4070e860bdbde5a651dc1e5496fb1bc68d"
+    },
+    {
+      "path": "68000/coldfire.sla",
+      "format_version": 4,
+      "file_size": 78443,
+      "payload_size": 577018,
+      "element_node_count": 90322,
+      "max_depth": 18,
+      "file_sha256": "89b1a83c5031afc8b1f2d9fe04350c7e0bc05e7f64549185140c863ad7b789b5",
+      "payload_sha256": "b52362e52e08ac4d61964b8182d3b683fe2378c97faf28a997955dc9628d4b13"
+    },
+    {
+      "path": "8048/8048.sla",
+      "format_version": 4,
+      "file_size": 7348,
+      "payload_size": 34946,
+      "element_node_count": 5524,
+      "max_depth": 12,
+      "file_sha256": "e28cd428a1d5010040efe97392fb9194fa38e596d2ef1c384cd2683b4d4889ce",
+      "payload_sha256": "f08f21da819200994b0e9824fb799d671b5287792bbcef622576a6f8176d6f4d"
+    },
+    {
+      "path": "8051/80251.sla",
+      "format_version": 4,
+      "file_size": 27837,
+      "payload_size": 265045,
+      "element_node_count": 42501,
+      "max_depth": 16,
+      "file_sha256": "cddc1065f97403d566bac0ca858aeb000a081cdb579f0f48ac21da1e7eb43f23",
+      "payload_sha256": "be83179e2b075502cca2dc572dff5dc16ca86edc87ad3c8bd323ca4d9a498c96"
+    },
+    {
+      "path": "8051/80390.sla",
+      "format_version": 4,
+      "file_size": 12019,
+      "payload_size": 82986,
+      "element_node_count": 12851,
+      "max_depth": 12,
+      "file_sha256": "835e982f9dc70672ed0473fd7f5e69343d429371bbc4e3376cb410f55c9de87d",
+      "payload_sha256": "c93ad239d9898d84dc58a8e1d8b40ed0b7bf496bd3439188f331d5ee57997b9b"
+    },
+    {
+      "path": "8051/8051.sla",
+      "format_version": 4,
+      "file_size": 11828,
+      "payload_size": 81441,
+      "element_node_count": 12555,
+      "max_depth": 12,
+      "file_sha256": "691b462c85dfcbd64999565985a4925db7591918261bea58369b1daa280b6c8e",
+      "payload_sha256": "964b3965fc992850c6b9806767736343acef7a44fcd8ce0dc7b853ecf086e00b"
+    },
+    {
+      "path": "8051/mx51.sla",
+      "format_version": 4,
+      "file_size": 18260,
+      "payload_size": 120478,
+      "element_node_count": 18346,
+      "max_depth": 15,
+      "file_sha256": "d9e381097a76b434a9e88ac011f6857110723235a7cd4672f4a6f8f9f8dddfd1",
+      "payload_sha256": "f7c3edcf9180b2bc65900e1004e54277f8551e92ad757e975c989d14189b933d"
+    },
+    {
+      "path": "8085/8085.sla",
+      "format_version": 4,
+      "file_size": 5145,
+      "payload_size": 27710,
+      "element_node_count": 4751,
+      "max_depth": 12,
+      "file_sha256": "4fb6e2bacb905f0cd4077bf3b061817c93e88fd0e8151d847073ce28d04f74a7",
+      "payload_sha256": "cfaa0387bbbf7bdf2edc43befecd03564c0ec455ae75b4ae515c4c0524cf2594"
+    },
+    {
+      "path": "AARCH64/AARCH64.sla",
+      "format_version": 4,
+      "file_size": 494950,
+      "payload_size": 4043534,
+      "element_node_count": 568910,
+      "max_depth": 24,
+      "file_sha256": "edbad5067c7cdd5f72fb5dddacc37165bc02abb63e0e05b6bb0c75fda9d72b88",
+      "payload_sha256": "fe7a2a9db4fc4400e55b05d2f3dba799b2b6e14f960d12166dc1e72d2b456186"
+    },
+    {
+      "path": "AARCH64/AARCH64BE.sla",
+      "format_version": 4,
+      "file_size": 500874,
+      "payload_size": 4045908,
+      "element_node_count": 568874,
+      "max_depth": 24,
+      "file_sha256": "81bea4ed234659c4e0d8a6ce6b552e0ea59141f12451be70b259ca793803d4c6",
+      "payload_sha256": "76f7dbd2edcda6bc8efb05e7e108c6ab952cd6e5e92107d93a61f465e317b6f8"
+    },
+    {
+      "path": "AARCH64/AARCH64_AppleSilicon.sla",
+      "format_version": 4,
+      "file_size": 496785,
+      "payload_size": 4053946,
+      "element_node_count": 570287,
+      "max_depth": 24,
+      "file_sha256": "3bc07d211cf32be3b46b3dba1df6c43017bf63a9fb8c2b7ed9291e93e7ddab0f",
+      "payload_sha256": "66bccc83afecc4973eff887a974823178d5043d2837bf44aad5c90bdf3caf7a9"
+    },
+    {
+      "path": "ARM/ARM4_be.sla",
+      "format_version": 4,
+      "file_size": 46064,
+      "payload_size": 295952,
+      "element_node_count": 42519,
+      "max_depth": 18,
+      "file_sha256": "b5e8c0bdd20151be26b7698a5cb7c567d3fd033fc85685946b0146642d6ce9d5",
+      "payload_sha256": "36eed6808c635d6c0dcd698cec0301e9ea9b0adfbb56ee18b9953547e1199940"
+    },
+    {
+      "path": "ARM/ARM4_le.sla",
+      "format_version": 4,
+      "file_size": 46114,
+      "payload_size": 297286,
+      "element_node_count": 42561,
+      "max_depth": 18,
+      "file_sha256": "aeafd9521ab39f71c1a1dcde1f6206ad099e880d060af9b0327b62bc2ea222e3",
+      "payload_sha256": "d14576d01304c7578b6de31c82ebe4331883caa8597f43bc068ed516174e0e2e"
+    },
+    {
+      "path": "ARM/ARM4t_be.sla",
+      "format_version": 4,
+      "file_size": 72119,
+      "payload_size": 456354,
+      "element_node_count": 65842,
+      "max_depth": 20,
+      "file_sha256": "39b9bffad270b7febc42a6967e670be24e85e7a5c0732ee60858f19973e4c06b",
+      "payload_sha256": "cfc93ccbcb7a66dee0df12a454b8ed05d8a7f459fecfc3e94dfb24dd290d3cb2"
+    },
+    {
+      "path": "ARM/ARM4t_le.sla",
+      "format_version": 4,
+      "file_size": 72480,
+      "payload_size": 464078,
+      "element_node_count": 66740,
+      "max_depth": 19,
+      "file_sha256": "3a9b244de0a4d3a33200e7c38a671629beb0c5d82a8f8fa099fad0809e763097",
+      "payload_sha256": "6cb6cbcea2c5c681fb57b867abc0861c4321223dbbd83c4bbedf0845cafe0734"
+    },
+    {
+      "path": "ARM/ARM5_be.sla",
+      "format_version": 4,
+      "file_size": 50087,
+      "payload_size": 318125,
+      "element_node_count": 45779,
+      "max_depth": 19,
+      "file_sha256": "65dfd30593d3737bba656a89b7f925bceaeb29f06b001fe15fa31f6d654d8272",
+      "payload_sha256": "037b6dd1c027125cd7e166b46f06bc234a04656ec7fea137f99ae5f9bcb83144"
+    },
+    {
+      "path": "ARM/ARM5_le.sla",
+      "format_version": 4,
+      "file_size": 50137,
+      "payload_size": 319489,
+      "element_node_count": 45821,
+      "max_depth": 19,
+      "file_sha256": "12c8a5f67917fca78257f41c520ad1d381da1b8e4466cd939b941470b697c90c",
+      "payload_sha256": "8aeb5773287f248af0bc76cb00857eb42a1c3b82868149d864d772bdf90f117c"
+    },
+    {
+      "path": "ARM/ARM5t_be.sla",
+      "format_version": 4,
+      "file_size": 77424,
+      "payload_size": 488975,
+      "element_node_count": 70609,
+      "max_depth": 21,
+      "file_sha256": "b81e5cbfb43b8d2a96b3e756899c45c3f80de74f79d0ae904c6f8051c0eeea80",
+      "payload_sha256": "e5f14b02d121106d1c7e84c2aa8b41c897f98afce9014aa3e7a6b7cccc41c4e5"
+    },
+    {
+      "path": "ARM/ARM5t_le.sla",
+      "format_version": 4,
+      "file_size": 77844,
+      "payload_size": 498055,
+      "element_node_count": 71683,
+      "max_depth": 20,
+      "file_sha256": "480359dd66f4dc537fc4e47ee654154f24c01f9c3afc34c7d993f167969e7f81",
+      "payload_sha256": "c034bed074f4f5455d322e6363c7a838a82772193bdbf000765792e064e581e0"
+    },
+    {
+      "path": "ARM/ARM6_be.sla",
+      "format_version": 4,
+      "file_size": 165102,
+      "payload_size": 1161081,
+      "element_node_count": 172376,
+      "max_depth": 23,
+      "file_sha256": "8414f39318ab5e4da507f1b65bb9f6ab4bffa878d08d49bf4cbee9d30aa3a234",
+      "payload_sha256": "ab8c194d02a948d1ceb83746506ca75dbf98d8b95ba9e29bae9686b2654b4c4d"
+    },
+    {
+      "path": "ARM/ARM6_le.sla",
+      "format_version": 4,
+      "file_size": 165727,
+      "payload_size": 1175024,
+      "element_node_count": 174028,
+      "max_depth": 23,
+      "file_sha256": "a77b3cda819111998cc085f22e3386743b77fe225d09f14deb4d2aa83b2e3622",
+      "payload_sha256": "8ca1751302522ae33298d0a8098c8c2a09e7192b12686bdf65b27eb0cacd9f53"
+    },
+    {
+      "path": "ARM/ARM7_be.sla",
+      "format_version": 4,
+      "file_size": 249984,
+      "payload_size": 2001194,
+      "element_node_count": 287013,
+      "max_depth": 25,
+      "file_sha256": "2e38b81f28deafe3596457632ca9b37024fc688f8bcc3c72c3c17ca1e825405e",
+      "payload_sha256": "1c851ceb403240c34bc3ca772d111c0655210b3581d810107296198621c49d0a"
+    },
+    {
+      "path": "ARM/ARM7_le.sla",
+      "format_version": 4,
+      "file_size": 251283,
+      "payload_size": 2026765,
+      "element_node_count": 290302,
+      "max_depth": 25,
+      "file_sha256": "9bf1ec54f1235ebf5a9e68e791e1160fa8d92ed3b2007099725c04624a007b05",
+      "payload_sha256": "6ef984ad6afea62b4f8c329394d8a12db31be795522b2cebb55110dba9b569d4"
+    },
+    {
+      "path": "ARM/ARM8_be.sla",
+      "format_version": 4,
+      "file_size": 264899,
+      "payload_size": 2087820,
+      "element_node_count": 298091,
+      "max_depth": 26,
+      "file_sha256": "5c74659eb34c0742a8956055e5bb3136cc33db98f808b17baba7a3f983b505f7",
+      "payload_sha256": "bdb6bf80da527899110af810eb024dc5fe43f64eeac35828b687fd08f7690841"
+    },
+    {
+      "path": "ARM/ARM8_le.sla",
+      "format_version": 4,
+      "file_size": 266662,
+      "payload_size": 2145837,
+      "element_node_count": 305842,
+      "max_depth": 26,
+      "file_sha256": "c77811ea202caa70a3ecc318295a23b9f60ba76cec83b024654e6537d050f331",
+      "payload_sha256": "d6f87e389f759d113ead57126c52af71b7a3a588562d40846d7b1a5a6c364da3"
+    },
+    {
+      "path": "ARM/ARM8m_be.sla",
+      "format_version": 4,
+      "file_size": 266329,
+      "payload_size": 2087391,
+      "element_node_count": 298648,
+      "max_depth": 26,
+      "file_sha256": "621d31a4d3bc22d950c309b0f8028ee816629ddd806ab0f41c98bb1892509067",
+      "payload_sha256": "4babea4905c00162ad2b237a777fcf3583bce66356ff6f419d0426cd35326355"
+    },
+    {
+      "path": "ARM/ARM8m_le.sla",
+      "format_version": 4,
+      "file_size": 268054,
+      "payload_size": 2134021,
+      "element_node_count": 304839,
+      "max_depth": 27,
+      "file_sha256": "ffb76e825490a6ae03b9357645de0a3801e0d1b343a6a47312b7eba826243c20",
+      "payload_sha256": "80f50d9dfc674853438754a8a14c901020744eaea3e7333f0bfb552f32f12165"
+    },
+    {
+      "path": "Atmel/avr32a.sla",
+      "format_version": 4,
+      "file_size": 68919,
+      "payload_size": 626524,
+      "element_node_count": 111321,
+      "max_depth": 15,
+      "file_sha256": "6e7c1bdcb6251982ea29b5c0124762a83692609461b498a1c17248b0fea53ac3",
+      "payload_sha256": "f430fc997de9b8a6e104562960b5bd2e5f538a1e89a9f705eb83a1bce49f8100"
+    },
+    {
+      "path": "Atmel/avr8.sla",
+      "format_version": 4,
+      "file_size": 12044,
+      "payload_size": 81659,
+      "element_node_count": 11769,
+      "max_depth": 18,
+      "file_sha256": "1d40b91a0a7dda1b64d79f7789fd6a1b46104b3c11f39ad8674f5c7091d65096",
+      "payload_sha256": "0df44268e9582f4556cb2a9e1deb79e7f7bbd51dede793123642bbfda2736e1f"
+    },
+    {
+      "path": "Atmel/avr8e.sla",
+      "format_version": 4,
+      "file_size": 12183,
+      "payload_size": 82534,
+      "element_node_count": 11940,
+      "max_depth": 19,
+      "file_sha256": "1edd32e1ee11a0ec426546feac5166c396ea25af278aec562a702bb17743e3fd",
+      "payload_sha256": "4a2f33c2e9b904c48b08dd0494b58f166b275996e64b70d5d247873d889e0699"
+    },
+    {
+      "path": "Atmel/avr8eind.sla",
+      "format_version": 4,
+      "file_size": 12542,
+      "payload_size": 84708,
+      "element_node_count": 12344,
+      "max_depth": 19,
+      "file_sha256": "029bcee102ac96a0e8d900dff30e350e3f61a06001e7d3a10f7c96af7c2fbca1",
+      "payload_sha256": "49a4952279b809b518916848cc548d0e7f86d8a16f7caeed121ace2df8479137"
+    },
+    {
+      "path": "Atmel/avr8xmega.sla",
+      "format_version": 4,
+      "file_size": 12543,
+      "payload_size": 84706,
+      "element_node_count": 12344,
+      "max_depth": 19,
+      "file_sha256": "6b601650cba585aa5aa55cfb14114ef3dc103343a9b4e685a77c59d1104de0aa",
+      "payload_sha256": "aa76dbf27e81b314733148156852800c44a26cfffc06e22d0cb7d9b34c548f54"
+    },
+    {
+      "path": "BPF/BPF_le.sla",
+      "format_version": 4,
+      "file_size": 3653,
+      "payload_size": 19166,
+      "element_node_count": 2857,
+      "max_depth": 10,
+      "file_sha256": "39b279b51f1060c75a7dc9e044112218e27bf0d59d6289eae52c1624cff5bf5c",
+      "payload_sha256": "7eb2961655051827794c04ce2cf666d6fb4d19503094b5f188fac8f2a637f9dc"
+    },
+    {
+      "path": "CP1600/CP1600.sla",
+      "format_version": 4,
+      "file_size": 8989,
+      "payload_size": 53998,
+      "element_node_count": 8386,
+      "max_depth": 12,
+      "file_sha256": "74a74f6bbedfd1bc9b02e37ef36ade68f31d118203568e77db5480b27a89cc1f",
+      "payload_sha256": "827c16c1ca65ca020e8277fecdf1a20598dc22797ab9cf529463722c83a053f1"
+    },
+    {
+      "path": "CR16/CR16B.sla",
+      "format_version": 4,
+      "file_size": 4875,
+      "payload_size": 21920,
+      "element_node_count": 1995,
+      "max_depth": 15,
+      "file_sha256": "85395ea82de15215dfe468b3fc5c09a199e3618d501900bf69692912e923d252",
+      "payload_sha256": "54c38834b67c9e64aee1c822a565d4cf138cbe0fe54a9a5b726320b56cc7ecba"
+    },
+    {
+      "path": "CR16/CR16C.sla",
+      "format_version": 4,
+      "file_size": 36683,
+      "payload_size": 274249,
+      "element_node_count": 46371,
+      "max_depth": 17,
+      "file_sha256": "8e4f7b1171806d3027e58649ea1944fa42fac7e9c0cc1b11153bb3109a9a550c",
+      "payload_sha256": "414dc7a883398d8d31eff8a17c6d7822d68ab8762b8150c8383820bfc46af546"
+    },
+    {
+      "path": "DATA/data-be-64.sla",
+      "format_version": 4,
+      "file_size": 417,
+      "payload_size": 499,
+      "element_node_count": 34,
+      "max_depth": 8,
+      "file_sha256": "328866e29f27b12d30bea4c7f46adb129e96e37d4e3b9a493d8102e45b174e79",
+      "payload_sha256": "7841a7e9dd7a742506f2e436c38000080fa838e9d84d3e3a613c0560fab796e9"
+    },
+    {
+      "path": "DATA/data-le-64.sla",
+      "format_version": 4,
+      "file_size": 418,
+      "payload_size": 499,
+      "element_node_count": 34,
+      "max_depth": 8,
+      "file_sha256": "c43616598c68768ab4340d778b450304e4f8a3f04948061310d1de0de9b305d3",
+      "payload_sha256": "b1a271f7e3e420636d7939c96c7138b7fd1be11924b1943a980d0937c52493dd"
+    },
+    {
+      "path": "Dalvik/Dalvik_Base.sla",
+      "format_version": 4,
+      "file_size": 24937,
+      "payload_size": 141699,
+      "element_node_count": 18025,
+      "max_depth": 10,
+      "file_sha256": "88f751321f26279e7467a46f8d7e7d5e1e764f080a1464bd4648cc9a7ff720da",
+      "payload_sha256": "419a089fffe834fef0001d9de92dcad5141c546ecadbcfc9e3fb5000c11f94b3"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Android10.sla",
+      "format_version": 4,
+      "file_size": 28812,
+      "payload_size": 163561,
+      "element_node_count": 20546,
+      "max_depth": 10,
+      "file_sha256": "fb25f0c3d16033561e623a0494ee4ce7852d75da0121209291e38a6d265630ba",
+      "payload_sha256": "45714d5c109a7c9633c81c390f2962d499af0ec6f357296766db35c439a3c1a0"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Android11.sla",
+      "format_version": 4,
+      "file_size": 28812,
+      "payload_size": 163561,
+      "element_node_count": 20546,
+      "max_depth": 10,
+      "file_sha256": "fb25f0c3d16033561e623a0494ee4ce7852d75da0121209291e38a6d265630ba",
+      "payload_sha256": "45714d5c109a7c9633c81c390f2962d499af0ec6f357296766db35c439a3c1a0"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Android12.sla",
+      "format_version": 4,
+      "file_size": 27443,
+      "payload_size": 153666,
+      "element_node_count": 19239,
+      "max_depth": 10,
+      "file_sha256": "5fe0fe31a4214204f4eb0cfe1ff2a5e312ec9f5682654e66eac1658277175f86",
+      "payload_sha256": "a9763965e38d4347d6ee0cb8bef9abb47f18e0c10856c00904fc0b55e002088c"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_KitKat.sla",
+      "format_version": 4,
+      "file_size": 26603,
+      "payload_size": 151044,
+      "element_node_count": 19111,
+      "max_depth": 10,
+      "file_sha256": "9de5c5c99ed1bdae7f0a21bf3c2f1b8c40a4f31954f542d2c40a9be3311c16b8",
+      "payload_sha256": "d8d8200680eca10dcfa9605e3352c3c350fa998f2dc20287ec4d226d3b6787d7"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Lollipop.sla",
+      "format_version": 4,
+      "file_size": 26603,
+      "payload_size": 151044,
+      "element_node_count": 19111,
+      "max_depth": 10,
+      "file_sha256": "9de5c5c99ed1bdae7f0a21bf3c2f1b8c40a4f31954f542d2c40a9be3311c16b8",
+      "payload_sha256": "d8d8200680eca10dcfa9605e3352c3c350fa998f2dc20287ec4d226d3b6787d7"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Marshmallow.sla",
+      "format_version": 4,
+      "file_size": 27149,
+      "payload_size": 154833,
+      "element_node_count": 19655,
+      "max_depth": 10,
+      "file_sha256": "b8cd34f24194ff115da38189af0d162954a778cc79680b85f4460fdb74805e3e",
+      "payload_sha256": "0077c514c3afa0fdca4554799068b91648331e9b0d693eab9a78d0d01020a2bf"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Nougat.sla",
+      "format_version": 4,
+      "file_size": 28001,
+      "payload_size": 158755,
+      "element_node_count": 20004,
+      "max_depth": 10,
+      "file_sha256": "2cccbf07ff6a001feb8d1d9b0e2ea7bcd0c8c73eaf2824c9abe767a2d01c48f3",
+      "payload_sha256": "f6dbce4f36641ce97b9ca9e041aad6b23638d92164d17b9812e478f681270d31"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Oreo.sla",
+      "format_version": 4,
+      "file_size": 28718,
+      "payload_size": 163199,
+      "element_node_count": 20507,
+      "max_depth": 10,
+      "file_sha256": "1e0a18b2c4cf50816522a4cb189081b5bdfa88af3020dcc23dbd1385190d4f19",
+      "payload_sha256": "4260f3e154dc9c2b9327301ad4d9c1ebb4879680ecb9e133b243586c14684fa1"
+    },
+    {
+      "path": "Dalvik/Dalvik_DEX_Pie.sla",
+      "format_version": 4,
+      "file_size": 28812,
+      "payload_size": 163561,
+      "element_node_count": 20546,
+      "max_depth": 10,
+      "file_sha256": "fb25f0c3d16033561e623a0494ee4ce7852d75da0121209291e38a6d265630ba",
+      "payload_sha256": "45714d5c109a7c9633c81c390f2962d499af0ec6f357296766db35c439a3c1a0"
+    },
+    {
+      "path": "Dalvik/Dalvik_ODEX_KitKat.sla",
+      "format_version": 4,
+      "file_size": 28328,
+      "payload_size": 163130,
+      "element_node_count": 20786,
+      "max_depth": 10,
+      "file_sha256": "d11aa256c92a6c517bb7a2e50cbf4ba5e230cacc7ba40d30569640e9b2035b62",
+      "payload_sha256": "1a6a9bc6f38859bda7867f679ecd5f567d9f124beb3895bfdac2a9b4f8ddc586"
+    },
+    {
+      "path": "HCS08/HC05.sla",
+      "format_version": 4,
+      "file_size": 9102,
+      "payload_size": 61727,
+      "element_node_count": 11566,
+      "max_depth": 10,
+      "file_sha256": "d0d62a84739892ea7dad1b5e5ff8d081e9534ec78479aa7d483d584e2f0ff758",
+      "payload_sha256": "10cddcebe3168c2a4195e56c976c93ba7776727a2a923a0cf6013f50bb5c8c4f"
+    },
+    {
+      "path": "HCS08/HC08.sla",
+      "format_version": 4,
+      "file_size": 17508,
+      "payload_size": 152440,
+      "element_node_count": 29639,
+      "max_depth": 11,
+      "file_sha256": "ec258b9cde089a91f341b4d62fa2d44b59b42bb660113e8a77e751c5ef9dbcfd",
+      "payload_sha256": "099886d17d06c3aae4f604fea914dd45ca82de90f5e9c7ac446ad66d5d898c79"
+    },
+    {
+      "path": "HCS08/HCS08.sla",
+      "format_version": 4,
+      "file_size": 18679,
+      "payload_size": 163178,
+      "element_node_count": 31700,
+      "max_depth": 11,
+      "file_sha256": "cd49d7de045b8179253443292c39b0ffbff1e3740d767e25dd50edbddfcaabc1",
+      "payload_sha256": "f6844e05e71309be8b8f73451d1e8277f11204cd892d9ea2554a71fd8256df6c"
+    },
+    {
+      "path": "HCS12/HC12.sla",
+      "format_version": 4,
+      "file_size": 40781,
+      "payload_size": 361634,
+      "element_node_count": 67932,
+      "max_depth": 13,
+      "file_sha256": "1a8a8d4c36dc7fd4dee64ba5bf2d26dbf2bc50b9e5db2e134727d89d848cd14a",
+      "payload_sha256": "ad27f28f23480e678c04dc44078bab11787aa493a77d27b97d003e91a920bae7"
+    },
+    {
+      "path": "HCS12/HCS12.sla",
+      "format_version": 4,
+      "file_size": 45312,
+      "payload_size": 501337,
+      "element_node_count": 98450,
+      "max_depth": 13,
+      "file_sha256": "4ad2d273a74f8d1c56e71ac4c02e986af70e1a414c8983e8e283d53d4b9cd026",
+      "payload_sha256": "529c25bb7625882cc0a4a204c50384d92c9341b94a556a126669efcfd05e5d2e"
+    },
+    {
+      "path": "HCS12/HCS12X.sla",
+      "format_version": 4,
+      "file_size": 78232,
+      "payload_size": 924513,
+      "element_node_count": 183165,
+      "max_depth": 15,
+      "file_sha256": "207a6663867d3e72d0ff934ceb1f03ac3b547b9c01508499851afd33a40c822b",
+      "payload_sha256": "c36d3776afc99060ab6ff5da0ff3ed1fa5a5bcaa6f2a9cfcb366b8ef0a617c22"
+    },
+    {
+      "path": "JVM/JVM.sla",
+      "format_version": 4,
+      "file_size": 15408,
+      "payload_size": 119397,
+      "element_node_count": 21858,
+      "max_depth": 12,
+      "file_sha256": "71f5050d34f7e9809d52825d2543dc819db56dc2bb4728b909c844015521c2d4",
+      "payload_sha256": "e0d354f173c4377676b30d97642f0129559ab72b90c32ba269258073eb1106aa"
+    },
+    {
+      "path": "Loongarch/loongarch32_f32.sla",
+      "format_version": 4,
+      "file_size": 145374,
+      "payload_size": 916403,
+      "element_node_count": 113768,
+      "max_depth": 15,
+      "file_sha256": "7d1ffc43c937f19ba3cc73478e8d0001d31830c2269e786415219c9ba8328a5b",
+      "payload_sha256": "aa4d8e8cd83709108a18d49bb2c62ed7aff2800f2d279e9e660ee9e7397638c2"
+    },
+    {
+      "path": "Loongarch/loongarch32_f64.sla",
+      "format_version": 4,
+      "file_size": 31256,
+      "payload_size": 170293,
+      "element_node_count": 23887,
+      "max_depth": 14,
+      "file_sha256": "aea976b88ac47d6d0432cdd2da0e99c9932f70d7f5a787788f260077886ec4cb",
+      "payload_sha256": "879944679aa95752df8c65dcf401da52763f43d8d05deeddd454d9e093d748d3"
+    },
+    {
+      "path": "Loongarch/loongarch64_f32.sla",
+      "format_version": 4,
+      "file_size": 155545,
+      "payload_size": 980473,
+      "element_node_count": 124274,
+      "max_depth": 16,
+      "file_sha256": "8108481179fac8deffbb9ddaf5d5253ceca42e48f42fa4a4aed1f397358b4778",
+      "payload_sha256": "28d68e5331bb6c3966132bd4313235a6814f4022c272c8b7c5f54435135b2640"
+    },
+    {
+      "path": "Loongarch/loongarch64_f64.sla",
+      "format_version": 4,
+      "file_size": 155667,
+      "payload_size": 981193,
+      "element_node_count": 124306,
+      "max_depth": 16,
+      "file_sha256": "06870383badabd7879cb82ac40f8f65b9f9d1633c93bebac3b4a7f60871cb116",
+      "payload_sha256": "271db7b13cd7248eac9475904367962c9ca505776435fc3b75031b41cb492876"
+    },
+    {
+      "path": "M16C/M16C_60.sla",
+      "format_version": 4,
+      "file_size": 49571,
+      "payload_size": 426530,
+      "element_node_count": 79130,
+      "max_depth": 16,
+      "file_sha256": "f19abdae929f8f9415722c8d20cef29b27a5cb403ac0414038041c293fb4ae34",
+      "payload_sha256": "afccbec22d279908c8b4a643157a529cee205f2c654532e5c4c1a4054c2a5a45"
+    },
+    {
+      "path": "M16C/M16C_80.sla",
+      "format_version": 4,
+      "file_size": 70862,
+      "payload_size": 667391,
+      "element_node_count": 120778,
+      "max_depth": 19,
+      "file_sha256": "7e17d138085c78136dd29c491bc43b7f51f6a3a426fda00e4c34937823591c27",
+      "payload_sha256": "c21bb199a1da1ed633e39176660fa3825e0086d1ed205839acd89b2671193344"
+    },
+    {
+      "path": "M8C/m8c.sla",
+      "format_version": 4,
+      "file_size": 9842,
+      "payload_size": 81690,
+      "element_node_count": 14620,
+      "max_depth": 11,
+      "file_sha256": "d5ca9c249ccb706389ca2ebeed73953a894c98abec3923e815095071aaa3b494",
+      "payload_sha256": "2db9582382923be37382055dde4d3d670992bec426c3c9e26655757d4783a4ee"
+    },
+    {
+      "path": "MC6800/6805.sla",
+      "format_version": 4,
+      "file_size": 5755,
+      "payload_size": 36820,
+      "element_node_count": 6418,
+      "max_depth": 10,
+      "file_sha256": "28ccf0129d90e42996da0ca54a7bbad7ae2da10a3d1a8b6b2e2f72c8ca1109f1",
+      "payload_sha256": "db22e1cd2be9d4c96c1fd32a93d87e562cca50faabe5807463e1cdeca55b83b9"
+    },
+    {
+      "path": "MC6800/6809.sla",
+      "format_version": 4,
+      "file_size": 17021,
+      "payload_size": 151114,
+      "element_node_count": 27267,
+      "max_depth": 10,
+      "file_sha256": "6ee1d84b350e364f45b3645370ab587e765b64849c5a3c78e52f195ee7fec5e4",
+      "payload_sha256": "06401867527f29ba7740e1876355013f27814e1366fce4c387317806d5b59485"
+    },
+    {
+      "path": "MC6800/H6309.sla",
+      "format_version": 4,
+      "file_size": 18207,
+      "payload_size": 156875,
+      "element_node_count": 28151,
+      "max_depth": 11,
+      "file_sha256": "4b6cac408fc3c474215514a26109a5a14b12a4e44af27219f13f9ac1e2d55457",
+      "payload_sha256": "ecea205201328f704b229f7ac810f800fb9c8805f5de912fc308dbb4d35334ab"
+    },
+    {
+      "path": "MCS96/MCS96.sla",
+      "format_version": 4,
+      "file_size": 28953,
+      "payload_size": 202331,
+      "element_node_count": 35572,
+      "max_depth": 11,
+      "file_sha256": "c78d18d97107e62b1af26b658b2da7151bc2ed5fa1f3d658eafaa65b9cd5e1f5",
+      "payload_sha256": "983e59d9b6683985b8ee92b375a0c8c96e3ab70200140c46bce6f2143b830227"
+    },
+    {
+      "path": "MIPS/mips32R6be.sla",
+      "format_version": 4,
+      "file_size": 163995,
+      "payload_size": 1356449,
+      "element_node_count": 192933,
+      "max_depth": 17,
+      "file_sha256": "1076abe0a0e551b52a2b490fc39576fc87342de0594d75911d87851d8387bd34",
+      "payload_sha256": "66ea7c7314309b4b9107934a0da8ba913d86c943510576a40de12efa07206c62"
+    },
+    {
+      "path": "MIPS/mips32R6le.sla",
+      "format_version": 4,
+      "file_size": 163779,
+      "payload_size": 1362412,
+      "element_node_count": 192549,
+      "max_depth": 17,
+      "file_sha256": "7cdbb62a4bc14c026a87acb2cef3454575b6fbae7a7fe67295ad62139593a448",
+      "payload_sha256": "4c074d31a92f0f09e7ef26000ca9c77222c954aa236a5dfcc599aed33ef2fb44"
+    },
+    {
+      "path": "MIPS/mips32be.sla",
+      "format_version": 4,
+      "file_size": 166305,
+      "payload_size": 1366539,
+      "element_node_count": 194200,
+      "max_depth": 17,
+      "file_sha256": "37b73401af959199152c0b9d7a858f0602f159084107057ced0e9c4d1f53820f",
+      "payload_sha256": "9809a8485c96227f1c34714315bc8a8da73ad1424526e99c6ca0d762acd63c4b"
+    },
+    {
+      "path": "MIPS/mips32le.sla",
+      "format_version": 4,
+      "file_size": 166093,
+      "payload_size": 1372990,
+      "element_node_count": 193834,
+      "max_depth": 17,
+      "file_sha256": "58f26c361d8a0b9697c164791bd5b81bd0d5b77d462fae33d8e02da57a4ba19c",
+      "payload_sha256": "f372d2359589ba9c7d61a7e6488c74c3646d4b6c611a4ab39b260e36cd0c0f45"
+    },
+    {
+      "path": "MIPS/mips64be.sla",
+      "format_version": 4,
+      "file_size": 177275,
+      "payload_size": 1443043,
+      "element_node_count": 205848,
+      "max_depth": 17,
+      "file_sha256": "b84b79a5defb876a9cbecf11e96a44d13acbd10e484bf847b04f82d4dfaf042c",
+      "payload_sha256": "4d588c430ece8918680526fe73ce535ac61e8fd6c0843b60c22e633d389c5f55"
+    },
+    {
+      "path": "MIPS/mips64le.sla",
+      "format_version": 4,
+      "file_size": 177151,
+      "payload_size": 1449412,
+      "element_node_count": 205486,
+      "max_depth": 17,
+      "file_sha256": "443c6f12b3cc6a6e513265f04ded04d821c93d47df8109aa495e098cbc2f7b2e",
+      "payload_sha256": "1eceae0e2314d1236c00453082b3878c6984f0cdca2c7389fa54e2042b4879de"
+    },
+    {
+      "path": "NDS32/nds32be.sla",
+      "format_version": 4,
+      "file_size": 36221,
+      "payload_size": 200025,
+      "element_node_count": 27242,
+      "max_depth": 15,
+      "file_sha256": "d9b24324857e4d8b3e78cfd163d845f9a71c334d1bf5cd3913680da4576e0469",
+      "payload_sha256": "d4e2cfa83ada5e9e19abcecb5fb360adf45c4b5b7b15761c1dec16d72540e82e"
+    },
+    {
+      "path": "NDS32/nds32le.sla",
+      "format_version": 4,
+      "file_size": 36221,
+      "payload_size": 200025,
+      "element_node_count": 27242,
+      "max_depth": 15,
+      "file_sha256": "043fe0e4232a7a46016dbcbaae9d8715530e84b86c7f9067abf8c6e1206e1c69",
+      "payload_sha256": "66abba4eb5f35b3e85687c43c5dd6202cc2bce04959524c49aca52a2ac2668ec"
+    },
+    {
+      "path": "PA-RISC/pa-risc32be.sla",
+      "format_version": 4,
+      "file_size": 57666,
+      "payload_size": 354768,
+      "element_node_count": 50088,
+      "max_depth": 15,
+      "file_sha256": "5ceaf3269fdee8fe69d36db0f5ebcb0bbd3c2ee420b7e99a2084347079bd1975",
+      "payload_sha256": "11addd1028617a5d4344bb04ef3423f0f902c2935d794cc4776c6c66b1e2aaeb"
+    },
+    {
+      "path": "PIC/PIC24E.sla",
+      "format_version": 4,
+      "file_size": 37727,
+      "payload_size": 267379,
+      "element_node_count": 42194,
+      "max_depth": 16,
+      "file_sha256": "51a07d538ef949fd616a94e345bde7a5e55a2980f4c6e3db0579ec4187306b58",
+      "payload_sha256": "6bcea2c9b1823a9d172aaf2cac3d2cc090e39ca438601ceefb051f85f794bf85"
+    },
+    {
+      "path": "PIC/PIC24F.sla",
+      "format_version": 4,
+      "file_size": 35704,
+      "payload_size": 254303,
+      "element_node_count": 40269,
+      "max_depth": 16,
+      "file_sha256": "0d0b84268da8de433a0d031c209edd817780aa62b5c24ef0d2bf9c29a8cc773d",
+      "payload_sha256": "6e2fd298c2facdbd1ccb7d5b862f85825817ab471f90a82006920a0858976218"
+    },
+    {
+      "path": "PIC/PIC24H.sla",
+      "format_version": 4,
+      "file_size": 35704,
+      "payload_size": 254303,
+      "element_node_count": 40269,
+      "max_depth": 16,
+      "file_sha256": "0d0b84268da8de433a0d031c209edd817780aa62b5c24ef0d2bf9c29a8cc773d",
+      "payload_sha256": "6e2fd298c2facdbd1ccb7d5b862f85825817ab471f90a82006920a0858976218"
+    },
+    {
+      "path": "PIC/dsPIC30F.sla",
+      "format_version": 4,
+      "file_size": 53525,
+      "payload_size": 397341,
+      "element_node_count": 63431,
+      "max_depth": 18,
+      "file_sha256": "01dc4cc7e2f873c79ae81e0a03113ecf032c96128680c17d830b142a9f01fad4",
+      "payload_sha256": "55afef7e73b1bf31a0171d9eee4af002c82d73c4a2554050da53e0dd44581811"
+    },
+    {
+      "path": "PIC/dsPIC33C.sla",
+      "format_version": 4,
+      "file_size": 60792,
+      "payload_size": 446441,
+      "element_node_count": 71331,
+      "max_depth": 17,
+      "file_sha256": "e21813d734a541306e2aab4e78aa79d17985da8fe954a6c12a9f454bf3d7eb67",
+      "payload_sha256": "306ac2f04be6cede0cd1888d68e7e3f3ba52f3bfa8c78610c82d13c69e32a561"
+    },
+    {
+      "path": "PIC/dsPIC33E.sla",
+      "format_version": 4,
+      "file_size": 56525,
+      "payload_size": 416739,
+      "element_node_count": 66306,
+      "max_depth": 17,
+      "file_sha256": "b4b76a841b96efbb959aded266f0d1f540437d374f437c6da5e9345ea7e73450",
+      "payload_sha256": "f9573c09ec4f9214d6866b611209700bd24297d3ff6e32540214d69883437cce"
+    },
+    {
+      "path": "PIC/dsPIC33F.sla",
+      "format_version": 4,
+      "file_size": 53667,
+      "payload_size": 397987,
+      "element_node_count": 63541,
+      "max_depth": 18,
+      "file_sha256": "627f05a642b7e847d8cfce8647ffb096ced25f6ee82b3dea637a8a7ec457cd61",
+      "payload_sha256": "77fff3c8370df150a22d1eeb2823b4d10644cea6bac9052ac99bfc83d89159fb"
+    },
+    {
+      "path": "PIC/pic12c5xx.sla",
+      "format_version": 4,
+      "file_size": 5492,
+      "payload_size": 28245,
+      "element_node_count": 4549,
+      "max_depth": 13,
+      "file_sha256": "21ec6a2e5a672541728fda0157f8b42a80d7d72f3569aecc7d320b30c7ea9d91",
+      "payload_sha256": "b9532bbe38ba8bb3d3b8f1fa6615194af266dd3456458618885d3633084a346b"
+    },
+    {
+      "path": "PIC/pic16.sla",
+      "format_version": 4,
+      "file_size": 7977,
+      "payload_size": 51038,
+      "element_node_count": 8838,
+      "max_depth": 13,
+      "file_sha256": "1d0fa01e7492f37984499c4f60a4ce5ee95203d416c48bc65b28d7b09de086fc",
+      "payload_sha256": "a2245403319d96657d1cc7d61162fcc24d23ee90ae5e8586c6367140d4851c46"
+    },
+    {
+      "path": "PIC/pic16c5x.sla",
+      "format_version": 4,
+      "file_size": 5571,
+      "payload_size": 28426,
+      "element_node_count": 4573,
+      "max_depth": 14,
+      "file_sha256": "55c62d07b60ffdbf7c9ef1f8423f5a57b3659a33a57f7b5d51793ff7cd1edfd2",
+      "payload_sha256": "fdc6b8493e9625272066fd9ac86b9677088e3084ffeac546131acd8cacb3be0a"
+    },
+    {
+      "path": "PIC/pic16f.sla",
+      "format_version": 4,
+      "file_size": 9502,
+      "payload_size": 59265,
+      "element_node_count": 10063,
+      "max_depth": 15,
+      "file_sha256": "1d0dc74a477117aef40e490541304a2ddb0e1773b65cc1b9d0db83420db226b2",
+      "payload_sha256": "382d5fda140eb3dd78bf2a879ed35ae1ca78d60dcab9a14bf84ad097ceecf940"
+    },
+    {
+      "path": "PIC/pic17c7xx.sla",
+      "format_version": 4,
+      "file_size": 10876,
+      "payload_size": 58444,
+      "element_node_count": 9292,
+      "max_depth": 12,
+      "file_sha256": "4e5e8379e70f8c7e788539db21eb5c6ff535dd2eb3f98adb632b3c4f4480f751",
+      "payload_sha256": "e0ab2f7bf71d5d92979ff53affdcb5a2d7ae5604c2cadde5cb13ebb9b4e333c5"
+    },
+    {
+      "path": "PIC/pic18.sla",
+      "format_version": 4,
+      "file_size": 17356,
+      "payload_size": 102562,
+      "element_node_count": 16212,
+      "max_depth": 13,
+      "file_sha256": "2854f7aa02185dbd0d0cddb76de9d4c78dd1205b95d8c0cb2e58f05cab8db11c",
+      "payload_sha256": "a7369fad5340045c777440b46291fc8d25829569116e6da44ec5940c063f451a"
+    },
+    {
+      "path": "PowerPC/ppc_32_4xx_be.sla",
+      "format_version": 4,
+      "file_size": 108283,
+      "payload_size": 873439,
+      "element_node_count": 143484,
+      "max_depth": 15,
+      "file_sha256": "e46c9e9c3f8353c4177610cd0b584158ca8c5bc86513958c4eea1be2c99e3741",
+      "payload_sha256": "9f8440533810c1550fab80e8d1cd4914893c538d4285541e79bf42a77e6a319d"
+    },
+    {
+      "path": "PowerPC/ppc_32_4xx_le.sla",
+      "format_version": 4,
+      "file_size": 108382,
+      "payload_size": 877079,
+      "element_node_count": 143822,
+      "max_depth": 14,
+      "file_sha256": "c1711c992b2559e7179aa1cadb3f00c81fb367790d693e3ee9a493f41aa7c6d0",
+      "payload_sha256": "e273dad3c0941f4c7fa6b3a09082cb3aa48e6551c219cbe9c78562b6752ef78e"
+    },
+    {
+      "path": "PowerPC/ppc_32_be.sla",
+      "format_version": 4,
+      "file_size": 133394,
+      "payload_size": 1028118,
+      "element_node_count": 164138,
+      "max_depth": 15,
+      "file_sha256": "828f7a73d56dd850f72aba935c6287bf618fd896d8ea4ef87989fd4890812dad",
+      "payload_sha256": "825e7598826af15f2fd0de7b4c6306456fa7c806f135740bddf123d932bf6789"
+    },
+    {
+      "path": "PowerPC/ppc_32_e500_be.sla",
+      "format_version": 4,
+      "file_size": 150191,
+      "payload_size": 1219890,
+      "element_node_count": 205926,
+      "max_depth": 15,
+      "file_sha256": "722fdeb6f6ecdd1c15ad29af1e32288566ce7f5d0b357cea4bbc603960d94dd2",
+      "payload_sha256": "1becf3bfe3ca76c6969debc0e3cd0bcfa6b40dc935924ce7cca9a88e68fc557a"
+    },
+    {
+      "path": "PowerPC/ppc_32_e500_le.sla",
+      "format_version": 4,
+      "file_size": 150384,
+      "payload_size": 1235501,
+      "element_node_count": 207496,
+      "max_depth": 15,
+      "file_sha256": "4bd76338158fe46e2160a4fb91f1b1b4bb72bf285dcce3ef0900c1a2402f7e3e",
+      "payload_sha256": "8a0ca1fba2c43529c391139fa6256af7ccf02ea4eb7deb7c4239a59e903333f5"
+    },
+    {
+      "path": "PowerPC/ppc_32_e500mc_be.sla",
+      "format_version": 4,
+      "file_size": 108367,
+      "payload_size": 839672,
+      "element_node_count": 136943,
+      "max_depth": 15,
+      "file_sha256": "8ed853b5e6674f13a8dc48c66317e9ead8618e1f07c48555cf3da138c552a719",
+      "payload_sha256": "0cdb916840f0243a2ea4545e59086c19531322d7483d0499fb862cc2b7e0d101"
+    },
+    {
+      "path": "PowerPC/ppc_32_e500mc_le.sla",
+      "format_version": 4,
+      "file_size": 108518,
+      "payload_size": 851461,
+      "element_node_count": 138101,
+      "max_depth": 15,
+      "file_sha256": "b4e2a8b735f005e5ba90a90cf7b940157b1f465c9a4cf21fadcac103df8eea4d",
+      "payload_sha256": "d2543e219d868f5e125fe33f541c07da315e0f2bfb33b955913f93fa52437d25"
+    },
+    {
+      "path": "PowerPC/ppc_32_le.sla",
+      "format_version": 4,
+      "file_size": 133766,
+      "payload_size": 1031444,
+      "element_node_count": 164421,
+      "max_depth": 14,
+      "file_sha256": "1f03f0dda1f927dc7cad2ebe7eda15c826c6c0200086dce7c672eddc0f1a7dd5",
+      "payload_sha256": "22f708fd7f78ca7fc3421ebeb14b8237bcc4eb0fbb7fac70ba51e9a653d5b296"
+    },
+    {
+      "path": "PowerPC/ppc_32_quicciii_be.sla",
+      "format_version": 4,
+      "file_size": 114243,
+      "payload_size": 943014,
+      "element_node_count": 156564,
+      "max_depth": 15,
+      "file_sha256": "39b0c0dd280bbe43799fa0d6b3df812d4d880390835d43121f101ad14c13c84c",
+      "payload_sha256": "3bea8e6807e8795f39fb54aa0842410c8d80056f8ba15819b2e7bf44053a9b89"
+    },
+    {
+      "path": "PowerPC/ppc_32_quicciii_le.sla",
+      "format_version": 4,
+      "file_size": 114396,
+      "payload_size": 954228,
+      "element_node_count": 157670,
+      "max_depth": 15,
+      "file_sha256": "5383395dbc8a600c2f976c64f04cae2082d542de0103315573a39e24112ff8a6",
+      "payload_sha256": "807e2f8e0509a95c082e6a33cfb1bb71aff3f235850983bb4ad54a978452e32f"
+    },
+    {
+      "path": "PowerPC/ppc_64_be.sla",
+      "format_version": 4,
+      "file_size": 140774,
+      "payload_size": 1110767,
+      "element_node_count": 179505,
+      "max_depth": 15,
+      "file_sha256": "a3f6cfa119ce34aae7a0821d0b1195fa1b2632f130b417e25cf9c2ced3ac03e7",
+      "payload_sha256": "7370a1488d8161318c29c0db87eed1bca343643e76698c083e391808dbc6db36"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_altivec_be.sla",
+      "format_version": 4,
+      "file_size": 187411,
+      "payload_size": 1372804,
+      "element_node_count": 214529,
+      "max_depth": 16,
+      "file_sha256": "7b1ebc945afc49e22ca01a80867d0d96dd6233b0e596cc5d3c0076d1fc05f010",
+      "payload_sha256": "746413924be26fa4a84ae7746acc44e659bfde753b660a456df7e6ce441cda6d"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_altivec_le.sla",
+      "format_version": 4,
+      "file_size": 188635,
+      "payload_size": 1425130,
+      "element_node_count": 219772,
+      "max_depth": 16,
+      "file_sha256": "2543d462398c42da7e1b5dbfd04d085d03375e293cc90a7d01d2ea4095709b51",
+      "payload_sha256": "c3f26e1a75dcd9dff0318975545c8d171330db6775b0342032de6e026c0647ea"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_altivec_vle_be.sla",
+      "format_version": 4,
+      "file_size": 202446,
+      "payload_size": 1506487,
+      "element_node_count": 236913,
+      "max_depth": 19,
+      "file_sha256": "301058f2bf0ab618f3c1ad4128fc531640ee86fa545f9829bcaf76cceab7e6e9",
+      "payload_sha256": "3f6dd9c8f6ec81fef6155561a3cded70f8dd863c9a43160b6ad317c68b4b9a7f"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_be.sla",
+      "format_version": 4,
+      "file_size": 198255,
+      "payload_size": 1577805,
+      "element_node_count": 259338,
+      "max_depth": 16,
+      "file_sha256": "788a7947b54766afc68a10755ee2039896ac9af4a56c95733729798e9dbf346e",
+      "payload_sha256": "b1b8b430d91c96a9c56fda4bcfd6b84b12e22a66fcb75b778a42f17d34280581"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_le.sla",
+      "format_version": 4,
+      "file_size": 199018,
+      "payload_size": 1616424,
+      "element_node_count": 263234,
+      "max_depth": 16,
+      "file_sha256": "4cc754d16132076bacefc51504fcc91952f07bad037118ac23e8167423e93353",
+      "payload_sha256": "86b9540b053b9bee6d053561df4b2b06298a361eedf782d1c79aed6323271e88"
+    },
+    {
+      "path": "PowerPC/ppc_64_isa_vle_be.sla",
+      "format_version": 4,
+      "file_size": 215076,
+      "payload_size": 1718163,
+      "element_node_count": 282823,
+      "max_depth": 19,
+      "file_sha256": "2b3b884bb50dec2f24312734b42378f5c51715d9145504a622eb27134d0d430e",
+      "payload_sha256": "e8a757c0067e7c2c984fda48041e678b6976c4b8c26dbc1cad5d1e746d09893e"
+    },
+    {
+      "path": "PowerPC/ppc_64_le.sla",
+      "format_version": 4,
+      "file_size": 141144,
+      "payload_size": 1108524,
+      "element_node_count": 179240,
+      "max_depth": 14,
+      "file_sha256": "81994d375f241b8998536724f5b1d050974277f60afe83615b0728ea1773d9b3",
+      "payload_sha256": "a014b194afdc36f01c0da22e319a7e700744fb4d573d5ee86c007a5b65f1bf05"
+    },
+    {
+      "path": "RISCV/andestar_v5.sla",
+      "format_version": 4,
+      "file_size": 108723,
+      "payload_size": 1067562,
+      "element_node_count": 133975,
+      "max_depth": 18,
+      "file_sha256": "a03adc3c6d7696457671551baaa6b14737c0bc0e8b267dbd6c6454ba48d67c3a",
+      "payload_sha256": "e36b38c5151ce451e7bd162db1e7ac49137585fe1bd66aec85000c0d3bcaf488"
+    },
+    {
+      "path": "RISCV/riscv.ilp32d.sla",
+      "format_version": 4,
+      "file_size": 77217,
+      "payload_size": 427223,
+      "element_node_count": 48331,
+      "max_depth": 16,
+      "file_sha256": "147841d1736fe8b68add9dd99d0b2fee257ea58f2c6bbb06c833a09ae35f87cd",
+      "payload_sha256": "bc2c28599551d2947c2932e594de5e3901e53d7562293f8eef2c5b24aa937b59"
+    },
+    {
+      "path": "RISCV/riscv.lp64d.sla",
+      "format_version": 4,
+      "file_size": 89127,
+      "payload_size": 494085,
+      "element_node_count": 56311,
+      "max_depth": 17,
+      "file_sha256": "0a58998a9d91eca7d896acdf0548da4fb887e5c9a7fae9bad4ab35a9a4e512e4",
+      "payload_sha256": "39c6418f046611b9b73e446e88a08b59d05ca481b534696a098e09818556d21b"
+    },
+    {
+      "path": "Sparc/SparcV9_32.sla",
+      "format_version": 4,
+      "file_size": 40550,
+      "payload_size": 246416,
+      "element_node_count": 37703,
+      "max_depth": 13,
+      "file_sha256": "a91755214521762fc3f180a3fdbf7387315479da76a29db181512290af56ed32",
+      "payload_sha256": "0020855eb0dd87698ab433b0dc47b8959208f055ebc241c3f55f2d846629c337"
+    },
+    {
+      "path": "Sparc/SparcV9_64.sla",
+      "format_version": 4,
+      "file_size": 40334,
+      "payload_size": 246347,
+      "element_node_count": 37754,
+      "max_depth": 13,
+      "file_sha256": "47e2c352007a6b717dd1e4884599d4f134014496b57f615be5cb0aa0a4fb258a",
+      "payload_sha256": "3b67b639eda4d6232e20d3593e5625d0b8b4d9cdbbc83cf0d4213206475059fc"
+    },
+    {
+      "path": "SuperH/sh-1.sla",
+      "format_version": 4,
+      "file_size": 12015,
+      "payload_size": 70370,
+      "element_node_count": 10947,
+      "max_depth": 11,
+      "file_sha256": "fd412c1c05ae6f9cec33353da46167664c5235d1d6a3c5a13d32a71bf3a80fb0",
+      "payload_sha256": "21f6f960e061de299c8266872af3ec621f539fed8b748f5137128b19d8e87e28"
+    },
+    {
+      "path": "SuperH/sh-2.sla",
+      "format_version": 4,
+      "file_size": 13051,
+      "payload_size": 77091,
+      "element_node_count": 12219,
+      "max_depth": 11,
+      "file_sha256": "e69e099854e5b6c9e8f4d6b2deae1c038f87abfbc99484ca733e84cbdb897390",
+      "payload_sha256": "d7447f28cbed6d5684db03c30e277705b3d2d2eafa773fd9058a6a998508fac4"
+    },
+    {
+      "path": "SuperH/sh-2a.sla",
+      "format_version": 4,
+      "file_size": 28508,
+      "payload_size": 169925,
+      "element_node_count": 25989,
+      "max_depth": 11,
+      "file_sha256": "665d5f288d3ac573bace5b0a330364514780ad2f6b6f70a9bd1777aae6b76e6b",
+      "payload_sha256": "7778c851e25d5c4844b7e2d893d4f076d17eec542c3e1355145a723d989b76a5"
+    },
+    {
+      "path": "SuperH4/SuperH4_be.sla",
+      "format_version": 4,
+      "file_size": 21885,
+      "payload_size": 128852,
+      "element_node_count": 20687,
+      "max_depth": 13,
+      "file_sha256": "97122deaebe0acc3957cbcb36df374f99d6a972015c5bb68e0b535f55783f7da",
+      "payload_sha256": "ec462b829a1469bb1c7e4a4d54dea350c9642290de5bf5fa5476bd0233204d40"
+    },
+    {
+      "path": "SuperH4/SuperH4_le.sla",
+      "format_version": 4,
+      "file_size": 21887,
+      "payload_size": 128761,
+      "element_node_count": 20687,
+      "max_depth": 13,
+      "file_sha256": "d0ab6d727bcdf5ea7475afd62d12e4ffc79857cf609f9f10d613ce9db00dd635",
+      "payload_sha256": "a1aa90d64bbaa0aac2e8208c4e31e4e295b2d997b1973b6c6100704f87d3c4b0"
+    },
+    {
+      "path": "TI_MSP430/TI_MSP430.sla",
+      "format_version": 4,
+      "file_size": 27382,
+      "payload_size": 229872,
+      "element_node_count": 35864,
+      "max_depth": 14,
+      "file_sha256": "77784a481bffb999760838d0b87d8e308927c16de9c4a2d648f5ab59646ed08a",
+      "payload_sha256": "297ce7ec0f9fb5dba5f621e6aaad34287c80be158a430e61e560cc926c0f0510"
+    },
+    {
+      "path": "TI_MSP430/TI_MSP430X.sla",
+      "format_version": 4,
+      "file_size": 81818,
+      "payload_size": 705191,
+      "element_node_count": 119425,
+      "max_depth": 15,
+      "file_sha256": "65a36a43dab22a9cc63d7367bad4963d655e5c21c3988b091c03d79de28b779f",
+      "payload_sha256": "491c126447c4b9669eda3aa4fa62468c4d7ba137624d513e49353e06325455f2"
+    },
+    {
+      "path": "V850/V850.sla",
+      "format_version": 4,
+      "file_size": 30257,
+      "payload_size": 233612,
+      "element_node_count": 38857,
+      "max_depth": 16,
+      "file_sha256": "7f4c0e6a509c17e89d2869ad2f1aadc4273d46f002408e00c1edb156f134274f",
+      "payload_sha256": "02e1c3a45979db501de42d416f418220fc26ca4301cc0191cf9274223a0900dd"
+    },
+    {
+      "path": "Xtensa/xtensa_be.sla",
+      "format_version": 4,
+      "file_size": 34777,
+      "payload_size": 189236,
+      "element_node_count": 26348,
+      "max_depth": 17,
+      "file_sha256": "bc512f883a4e18707884a8240bc8d2decef9a902a50b254c52708b0445682647",
+      "payload_sha256": "02e4179068a97ceac3ca313cc6b985d0f51a922c22688fd64b55d02018a6c229"
+    },
+    {
+      "path": "Xtensa/xtensa_le.sla",
+      "format_version": 4,
+      "file_size": 34808,
+      "payload_size": 191326,
+      "element_node_count": 26540,
+      "max_depth": 18,
+      "file_sha256": "902615399ba784748969049bf962508362b8b88413a9361f75bc81f657d5dc17",
+      "payload_sha256": "52db7973a168bd468468ff10c6c5b48fdf3fd704cf49576d5ebb0869c61e7744"
+    },
+    {
+      "path": "Z80/z180.sla",
+      "format_version": 4,
+      "file_size": 27223,
+      "payload_size": 278207,
+      "element_node_count": 56061,
+      "max_depth": 16,
+      "file_sha256": "c99c96228551f114940fcbea6d5d88ad15a4959802bbfc200104c47fd31a9aa1",
+      "payload_sha256": "f712c746fe8bbd0d29f47d87eb8dc875f334e81437adac50b5bc52dace521271"
+    },
+    {
+      "path": "Z80/z80.sla",
+      "format_version": 4,
+      "file_size": 29790,
+      "payload_size": 314129,
+      "element_node_count": 63145,
+      "max_depth": 17,
+      "file_sha256": "83080a82b82b74918fa086198b1be7f3953293367ee1e047870dd86f808a5e9c",
+      "payload_sha256": "678d5e9d1fff55a1ce59202cfed32062887e60162392217727a1252420bca0ed"
+    },
+    {
+      "path": "eBPF/eBPF_be.sla",
+      "format_version": 4,
+      "file_size": 9831,
+      "payload_size": 63183,
+      "element_node_count": 9036,
+      "max_depth": 12,
+      "file_sha256": "50b0f80f589c4ffdf5ec39c45afc02cf999b136ab54dfa7baeb7d0b691b89f0e",
+      "payload_sha256": "66849aa28fb3de7c8aed4a133e08ad07de77bd50076ebafc2757fd80cc065fae"
+    },
+    {
+      "path": "eBPF/eBPF_le.sla",
+      "format_version": 4,
+      "file_size": 9788,
+      "payload_size": 63273,
+      "element_node_count": 9036,
+      "max_depth": 12,
+      "file_sha256": "7af0479005e8b93385783cc78a60b27eaef0afde2f546af6b3bc45ec23eb63dd",
+      "payload_sha256": "0b80cacc9c77dde255422b220c72a59cd9ca1df8188d439c0d6204b3cd36600c"
+    },
+    {
+      "path": "tricore/tricore.sla",
+      "format_version": 4,
+      "file_size": 149190,
+      "payload_size": 1812983,
+      "element_node_count": 347729,
+      "max_depth": 17,
+      "file_sha256": "f9bf6cd3f24d1472519599daf93574f98d9e4311616054f94b676ebe5193d6c8",
+      "payload_sha256": "d7aa54fe58f50cc39606740dd44b423d263fc94e3a5fca8e5736716717110229"
+    },
+    {
+      "path": "x86/x86-64.sla",
+      "format_version": 4,
+      "file_size": 487659,
+      "payload_size": 4124687,
+      "element_node_count": 616833,
+      "max_depth": 19,
+      "file_sha256": "d5adc314e2278228b380d8f653b2b579fa4a65986bb1d39b095e461fd5432481",
+      "payload_sha256": "2e36b32d8194a344b482dda969c1838d8d3507a3407c0021bfe1955aeead1da3"
+    },
+    {
+      "path": "x86/x86.sla",
+      "format_version": 4,
+      "file_size": 432470,
+      "payload_size": 3436076,
+      "element_node_count": 514436,
+      "max_depth": 18,
+      "file_sha256": "148ac1b90dede3d080064ca4a171f8b4c85576db41122c2c9e4de52da8a405dd",
+      "payload_sha256": "6417e5b4b66f5e1f07e2f9c2ae4506d5dd8c6b9dd2a15bdbbf05d272828b3c7a"
+    }
+  ],
+  "errors": []
+}

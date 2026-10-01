@@ -1,0 +1,57 @@
+{
+  "format": "fission_research_kernel_object_link",
+  "format_version": 1,
+  "target": "amdgcn-amd-amdhsa--gfx900",
+  "code_object": {
+    "path": "add_kernel.o",
+    "sha256": "b20707dd91d68de8d15e2ad453a111ecfeac091a53f919d94d3caf6ea54fcf59",
+    "elf_type": "ET_REL",
+    "entry_symbol": "add.kd",
+    "symbol_section": ".rodata",
+    "symbol_value": "0x0",
+    "symbol_size": 64,
+    "metadata_symbol": "add.kd",
+    "kernarg_segment_size": 272,
+    "metadata_source": "add_kernel.elf.json"
+  },
+  "source_traced_resolution": [
+    {
+      "step": "rocclr_resolves_loaded_kernel_symbol",
+      "evidence": "https://github.com/ROCm/clr/blob/3b6b838f62f0730f194ff0aab703a6ff02dddc04/rocclr/device/rocm/rockernel.cpp#L15-L49",
+      "fact": "Kernel::postLoad looks up symbolName() in the loaded HSA executable, queries HSA_EXECUTABLE_SYMBOL_INFO_KERNEL_OBJECT, and stores the result as kernelCodeHandle_."
+    },
+    {
+      "step": "rocr_returns_loaded_symbol_address_for_kernel_object",
+      "evidence": "https://github.com/ROCm/rocm-systems/blob/7a400ac5b2d6d669c2b758368478ec10baeaff7b/projects/rocr-runtime/runtime/hsa-runtime/loader/executable.cpp#L525-L575",
+      "fact": "The inspected ROCr loader returns the loaded symbol address for HSA_EXECUTABLE_SYMBOL_INFO_KERNEL_OBJECT after checking that the symbol is loaded."
+    },
+    {
+      "step": "rocr_maps_v3_kernel_descriptor_symbol",
+      "evidence": "https://github.com/ROCm/rocm-systems/blob/7a400ac5b2d6d669c2b758368478ec10baeaff7b/projects/rocr-runtime/runtime/hsa-runtime/loader/executable.cpp#L1734-L1748",
+      "fact": "For the inspected code-object-v3 .kd path, the loader creates the kernel descriptor from the loaded .kd symbol address."
+    },
+    {
+      "step": "rocclr_places_kernel_code_handle_in_aql_packet",
+      "evidence": "https://github.com/ROCm/clr/blob/3b6b838f62f0730f194ff0aab703a6ff02dddc04/rocclr/device/rocm/rocvirtual.cpp#L4149-L4165",
+      "fact": "ROCclr copies KernelCodeHandle() into hsa_kernel_dispatch_packet_t::kernel_object."
+    }
+  ],
+  "runtime_observation": {
+    "captured": false,
+    "loaded_symbol_address": null,
+    "aql_kernel_object": null,
+    "reason": "No compatible AMDGPU runtime launch was captured in this environment."
+  },
+  "synthetic_packet_fixture": {
+    "path": "dispatch_packet.sample.bin",
+    "sha256": "21f9531a7163d304a8015649ed44e5f8ce555151a106944d6fb2640c17705595",
+    "kernel_object": "0x123456789abcdef0",
+    "related_to_code_object": false,
+    "note": "Hand-authored fixture only; its opaque handle is deliberately not treated as the loaded address of add.kd."
+  },
+  "interpretation_limits": [
+    "HSA exposes kernel_object as an opaque handle; the address relationship here is specific to the inspected ROCclr/ROCr implementation and source snapshot.",
+    "The ET_REL symbol value 0x0 is section-relative and is not the loaded GPU virtual address.",
+    "The loaded address and packet-to-symbol mapping remain unobserved until a real runtime capture or equivalent loader record is collected."
+  ]
+}
