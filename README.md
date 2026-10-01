@@ -11,7 +11,7 @@
 | 항목 | 현재 구현 범위 |
 |---|---|
 | FSL 문법 / 컴파일러 | 실험 문법 / Rust 프로토타입; 초기 TOML 프로브와 구분 |
-| FIR | 단일 의미 소유자 프로토타입; 실행 지원은 제한된 정수·스택 연산 |
+| FIR | 단일 의미 소유자 프로토타입; 정수·스택과 GFX900 SGPR/SCC 단일 상태 slice |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 register-only 인코딩 |
 | JVM 디코드 | `iadd` 한 opcode |
 | GPU 실행 의미 | GFX900 `s_add_u32`의 SGPR/SCC 단일 상태 slice 구현; wave/lane·커널은 미구현 |

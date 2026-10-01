@@ -50,7 +50,7 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - LLVM 22.1.8 조립/역조립 oracle과 256개 SGPR 입력의 명령·필드를 비교했다. 원형 round-trip 256개와 목적지 수정 후 독립 재조립 256개가 일치했다. 범위 밖 입력 99개를 거부했다.
 - 추가 분류: 명세만 수정 32개, 공통 primitive 0개, 아키텍처별 코드 확장 0개. **인코딩에 한정한 결과**이며 실행 의미 표현력의 KPI가 아니다.
 - Fission `bf49f27a9b8f0fdafedeba0c88a232522a39f267`에서 인코딩 회귀 검사 5개를 추가했다. crate 전체 9개 테스트와 Clippy가 통과했다. 기존 1,920개 입력 / 7,680회 C·Rust 실행 비교도 다시 통과했다.
-- GPU `unsupported` 의미의 평가기·C/Rust 출력·JIT·AOT 거부와 상태 불변을 확인했다. GPU 실행 의미를 구현한 것은 아니다.
+- 기존 GPU `unsupported` 의미의 평가기·C/Rust 출력·JIT·AOT 거부와 상태 불변을 확인했다. 이는 새 `s_add_u32` 상태 slice와 별도 범위다.
 - 연구 CI는 기존 artifact 재현과 SOP2/FIR 검증을 별도 job으로 실행한다. 원격 실행 결과는 GitHub Actions에서 확인한다.
 - Fission 브랜치 `fbc96040d`에 단일 `s_add_u32` 상태 slice를 추가했다. FIR은 SGPR 읽기·쓰기, `u32` wrap add, `u1` carry, SCC flag 쓰기를 표현한다. 독립 widened-sum oracle과 reference/C/Rust O0/O2를 1,030개 상태 입력에서 4,120회 비교했고 모두 일치했다.
 - 이 상태 slice는 package v3와 `execute-state` CLI를 실제 Fission crate에서 검사했다. 범위 밖 selector, 부족한 register/flag bank, 잘못된 flag, 변조된 decode observation은 상태를 변경하지 않고 거부한다. Cranelift JIT/AOT, EXEC/lane/wave, GPU hardware와 whole-kernel equivalence는 여전히 미지원이다.
@@ -60,7 +60,7 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
-2. register read/write, 플래그, EXEC 및 lane 상태를 단일 FIR의 명시적 효과로 추가한다.
+2. 기존 register read/write·플래그 효과를 확장해 EXEC 및 lane 상태를 단일 FIR의 명시적 효과로 추가한다.
 3. `s_addc_u32` carry-in을 추가하고, 이후 GFX900 scalar move와 EXEC 기반 vector add의 기준 상태 모델을 연결한다. 기존 GPU 네 규칙과 SOP2 32개 규칙은 `unsupported`이며, 현재 실행 가능한 GPU slice는 `s_add_u32` 하나다.
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
