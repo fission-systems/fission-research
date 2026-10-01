@@ -14,7 +14,7 @@
 | FIR | 단일 의미 소유자 프로토타입; 실행 지원은 제한된 정수·스택 연산 |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 register-only 인코딩 |
 | JVM 디코드 | `iadd` 한 opcode |
-| GPU 실행 의미 | 미구현; 현재 FIR body는 `unsupported` |
+| GPU 실행 의미 | GFX900 `s_add_u32`의 SGPR/SCC 단일 상태 slice 구현; wave/lane·커널은 미구현 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택 계약의 C·Rust 출력 |
 | AI 평가 / semantic corpus 조회 | 계획·설계 단계 |
@@ -66,6 +66,8 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 ## SOP2 명세 확장
 
 [32개 SOP2 규칙](specs/gpu/amdgcn/gfx900-sop2.fsl)은 Rust FSL 컴파일러를 수정하지 않고 추가했다. [실험 기록](experiments/gpu/gfx900-sop2/README.md)은 LLVM 비교, 바이트 round-trip, 확장 분류와 GPU 실행 의미 미지원 범위를 기록한다.
+
+Fission 브랜치 [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d)는 별도 `s_add_u32` 프로파일에 SGPR/SCC 상태 FIR을 연결했다. [상태 검증 기록](experiments/gpu/gfx900-sop2/state-validation-2026-10-01.json)은 1,030개 상태 입력과 4,120개 C/Rust O0/O2 비교를 담는다. 이 범위는 GPU wave/lane나 커널 동치까지 확장하지 않는다.
 
 ## 자동 재현
 

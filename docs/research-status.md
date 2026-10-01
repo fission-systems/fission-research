@@ -24,6 +24,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 |---|---|
 | [`891f4a539`](https://github.com/fission-systems/Fission/commit/891f4a539454fa90ab7d318eec335923f8bb9400) | 단일 FIR의 기준 평가기와 C·Rust 실행 출력, SSA·타입 검증 |
 | [`5376310b2`](https://github.com/fission-systems/Fission/commit/5376310b2077807de713d908ea100411efd73ef9) | 고정폭 인코딩 계획, `.fslc` v2, GFX900 네 규칙, 필드 추출·재인코딩 |
+| [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d) | package v3 상태 FIR, GFX900 `s_add_u32` SGPR/SCC 실행과 C/Rust 재컴파일 검사 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -51,14 +52,16 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - Fission `bf49f27a9b8f0fdafedeba0c88a232522a39f267`에서 인코딩 회귀 검사 5개를 추가했다. crate 전체 9개 테스트와 Clippy가 통과했다. 기존 1,920개 입력 / 7,680회 C·Rust 실행 비교도 다시 통과했다.
 - GPU `unsupported` 의미의 평가기·C/Rust 출력·JIT·AOT 거부와 상태 불변을 확인했다. GPU 실행 의미를 구현한 것은 아니다.
 - 연구 CI는 기존 artifact 재현과 SOP2/FIR 검증을 별도 job으로 실행한다. 원격 실행 결과는 GitHub Actions에서 확인한다.
+- Fission 브랜치 `fbc96040d`에 단일 `s_add_u32` 상태 slice를 추가했다. FIR은 SGPR 읽기·쓰기, `u32` wrap add, `u1` carry, SCC flag 쓰기를 표현한다. 독립 widened-sum oracle과 reference/C/Rust O0/O2를 1,030개 상태 입력에서 4,120회 비교했고 모두 일치했다.
+- 이 상태 slice는 package v3와 `execute-state` CLI를 실제 Fission crate에서 검사했다. 범위 밖 selector, 부족한 register/flag bank, 잘못된 flag, 변조된 decode observation은 상태를 변경하지 않고 거부한다. Cranelift JIT/AOT, EXEC/lane/wave, GPU hardware와 whole-kernel equivalence는 여전히 미지원이다.
 
-자세한 범위·출처·해시는 [SOP2 실험](../experiments/gpu/gfx900-sop2/README.md), 재현 방법은 [자동 재현](reproduction.md)을 참조한다. LLVM opcode 참고 자료와 LLVM 실행 oracle은 계보를 공유하므로, 그 일치만으로 vendor 명세 독립 검증이나 GPU 실행 동치를 주장하지 않는다.
+자세한 범위·출처·해시는 [SOP2 실험](../experiments/gpu/gfx900-sop2/README.md)과 [상태 검증 기록](../experiments/gpu/gfx900-sop2/state-validation-2026-10-01.json), 재현 방법은 [자동 재현](reproduction.md)을 참조한다. LLVM opcode 참고 자료와 LLVM 실행 oracle은 계보를 공유하므로, 그 일치만으로 vendor 명세 독립 검증이나 GPU 실행 동치를 주장하지 않는다.
 
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
 2. register read/write, 플래그, EXEC 및 lane 상태를 단일 FIR의 명시적 효과로 추가한다.
-3. GFX900 scalar move와 EXEC 기반 vector add부터 기준 상태 모델을 연결한다. 현재 기존 GPU 네 규칙과 새 SOP2 32개 규칙의 실행 의미는 모두 `unsupported`다.
+3. `s_addc_u32` carry-in을 추가하고, 이후 GFX900 scalar move와 EXEC 기반 vector add의 기준 상태 모델을 연결한다. 기존 GPU 네 규칙과 SOP2 32개 규칙은 `unsupported`이며, 현재 실행 가능한 GPU slice는 `s_add_u32` 하나다.
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.

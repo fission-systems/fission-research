@@ -11,7 +11,9 @@ This is an authored **Rust text FSL** profile, separate from the older TOML
 - 64-bit shifts have a scalar 32-bit source1.
 - Special registers, inline constants, literals and extension words are excluded.
 - Fields are raw register selectors. SCC, register effects and GPU execution are
-  explicitly `unsupported`. Decode success cannot authorize execution or recompilation.
+  explicitly `unsupported` in this 32-instruction family profile. Decode success
+  cannot authorize execution or recompilation. The separate `s_add_u32` profile
+  is the first narrow state-execution slice.
 
 ## Provenance and extension measurement
 
@@ -62,6 +64,23 @@ but the FSL opcode reference shares its lineage. This catches transcription,
 field extraction and reencoding errors; common upstream errors remain possible.
 AMD specification review and a separate execution oracle are subsequent gates.
 
+## State execution follow-up
+
+The Fission branch now contains [`amdgcn-gfx900-sadd-u32.fsl`](https://github.com/fission-systems/Fission/blob/fbc96040dc8ac1130b68bf10f6904f87aee41a0d/crates/fission-fsl/specs/amdgcn-gfx900-sadd-u32.fsl),
+which adds one executable state profile. It reads two SGPR slots, computes the
+low 32-bit sum and carry, writes the destination SGPR and writes SCC through
+generic register/flag FIR effects. The [captured validation record](state-validation-2026-10-01.json)
+reports 1,030 state inputs and 4,120 C/Rust O0/O2 comparisons with zero
+mismatches. The independent oracle uses a widened unsigned sum and derives low
+bits and carry by quotient/remainder.
+
+The state executor validates the decoded observation, register and flag bank
+sizes, selector scope and flag values before mutation. Invalid inputs preserve
+the entire machine state. This is a synthetic state contract and FSL package
+v3 exercise; it is not GPU hardware, wave/lane, EXEC-mask or whole-kernel
+equivalence evidence. Cranelift native lifting remains unsupported for these
+state effects.
+
 ## Execution gate
 
 The Fission crate now has five encoding regression tests, including rejection of
@@ -69,10 +88,9 @@ GPU `unsupported` semantics by the reference evaluator, C/Rust emitters, JIT and
 AOT. Evaluator refusal must preserve its supplied state. All nine crate tests
 passed locally, including the prior 1,920-input / 7,680-comparison integer-stack
 C/Rust execution test. This is JVM-style bitvector/stack evidence, not GPU state
-execution evidence.
+execution evidence. The new state regression adds 1,030 inputs and 4,120
+reference/C/Rust O0/O2 comparisons.
 
-Next execution slice: SGPR read/write and SCC as explicit ordered FIR effects;
-start with `s_add_u32` and its result/carry state. Compare every state component
-against an independent arithmetic oracle before emitting executable C/Rust.
-Extend to carry-input arithmetic and logic only after this gate passes. GPU
-hardware/emulator execution and full kernel equivalence remain later gates.
+Next execution slice: carry-input arithmetic (`s_addc_u32`) and then an explicit
+EXEC/lane model. GPU hardware/emulator execution and full kernel equivalence
+remain later gates.

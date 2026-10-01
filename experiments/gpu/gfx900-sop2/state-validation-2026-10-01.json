@@ -1,0 +1,56 @@
+{
+  "format": "fission_research_gpu_state_validation",
+  "format_version": 1,
+  "status": "passed",
+  "fission_repository": "https://github.com/fission-systems/Fission",
+  "fission_commit": "fbc96040dc8ac1130b68bf10f6904f87aee41a0d",
+  "pull_request": "https://github.com/fission-systems/Fission/pull/176",
+  "profile": "amdgcn.gfx900.sadd_u32",
+  "source": {
+    "path": "crates/fission-fsl/specs/amdgcn-gfx900-sadd-u32.fsl",
+    "sha256": "34c57b1e0b99e03060ef1da5f661e1f9beaa57876abacf9a02ab50f2953824cb",
+    "encoding_scope": "fixed 32-bit SOP2; SGPR selectors 0..95; flag slot 0 is SCC"
+  },
+  "package": {
+    "version": 3,
+    "state_operations": [
+      "register.read",
+      "u32.add.wrap",
+      "u1 int.add.carry",
+      "register.write",
+      "flag.write"
+    ]
+  },
+  "corpus": {
+    "state_cases": 1030,
+    "invalid_precondition_cases": 6,
+    "register_aliasing_cases_included": true,
+    "carry_boundary_cases_included": true,
+    "independent_oracle": "u128 widened unsigned sum; low32 = sum modulo 2^32; carry = sum divided by 2^32"
+  },
+  "recompilation": {
+    "languages": ["reference FIR evaluator", "C11", "Rust"],
+    "optimization_levels": ["O0", "O2"],
+    "process_comparisons": 4120,
+    "mismatches": 0,
+    "failure_state_preserved": true
+  },
+  "cli": {
+    "decode_profile": "amdgcn.gfx900.sadd_u32",
+    "sample_bytes": "00010280",
+    "sample_registers": "0xffffffff,1,123",
+    "sample_flags": "0",
+    "sample_result": "SGPR2=0, SCC=1"
+  },
+  "unsupported": [
+    "Cranelift JIT/AOT native lift for state effects",
+    "inline constants, special selectors and literal extensions",
+    "EXEC/lane/wave state",
+    "GPU hardware execution and whole-kernel equivalence"
+  ],
+  "validation_commands": [
+    "cargo fmt --all --check",
+    "cargo nextest run -p fission-fsl --no-capture",
+    "cargo clippy -p fission-fsl --all-targets -- -D warnings"
+  ]
+}
