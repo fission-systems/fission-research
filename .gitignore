@@ -7,3 +7,7 @@ __pycache__/
 /Vendor/*
 !/Vendor/README.md
 !/Vendor/references.lock.toml
+
+# Reproduction output and CI compiler checkout.
+/artifacts/
+/.compiler/

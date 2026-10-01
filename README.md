@@ -63,6 +63,10 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 
 초기 우선순위와 경계는 [`docs/research-architecture.md`](docs/research-architecture.md)를 본다. 초기에 모든 ISA를 지원하려고 하지 않고, 공통 디코드/의미 모델을 검증한 다음 서로 다른 도메인으로 확장한다.
 
+## 자동 재현
+
+`make test reproduce`는 고정 입력에서 기존 artifact 9개를 임시 디렉터리에 재생성하고 SHA-256을 비교한다. 준비 방법과 검증 범위는 [재현 문서](docs/reproduction.md)에 있다. GitHub Actions에서 같은 명령을 실행한다.
+
 ## 연구 원칙
 
 1. 원본 `.slaspec`, `.sla`, 공식 문서, 자체 작성 규칙을 구분하고 해시·버전·라이선스를 기록한다.
