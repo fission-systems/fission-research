@@ -1,0 +1,55 @@
+{
+  "format": "fission_research_migration_validation",
+  "date": "2026-10-01",
+  "status": "passed_local",
+  "fission_commit": "cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d",
+  "source_snapshot": "96fc71f75cecdee305faf9497561c577a8955468",
+  "encoding_and_state": {
+    "profile": "ebpf.le.add64.register",
+    "state_cases": 484,
+    "recompiled_comparisons": 1936,
+    "mismatches": 0,
+    "unused_fields_retained": true,
+    "scope": "SLEIGH leaf subset; verifier legality not inferred"
+  },
+  "sla_oracle": {
+    "example": "crates/fission-sleigh/examples/ebpf_add_leaf_oracle.rs",
+    "comparisons": 121,
+    "compared": [
+      "instruction bytes/length",
+      "register bindings",
+      "64-bit IntAdd template"
+    ],
+    "status": "passed",
+    "lineage": "Shares Ghidra source lineage; not an independent verifier oracle"
+  },
+  "abi": {
+    "profiles": [
+      "bpf.compiler",
+      "ebpf.compiler"
+    ],
+    "corpus_files": 110,
+    "strictly_admitted": 2,
+    "unsupported": 108,
+    "symbolic_registers": true,
+    "source_nodes_preserved": [
+      33,
+      47
+    ],
+    "parameter_allocator": false,
+    "register_linker": false,
+    "binary_package": false
+  },
+  "reproducibility": {
+    "artifacts_matched": 4,
+    "native_abi_parser": "passed",
+    "native_fsl_compile_and_cli": "passed",
+    "historical_artifacts_matched": 9
+  },
+  "sla_conversion": "Direct SLA decision/template-to-FIR migration unsupported; structural parsing and legacy oracle only",
+  "commands": [
+    "python3 tools/migration_reproduce.py --fslc <Fission>/target/debug/fslc",
+    "cargo nextest run -p fission-fsl --no-capture",
+    "cargo run -p fission-sleigh --example ebpf_add_leaf_oracle"
+  ]
+}

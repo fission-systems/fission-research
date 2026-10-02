@@ -1,0 +1,837 @@
+{
+  "format": "fission-fsl-migration-probe",
+  "source_snapshot": "96fc71f75cecdee305faf9497561c577a8955468",
+  "sources": [
+    {
+      "source": "utils/sleigh-specs/languages/eBPF/eBPF.sinc",
+      "sha256": "7b69ca1e901dca162bae29a8f18819c5f84afc3195296cf1662e39d86bbf5a34",
+      "entry": "utils/sleigh-specs/languages/eBPF/eBPF_le.slaspec",
+      "entry_sha256": "1285e4332bb36db58923db6acce9346438415ff71aa32060140ac171bfe226b4",
+      "migrated_leaf_variants": 1,
+      "scope": "little-endian ADD64 register leaf only; not full preprocessor or SLEIGH compiler"
+    },
+    {
+      "source": "utils/sleigh-specs/languages/BPF/BPF.cspec",
+      "sha256": "d488af417f0d43734329315cea802980ddd4e04187b5382acce39cf73fca1a66",
+      "xml_elements": 33,
+      "conventions": 1,
+      "status": "metadata-converted",
+      "unsupported_nodes": 0
+    },
+    {
+      "source": "utils/sleigh-specs/languages/eBPF/eBPF.cspec",
+      "sha256": "9a39a517ae4b5c3a731ea2545fb5627c636ec6821c847c879d5412e12dd54d33",
+      "xml_elements": 47,
+      "conventions": 1,
+      "status": "metadata-converted",
+      "unsupported_nodes": 0
+    }
+  ],
+  "sla": {
+    "path": "utils/sleigh-specs/compiled/eBPF/eBPF_le.sla",
+    "format_version": 4,
+    "file_size": 9788,
+    "payload_size": 63273,
+    "file_sha256": "7af0479005e8b93385783cc78a60b27eaef0afde2f546af6b3bc45ec23eb63dd",
+    "payload_sha256": "0b80cacc9c77dde255422b220c72a59cd9ca1df8188d439c0d6204b3cd36600c",
+    "root_element_id": 33,
+    "element_counts": {
+      "1": 1159,
+      "2": 1051,
+      "3": 776,
+      "4": 1430,
+      "5": 422,
+      "6": 220,
+      "7": 193,
+      "8": 532,
+      "9": 193,
+      "11": 223,
+      "12": 283,
+      "13": 278,
+      "14": 278,
+      "15": 278,
+      "16": 675,
+      "17": 226,
+      "18": 193,
+      "20": 129,
+      "21": 129,
+      "22": 129,
+      "23": 12,
+      "24": 12,
+      "27": 71,
+      "28": 33,
+      "30": 31,
+      "31": 2,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 3,
+      "38": 1,
+      "39": 9,
+      "40": 9,
+      "43": 1,
+      "44": 1,
+      "45": 1,
+      "46": 1,
+      "47": 1,
+      "49": 1,
+      "51": 3,
+      "53": 1,
+      "54": 3,
+      "58": 5,
+      "59": 3,
+      "67": 1,
+      "68": 1,
+      "69": 1,
+      "70": 1,
+      "71": 9,
+      "72": 9,
+      "76": 3,
+      "77": 3,
+      "81": 1,
+      "83": 1,
+      "84": 1
+    },
+    "attribute_counts": {
+      "2:signed-positive": 1435,
+      "2:unsigned": 1381,
+      "3:signed-positive": 419,
+      "3:unsigned": 1068,
+      "4:address-space": 788,
+      "5:signed-positive": 1430,
+      "6:signed-positive": 471,
+      "6:unsigned": 12,
+      "7:boolean": 5,
+      "7:signed-positive": 422,
+      "8:unsigned": 220,
+      "9:signed-positive": 567,
+      "10:signed-positive": 193,
+      "11:string": 532,
+      "12:string": 320,
+      "13:unsigned": 314,
+      "14:signed-positive": 746,
+      "15:signed-positive": 692,
+      "16:unsigned": 283,
+      "17:unsigned": 283,
+      "18:signed-positive": 278,
+      "19:signed-negative": 278,
+      "20:signed-positive": 675,
+      "21:boolean": 675,
+      "22:unsigned": 258,
+      "23:unsigned": 215,
+      "24:signed-positive": 129,
+      "25:signed-positive": 129,
+      "26:signed-positive": 129,
+      "27:signed-positive": 129,
+      "28:unsigned": 37,
+      "29:signed-positive": 71,
+      "30:signed-positive": 71,
+      "31:boolean": 71,
+      "32:signed-positive": 71,
+      "33:signed-positive": 71,
+      "34:signed-positive": 1,
+      "35:boolean": 77,
+      "36:signed-positive": 1,
+      "37:unsigned": 1,
+      "41:string": 1,
+      "42:signed-positive": 5,
+      "44:boolean": 5,
+      "45:signed-positive": 1,
+      "46:signed-positive": 1,
+      "53:signed-positive": 9,
+      "55:signed-positive": 2
+    },
+    "element_node_count": 9036,
+    "max_depth": 12,
+    "string_count": 853,
+    "max_string_bytes": 19,
+    "semantic_migration_status": "unsupported; numeric packed tree is only structural evidence"
+  },
+  "inventory": {
+    "cspec_total": 110,
+    "cspec_metadata_converted": 2,
+    "cspec": [
+      {
+        "source": "utils/sleigh-specs/languages/6502/6502.cspec",
+        "sha256": "9f60d6f843a9fdd6518d3cd12d1455d08d91b3a174bc611722bbd01eda11a337",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/68000/68000.cspec",
+        "sha256": "b56c1e7239fce3884401aa0de242cbf9f8c7f12f7df1e92d18e7db380dbc4d10",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '500', 'align': '4'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/68000/68000_register.cspec",
+        "sha256": "1916eaffb62b05c84fd23c3c8ac6e06c9640e30dca44a2064e0b652aec409338",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: prototype {'name': 'register', 'extrapop': '4', 'stackshift': '4', 'strategy': 'register'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8048/8048.cspec",
+        "sha256": "ebde58453521bed4b0ef3da36a7024292067477a929306b2c774180b90c4d81c",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8051/80251.cspec",
+        "sha256": "de583c44d6de62c85604d5fddb064028e26b83402f44484bc9725a164b4572d7",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SPX', 'space': 'RAM', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8051/80390.cspec",
+        "sha256": "c1b4cf526adf4142091a1ff921ba3a9568749f9e2e7c838d756fe687304686a7",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'INTMEM', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8051/8051.cspec",
+        "sha256": "a185e3337ebbea44246f0814ebebe4bc4dd510c7b0757cfd3156cf5eea1b9b1c",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8051/8051_archimedes.cspec",
+        "sha256": "546e8801ef3b4fa4185d97de77b4aa31d581737b95932a09049900934d9206f1",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'INTMEM', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8051/mx51.cspec",
+        "sha256": "3934cc4a1bf4aacf82980b4e7bceb82d25459b8bb48bdaacfc15dcc6f3cbe34b",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'RAM', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/8085/8085.cspec",
+        "sha256": "60e120f2a22e03607c695a35d1efc6d0d994a791d678c600960ba82334100d4f",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64.cspec",
+        "sha256": "1e54d6a9e6cd98a7b9729ba79187d9f1969a61e2984378445bb67f339d439e00",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64_apple.cspec",
+        "sha256": "d5f8cb95358ba17be6af51e41ba117bbda470eb057805aad4198b5e4f9a1d2ed",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64_golang.cspec",
+        "sha256": "4658ac621ec7665658c10b86ffb8798cc8b4395c82aa9f899b4782ae1078028e",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64_ilp32.cspec",
+        "sha256": "c9e5d3ab01054ab3b9b5f2ad8a0a1f09fea0b7c193dcb92459346cc5ea48b0e4",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64_swift.cspec",
+        "sha256": "5633b58f27f7da02c9350a205cb26d213a830127cb408641c8eecf3465150860",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/AARCH64/AARCH64_win.cspec",
+        "sha256": "32527efab83a0a5f32f7a5eb3da8fe69dad96b926981fb8ef6982bb1e1ed3ed5",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/ARM/ARM.cspec",
+        "sha256": "a27741e8096ab48aabb365e4216397b7bc5012d6e6b2b3a227b7b356936f3f7e",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/ARM/ARM_apcs.cspec",
+        "sha256": "21ebd59e49ded706cbe114130ffc4e459630fec0e0fce6d614c8583412655893",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/ARM/ARM_v45.cspec",
+        "sha256": "7e22f510dbabe35d648bf94abb69aea6a7d2d1eaea037a4355d9bd14a59417e5",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/ARM/ARM_win.cspec",
+        "sha256": "05c54dc5dc104aea19410db8298ac7757be51a860f71e901a060a78dd7467c96",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Atmel/avr32a.cspec",
+        "sha256": "839608f4393736782f801e474a6f5d31ec946dde7a02c8d274a1e96be67d490c",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '500', 'align': '4'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Atmel/avr8egcc.cspec",
+        "sha256": "d3759ac7dd5a8f0fb3f3de4f53f0c242856601fcadf3e2982abd8718f3ffeb7e",
+        "status": "unsupported",
+        "reason": "unsupported children of data_organization"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Atmel/avr8gcc.cspec",
+        "sha256": "096951d1bd3e9adf3c204837f16c09f5fd6e85e6184abb8fc5efedda418b953d",
+        "status": "unsupported",
+        "reason": "unsupported children of data_organization"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Atmel/avr8iarV1.cspec",
+        "sha256": "5ed81b9d957c64aecdda0d2a72dd43b3504bd05b47e5520f46ce3489592d0011",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: range {'space': 'mem', 'first': '40', 'last': '0xffff'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Atmel/avr8imgCraftV8.cspec",
+        "sha256": "02a60d1369ced1207359b54600a82b421640663ab3079019c5f6e43cb24183d4",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: range {'space': 'mem', 'first': '40', 'last': '0xffff'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/BPF/BPF.cspec",
+        "sha256": "d488af417f0d43734329315cea802980ddd4e04187b5382acce39cf73fca1a66",
+        "xml_elements": 33,
+        "conventions": 1,
+        "status": "metadata-converted",
+        "unsupported_nodes": 0
+      },
+      {
+        "source": "utils/sleigh-specs/languages/CP1600/CP1600.cspec",
+        "sha256": "aa35e87aefe8076fe6442fb873582719423c3a09f006c6a1135632d949f008f8",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'R6', 'space': 'ram', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/CR16/CR16.cspec",
+        "sha256": "6b0a9c395fc962e1ab7a31cb2a3d70619da1a13a3a0eb9ffad91f0169154f466",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/DATA/data-ptr16.cspec",
+        "sha256": "260958216048d0bbbfe521167e1c7464ec854a78d72a9ccb1b9b8576e9e37438",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'sp', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/DATA/data-ptr32.cspec",
+        "sha256": "3e958dccee4ea417f857f45dd9e17038f11b677fbcd09178e2801fb7cebe10b5",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'sp', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/DATA/data-ptr64.cspec",
+        "sha256": "9cb93d2eb633c5784fc4b20b1ae04438adbf204ebef5d3e1e7b5c90b32f4dc26",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'sp', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Dalvik/Dalvik_Base.cspec",
+        "sha256": "266abd557f633dbc0ceb85a0989ed34d36fed1093e1144b0a0aeaae9d9644e38",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/HCS08/HC05.cspec",
+        "sha256": "16cb1dc67cf9485556131859ae18df508643d4d48ee84882563abc8783cd5dc2",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/HCS08/HCS08.cspec",
+        "sha256": "1bb6570b7623e368088f5011be4bb153702aea313578bea2e1a164e637f515df",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/HCS12/HC12.cspec",
+        "sha256": "925498e21324555f20eaefab3cf45b9c50770d9630b629fe690d843bcbe95a1c",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'RAM', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/HCS12/HCS12.cspec",
+        "sha256": "b6b1fb0be01cce956b0641949e11705bc79bed54968b08c0dbda32ea7082c745",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/HCS12/HCS12X.cspec",
+        "sha256": "e75f73f9b2cc80ca07f06d05c2fca968d819945e4e5db304623ebeb74b44159e",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/JVM/JVM.cspec",
+        "sha256": "39aa78b09b7f3969f2d0318e4b94d413de75b873fc45a01a9ffa513a6d32e220",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Loongarch/ilp32d.cspec",
+        "sha256": "9318e88b826e101ee9f9bd1bba3aaa701da13f2c14f0d760c0038ba0ec8cc146",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Loongarch/ilp32f.cspec",
+        "sha256": "6a7984b63696278a32feeefa272495a1668b56f09d5915a75b99c856a509857c",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Loongarch/lp64d.cspec",
+        "sha256": "6edf22c304a3d50c156b4c24eda51e7b81c232cc234de71a3d55bef6b40ef1e5",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Loongarch/lp64f.cspec",
+        "sha256": "4b5d8e46e4867730e4fb87a30bdaeee388344138bda4f64f47f8afcb8ec82864",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/M16C/M16C_60.cspec",
+        "sha256": "c95099716a1836e40e550c2c75ada5937950028e2c1587815f32503492f791b4",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'maxsize': '500', 'minsize': '1', 'align': '2'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/M16C/M16C_80.cspec",
+        "sha256": "c91eb2b7ad5a96c5033658b1de3521fb95942c0f3ce296b3d23813c2e9e16468",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'maxsize': '500', 'minsize': '1', 'align': '4'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/M8C/m8c.cspec",
+        "sha256": "173a18dc9ec1d8abe778aa662b0ca6537968840df0604a45641a3b129d59dc6b",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MC6800/6805.cspec",
+        "sha256": "fbd973a5b253e4b90d272173c257841fc165aa88211929a37a99197e7b019a3c",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'SP', 'space': 'RAM', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MC6800/6809.cspec",
+        "sha256": "19e9db98350fa2bae35224ccedde6c2e67cc81b70f325f5d3f97dce3832eed39",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'S', 'space': 'RAM', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MCS96/MCS96.cspec",
+        "sha256": "a0a5f1c5eca545860f9ee413e0f9dde156d2194a949aea844503bf405b4fb398",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips32_eabi.cspec",
+        "sha256": "46b1f74695a7d194e2b07218fa4d461a271b39390eb8d36a99dd7c80238894a1",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips32_fp64.cspec",
+        "sha256": "e8f10714a5ca51e49e15733543e80b088b3ccf278e6f834440ece293d6c6ec19",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips32be.cspec",
+        "sha256": "f5dbbb971f5f50c4c97e3661af969ef19229155a71c57416c4a2114e26eee9ea",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips32le.cspec",
+        "sha256": "532ec48ae20f8a5f1e7908796220bc6d6cecb84961c4e82246c6d437c9fda59a",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips64_32_n32.cspec",
+        "sha256": "2c44ca2d68c6eda06fe7d3000d1435f4b14c6037c9b63eac166c85384e104cb2",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips64_32_o32.cspec",
+        "sha256": "c01f4f7211d0b44e993850b5d20b16bebd0a8077d0968c240bfba3c568211a9c",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips64_32_o64.cspec",
+        "sha256": "b1db6a7dc4da2279992b2f7afe0cba23e56b1d8b257ffc06f5b8104eb54753fd",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips64be.cspec",
+        "sha256": "0106313871a6d122df99db05c4635a869f9af71902021029631d2b94829d1b34",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/MIPS/mips64le.cspec",
+        "sha256": "ee2892c549a8c302ec4241762523e009b05229ba1777318bf461643fb531bfd7",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/NDS32/nds32.cspec",
+        "sha256": "f1b11f37a1b51785dc2aaeba575f2ce1b5423f005cbe7a328883dbc31b8d4cbc",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PA-RISC/pa-risc32.cspec",
+        "sha256": "62348a916804373dc1420f63a860fac05556af116d48b2640ead85c44ea98d84",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: range {'space': 'register', 'first': '0x3000', 'last': '0x3fff'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/PIC24.cspec",
+        "sha256": "81db8701737c50720e750fc7e449eff0d89e173b7dcb97dadbd50a3383e2734a",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic12c5xx.cspec",
+        "sha256": "598b444303e5a403d60ece3d95ba55b785948598e901690c3925795f1fed6c83",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic16.cspec",
+        "sha256": "987798682af54fe62ede677aa650bc83eb4bdaf08182c2cde6ee10ff373a2fba",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic16c5x.cspec",
+        "sha256": "fcff7cfec8c94cb1893339fd5ff47030d47c7963754a3e4614dc035658d35714",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic16f.cspec",
+        "sha256": "c229b18ff629f9e6ae3e3fc086645b0883347094d42f0412a321ccd9592d707b",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic17c7xx.cspec",
+        "sha256": "33ced134a2f4e1ec9d4d0a0e27b7f89b9f1447dacb3a6499eb67f906fda3dbd0",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PIC/pic18.cspec",
+        "sha256": "d1cf818cc508b7d3b4253d2c0491e0ab22eca1bb122939e3a2bd6b7c77ffb809",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32.cspec",
+        "sha256": "58513b105fb3cfd3d8b9a9b4abdd78016ac2f11fdb14e04af3c19a085efdc9b3",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32_be_Mac.cspec",
+        "sha256": "c07737da180daa24a15a5131e2df947402e75b72cf5b5dbc2f89fc6b5f5471ab",
+        "status": "unsupported",
+        "reason": "unsupported children of prototype"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32_e500_be.cspec",
+        "sha256": "97ffbb537759626b4d68655b3efb02355d56cd1e3b206a52eeb412263e6f4388",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32_e500_le.cspec",
+        "sha256": "464c04ad3def11bd8965b2d76f2ae9aa3907a04fff96beb8f982c4ccf6275563",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32_e500mc_be.cspec",
+        "sha256": "e447a6a7c104fb2d332d6e14863027a3c46619524a1b2d1284eb4e7be6a4edd8",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_32_e500mc_le.cspec",
+        "sha256": "e8d7707bc4c5f047aff8a8346c2ed6ba4a78e52427424fa7f8548e16e7d78845",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_64_32.cspec",
+        "sha256": "18e4e575a0ae936b398e9f981074af2b7f35a529ebc6beb31c9c502b40bea669",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_64_be.cspec",
+        "sha256": "d9e0c58c9c46342d9168dd2dd82e9880b5f33dbb6bc884a58a80857c3205a2ff",
+        "status": "unsupported",
+        "reason": "unsupported children of prototype"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_64_be_Mac.cspec",
+        "sha256": "ee6e22c2e6a7bd7d8d2a029412c4d320a912ed3b51dfc20b9db22c23e8d061ea",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '8', 'metatype': 'float', 'extension': 'float'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/PowerPC/ppc_64_le.cspec",
+        "sha256": "0337831de24e9a581f6ad4c4eb04ca011d04cef6d18083fdbb0c9316182e5b7f",
+        "status": "unsupported",
+        "reason": "unsupported children of prototype"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/RISCV/riscv32-fp.cspec",
+        "sha256": "ce24d764afb32ae914373844a96fe400c3c4983428dd5048f56f72fca95a4c54",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/RISCV/riscv32.cspec",
+        "sha256": "a1474ad5d4c8b263e91bad970b122ad4a0e10c8d895c8a105f4ce486253f7a4d",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/RISCV/riscv64-fp.cspec",
+        "sha256": "c424d9e2f088260b7a7737c55219e0be1ea383d7084fcd31e0b2c1c1349381a9",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/RISCV/riscv64.cspec",
+        "sha256": "c170f22d717bc291552be34c12fe8868da5d5218c840abd1873d5c1a3e867b6a",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Sparc/SparcV9_32.cspec",
+        "sha256": "8a4e6a52031ce244484c33d7ed693e7a9a0355ee5d39d7a3e5f8bda4eaa25a27",
+        "status": "unsupported",
+        "reason": "unsupported children of prototype"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Sparc/SparcV9_64.cspec",
+        "sha256": "5311988ad5136ca375adcbcd18cbcdcae30a6aa92701d8fbe5f1a64bbdab05a4",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/SuperH/superh.cspec",
+        "sha256": "16a98bb9380f7b0bf1915f251c33e5c276b16f221c66c555e8ed301357f6f275",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '4', 'extension': 'inttype'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/SuperH/superh2a.cspec",
+        "sha256": "f19511c8311d7266fcaa49f2ef7664072c4bc547a3e0a3dd7125f2aa0990cf2d",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '4', 'maxsize': '4', 'metatype': 'float'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/SuperH4/SuperH4_be.cspec",
+        "sha256": "e4ee917cadb01152af19bfa1cb27a8ada5bcfc449bde0e9a65f9691853338d48",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'r15', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/SuperH4/SuperH4_le.cspec",
+        "sha256": "4a0183f6a00231c37dd83a44df3d0118b8d448262618bf37c6f37a7919ff8826",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'r15', 'space': 'ram', 'growth': 'negative'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/TI_MSP430/TI_MSP430.cspec",
+        "sha256": "06a84cbde2f1fdc4f3d3f42616ff2e4209ba4c34a22fd4e8bb0a280280b1df22",
+        "status": "unsupported",
+        "reason": "unsupported children of input"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/TI_MSP430/TI_MSP430X.cspec",
+        "sha256": "de92f9980a7f131a51b2d1e39bc17df721b3f1021a35560cfeb6fca53c145714",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'maxsize': '500', 'minsize': '1', 'align': '2'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/old/v01stuff/toy.cspec",
+        "sha256": "5f6893c510f48f026a099eba236e44dd4d5b0de3793e8c4dab463018fbe808f9",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: input {'pointermax': '8'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/old/v01stuff/toy64.cspec",
+        "sha256": "c5840c9e9b7a7cbee710f94aac692b2b86f09490fdbb59db754aac54ed696e3b",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: input {'pointermax': '16'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/old/v01stuff/toyPosStack.cspec",
+        "sha256": "9007e47d2933205e88e08998a1dc3d1f0a5e0e651bb830c688b4180683ef94ea",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'sp', 'space': 'ROM', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/toy.cspec",
+        "sha256": "0a880187f753993dc7093a9369f3889429b47e280746a30868aa3c6286b4f02b",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/toy64-long8.cspec",
+        "sha256": "109d851274a7272cdc1b2e74251fc4f58afd6e4e8dcca46f8363407ffecba076",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: input {'pointermax': '16'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/toy64.cspec",
+        "sha256": "59e15dc3ff7551612440f08952800da4f664facb37de64c448743f3f295a8eae",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: input {'pointermax': '16'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Toy/toyPosStack.cspec",
+        "sha256": "409ba3e9a763e0fa0ce60027e3ef15f47a9ed584b69b8d80f3f74109badefe22",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: stackpointer {'register': 'sp', 'space': 'ram', 'growth': 'positive'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/V850/V850.cspec",
+        "sha256": "7283f1bb2b33c0555dc44a1933e65f5e6e1331e35d766cca0a3b3a2854b14447",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Xtensa/xtensa.cspec",
+        "sha256": "32aa69ea801b595efd6626d09b57b7dff591f7d0b528e87f47f11634f62e00a8",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/Z80/z80.cspec",
+        "sha256": "626ec83ca965688f14fa48ce316fd4473f7ded487909ae3a32d7d9a85106a9fb",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: prototype {'name': '__asmA', 'extrapop': '2', 'stackshift': '2', 'strategy': 'register'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/eBPF/eBPF.cspec",
+        "sha256": "9a39a517ae4b5c3a731ea2545fb5627c636ec6821c847c879d5412e12dd54d33",
+        "xml_elements": 47,
+        "conventions": 1,
+        "status": "metadata-converted",
+        "unsupported_nodes": 0
+      },
+      {
+        "source": "utils/sleigh-specs/languages/tricore/tricore.cspec",
+        "sha256": "f33debb0be5d0c3fb2694d7ac286f70dc4bc2778823e26d0cf73cae2d98d8dee",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-16.cspec",
+        "sha256": "85f7c1fd851a51518885d94f34fbc677e7cc289dc2a86d2244f5b9114dcedede",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '500', 'align': '2'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-32-golang.cspec",
+        "sha256": "5c75fcbb539a1302fbbcf4fa5baa4d29d43b32bfa261c0366633829d1ebed213",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-64-gcc.cspec",
+        "sha256": "5eaa848f3eba7ebd4023541f9f37645dae077e8426fb562592f398d599530a9e",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-64-golang.cspec",
+        "sha256": "d999ff0cb58c30c93b31564991061fd1bbd6b88752054786a7d895e45fcd6a60",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-64-swift.cspec",
+        "sha256": "e3e24ed6672ff467f28bbb41094f88a856caf0b9ae4595f4b37c743c355184bc",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86-64-win.cspec",
+        "sha256": "fc40214ffcad2080f8b468bad6738254eabeabd54231d96efe2d88cd04f19d53",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86borland.cspec",
+        "sha256": "665a7b590d587c5544a2f16a0a819b3d0ba1e908d9336535c4ef0718b4d301e6",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86delphi.cspec",
+        "sha256": "c8a472adcf38cf14f8f3c72bd560380f11cb02ab34adec797f6bf16ec5cd2f18",
+        "status": "unsupported",
+        "reason": "unsupported node/attributes: pentry {'minsize': '1', 'maxsize': '500', 'align': '4'}"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86gcc.cspec",
+        "sha256": "37ac2ec43156602443b4e5625625ae5e71c61d151a8b06ece6068648046f80cd",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      },
+      {
+        "source": "utils/sleigh-specs/languages/x86/x86win.cspec",
+        "sha256": "5145482b1c9aa6a9c6ad4d5554f98a35fb11b82a13e226df96018a171ea94988",
+        "status": "unsupported",
+        "reason": "unsupported children of compiler_spec"
+      }
+    ],
+    "slaspec_files": 146,
+    "sinc_files": 204,
+    "sla_files": 133
+  },
+  "outputs": {
+    "ebpf-add64-register.fsl": "629cd53d5c56ec0f81350704ebf02fb6fc7a3595ef2d16901616a9c4405dfe28",
+    "bpf.fslabi": "2991c55f5470b7ca82fd76673ed699a66960335af0d046b3b3d5375f442d36fe",
+    "ebpf.fslabi": "907cf346ca1d5d7f70666acc955e17dd61f0ba2700f80896e0410882c19148da"
+  },
+  "license": {
+    "upstream": "Ghidra Apache-2.0; see Fission NOTICE and THIRD_PARTY.md",
+    "files": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "NOTICE": "55c4b081dfa7fd62caac5c8d505ac90ef1de150fa2675f70a59d75f12cb4c24c",
+      "THIRD_PARTY.md": "54b39d3439380342eddfd5b68c77323341af5cb7fd5bac628e6d9ee3712b0fe4"
+    }
+  }
+}
