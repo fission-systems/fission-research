@@ -11,3 +11,4 @@ __pycache__/
 # Reproduction output and CI compiler checkout.
 /artifacts/
 /.compiler/
+/.layout-input/

@@ -15,7 +15,8 @@
 | GFX900 디코드 | 기존 4개 + SOP2 32개 + 실행용 vector add 패턴 2개 |
 | JVM 디코드 | `iadd` 한 opcode |
 | GPU 실행 의미 | scalar add/carry와 wave64 `v_add_u32` 구현; EXEC 쓰기·divergence·메모리·커널은 미구현 |
-| Sleigh / cspec 이관 | eBPF ADD64 한 leaf와 BPF/eBPF ABI metadata 2개; 직접 SLA 의미 변환은 미구현 |
+| Sleigh / cspec 이관 | eBPF ADD64 한 leaf, ABI metadata 2개, register layout 3개; 직접 SLA 의미 변환은 미구현 |
+| 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택, scalar·masked lane 상태, eBPF leaf의 C·Rust 출력 |
 | AI 평가 / semantic corpus 조회 | 계획·설계 단계 |

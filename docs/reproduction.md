@@ -32,7 +32,7 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 ## Encoding and execution gates
 
 The second CI job fetches Fission compiler commit
-`bf49f27a9b8f0fdafedeba0c88a232522a39f267` separately into `.compiler/`. It builds
+`cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -61,3 +61,25 @@ The Ubuntu oracle was LLVM 18.1.3 and the Rust compiler was 1.98.1. Its package
 and corpus hashes matched the macOS LLVM 22.1.8 observations. Subsequent runs
 preserve reports as GitHub Actions artifacts; runtime/tool versions remain part
 of each report or job log.
+
+## Register layout gate
+
+`make layout-reproduce` regenerates three `.fslregs` files and one provenance
+report from the same pinned input snapshot. All four files must match the
+captured artifacts byte for byte. Existing first-slice migration files are
+unchanged. The declaration-prefix importer admits BPF LE and eBPF LE/BE;
+non-byte spaces, unknown declarations and changed entry preprocessing refuse.
+
+```sh
+make test reproduce migration-reproduce layout-reproduce
+python3 tools/register_layout_reproduce.py --fslc /absolute/path/to/fslc
+```
+
+With a native compiler, the gate parses all three layouts, links both eBPF
+byte-order layouts, checks the expected BPF stack-width refusal, and executes
+two linked leaf cases. The report at `artifacts/register-layout.json` is replaced
+on failure as well as success. CI regenerates sources in the historical job,
+then compares compiler copies and runs native gates in the compiler job; source
+snapshot and compiler commits are fetched separately. The native crate tests
+also compare 968 synthetic byte-storage states. These are metadata/reference
+gates, not ABI allocation, GPU kernel behavior or direct SLA semantic migration.

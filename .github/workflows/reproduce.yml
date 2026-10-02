@@ -24,12 +24,15 @@ jobs:
           git -C Fission checkout --detach FETCH_HEAD
       - run: make test reproduce
       - run: make migration-reproduce
+      - run: make layout-reproduce
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: historical-artifacts-report
-          path: artifacts/reproduction.json
+          path: |
+            artifacts/reproduction.json
+            artifacts/register-layout.json
           if-no-files-found: ignore
   sop2-and-fir:
     runs-on: ubuntu-24.04
@@ -43,7 +46,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 0bc0efbb107e77c2baa84c942b567938da63d571
+          git -C .compiler fetch --depth=1 origin cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang
@@ -60,6 +63,25 @@ jobs:
           done
           .compiler/target/debug/fslc check-abi experiments/migration/first-slice/ebpf.fslabi
           .compiler/target/debug/fslc check-abi experiments/migration/first-slice/bpf.fslabi
+      - name: Verify register layout copies and ABI linking
+        run: |
+          git init .layout-input
+          git -C .layout-input remote add origin https://github.com/fission-systems/Fission.git
+          git -C .layout-input sparse-checkout init --cone
+          git -C .layout-input sparse-checkout set utils/sleigh-specs/languages
+          git -C .layout-input fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
+          git -C .layout-input checkout --detach FETCH_HEAD
+          for name in bpf.le.registers.fslregs ebpf.le.registers.fslregs ebpf.be.registers.fslregs; do
+            cmp "experiments/migration/register-layout/$name" ".compiler/crates/fission-fsl/specs/$name"
+          done
+          python3 tools/register_layout_reproduce.py --fission-root .layout-input --fslc .compiler/target/debug/fslc
+      - name: Preserve register layout report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: register-layout-report
+          path: artifacts/register-layout.json
+          if-no-files-found: ignore
       - name: Compare SOP2 decode and reencoding against LLVM
         run: python3 tools/gfx900_sop2_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18 --llvm-objdump llvm-objdump-18
       - name: Verify wave source copy and compare VOP2 encodings

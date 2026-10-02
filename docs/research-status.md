@@ -27,6 +27,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d) | package v3 상태 FIR, GFX900 `s_add_u32` SGPR/SCC 실행과 C/Rust 재컴파일 검사 |
 | [`cfcb0e0f3`](https://github.com/fission-systems/Fission/commit/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d) | package v4 carry-in, `s_addc_u32`, 자체 ABI 문법과 첫 eBPF Sleigh leaf 이관 |
 | [`0bc0efbb1`](https://github.com/fission-systems/Fission/commit/0bc0efbb107e77c2baa84c942b567938da63d571) | package v5 lane 효과, wave64 EXEC 및 `v_add_u32`, uniform broadcast |
+| [`cf2a023ff`](https://github.com/fission-systems/Fission/commit/cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc) | byte register layout·alias 저장소, strict ABI linking, FIR slot adapter |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -82,6 +83,17 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 
 범위와 증거는 [wave64 실험](../experiments/gpu/gfx900-wave64/README.md)에 있다. GPU hardware/emulator, EXEC 쓰기·VCC·divergence·barrier·메모리·커널 동치, wave JIT/AOT는 미지원이다. register layout과 ABI 연결 및 직접 SLA 의미 이관은 다음 단계로 남아 있다.
 
+## 2026-10-02 register layout 및 ABI 연결
+
+- 자체 `.fslregs` 문법으로 공간·주소 폭·byte order·default memory·레지스터 offset/폭을 표현한다. BPF LE 15개 view와 15개 겹침, eBPF LE/BE 각 12개 view를 고정 원문에서 이관했다.
+- `RegisterFile`은 공간별 backing bytes를 공유하고 부분 view 쓰기에서 나머지 바이트를 보존한다. 비바이트 주소 단위, 이름 중복·범위 초과·지나친 저장소 할당은 거부한다. zero extension이나 read-only 의미는 추정하지 않는다.
+- eBPF의 R1–R5 인자, R0 반환, R6–R10 보존, R10 stack pointer를 실제 register identity/offset/폭으로 연결한다. BPF 원문은 RS=4바이트와 `pointer_size=8`이므로 최초 strict stack-width gate에서 거부하며 원문을 고치지 않는다.
+- 단일 FIR reference evaluator에 명시적인 slot binding을 연결했다. 겹치는 logical slot과 폭 불일치는 거부한다. 동일 selector의 operand alias는 지원하며, 실패는 backing bytes를 변경하지 않는다.
+- LE instruction profile을 두 register-storage byte order에서 평가한 968개 synthetic 상태가 별도 byte-storage oracle과 일치했다. BE eBPF decode·GPU layout·call ABI 실행·새 storage C/Rust projection의 증거는 아니다.
+- 새 자료 4개는 정확히 재생성되고 native CLI 8개 gate가 통과했다. Python 10개 검사, Rust 29개 검사, fmt/Clippy와 기존 재컴파일 검사를 재실행했다. 실행 결과와 범위는 [register layout 실험](../experiments/migration/register-layout/README.md)에 기록한다.
+
+이 단계는 package v5와 기존 encoding lock을 변경하지 않는다. direct SLA 결정 트리/context/template 이관은 아직 미구현이며, ABI allocator·call 효과·GPU lane 저장 layout은 다음 계약 확장이다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
@@ -90,4 +102,4 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.
-7. FSL register layout과 ABI register linking을 구현하고, `cspec` 거부 목록에서 group·join·stack storage·allocation rule을 확장한다. 이후 SLA decision/context/ConstructTpl을 explicit unsupported registry와 함께 직접 이관한다.
+7. 초기 register layout과 eBPF ABI linking을 GPU lane bank·kernel ABI로 확장하고, `cspec` 거부 목록의 group·join·stack storage·allocation rule을 지원한다. SLA decision/context/ConstructTpl을 explicit unsupported registry와 함께 직접 이관한다.
