@@ -1,0 +1,8 @@
+format = "fission-research-wave64-lock-v1"
+profile = "amdgcn.gfx900.vadd_u32.wave64"
+source = "specs/gpu/amdgcn/gfx900-vadd-u32-wave64.fsl"
+source_sha256 = "13834a9ba26405ab917168a546e9ef0a0d8b0c1e0d19a7aaa240509e1bc4caee"
+package_version = 5
+package_sha256 = "3dcd2cf82480d3356bfe4d99f18ec485ab52cf16c2bbabf37f68ce743ed02954"
+corpus_sha256 = "6f9060c6d7e09f42739cfb4f97ebe3c90571265c4a363bfabc4cd3fcad79951d"
+oracle_scope = "LLVM encoding only; no GPU execution equivalence"

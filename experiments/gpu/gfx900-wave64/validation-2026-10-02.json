@@ -1,0 +1,72 @@
+{
+  "format": "fission_research_wave64_validation",
+  "date": "2026-10-02",
+  "status": "passed_local",
+  "fission_commit": "0bc0efbb107e77c2baa84c942b567938da63d571",
+  "pull_request": "https://github.com/fission-systems/Fission/pull/176",
+  "profile": "amdgcn.gfx900.vadd_u32.wave64",
+  "package_version": 5,
+  "source_sha256": "13834a9ba26405ab917168a546e9ef0a0d8b0c1e0d19a7aaa240509e1bc4caee",
+  "package_sha256": "3dcd2cf82480d3356bfe4d99f18ec485ab52cf16c2bbabf37f68ce743ed02954",
+  "fir_extension": {
+    "encoding_patterns": 2,
+    "generic_primitives": ["LaneMaskRead", "LaneRead", "LaneWrite"],
+    "architecture_escape": 0,
+    "domains": ["Uniform", "Mask(n)", "Lanes(n)"],
+    "arithmetic": "existing IntAddWrap, with checked uniform broadcast"
+  },
+  "wave64_execution": {
+    "lanes": 64,
+    "source_classes": ["VGPR/VGPR", "SGPR0..95 broadcast/VGPR"],
+    "valid_states": 1984,
+    "invalid_emitter_rows": 19,
+    "total_rows": 2003,
+    "recompiled_comparisons": 8012,
+    "mismatches": 0,
+    "masks": ["zero", "full", "lane0", "lane63", "alternating", "first+last", "sparse", "seeded"],
+    "observables": ["scalar registers", "u1 flags", "EXEC", "lane extent", "all lane register slots"],
+    "maximum_register_boundaries": "VGPR255 and SGPR95 checked in reference evaluator only"
+  },
+  "synthetic_four_lane_contract": {
+    "states": 4,
+    "recompiled_comparisons": 16,
+    "mismatches": 0,
+    "scope": "generic FIR only, not GFX900 or wave32 evidence",
+    "checks": ["invalid mask preserves all state", "scalar write executes at EXEC=0", "masked write", "late invalid bank rejected before scalar mutation"]
+  },
+  "encoding_oracle": {
+    "tool": "Homebrew LLVM 22.1.8 llvm-mc",
+    "corpus_cases": 128,
+    "field_comparisons": 128,
+    "unchanged_roundtrips": 128,
+    "edited_oracle_comparisons": 128,
+    "rejected_inputs": 9,
+    "corpus_sha256": "6f9060c6d7e09f42739cfb4f97ebe3c90571265c4a363bfabc4cd3fcad79951d",
+    "scope": "encoding and operand classes; not a GPU execution oracle"
+  },
+  "validation": {
+    "crate_tests_passed": 22,
+    "crate_tests_skipped": 0,
+    "format": "passed",
+    "clippy_warnings_denied": "passed",
+    "cli_execute_wave": "passed",
+    "historical_scalar_stack_migration_regression": "passed"
+  },
+  "unsupported": [
+    "GPU hardware/emulator execution and whole-kernel equivalence",
+    "EXEC writes, VCC operations and divergence",
+    "barriers, memory and traps",
+    "wave32 architectural profile",
+    "inline constants, special registers, literals, SDWA and DPP",
+    "carry/stack operations in mixed wave execution bodies",
+    "Cranelift wave JIT/AOT",
+    "register layout and ABI linking",
+    "direct SLA semantic migration"
+  ],
+  "commands": [
+    "cargo nextest run -p fission-fsl --no-capture",
+    "cargo fmt --all --check",
+    "cargo clippy -p fission-fsl --all-targets -- -D warnings",
+    "python3 tools/gfx900_wave_validate.py --fslc <Fission-worktree>/target/debug/fslc"
+  ]
+}
