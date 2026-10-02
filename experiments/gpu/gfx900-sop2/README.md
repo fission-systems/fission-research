@@ -91,6 +91,9 @@ C/Rust execution test. This is JVM-style bitvector/stack evidence, not GPU state
 execution evidence. The new state regression adds 1,030 inputs and 4,120
 reference/C/Rust O0/O2 comparisons.
 
-Next execution slice: carry-input arithmetic (`s_addc_u32`) and then an explicit
-EXEC/lane model. GPU hardware/emulator execution and full kernel equivalence
-remain later gates.
+The [carry-input follow-up](carry-validation-2026-10-01.json) now records
+`s_addc_u32` in Fission `cfcb0e0f3`: 1,030 GFX900 states / 4,120 C/Rust O0/O2
+comparisons passed. Generic widths 1, 8, 16, 32, 64 total 20,600 comparisons;
+other widths are synthetic primitive tests. A separate reference-only chain
+test checks 1,060 64-bit sums. EXEC/lane, hardware/emulator execution and full
+kernel equivalence remain subsequent gates.

@@ -19,10 +19,11 @@ jobs:
           git init Fission
           git -C Fission remote add origin https://github.com/fission-systems/Fission.git
           git -C Fission sparse-checkout init --cone
-          git -C Fission sparse-checkout set utils/sleigh-specs/compiled
+          git -C Fission sparse-checkout set utils/sleigh-specs/compiled utils/sleigh-specs/languages
           git -C Fission fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
           git -C Fission checkout --detach FETCH_HEAD
       - run: make test reproduce
+      - run: make migration-reproduce
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -42,7 +43,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin bf49f27a9b8f0fdafedeba0c88a232522a39f267
+          git -C .compiler fetch --depth=1 origin cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang
@@ -52,6 +53,13 @@ jobs:
           rustup toolchain install 1.98.1 --profile minimal --no-self-update
           cargo +1.98.1 build --locked -p fission-fsl --bin fslc
           cargo +1.98.1 test --locked -p fission-fsl -- --nocapture
+      - name: Verify migrated source copies and ABI metadata
+        run: |
+          for name in ebpf-add64-register.fsl bpf.fslabi ebpf.fslabi; do
+            cmp "experiments/migration/first-slice/$name" ".compiler/crates/fission-fsl/specs/$name"
+          done
+          .compiler/target/debug/fslc check-abi experiments/migration/first-slice/ebpf.fslabi
+          .compiler/target/debug/fslc check-abi experiments/migration/first-slice/bpf.fslabi
       - name: Compare SOP2 decode and reencoding against LLVM
         run: python3 tools/gfx900_sop2_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18 --llvm-objdump llvm-objdump-18
       - name: Preserve SOP2 report

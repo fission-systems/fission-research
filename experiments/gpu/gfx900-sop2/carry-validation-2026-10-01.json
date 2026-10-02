@@ -1,0 +1,91 @@
+{
+  "format": "fission_research_gpu_carry_input_validation",
+  "format_version": 1,
+  "date": "2026-10-01",
+  "status": "passed_local",
+  "fission_commit": "cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d",
+  "pull_request": "https://github.com/fission-systems/Fission/pull/176",
+  "profile": "amdgcn.gfx900.saddc_u32",
+  "source": {
+    "path": "crates/fission-fsl/specs/amdgcn-gfx900-saddc-u32.fsl",
+    "sha256": "6fa72ee05a7bd7c1ff70b362f95b943d3630f853aa1f9196084cf7616d9a3893"
+  },
+  "package_version": 4,
+  "operations": [
+    "register.read",
+    "flag.read",
+    "u32.add.carry",
+    "int.add.carry.in",
+    "register.write",
+    "flag.write"
+  ],
+  "gfx900": {
+    "width": 32,
+    "state_cases": 1030,
+    "invalid_preconditions": 6,
+    "recompiled_comparisons": 4120,
+    "mismatches": 0
+  },
+  "generic_fir": {
+    "widths": [
+      1,
+      8,
+      16,
+      32,
+      64
+    ],
+    "states_per_width": 1030,
+    "total_states": 5150,
+    "total_recompiled_comparisons": 20600,
+    "mismatches": 0,
+    "scope": "Widths other than 32 are synthetic primitive tests, not GPU instructions"
+  },
+  "chaining": {
+    "instructions": [
+      "s_add_u32",
+      "s_addc_u32"
+    ],
+    "reference_u64_additions": 1060,
+    "seeded_cases": 1024,
+    "boundary_cases": 36,
+    "recompiled_chain": false,
+    "mismatches": 0
+  },
+  "oracle": "u128 widened unsigned sum with carry; result/carry by independent modulo/division",
+  "execution_outputs": [
+    "reference FIR evaluator",
+    "C11 O0",
+    "C11 O2",
+    "Rust O0",
+    "Rust O2"
+  ],
+  "cli": {
+    "bytes": "00010282",
+    "registers": "0xffffffff,0,123",
+    "flags": "1",
+    "result": "SGPR2=0, SCC=1"
+  },
+  "llvm_encoding_observation": {
+    "tool": "Homebrew LLVM 22.1.8 llvm-mc",
+    "instruction": "s_addc_u32 s2, s0, s1",
+    "bytes": "00010282"
+  },
+  "tests": {
+    "fission_fsl_crate": 17,
+    "passed": 17,
+    "skipped": 0,
+    "format": "passed",
+    "clippy": "passed"
+  },
+  "unsupported": [
+    "EXEC/lane/wave state",
+    "GPU hardware and whole-kernel execution",
+    "Cranelift state JIT/AOT",
+    "inline/special/literal source selectors"
+  ],
+  "commands": [
+    "cargo nextest run -p fission-fsl --no-capture",
+    "cargo fmt --all --check",
+    "cargo clippy -p fission-fsl --all-targets -- -D warnings"
+  ]
+}

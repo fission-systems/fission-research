@@ -25,6 +25,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`891f4a539`](https://github.com/fission-systems/Fission/commit/891f4a539454fa90ab7d318eec335923f8bb9400) | 단일 FIR의 기준 평가기와 C·Rust 실행 출력, SSA·타입 검증 |
 | [`5376310b2`](https://github.com/fission-systems/Fission/commit/5376310b2077807de713d908ea100411efd73ef9) | 고정폭 인코딩 계획, `.fslc` v2, GFX900 네 규칙, 필드 추출·재인코딩 |
 | [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d) | package v3 상태 FIR, GFX900 `s_add_u32` SGPR/SCC 실행과 C/Rust 재컴파일 검사 |
+| [`cfcb0e0f3`](https://github.com/fission-systems/Fission/commit/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d) | package v4 carry-in, `s_addc_u32`, 자체 ABI 문법과 첫 eBPF Sleigh leaf 이관 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -57,11 +58,23 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 
 자세한 범위·출처·해시는 [SOP2 실험](../experiments/gpu/gfx900-sop2/README.md)과 [상태 검증 기록](../experiments/gpu/gfx900-sop2/state-validation-2026-10-01.json), 재현 방법은 [자동 재현](reproduction.md)을 참조한다. LLVM opcode 참고 자료와 LLVM 실행 oracle은 계보를 공유하므로, 그 일치만으로 vendor 명세 독립 검증이나 GPU 실행 동치를 주장하지 않는다.
 
+## 2026-10-01 carry-in 및 명세 이관
+
+- Fission `cfcb0e0f3`에서 `s_addc_u32`의 SCC 읽기·합·carry-out을 단일 FIR에 연결했다. carry-in 연산은 package v4이며 기존 v1/v2/v3는 계속 읽는다.
+- GFX900 32비트 상태 입력 1,030개 / C·Rust O0/O2 4,120회가 독립 widened-sum oracle과 일치했다. 공통 FIR 폭 1·8·16·32·64 전체는 5,150개 입력 / 20,600회이며, 32 이외의 폭은 synthetic primitive 검사다.
+- `s_add_u32 → s_addc_u32`를 연결한 64비트 덧셈 1,060개가 reference oracle과 일치했다. 이 연결 검사는 C/Rust 재컴파일된 두 명령 연결의 증거는 아니다.
+- eBPF ADD64 register leaf를 Sleigh 원문에서 실행 가능한 `.fsl`로 이관했다. 484개 상태 / 1,936회 C·Rust 비교가 통과했다. 기존 SLA 런타임에서도 실제 byte/length·register binding·IntAdd template 121개를 확인했다.
+- BPF/eBPF의 `cspec` metadata를 자체 `.fslabi` 문법으로 변환하고 Fission의 typed parser로 읽었다. recursive cspec 110개 중 2개가 지원되고 108개는 미지원 이유를 기록한다. register linking·parameter allocator·call execution·binary ABI packaging은 미지원이다.
+- 이관 산출물 4개가 고정 스냅샷에서 바이트 단위로 재현됐다. 기존 artifact 9개 재현도 다시 통과했다. Rust crate 17개 검사, Python 7개 검사, fmt/Clippy가 통과했다.
+
+증거는 [carry 검증](../experiments/gpu/gfx900-sop2/carry-validation-2026-10-01.json)과 [명세 이관 실험](../experiments/migration/first-slice/README.md)에 있다. 직접 SLA-to-FIR 의미 변환은 아직 미구현이다. EXEC/lane은 [다음 상태 계약](https://github.com/fission-systems/Fission/blob/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d/docs/research/fsl-state-and-migration.md)에 설계됐으며 런타임 지원으로 계산하지 않는다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
 2. 기존 register read/write·플래그 효과를 확장해 EXEC 및 lane 상태를 단일 FIR의 명시적 효과로 추가한다.
-3. `s_addc_u32` carry-in을 추가하고, 이후 GFX900 scalar move와 EXEC 기반 vector add의 기준 상태 모델을 연결한다. 기존 GPU 네 규칙과 SOP2 32개 규칙은 `unsupported`이며, 현재 실행 가능한 GPU slice는 `s_add_u32` 하나다.
+3. GFX900 scalar move와 EXEC 기반 vector add의 기준 상태 모델을 연결한다. 기존 GPU 네 규칙과 SOP2 32개 규칙은 `unsupported`이며, 별도 실행 프로파일은 `s_add_u32`와 `s_addc_u32` 두 개다.
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.
+7. FSL register layout과 ABI register linking을 구현하고, `cspec` 거부 목록에서 group·join·stack storage·allocation rule을 확장한다. 이후 SLA decision/context/ConstructTpl을 explicit unsupported registry와 함께 직접 이관한다.

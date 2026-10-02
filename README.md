@@ -14,9 +14,10 @@
 | FIR | 단일 의미 소유자 프로토타입; 정수·스택과 GFX900 SGPR/SCC 단일 상태 slice |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 register-only 인코딩 |
 | JVM 디코드 | `iadd` 한 opcode |
-| GPU 실행 의미 | GFX900 `s_add_u32`의 SGPR/SCC 단일 상태 slice 구현; wave/lane·커널은 미구현 |
+| GPU 실행 의미 | GFX900 `s_add_u32` / `s_addc_u32`의 SGPR/SCC 상태 slice 구현; EXEC/lane·커널은 미구현 |
+| Sleigh / cspec 이관 | eBPF ADD64 한 leaf와 BPF/eBPF ABI metadata 2개; 직접 SLA 의미 변환은 미구현 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
-| 동작 보존 재컴파일 | 제한된 JVM 정수·스택 계약의 C·Rust 출력 |
+| 동작 보존 재컴파일 | 제한된 JVM 정수·스택 및 scalar 상태·이관한 eBPF leaf의 C·Rust 출력 |
 | AI 평가 / semantic corpus 조회 | 계획·설계 단계 |
 
 이 표의 지원 범위와 재현 결과는 [진행 현황](docs/research-status.md)에 기록한다. 새 ISA 규칙 수, 인코딩 검증, 실행 의미 검증은 별도로 보고한다.
@@ -70,6 +71,11 @@ GPU용 FSL 확장을 위한 NVIDIA·AMD·Intel 참고 소스는 [`Vendor/`](Vend
 Fission 브랜치 [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d)는 별도 `s_add_u32` 프로파일에 SGPR/SCC 상태 FIR을 연결했다. [상태 검증 기록](experiments/gpu/gfx900-sop2/state-validation-2026-10-01.json)은 1,030개 상태 입력과 4,120개 C/Rust O0/O2 비교를 담는다. 이 범위는 GPU wave/lane나 커널 동치까지 확장하지 않는다.
 
 ## 자동 재현
+
+`s_addc_u32` carry-in과 첫 Sleigh/cspec 이관은 Fission [`cfcb0e0f3`](https://github.com/fission-systems/Fission/commit/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d)에 반영했다.
+[carry 검증](experiments/gpu/gfx900-sop2/carry-validation-2026-10-01.json)은 공통 FIR 폭 5종의 20,600회 재컴파일 비교와 1,060개 64비트 연산 연결 검사를 기록한다.
+[이관 실험](experiments/migration/first-slice/README.md)은 eBPF leaf, ABI metadata 2개, `cspec` 110개 중 108개 거부 사유를 보관한다.
+`make migration-reproduce`는 이관 artifact 4개를 재생성해 비교한다.
 
 `make test reproduce`는 고정 입력에서 기존 artifact 9개를 임시 디렉터리에 재생성하고 SHA-256을 비교한다. 준비 방법과 검증 범위는 [재현 문서](docs/reproduction.md)에 있다. GitHub Actions에서 같은 명령을 실행한다.
 
