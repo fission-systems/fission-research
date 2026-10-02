@@ -28,6 +28,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`cfcb0e0f3`](https://github.com/fission-systems/Fission/commit/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d) | package v4 carry-in, `s_addc_u32`, 자체 ABI 문법과 첫 eBPF Sleigh leaf 이관 |
 | [`0bc0efbb1`](https://github.com/fission-systems/Fission/commit/0bc0efbb107e77c2baa84c942b567938da63d571) | package v5 lane 효과, wave64 EXEC 및 `v_add_u32`, uniform broadcast |
 | [`cf2a023ff`](https://github.com/fission-systems/Fission/commit/cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc) | byte register layout·alias 저장소, strict ABI linking, FIR slot adapter |
+| [`217d7eafd`](https://github.com/fission-systems/Fission/commit/217d7eafd90b396edc46f0c24fdb6372caf60354) | SLA-derived layout·ADD64 candidate, 원문/바이너리 parity·재컴파일 검증 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -94,6 +95,17 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 
 이 단계는 package v5와 기존 encoding lock을 변경하지 않는다. direct SLA 결정 트리/context/template 이관은 아직 미구현이며, ABI allocator·call 효과·GPU lane 저장 layout은 다음 계약 확장이다.
 
+## 2026-10-02 직접 SLA symbol/template 이관
+
+- `sla_migrate.py`가 packed SLA v4를 직접 읽어 eBPF register symbol 12개와 공간·default memory를 `.fslregs`로 생성한다. `.sinc`/`.slaspec`이나 legacy decoder는 변환 과정에 사용하지 않는다.
+- 129개 constructor 중 root는 98개다. BUILD → pure register export → handle INT_ADD인 root 한 경로와 export dependency 하나를 소비했다. 즉시값 branch와 나머지는 ID·source metadata·opcode·거부 사유를 기록한다.
+- 결정 트리의 ancestor bit constraints와 leaf pair 순서를 보존한다. 앞선 competing pair는 거부하며, 뒤에 겹치는 넓은 jump 패턴은 기록한다. 알려진 opcode byte·mnemonic·constructor 번호·source line으로 의미를 선택하지 않는다.
+- SLA-derived layout·encoding·canonical FIR이 원문 이관 결과와 일치했다. opcode/selector prefix 65,536개에서 같은 121개만 허용했다. SLA 후보의 synthetic 상태 484개 / C·Rust O0/O2 1,936회와 별도 byte-storage 상태 484개가 통과했다.
+- 기존 SLA runtime의 byte/length·binding·IntAdd oracle 121개도 다시 통과했다. 원문과 SLA는 같은 계보이므로 이것은 vendor 독립 증명이나 eBPF verifier 실행이 아니다.
+- opcode·context·extra effect·handle·BUILD·selector·export·priority 변조 8개를 거부했다. 새 산출물 3개와 package SHA가 재현됐고 native CLI 4개 gate가 통과했다. Rust 전체 32개, Python 14개, fmt/Clippy와 기존 재컴파일 회귀가 통과했다.
+
+[SLA 이관 실험](../experiments/migration/sla-first-slice/README.md)에 registry·출처·해시·지원 범위가 있다. 직접 이관의 첫 branch가 구현된 단계이며 general SLA context·동적 handle·메모리·제어 흐름, 전체 VM·함수, GPU layout·kernel ABI는 미지원이다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
@@ -102,4 +114,4 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.
-7. 초기 register layout과 eBPF ABI linking을 GPU lane bank·kernel ABI로 확장하고, `cspec` 거부 목록의 group·join·stack storage·allocation rule을 지원한다. SLA decision/context/ConstructTpl을 explicit unsupported registry와 함께 직접 이관한다.
+7. 초기 register layout과 eBPF ABI linking을 GPU lane bank·kernel ABI로 확장하고, `cspec` 거부 목록의 group·join·stack storage·allocation rule을 지원한다. 최초 SLA bound-add registry를 context·다른 ConstructTpl 연산으로 확장한다.

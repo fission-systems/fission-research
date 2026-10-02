@@ -25,6 +25,7 @@ jobs:
       - run: make test reproduce
       - run: make migration-reproduce
       - run: make layout-reproduce
+      - run: make sla-migration-reproduce
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -33,6 +34,7 @@ jobs:
           path: |
             artifacts/reproduction.json
             artifacts/register-layout.json
+            artifacts/sla-migration.json
           if-no-files-found: ignore
   sop2-and-fir:
     runs-on: ubuntu-24.04
@@ -46,7 +48,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc
+          git -C .compiler fetch --depth=1 origin 217d7eafd90b396edc46f0c24fdb6372caf60354
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang
@@ -81,6 +83,26 @@ jobs:
         with:
           name: register-layout-report
           path: artifacts/register-layout.json
+          if-no-files-found: ignore
+      - name: Migrate SLA with no Sleigh source grammar available
+        run: |
+          git init .sla-input
+          git -C .sla-input remote add origin https://github.com/fission-systems/Fission.git
+          git -C .sla-input sparse-checkout init --cone
+          git -C .sla-input sparse-checkout set utils/sleigh-specs/compiled
+          git -C .sla-input fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
+          git -C .sla-input checkout --detach FETCH_HEAD
+          test ! -d .sla-input/utils/sleigh-specs/languages
+          for name in ebpf-sla-add64-register.fsl ebpf.le.sla.registers.fslregs; do
+            cmp "experiments/migration/sla-first-slice/$name" ".compiler/crates/fission-fsl/specs/$name"
+          done
+          python3 tools/sla_migration_reproduce.py --fission-root .sla-input --fslc .compiler/target/debug/fslc
+      - name: Preserve SLA migration report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: sla-migration-report
+          path: artifacts/sla-migration.json
           if-no-files-found: ignore
       - name: Compare SOP2 decode and reencoding against LLVM
         run: python3 tools/gfx900_sop2_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18 --llvm-objdump llvm-objdump-18

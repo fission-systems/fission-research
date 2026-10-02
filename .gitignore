@@ -12,3 +12,4 @@ __pycache__/
 /artifacts/
 /.compiler/
 /.layout-input/
+/.sla-input/

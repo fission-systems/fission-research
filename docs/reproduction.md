@@ -32,7 +32,7 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 ## Encoding and execution gates
 
 The second CI job fetches Fission compiler commit
-`cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc` separately into `.compiler/`. It builds
+`217d7eafd90b396edc46f0c24fdb6372caf60354` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -83,3 +83,24 @@ then compares compiler copies and runs native gates in the compiler job; source
 snapshot and compiler commits are fetched separately. The native crate tests
 also compare 968 synthetic byte-storage states. These are metadata/reference
 gates, not ABI allocation, GPU kernel behavior or direct SLA semantic migration.
+
+## Direct SLA gate
+
+`make sla-migration-reproduce` rebuilds three new golden files from the binary
+eBPF SLA, then checks eight semantic/selector/decision-priority mutations refuse.
+With `--fslc`, it additionally parses instruction/layout source, links the ABI,
+checks a locked portable package hash and executes one linked CLI state.
+The compiler's native tests compare 65,536 source/SLA prefixes and separately
+recompile the SLA-derived FIR in C/Rust. CI gives this gate a compiled-only input
+checkout and asserts no language-source directory exists. There is no Vendor
+runtime dependency. JSON remains the reproduction/evidence report; instruction
+and register source are owned FSL text.
+
+```sh
+make test reproduce migration-reproduce layout-reproduce sla-migration-reproduce
+python3 tools/sla_migration_reproduce.py --fslc /absolute/path/to/fslc
+```
+
+The admitted conversion is one bound register ADD64 branch. Other constructor
+effects, context, memory, dynamic handles and general decisions are subsequent
+registry extensions. Historical artifact/migration locks remain unchanged.
