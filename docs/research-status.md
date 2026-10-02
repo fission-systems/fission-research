@@ -1,6 +1,6 @@
 # FSL/FIR 연구 진행 현황
 
-기준일: 2026-10-01. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 2026-10-01 재현·SOP2 확장 작업에서 아래 범위의 실험을 다시 실행했다.
+기준일: 2026-10-02. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
 
 ## 채택한 방향
 
@@ -26,6 +26,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`5376310b2`](https://github.com/fission-systems/Fission/commit/5376310b2077807de713d908ea100411efd73ef9) | 고정폭 인코딩 계획, `.fslc` v2, GFX900 네 규칙, 필드 추출·재인코딩 |
 | [`fbc96040d`](https://github.com/fission-systems/Fission/commit/fbc96040dc8ac1130b68bf10f6904f87aee41a0d) | package v3 상태 FIR, GFX900 `s_add_u32` SGPR/SCC 실행과 C/Rust 재컴파일 검사 |
 | [`cfcb0e0f3`](https://github.com/fission-systems/Fission/commit/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d) | package v4 carry-in, `s_addc_u32`, 자체 ABI 문법과 첫 eBPF Sleigh leaf 이관 |
+| [`0bc0efbb1`](https://github.com/fission-systems/Fission/commit/0bc0efbb107e77c2baa84c942b567938da63d571) | package v5 lane 효과, wave64 EXEC 및 `v_add_u32`, uniform broadcast |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -67,13 +68,24 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - BPF/eBPF의 `cspec` metadata를 자체 `.fslabi` 문법으로 변환하고 Fission의 typed parser로 읽었다. recursive cspec 110개 중 2개가 지원되고 108개는 미지원 이유를 기록한다. register linking·parameter allocator·call execution·binary ABI packaging은 미지원이다.
 - 이관 산출물 4개가 고정 스냅샷에서 바이트 단위로 재현됐다. 기존 artifact 9개 재현도 다시 통과했다. Rust crate 17개 검사, Python 7개 검사, fmt/Clippy가 통과했다.
 
-증거는 [carry 검증](../experiments/gpu/gfx900-sop2/carry-validation-2026-10-01.json)과 [명세 이관 실험](../experiments/migration/first-slice/README.md)에 있다. 직접 SLA-to-FIR 의미 변환은 아직 미구현이다. EXEC/lane은 [다음 상태 계약](https://github.com/fission-systems/Fission/blob/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d/docs/research/fsl-state-and-migration.md)에 설계됐으며 런타임 지원으로 계산하지 않는다.
+증거는 [carry 검증](../experiments/gpu/gfx900-sop2/carry-validation-2026-10-01.json)과 [명세 이관 실험](../experiments/migration/first-slice/README.md)에 있다. 직접 SLA-to-FIR 의미 변환은 아직 미구현이다. 이 스냅샷의 EXEC/lane은 [당시 상태 계약](https://github.com/fission-systems/Fission/blob/cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d/docs/research/fsl-state-and-migration.md)에 설계만 된 단계였다.
+
+## 2026-10-02 wave64 EXEC 및 vector add
+
+- 단일 FIR에 mask snapshot·lane read·masked write를 추가하고 package v5로 직렬화했다. uniform/mask/lane 도메인은 typed producer에서 파생되며 별도 의미 IR을 만들지 않는다.
+- `v_add_u32`는 VGPR/VGPR, SGPR0..95 broadcast/VGPR 두 패턴을 지원한다. 새 공통 primitive 3개와 FSL 패턴 2개가 추가됐으며 아키텍처별 실행 escape는 없다.
+- 1,984개 정상 상태와 19개 잘못된 출력 입력, 총 2,003행 / C·Rust O0/O2 8,012회가 기대한 전체 상태와 일치했다. EXEC=0·전체 활성·희소·lane63·seeded mask, register aliasing, 비활성 lane high bits 보존을 포함한다.
+- 별도 synthetic 4-lane 계약의 4행 / 16회 비교로 mask 범위, EXEC=0 scalar 효과, masked write, 늦은 bank 실패 이전의 무변경 거부를 확인했다. 이것은 GFX900 wave32 지원 증거가 아니다.
+- LLVM 조립 128개에서 필드·원본 왕복·수정 후 조립 bytes가 일치했고 9개 미지원 입력을 거부했다. source/package/corpus SHA-256을 잠갔다. LLVM은 GPU 실행 oracle이 아니다.
+- 기존 scalar·stack·eBPF 이관 회귀를 포함해 Rust crate 22개 검사와 fmt/Clippy가 통과했다. `execute-wave` CLI도 실제 컴파일 패키지를 실행했다.
+
+범위와 증거는 [wave64 실험](../experiments/gpu/gfx900-wave64/README.md)에 있다. GPU hardware/emulator, EXEC 쓰기·VCC·divergence·barrier·메모리·커널 동치, wave JIT/AOT는 미지원이다. register layout과 ABI 연결 및 직접 SLA 의미 이관은 다음 단계로 남아 있다.
 
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.
-2. 기존 register read/write·플래그 효과를 확장해 EXEC 및 lane 상태를 단일 FIR의 명시적 효과로 추가한다.
-3. GFX900 scalar move와 EXEC 기반 vector add의 기준 상태 모델을 연결한다. 기존 GPU 네 규칙과 SOP2 32개 규칙은 `unsupported`이며, 별도 실행 프로파일은 `s_add_u32`와 `s_addc_u32` 두 개다.
+2. EXEC 쓰기·VCC 연산·분기와 lane 상태의 상호작용을 명시적으로 확장한다. 현재는 입력 EXEC를 읽고 wrapping add를 수행하는 범위다.
+3. GFX900 scalar move와 기존 GPU 네 규칙·SOP2 32개 규칙의 미지원 의미를 단계별로 연결한다. 별도 실행 프로파일은 scalar add/carry와 wave64 vector add이며 원래 encoding-only 프로파일은 계속 `unsupported`다.
 4. 조건부 확장 워드, 분산 필드, 압축 인코딩과 가변 길이를 지원한다. 현재 프로파일은 고정폭이며 최대 256개 규칙을 담는다.
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.

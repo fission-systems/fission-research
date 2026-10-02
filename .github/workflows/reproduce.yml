@@ -43,7 +43,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin cfcb0e0f3635849e5bcfd23d4f94def0ccd2094d
+          git -C .compiler fetch --depth=1 origin 0bc0efbb107e77c2baa84c942b567938da63d571
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang
@@ -62,6 +62,17 @@ jobs:
           .compiler/target/debug/fslc check-abi experiments/migration/first-slice/bpf.fslabi
       - name: Compare SOP2 decode and reencoding against LLVM
         run: python3 tools/gfx900_sop2_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18 --llvm-objdump llvm-objdump-18
+      - name: Verify wave source copy and compare VOP2 encodings
+        run: |
+          cmp specs/gpu/amdgcn/gfx900-vadd-u32-wave64.fsl .compiler/crates/fission-fsl/specs/amdgcn-gfx900-vadd-u32-wave64.fsl
+          python3 tools/gfx900_wave_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18
+      - name: Preserve wave report
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: gfx900-wave-report
+          path: artifacts/gfx900-wave.json
+          if-no-files-found: ignore
       - name: Preserve SOP2 report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
