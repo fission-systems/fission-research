@@ -1,0 +1,404 @@
+{
+  "format": "fission-register-layout-migration-v1",
+  "source_snapshot": "96fc71f75cecdee305faf9497561c577a8955468",
+  "sources": [
+    {
+      "profile": "bpf.le.registers",
+      "source": "utils/sleigh-specs/languages/BPF/BPF.sinc",
+      "sha256": "7ca890d08a11d3f7ae3c1e3ce003a43886d4d645fa7f78e4d9ca88d4e8d47d75",
+      "entry": "utils/sleigh-specs/languages/BPF/BPF_le.slaspec",
+      "entry_sha256": "41759fe9c680679b39fd28817edeb6ceb85ebaeafd6fbfd9122a097c46228032",
+      "byte_order": "little",
+      "spaces": [
+        {
+          "name": "ram",
+          "kind": "memory",
+          "address_bytes": 4
+        },
+        {
+          "name": "packet",
+          "kind": "memory",
+          "address_bytes": 4
+        },
+        {
+          "name": "mem",
+          "kind": "memory",
+          "address_bytes": 4
+        },
+        {
+          "name": "register",
+          "kind": "register",
+          "address_bytes": 4
+        }
+      ],
+      "registers": [
+        {
+          "name": "A",
+          "space": "register",
+          "offset": 0,
+          "size_bytes": 4
+        },
+        {
+          "name": "X",
+          "space": "register",
+          "offset": 4,
+          "size_bytes": 4
+        },
+        {
+          "name": "RS",
+          "space": "register",
+          "offset": 8,
+          "size_bytes": 4
+        },
+        {
+          "name": "R",
+          "space": "register",
+          "offset": 12,
+          "size_bytes": 4
+        },
+        {
+          "name": "PC",
+          "space": "register",
+          "offset": 16,
+          "size_bytes": 4
+        },
+        {
+          "name": "AH",
+          "space": "register",
+          "offset": 0,
+          "size_bytes": 2
+        },
+        {
+          "name": "XH",
+          "space": "register",
+          "offset": 4,
+          "size_bytes": 2
+        },
+        {
+          "name": "RSH",
+          "space": "register",
+          "offset": 8,
+          "size_bytes": 2
+        },
+        {
+          "name": "RH",
+          "space": "register",
+          "offset": 12,
+          "size_bytes": 2
+        },
+        {
+          "name": "PCH",
+          "space": "register",
+          "offset": 16,
+          "size_bytes": 2
+        },
+        {
+          "name": "AB",
+          "space": "register",
+          "offset": 0,
+          "size_bytes": 1
+        },
+        {
+          "name": "XB",
+          "space": "register",
+          "offset": 4,
+          "size_bytes": 1
+        },
+        {
+          "name": "RSB",
+          "space": "register",
+          "offset": 8,
+          "size_bytes": 1
+        },
+        {
+          "name": "RB",
+          "space": "register",
+          "offset": 12,
+          "size_bytes": 1
+        },
+        {
+          "name": "PCB",
+          "space": "register",
+          "offset": 16,
+          "size_bytes": 1
+        }
+      ],
+      "overlapping_pairs": [
+        [
+          "A",
+          "AH"
+        ],
+        [
+          "A",
+          "AB"
+        ],
+        [
+          "X",
+          "XH"
+        ],
+        [
+          "X",
+          "XB"
+        ],
+        [
+          "RS",
+          "RSH"
+        ],
+        [
+          "RS",
+          "RSB"
+        ],
+        [
+          "R",
+          "RH"
+        ],
+        [
+          "R",
+          "RB"
+        ],
+        [
+          "PC",
+          "PCH"
+        ],
+        [
+          "PC",
+          "PCB"
+        ],
+        [
+          "AH",
+          "AB"
+        ],
+        [
+          "XH",
+          "XB"
+        ],
+        [
+          "RSH",
+          "RSB"
+        ],
+        [
+          "RH",
+          "RB"
+        ],
+        [
+          "PCH",
+          "PCB"
+        ]
+      ]
+    },
+    {
+      "profile": "ebpf.le.registers",
+      "source": "utils/sleigh-specs/languages/eBPF/eBPF.sinc",
+      "sha256": "7b69ca1e901dca162bae29a8f18819c5f84afc3195296cf1662e39d86bbf5a34",
+      "entry": "utils/sleigh-specs/languages/eBPF/eBPF_le.slaspec",
+      "entry_sha256": "1285e4332bb36db58923db6acce9346438415ff71aa32060140ac171bfe226b4",
+      "byte_order": "little",
+      "spaces": [
+        {
+          "name": "ram",
+          "kind": "memory",
+          "address_bytes": 8
+        },
+        {
+          "name": "register",
+          "kind": "register",
+          "address_bytes": 4
+        },
+        {
+          "name": "syscall",
+          "kind": "memory",
+          "address_bytes": 4
+        }
+      ],
+      "registers": [
+        {
+          "name": "R0",
+          "space": "register",
+          "offset": 0,
+          "size_bytes": 8
+        },
+        {
+          "name": "R1",
+          "space": "register",
+          "offset": 8,
+          "size_bytes": 8
+        },
+        {
+          "name": "R2",
+          "space": "register",
+          "offset": 16,
+          "size_bytes": 8
+        },
+        {
+          "name": "R3",
+          "space": "register",
+          "offset": 24,
+          "size_bytes": 8
+        },
+        {
+          "name": "R4",
+          "space": "register",
+          "offset": 32,
+          "size_bytes": 8
+        },
+        {
+          "name": "R5",
+          "space": "register",
+          "offset": 40,
+          "size_bytes": 8
+        },
+        {
+          "name": "R6",
+          "space": "register",
+          "offset": 48,
+          "size_bytes": 8
+        },
+        {
+          "name": "R7",
+          "space": "register",
+          "offset": 56,
+          "size_bytes": 8
+        },
+        {
+          "name": "R8",
+          "space": "register",
+          "offset": 64,
+          "size_bytes": 8
+        },
+        {
+          "name": "R9",
+          "space": "register",
+          "offset": 72,
+          "size_bytes": 8
+        },
+        {
+          "name": "R10",
+          "space": "register",
+          "offset": 80,
+          "size_bytes": 8
+        },
+        {
+          "name": "PC",
+          "space": "register",
+          "offset": 88,
+          "size_bytes": 8
+        }
+      ],
+      "overlapping_pairs": []
+    },
+    {
+      "profile": "ebpf.be.registers",
+      "source": "utils/sleigh-specs/languages/eBPF/eBPF.sinc",
+      "sha256": "7b69ca1e901dca162bae29a8f18819c5f84afc3195296cf1662e39d86bbf5a34",
+      "entry": "utils/sleigh-specs/languages/eBPF/eBPF_be.slaspec",
+      "entry_sha256": "1dffeac5a171eb8cc6c5353a4055f838a8d7adf0e2052b62a5716bd85b294435",
+      "byte_order": "big",
+      "spaces": [
+        {
+          "name": "ram",
+          "kind": "memory",
+          "address_bytes": 8
+        },
+        {
+          "name": "register",
+          "kind": "register",
+          "address_bytes": 4
+        },
+        {
+          "name": "syscall",
+          "kind": "memory",
+          "address_bytes": 4
+        }
+      ],
+      "registers": [
+        {
+          "name": "R0",
+          "space": "register",
+          "offset": 0,
+          "size_bytes": 8
+        },
+        {
+          "name": "R1",
+          "space": "register",
+          "offset": 8,
+          "size_bytes": 8
+        },
+        {
+          "name": "R2",
+          "space": "register",
+          "offset": 16,
+          "size_bytes": 8
+        },
+        {
+          "name": "R3",
+          "space": "register",
+          "offset": 24,
+          "size_bytes": 8
+        },
+        {
+          "name": "R4",
+          "space": "register",
+          "offset": 32,
+          "size_bytes": 8
+        },
+        {
+          "name": "R5",
+          "space": "register",
+          "offset": 40,
+          "size_bytes": 8
+        },
+        {
+          "name": "R6",
+          "space": "register",
+          "offset": 48,
+          "size_bytes": 8
+        },
+        {
+          "name": "R7",
+          "space": "register",
+          "offset": 56,
+          "size_bytes": 8
+        },
+        {
+          "name": "R8",
+          "space": "register",
+          "offset": 64,
+          "size_bytes": 8
+        },
+        {
+          "name": "R9",
+          "space": "register",
+          "offset": 72,
+          "size_bytes": 8
+        },
+        {
+          "name": "R10",
+          "space": "register",
+          "offset": 80,
+          "size_bytes": 8
+        },
+        {
+          "name": "PC",
+          "space": "register",
+          "offset": 88,
+          "size_bytes": 8
+        }
+      ],
+      "overlapping_pairs": []
+    }
+  ],
+  "outputs": {
+    "bpf.le.registers.fslregs": "6772bb24d4688e9f5b5740f49637126bb852076134a09e993088fb2b27c56e98",
+    "ebpf.le.registers.fslregs": "5b9bdcd1b1ab85a8f2f977effce86c945693fd45a209651ce0354cee5cd5d026",
+    "ebpf.be.registers.fslregs": "1ed31c2a21f04f2ed88f091ef9d71b33bbd02fa679c34c01e553865d10130e74"
+  },
+  "license": {
+    "upstream": "Ghidra Apache-2.0",
+    "files": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "NOTICE": "55c4b081dfa7fd62caac5c8d505ac90ef1de150fa2675f70a59d75f12cb4c24c",
+      "THIRD_PARTY.md": "54b39d3439380342eddfd5b68c77323341af5cb7fd5bac628e6d9ee3712b0fe4"
+    }
+  },
+  "scope": "BPF little-endian and eBPF little/big-endian unconditional byte-addressed declaration prefixes; no full SLEIGH preprocessing or direct SLA conversion"
+}

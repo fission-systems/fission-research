@@ -1,0 +1,90 @@
+{
+  "format": "fission-register-layout-reproduction-v1",
+  "status": "passed",
+  "artifact_hashes": {
+    "bpf.le.registers.fslregs": "6772bb24d4688e9f5b5740f49637126bb852076134a09e993088fb2b27c56e98",
+    "ebpf.le.registers.fslregs": "5b9bdcd1b1ab85a8f2f977effce86c945693fd45a209651ce0354cee5cd5d026",
+    "ebpf.be.registers.fslregs": "1ed31c2a21f04f2ed88f091ef9d71b33bbd02fa679c34c01e553865d10130e74",
+    "layout-migration.json": "085c6e5afaf66814a92223b9b74bd907c14d172511a24b0a7b9f377c534f91c2"
+  },
+  "native_checks": [
+    {
+      "gate": "layout-parse",
+      "source": "bpf.le.registers.fslregs",
+      "stdout": "valid layout: bpf.le.registers (4 spaces, 15 register views)"
+    },
+    {
+      "gate": "layout-parse",
+      "source": "ebpf.le.registers.fslregs",
+      "stdout": "valid layout: ebpf.le.registers (3 spaces, 12 register views)"
+    },
+    {
+      "gate": "layout-parse",
+      "source": "ebpf.be.registers.fslregs",
+      "stdout": "valid layout: ebpf.be.registers (3 spaces, 12 register views)"
+    },
+    {
+      "gate": "abi-link",
+      "source": "ebpf.le.registers.fslregs",
+      "status": "linked",
+      "stdout": "linked ABI ebpf.compiler layout=ebpf.le.registers stack=R10@register:80+8 conventions=1\nconvention __fastcall inputs=[LinkedRegisterEntry { register: RegisterId(1), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(2), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(3), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(4), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(5), min_bytes: 1, max_bytes: 8 }] outputs=[LinkedRegisterEntry { register: RegisterId(0), min_bytes: 1, max_bytes: 8 }] preserved=[RegisterId(6), RegisterId(7), RegisterId(8), RegisterId(9), RegisterId(10)] clobbered=[]"
+    },
+    {
+      "gate": "abi-link",
+      "source": "ebpf.be.registers.fslregs",
+      "status": "linked",
+      "stdout": "linked ABI ebpf.compiler layout=ebpf.be.registers stack=R10@register:80+8 conventions=1\nconvention __fastcall inputs=[LinkedRegisterEntry { register: RegisterId(1), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(2), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(3), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(4), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(5), min_bytes: 1, max_bytes: 8 }] outputs=[LinkedRegisterEntry { register: RegisterId(0), min_bytes: 1, max_bytes: 8 }] preserved=[RegisterId(6), RegisterId(7), RegisterId(8), RegisterId(9), RegisterId(10)] clobbered=[]"
+    },
+    {
+      "gate": "abi-link",
+      "source": "bpf.le.registers.fslregs",
+      "status": "expected-refusal",
+      "stderr": "fslc: 1:1: stack pointer RS width 4 differs from ABI pointer_size 8"
+    },
+    {
+      "gate": "linked-leaf-reference",
+      "source": "ebpf.le.registers.fslregs",
+      "stdout": "status=Success registers=[0, 1, 0]"
+    },
+    {
+      "gate": "linked-leaf-reference",
+      "source": "ebpf.be.registers.fslregs",
+      "stdout": "status=Success registers=[0, 1, 0]"
+    }
+  ],
+  "scope": "source metadata and linked leaf reference execution; no ABI allocator/calls, GPU layout, direct SLA semantics or hardware execution",
+  "fslc_sha256": "79d824824e04d39119a82dea0fc2c5f5c61262c88078f9ecd0c836bcf7e792f9",
+  "compiler_commit": "cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc",
+  "observed_date": "2026-10-02",
+  "python_version": "3.12.1",
+  "rustc_version": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+  "native_tests": {
+    "runner": "cargo nextest run -p fission-fsl --locked --status-level all",
+    "passed": 29,
+    "skipped": 0,
+    "new_layout_tests": 7,
+    "bound_byte_storage_states": 968,
+    "instruction_profile": "ebpf.le.add64.register",
+    "storage_orders": [
+      "little",
+      "big"
+    ],
+    "big_endian_instruction_decode": false,
+    "final_run_leaky_tests": 0,
+    "initial_run_note": "One earlier all-crate run reported 1 leaky test; two subsequent all-crate runs completed 29/29 without that marker."
+  },
+  "python_tests": {
+    "passed": 10
+  },
+  "regression_gates": {
+    "historical_artifacts": 9,
+    "unchanged_first_migration_artifacts": 4,
+    "sop2_encoding_cases": 256,
+    "wave_encoding_cases": 128,
+    "compiled_kernel_instruction_rows": 2,
+    "kernel_row_reference_states": 6,
+    "existing_C_Rust_recompilation_tests": "rerun; new byte-storage adapter is reference-only"
+  },
+  "formatting": "passed",
+  "clippy": "passed with -D warnings"
+}
