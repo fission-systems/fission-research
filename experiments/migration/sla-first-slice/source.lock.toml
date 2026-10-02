@@ -1,0 +1,4 @@
+profile = "ebpf.le.sla.add64.register"
+package_version = 3
+package_sha256 = "cdb3b7714e71bbc78161ce1b7a84ab9bc32a85f946f021ae6023c90a75dc3cc9"
+scope = "One directly migrated SLA register ADD64 variant; no whole VM execution"

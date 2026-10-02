@@ -1,0 +1,96 @@
+{
+  "format": "fission-sla-migration-reproduction-v1",
+  "status": "passed",
+  "artifact_hashes": {
+    "ebpf-sla-add64-register.fsl": "ebbdabc6e00c87bdd9acfaa51687912585baa348e5331d0b02ad7ccb3c56d44e",
+    "ebpf.le.sla.registers.fslregs": "80ac68a4b5970005881b5ca4c800747f25eed82552ac9b7b9a610479661e02f8",
+    "sla-migration.json": "f401da17b8ba209a385b318f6455196e1ff67503cc5a0dbe701c7640045db29a"
+  },
+  "native_checks": [
+    {
+      "gate": "check",
+      "stdout": "valid FSL: ebpf.le.sla.add64.register (1 instructions, little byte order)"
+    },
+    {
+      "gate": "check-layout",
+      "stdout": "valid layout: ebpf.le.sla.registers (3 spaces, 12 register views)"
+    },
+    {
+      "gate": "link-abi",
+      "stdout": "linked ABI ebpf.compiler layout=ebpf.le.sla.registers stack=R10@register:80+8 conventions=1\nconvention __fastcall inputs=[LinkedRegisterEntry { register: RegisterId(1), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(2), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(3), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(4), min_bytes: 1, max_bytes: 8 }, LinkedRegisterEntry { register: RegisterId(5), min_bytes: 1, max_bytes: 8 }] outputs=[LinkedRegisterEntry { register: RegisterId(0), min_bytes: 1, max_bytes: 8 }] preserved=[RegisterId(6), RegisterId(7), RegisterId(8), RegisterId(9), RegisterId(10)] clobbered=[]"
+    },
+    {
+      "gate": "execute-layout",
+      "stdout": "status=Success registers=[0, 1, 0]"
+    }
+  ],
+  "refusal_checks": [
+    {
+      "mutation": "unknown_opcode",
+      "status": "refused",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "mutation": "context_effect",
+      "status": "refused",
+      "reason": "unknown child in element 20"
+    },
+    {
+      "mutation": "extra_operation",
+      "status": "refused",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "mutation": "handle_offset_plus",
+      "status": "refused",
+      "reason": "dynamic/mixed handle atom unsupported"
+    },
+    {
+      "mutation": "invalid_build_operand",
+      "status": "refused",
+      "reason": "first add slice requires destination plus built source"
+    },
+    {
+      "mutation": "selector_hole_corruption",
+      "status": "refused",
+      "reason": "no supported bound register variant"
+    },
+    {
+      "mutation": "export_effect",
+      "status": "refused",
+      "reason": "no supported bound register variant"
+    },
+    {
+      "mutation": "earlier_competing_pair",
+      "status": "refused",
+      "reason": "earlier root pair shadows converted constructor: 91"
+    }
+  ],
+  "fslc_sha256": "79d824824e04d39119a82dea0fc2c5f5c61262c88078f9ecd0c836bcf7e792f9",
+  "package_sha256": "cdb3b7714e71bbc78161ce1b7a84ab9bc32a85f946f021ae6023c90a75dc3cc9",
+  "observed_date": "2026-10-02",
+  "compiler_commit": "217d7eafd90b396edc46f0c24fdb6372caf60354",
+  "python_tests": {
+    "passed": 14
+  },
+  "native_tests": {
+    "passed": 32,
+    "skipped": 0,
+    "new_tests": 3,
+    "source_SLA_prefixes": 65536,
+    "accepted_prefixes": 121,
+    "SLA_FIR_synthetic_states": 484,
+    "SLA_FIR_C_Rust_O0_O2_comparisons": 1936,
+    "SLA_bound_storage_states": 484,
+    "previous_recompilation_gates": "rerun separately"
+  },
+  "legacy_SLA_oracle": {
+    "register_binding_length_IntAdd_comparisons": 121,
+    "command": "cargo run -p fission-sleigh --example ebpf_add_leaf_oracle --locked",
+    "source_lineage": "shared; not independent vendor/verifier/hardware proof"
+  },
+  "formatting": "passed",
+  "clippy": "passed with -D warnings",
+  "python_version": "3.12.1",
+  "scope": "One directly migrated SLA register ADD64 branch plus symbols; no general context, dynamic handles, memory/control flow, whole function/VM, GPU layout/kernel ABI or hardware execution"
+}

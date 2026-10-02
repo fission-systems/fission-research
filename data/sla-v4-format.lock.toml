@@ -1,0 +1,24 @@
+format_version = 4
+upstream = "https://github.com/NationalSecurityAgency/ghidra"
+revision = "Ghidra_12.0.4_build"
+license = "Apache-2.0"
+scope = "Format identifier facts, ordered template fields, instruction-byte pattern words and first-match decision leaf priority. No vendor implementation/runtime dependency."
+
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/slaformat.cc"
+sha256 = "5645e18d6cca036a3207f1df1a5911335642299254657e53c2516375f6ad33e8"
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/semantics.cc"
+sha256 = "feb9332d0c5c5fa758b58d7ca53958011901aee016b3671c07c56e574402b9a4"
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/semantics.hh"
+sha256 = "2b7ab516ce1bfb5539545c2d4d3e7df022c8032635d27e0483c359b5eccddd37"
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/slghpattern.cc"
+sha256 = "4ae90275ca7668a10d7d6bcb808c9626e2788bc987bae83404c29b845b74b957"
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/slghsymbol.cc"
+sha256 = "758257822c0326d2a96b5ce6b00d0bb42d86acbe43f1a9fd36d53b98cf2e2afd"
+[[sources]]
+path = "Ghidra/Features/Decompiler/src/decompile/cpp/opcodes.hh"
+sha256 = "5b823806bd4312c60bf8cfaa99e1b903347a2adfc8f578b15864e27546740d1b"

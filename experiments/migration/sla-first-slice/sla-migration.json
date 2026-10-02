@@ -1,0 +1,2315 @@
+{
+  "format": "fission-sla-semantic-migration-v1",
+  "source_snapshot": "96fc71f75cecdee305faf9497561c577a8955468",
+  "source": "utils/sleigh-specs/compiled/eBPF/eBPF_le.sla",
+  "sha256": "7af0479005e8b93385783cc78a60b27eaef0afde2f546af6b3bc45ec23eb63dd",
+  "format_reference_sha256": "09c379184b6f6321556605daca8356888b645082a09e97e53023b135d765ffdc",
+  "registry": {
+    "format_version": 4,
+    "opcodes": {
+      "19": "integer_add_wrap",
+      "60": "build_operand_export"
+    },
+    "opcode_scope": "Sleigh ConstructTpl only; opcode 60 is BUILD directive here, not an executable phi operation",
+    "supported_template_atoms": [
+      "real",
+      "spaceid",
+      "handle(space,offset,size)"
+    ],
+    "refused_effects": [
+      "context",
+      "commit",
+      "sections",
+      "delay",
+      "labels",
+      "memory",
+      "branch",
+      "userop",
+      "dynamic_handle",
+      "constant_export"
+    ]
+  },
+  "registers": [
+    {
+      "name": "R0",
+      "space": "register",
+      "offset": 0,
+      "size_bytes": 8
+    },
+    {
+      "name": "R1",
+      "space": "register",
+      "offset": 8,
+      "size_bytes": 8
+    },
+    {
+      "name": "R2",
+      "space": "register",
+      "offset": 16,
+      "size_bytes": 8
+    },
+    {
+      "name": "R3",
+      "space": "register",
+      "offset": 24,
+      "size_bytes": 8
+    },
+    {
+      "name": "R4",
+      "space": "register",
+      "offset": 32,
+      "size_bytes": 8
+    },
+    {
+      "name": "R5",
+      "space": "register",
+      "offset": 40,
+      "size_bytes": 8
+    },
+    {
+      "name": "R6",
+      "space": "register",
+      "offset": 48,
+      "size_bytes": 8
+    },
+    {
+      "name": "R7",
+      "space": "register",
+      "offset": 56,
+      "size_bytes": 8
+    },
+    {
+      "name": "R8",
+      "space": "register",
+      "offset": 64,
+      "size_bytes": 8
+    },
+    {
+      "name": "R9",
+      "space": "register",
+      "offset": 72,
+      "size_bytes": 8
+    },
+    {
+      "name": "R10",
+      "space": "register",
+      "offset": 80,
+      "size_bytes": 8
+    },
+    {
+      "name": "PC",
+      "space": "register",
+      "offset": 88,
+      "size_bytes": 8
+    }
+  ],
+  "spaces": [
+    {
+      "name": "ram",
+      "kind": "memory",
+      "address_bytes": 8,
+      "byte_order": "little"
+    },
+    {
+      "name": "register",
+      "kind": "register",
+      "address_bytes": 4,
+      "byte_order": "little"
+    },
+    {
+      "name": "syscall",
+      "kind": "memory",
+      "address_bytes": 4,
+      "byte_order": "little"
+    }
+  ],
+  "source_files": {
+    "0": "eBPF.sinc"
+  },
+  "internal_spaces_not_emitted": [
+    {
+      "12": "OTHER",
+      "9": 1,
+      "35": false,
+      "42": 0,
+      "15": 8,
+      "44": false
+    },
+    {
+      "12": "unique",
+      "9": 2,
+      "35": false,
+      "42": 0,
+      "15": 4,
+      "44": true
+    }
+  ],
+  "variants": [
+    {
+      "constructor": 4,
+      "child_table": 28,
+      "child_constructor": 0,
+      "mask": 255,
+      "value": 15,
+      "destination": {
+        "offset": 8,
+        "bits": 4,
+        "exclude": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "registers": [
+          {
+            "name": "R0",
+            "space": "register",
+            "offset": 0,
+            "size_bytes": 8
+          },
+          {
+            "name": "R1",
+            "space": "register",
+            "offset": 8,
+            "size_bytes": 8
+          },
+          {
+            "name": "R2",
+            "space": "register",
+            "offset": 16,
+            "size_bytes": 8
+          },
+          {
+            "name": "R3",
+            "space": "register",
+            "offset": 24,
+            "size_bytes": 8
+          },
+          {
+            "name": "R4",
+            "space": "register",
+            "offset": 32,
+            "size_bytes": 8
+          },
+          {
+            "name": "R5",
+            "space": "register",
+            "offset": 40,
+            "size_bytes": 8
+          },
+          {
+            "name": "R6",
+            "space": "register",
+            "offset": 48,
+            "size_bytes": 8
+          },
+          {
+            "name": "R7",
+            "space": "register",
+            "offset": 56,
+            "size_bytes": 8
+          },
+          {
+            "name": "R8",
+            "space": "register",
+            "offset": 64,
+            "size_bytes": 8
+          },
+          {
+            "name": "R9",
+            "space": "register",
+            "offset": 72,
+            "size_bytes": 8
+          },
+          {
+            "name": "R10",
+            "space": "register",
+            "offset": 80,
+            "size_bytes": 8
+          }
+        ]
+      },
+      "source": {
+        "offset": 12,
+        "bits": 4,
+        "exclude": [
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "registers": [
+          {
+            "name": "R0",
+            "space": "register",
+            "offset": 0,
+            "size_bytes": 8
+          },
+          {
+            "name": "R1",
+            "space": "register",
+            "offset": 8,
+            "size_bytes": 8
+          },
+          {
+            "name": "R2",
+            "space": "register",
+            "offset": 16,
+            "size_bytes": 8
+          },
+          {
+            "name": "R3",
+            "space": "register",
+            "offset": 24,
+            "size_bytes": 8
+          },
+          {
+            "name": "R4",
+            "space": "register",
+            "offset": 32,
+            "size_bytes": 8
+          },
+          {
+            "name": "R5",
+            "space": "register",
+            "offset": 40,
+            "size_bytes": 8
+          },
+          {
+            "name": "R6",
+            "space": "register",
+            "offset": 48,
+            "size_bytes": 8
+          },
+          {
+            "name": "R7",
+            "space": "register",
+            "offset": 56,
+            "size_bytes": 8
+          },
+          {
+            "name": "R8",
+            "space": "register",
+            "offset": 64,
+            "size_bytes": 8
+          },
+          {
+            "name": "R9",
+            "space": "register",
+            "offset": 72,
+            "size_bytes": 8
+          },
+          {
+            "name": "R10",
+            "space": "register",
+            "offset": 80,
+            "size_bytes": 8
+          }
+        ]
+      },
+      "source_id": 0,
+      "source_line": 77
+    }
+  ],
+  "constructors": [
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 72,
+      "opcodes": [
+        60,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 1,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 73,
+      "opcodes": [
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 2,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 74,
+      "opcodes": [
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 3,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 75,
+      "opcodes": [
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 4,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 77,
+      "opcodes": [
+        60,
+        19
+      ],
+      "status": "partial-converted",
+      "variants": 1,
+      "branch_refusals": [
+        {
+          "child_table": 28,
+          "child_constructor": 1,
+          "reason": "constant/dynamic export unsupported"
+        }
+      ]
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 5,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 79,
+      "opcodes": [
+        60,
+        20
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 6,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 81,
+      "opcodes": [
+        60,
+        32
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 7,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 83,
+      "opcodes": [
+        60,
+        33
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 8,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 84,
+      "opcodes": [
+        60,
+        34
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 9,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 86,
+      "opcodes": [
+        60,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 10,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 88,
+      "opcodes": [
+        60,
+        27
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 11,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 90,
+      "opcodes": [
+        60,
+        29
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 12,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 92,
+      "opcodes": [
+        60,
+        30
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 13,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 94,
+      "opcodes": [
+        24
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 14,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 96,
+      "opcodes": [
+        60,
+        35
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 15,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 97,
+      "opcodes": [
+        60,
+        36
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 16,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 99,
+      "opcodes": [
+        60,
+        26
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 17,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 101,
+      "opcodes": [
+        60,
+        31
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 18,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 107,
+      "opcodes": [
+        60,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 19,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 108,
+      "opcodes": [
+        18,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 20,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 109,
+      "opcodes": [
+        18,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 21,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 111,
+      "opcodes": [
+        60,
+        19,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 22,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 113,
+      "opcodes": [
+        60,
+        20,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 23,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 115,
+      "opcodes": [
+        60,
+        32,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 24,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 117,
+      "opcodes": [
+        60,
+        33,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 25,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 118,
+      "opcodes": [
+        60,
+        34,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 26,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 120,
+      "opcodes": [
+        60,
+        28,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 27,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 122,
+      "opcodes": [
+        60,
+        27,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 28,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 124,
+      "opcodes": [
+        60,
+        29,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 29,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 126,
+      "opcodes": [
+        60,
+        30,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 30,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 128,
+      "opcodes": [
+        24,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 31,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 130,
+      "opcodes": [
+        60,
+        35,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 32,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 131,
+      "opcodes": [
+        60,
+        36,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 33,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 133,
+      "opcodes": [
+        60,
+        26,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 34,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 135,
+      "opcodes": [
+        60,
+        31,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 35,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 143,
+      "opcodes": [
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 36,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 144,
+      "opcodes": [
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 37,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 145,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 38,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 148,
+      "opcodes": [
+        27,
+        30,
+        27,
+        29,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 39,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 151,
+      "opcodes": [
+        27,
+        30,
+        27,
+        30,
+        28,
+        27,
+        29,
+        28,
+        27,
+        29,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 40,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 154,
+      "opcodes": [
+        29,
+        27,
+        29,
+        27,
+        28,
+        29,
+        27,
+        28,
+        29,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 41,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 190,
+      "opcodes": [
+        27,
+        30,
+        27,
+        29,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 42,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 193,
+      "opcodes": [
+        27,
+        30,
+        27,
+        30,
+        28,
+        27,
+        29,
+        28,
+        27,
+        29,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 43,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 196,
+      "opcodes": [
+        29,
+        27,
+        29,
+        27,
+        28,
+        29,
+        27,
+        28,
+        29,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28,
+        30,
+        27,
+        28
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 44,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 217,
+      "opcodes": [
+        1
+      ],
+      "status": "unsupported",
+      "reason": "foreign/variable-length constructor"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 45,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 223,
+      "opcodes": [
+        2
+      ],
+      "status": "unsupported",
+      "reason": "foreign/variable-length constructor"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 46,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 225,
+      "opcodes": [
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 47,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 227,
+      "opcodes": [
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 48,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 229,
+      "opcodes": [
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 49,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 231,
+      "opcodes": [
+        2
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 50,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 233,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 51,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 235,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 52,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 237,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 53,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 239,
+      "opcodes": [
+        19,
+        2
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 54,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 241,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 55,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 243,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 56,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 245,
+      "opcodes": [
+        19,
+        2,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 57,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 247,
+      "opcodes": [
+        19,
+        2
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 58,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 249,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 59,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 251,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 60,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 253,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 61,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 255,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 62,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 257,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 63,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 259,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 64,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 261,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 65,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 263,
+      "opcodes": [
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 66,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 265,
+      "opcodes": [
+        19,
+        2,
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 67,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 267,
+      "opcodes": [
+        19,
+        2,
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 68,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 269,
+      "opcodes": [
+        19,
+        2,
+        18
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 69,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 275,
+      "opcodes": [
+        19,
+        19,
+        2,
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 70,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 278,
+      "opcodes": [
+        19,
+        19,
+        2,
+        19,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 71,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 282,
+      "opcodes": [
+        19,
+        19,
+        2,
+        28,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 72,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 284,
+      "opcodes": [
+        19,
+        19,
+        2,
+        28,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 73,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 288,
+      "opcodes": [
+        19,
+        19,
+        2,
+        27,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 74,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 290,
+      "opcodes": [
+        19,
+        19,
+        2,
+        27,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 75,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 294,
+      "opcodes": [
+        19,
+        19,
+        2,
+        26,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 76,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 296,
+      "opcodes": [
+        19,
+        19,
+        2,
+        26,
+        3
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 77,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 300,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        19,
+        3,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 78,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 306,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        19,
+        3,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 79,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 314,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        28,
+        3,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 80,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 320,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        28,
+        3,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 81,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 328,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        27,
+        3,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 82,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 334,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        27,
+        3,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 83,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 342,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        26,
+        3,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 84,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 348,
+      "opcodes": [
+        19,
+        2,
+        19,
+        19,
+        2,
+        26,
+        3,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 85,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 356,
+      "opcodes": [
+        19,
+        2,
+        19,
+        3,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 86,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 362,
+      "opcodes": [
+        19,
+        2,
+        19,
+        3,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 87,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 370,
+      "opcodes": [
+        19,
+        2,
+        12,
+        5,
+        19,
+        3,
+        65,
+        17
+      ],
+      "status": "unsupported",
+      "reason": "duplicate/unknown attribute 55 in element 21"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 88,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 378,
+      "opcodes": [
+        19,
+        2,
+        12,
+        5,
+        19,
+        3,
+        4,
+        65,
+        1
+      ],
+      "status": "unsupported",
+      "reason": "duplicate/unknown attribute 55 in element 21"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 89,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 418,
+      "opcodes": [
+        60,
+        4
+      ],
+      "status": "unsupported",
+      "reason": "unknown child in element 5"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 90,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 422,
+      "opcodes": [
+        60,
+        4
+      ],
+      "status": "unsupported",
+      "reason": "unknown child in element 5"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 91,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 426,
+      "opcodes": [
+        60,
+        60,
+        60,
+        5
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 92,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 433,
+      "opcodes": [
+        60,
+        7
+      ],
+      "status": "unsupported",
+      "reason": "unknown child in element 5"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 93,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 439,
+      "opcodes": [
+        60,
+        7
+      ],
+      "status": "unsupported",
+      "reason": "unknown child in element 5"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 94,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 444,
+      "opcodes": [
+        8
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 95,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 451,
+      "opcodes": [
+        8
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 96,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 455,
+      "opcodes": [
+        8
+      ],
+      "status": "unsupported",
+      "reason": "root semantic body requires BUILD then INT_ADD and no export"
+    },
+    {
+      "table": 0,
+      "table_name": "instruction",
+      "constructor": 97,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 459,
+      "opcodes": [
+        2,
+        10
+      ],
+      "status": "unsupported",
+      "reason": "unregistered ordered opcode body (requires BUILD, INT_ADD)"
+    },
+    {
+      "table": 28,
+      "table_name": "SRC8",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 64,
+      "opcodes": [],
+      "status": "dependency-consumed",
+      "reason": "Pure register export consumed by a bound root template; not an independent instruction"
+    },
+    {
+      "table": 28,
+      "table_name": "SRC8",
+      "constructor": 1,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 65,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 31,
+      "table_name": "SRC4",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 67,
+      "opcodes": [
+        1
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 31,
+      "table_name": "SRC4",
+      "constructor": 1,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 68,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 34,
+      "table_name": "DST4",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 70,
+      "opcodes": [
+        1
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 245,
+      "table_name": "joff",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 390,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 248,
+      "table_name": "jimm",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 391,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 393,
+      "opcodes": [
+        60,
+        11
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 1,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 394,
+      "opcodes": [
+        60,
+        60,
+        11
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 2,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 395,
+      "opcodes": [
+        60,
+        15
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 3,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 396,
+      "opcodes": [
+        60,
+        60,
+        15
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 4,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 397,
+      "opcodes": [
+        60,
+        16
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 5,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 398,
+      "opcodes": [
+        60,
+        60,
+        16
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 6,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 399,
+      "opcodes": [
+        60,
+        15
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 7,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 400,
+      "opcodes": [
+        60,
+        60,
+        15
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 8,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 401,
+      "opcodes": [
+        60,
+        16
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 9,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 402,
+      "opcodes": [
+        60,
+        60,
+        16
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 10,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 403,
+      "opcodes": [
+        60,
+        12
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 11,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 404,
+      "opcodes": [
+        60,
+        60,
+        12
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 12,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 405,
+      "opcodes": [
+        60,
+        27,
+        12
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 13,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 406,
+      "opcodes": [
+        60,
+        60,
+        27,
+        12
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 14,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 408,
+      "opcodes": [
+        60,
+        13
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 15,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 409,
+      "opcodes": [
+        60,
+        60,
+        13
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 16,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 410,
+      "opcodes": [
+        60,
+        14
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 17,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 411,
+      "opcodes": [
+        60,
+        60,
+        14
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 18,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 412,
+      "opcodes": [
+        60,
+        13
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 19,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 413,
+      "opcodes": [
+        60,
+        60,
+        13
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 20,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 414,
+      "opcodes": [
+        60,
+        14
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 251,
+      "table_name": "cond",
+      "constructor": 21,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 415,
+      "opcodes": [
+        60,
+        60,
+        14
+      ],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 302,
+      "table_name": "SysCall",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 431,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    },
+    {
+      "table": 306,
+      "table_name": "disp32",
+      "constructor": 0,
+      "source_id": 0,
+      "source_file": "eBPF.sinc",
+      "source_line": 437,
+      "opcodes": [],
+      "status": "unsupported",
+      "reason": "non-root template outside consumed dependencies; no standalone profile emitted"
+    }
+  ],
+  "selection_proof": {
+    "owning_root_pair_position": 51,
+    "later_overlapping_root_pairs": [
+      {
+        "pair_position": 52,
+        "constructor": 91,
+        "mask": 247,
+        "value": 7
+      }
+    ],
+    "rule": "first matching pair within the selected instruction decision leaf"
+  },
+  "constructor_count": 129,
+  "root_constructor_count": 98,
+  "converted_instruction_variants": 1,
+  "scope": "One little-endian bound ADD64 register variant from SLA; no general context, variable-length, memory or control-flow migration",
+  "outputs": {
+    "ebpf-sla-add64-register.fsl": "ebbdabc6e00c87bdd9acfaa51687912585baa348e5331d0b02ad7ccb3c56d44e",
+    "ebpf.le.sla.registers.fslregs": "80ac68a4b5970005881b5ca4c800747f25eed82552ac9b7b9a610479661e02f8"
+  },
+  "license": {
+    "upstream": "Ghidra Apache-2.0",
+    "files": {
+      "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "NOTICE": "55c4b081dfa7fd62caac5c8d505ac90ef1de150fa2675f70a59d75f12cb4c24c",
+      "THIRD_PARTY.md": "54b39d3439380342eddfd5b68c77323341af5cb7fd5bac628e6d9ee3712b0fe4"
+    }
+  }
+}
