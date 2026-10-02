@@ -44,6 +44,10 @@ primitives and zero architecture-specific escapes in this increment.
   regression gates. Formatting and Clippy with warnings denied passed.
 - LLVM-generated 128 encodings: 128 field checks, 128 unchanged byte roundtrips,
   128 edited reassembly comparisons and nine explicit refusals.
+- [Two LLVM-compiled kernel slices](kernel-slices.ll) produced real AMDGPU
+  ELF instruction rows. The [kernel probe record](kernel-validation-2026-10-02.json)
+  checks their object bytes/fields and six synthetic reference-CLI states.
+  Other kernel instructions and whole-kernel execution remain unsupported.
 
 The ISA source is [AMD Vega ISA](https://docs.amd.com/v/u/en-US/vega-shader-instruction-set-architecture)
 §3.3 (EXEC), §12.7 (VOP2), with source attribution retained in FSL. LLVM is a
@@ -53,6 +57,7 @@ separate encoding implementation; it supplies no execution oracle here.
 
 ```sh
 python3 tools/gfx900_wave_validate.py --fslc <Fission-worktree>/target/debug/fslc
+python3 tools/gfx900_wave_kernel_probe.py --fslc <Fission-worktree>/target/debug/fslc
 ```
 
 The [lock](source.lock.toml) pins source, portable package and LLVM corpus
@@ -60,6 +65,13 @@ hashes. The tool rejects drift, generates the package twice, checks both
 operand classes and validates unedited/edited bytes. CI pins the native
 compiler commit, compares the source copy and runs the same validation with
 LLVM 18 plus native state/recompilation tests.
+
+The kernel probe compiles the LLVM IR with `llc`, extracts `.text` through the
+independent bounded ELF probe, compares instruction bytes to `llvm-objdump`,
+and executes the selected rows through the real Fission CLI. Object/text
+hashes and compiler versions are recorded per run; different LLVM versions
+may change the object layout. Only the two selected instruction rows are
+admitted. This is not whole-function or GPU hardware equivalence.
 
 ## Limits and next work
 

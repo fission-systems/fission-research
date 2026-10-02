@@ -78,6 +78,7 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - 별도 synthetic 4-lane 계약의 4행 / 16회 비교로 mask 범위, EXEC=0 scalar 효과, masked write, 늦은 bank 실패 이전의 무변경 거부를 확인했다. 이것은 GFX900 wave32 지원 증거가 아니다.
 - LLVM 조립 128개에서 필드·원본 왕복·수정 후 조립 bytes가 일치했고 9개 미지원 입력을 거부했다. source/package/corpus SHA-256을 잠갔다. LLVM은 GPU 실행 oracle이 아니다.
 - 기존 scalar·stack·eBPF 이관 회귀를 포함해 Rust crate 22개 검사와 fmt/Clippy가 통과했다. `execute-wave` CLI도 실제 컴파일 패키지를 실행했다.
+- 실제 LLVM-compiled GFX900 ELF의 kernel slice 두 개에서 vector/scalar 입력 명령 행을 추출했다. `.text` 실제 bytes와 objdump·FSL 필드가 일치하고 reference CLI 합성 상태 6개가 통과했다. 나머지 kernel 명령과 whole-kernel 실행은 지원하지 않는다.
 
 범위와 증거는 [wave64 실험](../experiments/gpu/gfx900-wave64/README.md)에 있다. GPU hardware/emulator, EXEC 쓰기·VCC·divergence·barrier·메모리·커널 동치, wave JIT/AOT는 미지원이다. register layout과 ABI 연결 및 직접 SLA 의미 이관은 다음 단계로 남아 있다.
 

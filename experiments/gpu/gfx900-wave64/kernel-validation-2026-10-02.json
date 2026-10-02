@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "profile": "amdgcn.gfx900.vadd_u32.wave64",
+  "source_sha256": "c74050bb13ead7bee25ac4d73886ecc38da8f5de66d79d43e574b2f631ec8582",
+  "object_sha256": "8dcbc1766d58c2559f0a20e7c6668f6735c6600c98cbbafac8390441578914ec",
+  "text_sha256": "c9636cfbdf60fb631253d52721acfb1a5bc74fdba125f258fb6c4f0a02319823",
+  "rows": [
+    {
+      "kernel": "wave_add_vector",
+      "text_offset": 8,
+      "bytes": "00030268",
+      "fields": {
+        "source0": 256,
+        "source1": 1,
+        "destination": 1
+      },
+      "reference_cli_states": 3
+    },
+    {
+      "kernel": "wave_add_scalar",
+      "text_offset": 276,
+      "bytes": "02000268",
+      "fields": {
+        "source0": 2,
+        "source1": 0,
+        "destination": 1
+      },
+      "reference_cli_states": 3
+    }
+  ],
+  "llc_version": "Homebrew LLVM version 22.1.8",
+  "objdump_version": "Homebrew LLVM version 22.1.8",
+  "scope": "Two instruction rows only; synthetic reference CLI states, no whole-kernel or hardware execution"
+}

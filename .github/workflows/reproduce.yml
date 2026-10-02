@@ -66,12 +66,15 @@ jobs:
         run: |
           cmp specs/gpu/amdgcn/gfx900-vadd-u32-wave64.fsl .compiler/crates/fission-fsl/specs/amdgcn-gfx900-vadd-u32-wave64.fsl
           python3 tools/gfx900_wave_validate.py --fslc .compiler/target/debug/fslc --llvm-mc llvm-mc-18
+          python3 tools/gfx900_wave_kernel_probe.py --fslc .compiler/target/debug/fslc --llvm-llc llc-18 --llvm-objdump llvm-objdump-18
       - name: Preserve wave report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: gfx900-wave-report
-          path: artifacts/gfx900-wave.json
+          path: |
+            artifacts/gfx900-wave.json
+            artifacts/gfx900-wave-kernel.json
           if-no-files-found: ignore
       - name: Preserve SOP2 report
         if: always()
