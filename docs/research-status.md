@@ -30,6 +30,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`cf2a023ff`](https://github.com/fission-systems/Fission/commit/cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc) | byte register layout·alias 저장소, strict ABI linking, FIR slot adapter |
 | [`217d7eafd`](https://github.com/fission-systems/Fission/commit/217d7eafd90b396edc46f0c24fdb6372caf60354) | SLA-derived layout·ADD64 candidate, 원문/바이너리 parity·재컴파일 검증 |
 | [`3eb686625`](https://github.com/fission-systems/Fission/commit/3eb6866250321fa2c0aef54238ae2b8168737a35) | 기존 단일 stack FIR의 CUDA C++ / PTX reference kernel 출력 |
+| [`a67807616`](https://github.com/fission-systems/Fission/commit/a67807616a2d4c2b623819b2ded5d1b0e3b0fc29) | 자체 `.fsldb` prototype candidate reader와 native exact symbol 조회 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -117,6 +118,16 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - Linux CI에는 hash-locked NVIDIA ptxas로 direct/Clang PTX를 assemble하는 경로를 추가했다. 로컬 macOS에서는 ptxas를 실행하지 않았으며 assembly 결과는 CI report로 별도 확인한다.
 
 [출력 실험](../experiments/gpu/fir-projections/README.md)은 3개 재현 artifact와 package/toolchain lock, source·license 근거를 보관한다. GPU hardware 실행, 실제 CUDA guest kernel decode/ABI 복원, GPU 병렬 메모리·분기·동기화·atomic과 자체 SASS backend는 미지원이다.
+
+## 자체 자산 인벤토리와 library corpus — 2026-10-03
+
+[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)은 SLEIGH source/SLA/cspec/pspec/ldefs/FPK의 대체 경로와 block·region·ordered effects 계약을 기록한다. 고정 `utils/`의 988개 파일을 해시 인벤토리로 남겼다. 현재 FIR 실행기는 단일 명령 연산열이며, 구조 계약의 구현 완료나 전체 자산 이관을 뜻하지 않는다.
+
+FPK는 Fission 자체 container다. 이번에는 함수 후보 payload 하나를 `.fslib` TOML과 `.fsldb` binary schema 1로 이관했다. C library 64-bit의 31,418개 후보와 15,455개 parameter를 보존하고, source SHA/commit과 type·variadic 정보의 불확실성을 명시한다. 매크로와 누락된 variadic marker를 확정 함수·ABI로 승격하지 않는다.
+
+Fission `a67807616`은 FPK를 호출하지 않는 독립 reader와 native inspect/exact query를 구현했다. 로컬에서 전체 행 파싱, `memcpy`/`malloc`/`printf` 조회 3건, 자체 작성 fixture의 TOML→binary 일치를 확인했다. Rust 37개 검사, Python 21개 검사, formatting과 warning-denied Clippy가 통과했다. 기존 C/Rust 실행·재컴파일 회귀 검사도 Rust gate에서 다시 실행했다.
+
+[실험/lock](../experiments/migration/asset-replacement/README.md)에 재현 방법과 metadata 보존 범위를 기록했다. 제품 `fission-signatures` loader 교체, binary 함수 식별, ABI allocator, 전체 FPK corpus 이관, 구조 FIR 실행과 decompiler 품질 개선의 증거는 아니다. CI에 인벤토리·library 재현과 native reader 검증을 연결했다.
 
 ## 남은 문제와 다음 구현
 

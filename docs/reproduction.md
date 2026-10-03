@@ -31,8 +31,17 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 
 ## Encoding and execution gates
 
+The historical job also fetches pinned `utils/signatures` for the 988-file
+asset inventory and one FPK prototype-candidate migration. Run
+`make library-migration-reproduce` after restoring that directory. The native
+job separately fetches the generic signature input into `.library-input/`,
+regenerates `.fslib`/`.fsldb`, checks native parsing and three exact queries,
+and compiles the self-authored `.fslib` fixture without a legacy input.
+Reports preserve unresolved types and unknown variadic evidence. These gates
+do not replace the product signature loader or establish callable ABI semantics.
+
 The second CI job fetches Fission compiler commit
-`3eb6866250321fa2c0aef54238ae2b8168737a35` separately into `.compiler/`. It builds
+`a67807616a2d4c2b623819b2ded5d1b0e3b0fc29` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.

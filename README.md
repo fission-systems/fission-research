@@ -17,16 +17,18 @@
 | GPU 실행 의미 | scalar add/carry와 wave64 `v_add_u32` 구현; EXEC 쓰기·divergence·메모리·커널은 미구현 |
 | Sleigh / cspec 이관 | eBPF ADD64 한 leaf의 원문·직접 SLA 두 경로, ABI metadata 2개; SLA의 register layout도 이관 |
 | 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
+| 자체 자산 / library corpus | 988개 자산 인벤토리; FPK 한 파일의 31,418개 후보를 `.fslib` / `.fsldb`로 이관, native exact 조회 |
+| FIR block / region | 구조·효과 계약 설계; 현재 실행 가능한 FIR은 단일 명령 연산열 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택, scalar·masked lane 상태, eBPF leaf의 C·Rust 출력 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
-| AI 평가 / semantic corpus 조회 | 계획·설계 단계 |
+| AI 평가 | 계획·설계 단계 |
 
 이 표의 지원 범위와 재현 결과는 [진행 현황](docs/research-status.md)에 기록한다. 새 ISA 규칙 수, 인코딩 검증, 실행 의미 검증은 별도로 보고한다.
 
 2026-10-01 기준으로 **단일 FIR, 여러 출력 계층, 정확성·동작 보존 재컴파일 우선**을 채택한다. NIR/HIR 구분은 새 FIR 설계에 도입하지 않는다. 최종 목표는 Fission이 소유하는 FSL 명세·컴파일러·FIR로 SLEIGH 의존성을 제거하는 것이다.
 
-2026-10-03에 **FIR 자체를 독립 중간 의미론으로 정의**했다. 자체 타입·연산·상태·효과·오류 계약을 기준으로 분석과 재컴파일을 연결한다. SLA/P-code는 이관 입력으로 다루며 FIR의 표현 한계를 정하지 않는다. [의미론 계약](docs/fir-semantic-contract.md)은 설계 요구사항과 현재 구현 범위를 구분한다.
+2026-10-03에 **FIR 자체를 독립 중간 의미론으로 정의**했다. 자체 타입·연산·상태·효과·오류 계약을 기준으로 분석과 재컴파일을 연결한다. SLA/P-code는 이관 입력으로 다루며 FIR의 표현 한계를 정하지 않는다. [의미론 계약](docs/fir-semantic-contract.md)은 설계 요구사항과 현재 구현 범위를 구분한다. [자체 자산·구조 FIR 결정](docs/owned-assets-and-structured-fir.md)은 SLEIGH/SLA/cspec/pspec/ldefs/FPK 각각의 대체 경로와 단일 FIR의 block·domain region·ordered effects를 정의한다.
 
 실험 Rust 컴파일러 `fission-fsl`은 별도 Fission 브랜치 `codex/fsl-jvm-iadd-parity`의 [PR #176 — FSL/FIR 실험지원](https://github.com/fission-systems/Fission/pull/176)에서 개발한다. 이 연구 리포는 독립 Python 프로브, 역사적 명세·관찰 자료, 참고 소스 인벤토리와 연구 설계를 보관한다. Rust 컴파일러의 코드를 이 리포에 복제하지 않는다. 두 저장소의 현재 구현과 증거 범위는 [진행 현황](docs/research-status.md)에 정리했다.
 

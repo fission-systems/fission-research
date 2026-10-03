@@ -60,6 +60,8 @@ outcome       = 정상 종료 | trap | 예외 | 그 밖의 명시된 실행 결�
 
 ## 다음 구현 단위
 
+[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)에 따라 block parameter·terminator·domain region·ordered effects를 같은 FIR 안에 보존한다. 연산열 lowering을 모든 분석·출력 소비자의 필수 경로로 삼지 않는다. 현재 실행 가능한 `FirOp`는 단일 명령 연산열이므로, 구조 계약은 다음 구현 범위다.
+
 1. 현재 연산별로 타입 규칙·비트 결과·상태 효과·실패 범위를 문서화하고 compiler/reference/C/Rust 경로와 연결한다.
 2. 즉시값, 확장·절단, 비교·조건 분기의 자체 FIR 계약을 정의한다. SLA opcode mapping은 이 계약을 소비하는 어댑터로 확장한다.
 3. 여러 명령의 block과 상태 전달을 같은 FIR 안에 추가하고, read/write alias·효과 순서·trap 경계 반례를 검증한다.
