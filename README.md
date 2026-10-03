@@ -18,7 +18,7 @@
 | Sleigh / cspec 이관 | eBPF ADD64 한 leaf의 원문·직접 SLA 두 경로, ABI metadata 2개; SLA의 register layout도 이관 |
 | 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
 | 자체 자산 / library corpus | 988개 자산 인벤토리; FPK 한 파일의 31,418개 후보를 `.fslib` / `.fsldb`로 이관, native exact 조회 |
-| FIR block / region | 구조·효과 계약 설계; 현재 실행 가능한 FIR은 단일 명령 연산열 |
+| FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택 reference/C/Rust 실행; nested domain region·함수 lifting 미구현 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택, scalar·masked lane 상태, eBPF leaf의 C·Rust 출력 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |

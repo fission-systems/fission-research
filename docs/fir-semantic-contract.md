@@ -60,10 +60,10 @@ outcome       = 정상 종료 | trap | 예외 | 그 밖의 명시된 실행 결�
 
 ## 다음 구현 단위
 
-[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)에 따라 block parameter·terminator·domain region·ordered effects를 같은 FIR 안에 보존한다. 연산열 lowering을 모든 분석·출력 소비자의 필수 경로로 삼지 않는다. 현재 실행 가능한 `FirOp`는 단일 명령 연산열이므로, 구조 계약은 다음 구현 범위다.
+[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)에 따라 block parameter·terminator·domain region·ordered effects를 같은 FIR 안에 보존한다. 연산열 lowering을 모든 분석·출력 소비자의 필수 경로로 삼지 않는다. 2026-10-04에 block/branch/join과 정수·스택 실행을 [첫 구조 slice](../experiments/fir/structured-control/README.md)로 구현했다. nested domain region, register-state CFG와 multi-instruction function lifting은 후속 범위다.
 
 1. 현재 연산별로 타입 규칙·비트 결과·상태 효과·실패 범위를 문서화하고 compiler/reference/C/Rust 경로와 연결한다.
-2. 즉시값, 확장·절단, 비교·조건 분기의 자체 FIR 계약을 정의한다. SLA opcode mapping은 이 계약을 소비하는 어댑터로 확장한다.
+2. 즉시값·비교·조건 분기의 자체 FIR 계약과 reference/C/Rust 실행을 구현했다. 확장·절단과 SLA control mapping은 이 계약을 소비하는 후속 확장이다.
 3. 여러 명령의 block과 상태 전달을 같은 FIR 안에 추가하고, read/write alias·효과 순서·trap 경계 반례를 검증한다.
 4. 메모리, GPU 동기화, VM 객체·예외를 추가할 때 도메인별 전제와 관찰 trace를 명시한다. 지원하지 않는 backend는 정확한 거부를 반환한다.
 

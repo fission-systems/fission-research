@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "scope": "self-authored semantic-body CFG; no binary function lifting claim",
+  "package_sha256": "81677a2331d5e22e45c6688c09d10b8948d16c42b8584b3092b8999f06767c45",
+  "artifacts_identical": 3,
+  "native_cli_oracle_cases": 12,
+  "native_cli_failure_cases": 2,
+  "compiler_commit": "2107f6295b8b891301a6aeb6652b5a9c749825b3",
+  "date": "2026-10-04",
+  "native_gate": {
+    "runner": "nextest -j 1",
+    "passed": 43,
+    "skipped": 0,
+    "leaky": 0,
+    "parallel_observation": "one leaky classification; serial gate rerun"
+  },
+  "python_tests": 22,
+  "native_control_gate": {
+    "profiles": 16,
+    "reference_oracle_states": 2048,
+    "c_rust_o0_o2_comparisons": 8192,
+    "separate_bounded_input_oracle": 65536
+  },
+  "limits": [
+    "synthetic instruction semantic-body CFG",
+    "acyclic integer/stack execution with equal join/return deltas",
+    "conservative preflight over all syntactic paths",
+    "no multi-instruction binary function lifting or decompiler quality claim"
+  ]
+}

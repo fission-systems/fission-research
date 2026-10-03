@@ -1,6 +1,6 @@
 # FSL/FIR 연구 진행 현황
 
-기준일: 2026-10-03. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
+기준일: 2026-10-04. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
 
 ## 채택한 방향
 
@@ -31,6 +31,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`217d7eafd`](https://github.com/fission-systems/Fission/commit/217d7eafd90b396edc46f0c24fdb6372caf60354) | SLA-derived layout·ADD64 candidate, 원문/바이너리 parity·재컴파일 검증 |
 | [`3eb686625`](https://github.com/fission-systems/Fission/commit/3eb6866250321fa2c0aef54238ae2b8168737a35) | 기존 단일 stack FIR의 CUDA C++ / PTX reference kernel 출력 |
 | [`a67807616`](https://github.com/fission-systems/Fission/commit/a67807616a2d4c2b623819b2ded5d1b0e3b0fc29) | 자체 `.fsldb` prototype candidate reader와 native exact symbol 조회 |
+| [`2107f6295`](https://github.com/fission-systems/Fission/commit/2107f6295b8b891301a6aeb6652b5a9c749825b3) | `.fslc` v6 typed block·즉시값·비교·분기와 비순환 정수/스택 reference/C/Rust 실행 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -128,6 +129,16 @@ FPK는 Fission 자체 container다. 이번에는 함수 후보 payload 하나를
 Fission `a67807616`은 FPK를 호출하지 않는 독립 reader와 native inspect/exact query를 구현했다. 로컬에서 전체 행 파싱, `memcpy`/`malloc`/`printf` 조회 3건, 자체 작성 fixture의 TOML→binary 일치를 확인했다. Rust 37개 검사, Python 21개 검사, formatting과 warning-denied Clippy가 통과했다. 기존 C/Rust 실행·재컴파일 회귀 검사도 Rust gate에서 다시 실행했다.
 
 [실험/lock](../experiments/migration/asset-replacement/README.md)에 재현 방법과 metadata 보존 범위를 기록했다. 제품 `fission-signatures` loader 교체, binary 함수 식별, ABI allocator, 전체 FPK corpus 이관, 구조 FIR 실행과 decompiler 품질 개선의 증거는 아니다. CI에 인벤토리·library 재현과 native reader 검증을 연결했다.
+
+## 구조 FIR 실행 — 2026-10-04
+
+Fission `2107f6295`는 같은 값/연산 테이블에 `FirBlock`의 op 범위·block parameter와 return/branch/conditional terminator를 연결한다. 즉시값과 equality/unsigned-less/signed-less 비교를 자체 FIR로 정의했다. Block 내부 값은 지역 정의와 parameter만 참조하며 edge의 arity·정확한 타입을 검사한다. Source/package/reference/output 경계가 같은 검증을 사용한다. `.fslc` v6에 구조를 저장하고 v1–v5 package byte layout은 유지한다.
+
+첫 backend 범위는 비순환 정수/스택 semantic-body CFG다. Join과 모든 return의 stack delta는 같아야 한다. 모든 syntactic path의 최악 depth를 preflight하며 선택된 successor만 실행한다. 실행하지 않는 path도 capacity 전제를 높일 수 있고, 이 실패 status는 guest trap이 아니다. Cyclic CFG·unequal-delta join은 구조를 보존하지만 실행과 C/Rust 출력은 거부한다. GPU/register/wave/native lift backend도 control body를 거부한다.
+
+[실험 기록](../experiments/fir/structured-control/README.md): 16개 프로파일 / 2,048개 독립·reference 상태 / 8,192개 C/Rust O0/O2 비교가 통과했다. 별도 65,536개 input oracle, binary compatibility·scope/type/refusal 및 native CLI 검사를 포함한다. Rust 전체 nextest 43개가 serial 실행에서 통과했고 skip/leaky는 0이다. 병렬 실행에서는 한 leaky classification이 관찰되어 serial gate를 재실행했다. Formatting과 warning-denied Clippy, Python 22개 검사와 기존 artifact 재현이 통과했다.
+
+CI는 같은 compiler commit으로 control gate와 package/output hash·CLI oracle 재현을 수행한다. 현재는 자체 작성한 semantic-body fixture 증거다. 실제 binary function lifting, loops 실행, memory/exception/call, GPU divergence와 nested domain region, 구조 FIR native JIT/AOT는 미지원이다. 다음은 typed extension/truncation과 register-state CFG·여러 명령 연결을 단계별로 추가하는 것이다.
 
 ## 남은 문제와 다음 구현
 

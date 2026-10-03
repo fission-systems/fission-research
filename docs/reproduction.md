@@ -41,10 +41,18 @@ Reports preserve unresolved types and unknown variadic evidence. These gates
 do not replace the product signature loader or establish callable ABI semantics.
 
 The second CI job fetches Fission compiler commit
-`a67807616a2d4c2b623819b2ded5d1b0e3b0fc29` separately into `.compiler/`. It builds
+`2107f6295b8b891301a6aeb6652b5a9c749825b3` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
+
+The native gate now includes structured semantic-body FIR: typed constants,
+three comparisons, block arguments, branches and joins. The compiler's control
+test compares 2,048 reference/oracle states and 8,192 C/Rust O0/O2 outputs; a
+separate test covers 65,536 bounded inputs. `tools/structured_fir_reproduce.py`
+regenerates a locked v6 package and FIR/C/Rust outputs, then verifies 12 native
+CLI oracle cases and two failure cases. These are self-authored CFG fixtures,
+not real binary function decompilation or whole-function equivalence evidence.
 
 ```sh
 cargo test -p fission-fsl --test recompilation -- --nocapture
