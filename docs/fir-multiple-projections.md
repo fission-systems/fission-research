@@ -17,6 +17,8 @@ FIR 의미 후보: 타입 · operand stack · 효과 · 불확실성 · provenan
 
 FIR 코어와 projection은 다른 계약이다. 각 projection은 지원 범위, 보존한 사실, 가정, 잃은 사실, 검증 상태를 내보내야 한다. 한 projection의 실패나 손실이 다른 projection의 의미를 바꾸면 안 된다. provenance나 uncertainty를 코드 문법에 넣을 수 없으면 출력 패키지의 sidecar로 남긴다.
 
+2026-10-03 기준으로 FIR은 자체 타입·상태·연산·효과 규칙을 가진 독립 중간 의미론이다. 아래 초기 probe의 `INT_ADD`와 P-code-like projection 명칭은 역사적 출력 형식이다. FIR의 정식 연산 집합이나 P-code 경유 의무를 정의하지 않는다. 설계 계약과 구현 한계는 [FIR 의미론 계약](fir-semantic-contract.md)에 명시한다.
+
 ## 한 명령으로 한 시험
 
 [`specs/vm/jvm-se26-iadd.fsl`](../specs/vm/jvm-se26-iadd.fsl)은 Oracle JVMS Java SE 26의 한 바이트 opcode `iadd` (0x60)만 기술한다. 명세는 두 `int` 값을 operand stack에서 꺼내 합의 하위 32비트를 다시 넣고, 이 명령 자체는 run-time exception을 던지지 않는다고 규정한다. [`iadd` 명세](https://docs.oracle.com/javase/specs/jvms/se26/html/jvms-6.html#jvms-6.5.iadd)와 [명령어 stack diagram 설명](https://docs.oracle.com/javase/specs/jvms/se26/html/jvms-6.html#jvms-6.4)를 참고한다.

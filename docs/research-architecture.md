@@ -29,6 +29,8 @@ FIR의 초안은 세부 도메인을 보존하는 typed operation과 effect를 �
 
 2026-10-01 결정에 따라 의미의 소유자는 단일 FIR이다. NIR/HIR처럼 별도 의미 IR 단계로 분리하지 않는다. 도메인별 typed operation과 ordered effect를 FIR에 보존하고, 출력 계층은 같은 FIR을 소비한다. 디코드 계획과 출력용 자료는 컴파일 산출물·projection이며 별도 의미 소유자가 아니다.
 
+2026-10-03에 FIR의 역할을 **Fission이 소유하는 독립 중간 의미론**으로 명시했다. 타입·상태 전이·효과·trap/예외·변환 조건을 자체 계약으로 정의한다. SLEIGH/SLA/P-code는 이관 입력이며, P-code를 거쳐야 하는 실행·분석 경로는 목표 아키텍처에 요구하지 않는다. 현재 구현과 앞으로의 요구사항은 [FIR 의미론 계약](fir-semantic-contract.md)에서 구분한다.
+
 FIR은 C나 하나의 호환 IR로 직접 출력하는 표현이 아니라 의미 코어다. C/Rust source, stack-VM IR, 기존 분석 IR, graph, AI evidence packet은 각자 projection adapter가 소비한다. 각 adapter는 보존 범위, 전제, 손실, unsupported 의미, provenance 전달 방식을 선언해야 한다. JVM `iadd` 한 명령으로 이 경계를 시험한 산출물은 [다중 projection 실험](fir-multiple-projections.md)에 있다. 이 예시는 전체 Java decompilation이나 실제 P-code adapter가 아니다.
 
 ### 패턴 지식베이스
