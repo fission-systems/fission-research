@@ -1,0 +1,75 @@
+// FSL GPU reference ABI v1; valid aligned disjoint global buffers.
+.version 7.0
+.target sm_70
+.address_size 64
+
+.visible .entry fsl_execute(
+    .param .u64 stack_ptr,
+    .param .u64 depth_ptr,
+    .param .u64 capacity,
+    .param .u64 status_ptr
+) {
+    .reg .pred %p;
+    .reg .u32 %owner, %coord, %result;
+    .reg .u64 %stack, %depth, %capacity, %status, %sp, %offset, %addr, %remaining;
+    .reg .b64 %v0;
+    .reg .b64 %v1;
+    .reg .b64 %v2;
+    mov.u32 %owner, 0;
+    mov.u32 %coord, %ctaid.x;
+    or.b32 %owner, %owner, %coord;
+    mov.u32 %coord, %ctaid.y;
+    or.b32 %owner, %owner, %coord;
+    mov.u32 %coord, %ctaid.z;
+    or.b32 %owner, %owner, %coord;
+    mov.u32 %coord, %tid.x;
+    or.b32 %owner, %owner, %coord;
+    mov.u32 %coord, %tid.y;
+    or.b32 %owner, %owner, %coord;
+    mov.u32 %coord, %tid.z;
+    or.b32 %owner, %owner, %coord;
+    setp.ne.u32 %p, %owner, 0;
+    @%p bra DONE;
+    ld.param.u64 %status, [status_ptr];
+    setp.eq.u64 %p, %status, 0;
+    @%p bra DONE;
+    cvta.to.global.u64 %status, %status;
+    mov.u32 %result, 3;
+    ld.param.u64 %stack, [stack_ptr];
+    ld.param.u64 %depth, [depth_ptr];
+    ld.param.u64 %capacity, [capacity];
+    setp.eq.u64 %p, %stack, 0;
+    @%p bra REPORT;
+    setp.eq.u64 %p, %depth, 0;
+    @%p bra REPORT;
+    cvta.to.global.u64 %stack, %stack;
+    cvta.to.global.u64 %depth, %depth;
+    ld.global.u64 %sp, [%depth];
+    setp.gt.u64 %p, %sp, %capacity;
+    @%p bra REPORT;
+    mov.u32 %result, 1;
+    setp.lt.u64 %p, %sp, 2;
+    @%p bra REPORT;
+    sub.u64 %sp, %sp, 1;
+    shl.b64 %offset, %sp, 3;
+    add.u64 %addr, %stack, %offset;
+    ld.global.u64 %v0, [%addr];
+    and.b64 %v0, %v0, 0xffffffff;
+    sub.u64 %sp, %sp, 1;
+    shl.b64 %offset, %sp, 3;
+    add.u64 %addr, %stack, %offset;
+    ld.global.u64 %v1, [%addr];
+    and.b64 %v1, %v1, 0xffffffff;
+    add.u64 %v2, %v1, %v0;
+    and.b64 %v2, %v2, 0xffffffff;
+    shl.b64 %offset, %sp, 3;
+    add.u64 %addr, %stack, %offset;
+    st.global.u64 [%addr], %v2;
+    add.u64 %sp, %sp, 1;
+    st.global.u64 [%depth], %sp;
+    mov.u32 %result, 0;
+REPORT:
+    st.global.u32 [%status], %result;
+DONE:
+    ret;
+}

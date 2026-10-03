@@ -13,3 +13,4 @@ __pycache__/
 /.compiler/
 /.layout-input/
 /.sla-input/
+/.cuda-toolchain/

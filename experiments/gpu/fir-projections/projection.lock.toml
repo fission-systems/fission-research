@@ -1,0 +1,13 @@
+format = "fission-gpu-projection-lock-v1"
+package_version = 1
+package_sha256 = "82a7d5e57f0b3bcad6be4b9624f03277011051321ba67a0151ccb3dc6930b0f1"
+ptx_version = "7.0"
+target = "sm_70"
+address_bits = 64
+kernel_contract = "fsl-gpu-reference-abi-v1"
+source = "jvm-iadd.fsl"
+
+[artifact_sha256]
+"jvm-iadd.cu" = "346fe9c35e496bd7c5d34a6e8fea9b38b5105e9141b67ffa34f7a5bdf527b018"
+"jvm-iadd.ptx" = "7b443e714c12e8321d5061e46d746c7c218fab3b0ef441f4d1e759d03b191858"
+"jvm-iadd.fir" = "d9f63ced8c26ff5aa891c50fc53cbc79b366e44d8ccae5ddf9a879df8969c640"

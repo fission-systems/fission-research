@@ -48,16 +48,30 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 217d7eafd90b396edc46f0c24fdb6372caf60354
+          git -C .compiler fetch --depth=1 origin 3eb6866250321fa2c0aef54238ae2b8168737a35
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
-        run: sudo apt-get update && sudo apt-get install -y llvm-18 clang
+        run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
       - name: Build and validate FIR execution and recompilation
         working-directory: .compiler
         run: |
           rustup toolchain install 1.98.1 --profile minimal --no-self-update
           cargo +1.98.1 build --locked -p fission-fsl --bin fslc
           cargo +1.98.1 test --locked -p fission-fsl -- --nocapture
+      - name: Validate CUDA and PTX from the same canonical FIR
+        run: |
+          cmp experiments/gpu/fir-projections/jvm-iadd.fsl .compiler/crates/fission-fsl/specs/jvm-se26-iadd.fsl
+          python3 tools/gpu_projection_toolchain.py
+          python3 tools/gpu_projection_validate.py --fslc .compiler/target/debug/fslc --clang clang-18 --ptxas .cuda-toolchain/ptxas
+      - name: Preserve GPU projection evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: gpu-projection-report
+          path: |
+            artifacts/gpu-projection.json
+            artifacts/gpu-projection/
+          if-no-files-found: ignore
       - name: Verify migrated source copies and ABI metadata
         run: |
           for name in ebpf-add64-register.fsl bpf.fslabi ebpf.fslabi; do

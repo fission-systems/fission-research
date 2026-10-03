@@ -32,7 +32,7 @@ historical probes; the Rust text FSL and binary `.fslc` compiler are separate.
 ## Encoding and execution gates
 
 The second CI job fetches Fission compiler commit
-`217d7eafd90b396edc46f0c24fdb6372caf60354` separately into `.compiler/`. It builds
+`3eb6866250321fa2c0aef54238ae2b8168737a35` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -104,3 +104,6 @@ python3 tools/sla_migration_reproduce.py --fslc /absolute/path/to/fslc
 The admitted conversion is one bound register ADD64 branch. Other constructor
 effects, context, memory, dynamic handles and general decisions are subsequent
 registry extensions. Historical artifact/migration locks remain unchanged.
+# CUDA C++ / PTX projection
+
+동일 FIR의 GPU reference 출력은 `python3 tools/gpu_projection_validate.py --fslc /path/to/fslc --clang clang-18`로 재현한다. 3개 projection artifact와 package lock, 41 profiles의 scalar reference/Clang device compilation, 8개 refusal을 검사한다. Linux에서는 `python3 tools/gpu_projection_toolchain.py`로 hash-locked ptxas와 license를 복원한 후 `--ptxas .cuda-toolchain/ptxas`를 추가한다. [실험 범위](../experiments/gpu/fir-projections/README.md)에 ABI·주소 전제와 hardware 실행 미검증을 기록한다.

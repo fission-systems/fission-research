@@ -1,0 +1,74 @@
+{
+  "format": "fission-gpu-projection-v1",
+  "status": "passed",
+  "profiles": 41,
+  "ptx_scalar_reference_states": 3444,
+  "cuda_device_compiles": 82,
+  "ptxas_cubins": 0,
+  "refusals": [
+    {
+      "source": "u128",
+      "layer": "cuda",
+      "reason": "fslc: 1:1: execution output supports integer widths 1..=64; wider FIR is preserved but unsupported here"
+    },
+    {
+      "source": "u128",
+      "layer": "ptx",
+      "reason": "fslc: 1:1: execution output supports integer widths 1..=64; wider FIR is preserved but unsupported here"
+    },
+    {
+      "source": "amdgcn-gfx900-sadd-u32",
+      "layer": "cuda",
+      "reason": "fslc: 1:1: state effects require the register-state executor"
+    },
+    {
+      "source": "amdgcn-gfx900-sadd-u32",
+      "layer": "ptx",
+      "reason": "fslc: 1:1: state effects require the register-state executor"
+    },
+    {
+      "source": "amdgcn-gfx900-vadd-u32-wave64",
+      "layer": "cuda",
+      "reason": "fslc: 1:1: state effects require the register-state executor"
+    },
+    {
+      "source": "amdgcn-gfx900-vadd-u32-wave64",
+      "layer": "ptx",
+      "reason": "fslc: 1:1: state effects require the register-state executor"
+    },
+    {
+      "source": "amdgcn-gfx900",
+      "layer": "cuda",
+      "reason": "fslc: 1:1: instruction has unsupported semantics"
+    },
+    {
+      "source": "amdgcn-gfx900",
+      "layer": "ptx",
+      "reason": "fslc: 1:1: instruction has unsupported semantics"
+    }
+  ],
+  "artifact_hashes": {
+    "jvm-iadd.cu": "346fe9c35e496bd7c5d34a6e8fea9b38b5105e9141b67ffa34f7a5bdf527b018",
+    "jvm-iadd.ptx": "7b443e714c12e8321d5061e46d746c7c218fab3b0ef441f4d1e759d03b191858",
+    "jvm-iadd.fir": "d9f63ced8c26ff5aa891c50fc53cbc79b366e44d8ccae5ddf9a879df8969c640"
+  },
+  "hardware_execution": "not-run",
+  "scope": "single-owner stack bit-vector reference kernels; no GPU guest decode, SIMT, synchronization or recovered kernel ABI",
+  "compiler_sha256": "2766dbb1c7e3907e6c7744c66bbfa7df5c2056dfb39c2eb5cd1360826ce3d1ab",
+  "clang_version": "Homebrew clang version 22.1.8",
+  "package_sha256": "82a7d5e57f0b3bcad6be4b9624f03277011051321ba67a0151ccb3dc6930b0f1",
+  "observed_date": "2026-10-03",
+  "compiler_commit": "3eb6866250321fa2c0aef54238ae2b8168737a35",
+  "native_tests": {
+    "passed": 35,
+    "skipped": 0,
+    "new_projection_tests": 3,
+    "existing_recompilation_gates": "rerun"
+  },
+  "python_tests": {
+    "passed": 18
+  },
+  "formatting": "passed",
+  "clippy": "passed with -D warnings",
+  "ptxas_local": "not-run: Linux executable on macOS; wheel/executable/license hashes verified"
+}

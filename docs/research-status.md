@@ -1,6 +1,6 @@
 # FSL/FIR 연구 진행 현황
 
-기준일: 2026-10-02. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
+기준일: 2026-10-03. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
 
 ## 채택한 방향
 
@@ -29,6 +29,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`0bc0efbb1`](https://github.com/fission-systems/Fission/commit/0bc0efbb107e77c2baa84c942b567938da63d571) | package v5 lane 효과, wave64 EXEC 및 `v_add_u32`, uniform broadcast |
 | [`cf2a023ff`](https://github.com/fission-systems/Fission/commit/cf2a023ff3c7cd7bbf17d5d902b1f5ffb485c9fc) | byte register layout·alias 저장소, strict ABI linking, FIR slot adapter |
 | [`217d7eafd`](https://github.com/fission-systems/Fission/commit/217d7eafd90b396edc46f0c24fdb6372caf60354) | SLA-derived layout·ADD64 candidate, 원문/바이너리 parity·재컴파일 검증 |
+| [`3eb686625`](https://github.com/fission-systems/Fission/commit/3eb6866250321fa2c0aef54238ae2b8168737a35) | 기존 단일 stack FIR의 CUDA C++ / PTX reference kernel 출력 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -105,6 +106,17 @@ Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 
 - opcode·context·extra effect·handle·BUILD·selector·export·priority 변조 8개를 거부했다. 새 산출물 3개와 package SHA가 재현됐고 native CLI 4개 gate가 통과했다. Rust 전체 32개, Python 14개, fmt/Clippy와 기존 재컴파일 회귀가 통과했다.
 
 [SLA 이관 실험](../experiments/migration/sla-first-slice/README.md)에 registry·출처·해시·지원 범위가 있다. 직접 이관의 첫 branch가 구현된 단계이며 general SLA context·동적 handle·메모리·제어 흐름, 전체 VM·함수, GPU layout·kernel ABI는 미지원이다.
+
+## 2026-10-03 독립 의미론 및 GPU 출력
+
+- FIR을 자체 타입·연산·상태·효과·오류 규칙으로 정의하는 [중간 의미론 계약](fir-semantic-contract.md)을 채택했다. P-code는 목표 실행/분석 경로의 필수 단계가 아니다. 문서의 전체 계약이 구현 완료된 것은 아니다.
+- Fission `3eb686625`가 동일한 `CompiledInstruction`에서 C/Rust와 CUDA C++/PTX를 출력한다. GPU 출력은 기존 stack pop/push와 1..64-bit wrapping add로 제한한다. 새로운 FIR 종류나 package version을 만들지 않았다.
+- 한 상태를 좌표가 모두 0인 한 thread에서 처리하는 reference ABI를 명시했다. 깊이/underflow/peak capacity를 쓰기 전에 검사하며 status를 제외한 실패 상태와 non-owner의 무접근을 검증한다. 이 ABI는 GPU 바이너리에서 복원한 커널 ABI가 아니다.
+- 41 profiles / 3,444개 generated-PTX scalar reference 상태가 별도 정수·상태 oracle과 일치했고 CUDA C++를 O0/O2에서 82회 Clang NVPTX로 컴파일했다. reference는 flat 주소와 작은 scalar subset만 모델링하며 GPU scheduling/memory consistency를 검증하지 않는다.
+- Rust 전체 35개(새 projection 검사 3개), Python 18개가 통과했다. 기존 stack/scalar/carry/wave/eBPF C/Rust 재컴파일 회귀와 fmt/Clippy를 재실행했다. 8개 지원 밖 source/target 조합이 semantic gate에서 거부됐다.
+- Linux CI에는 hash-locked NVIDIA ptxas로 direct/Clang PTX를 assemble하는 경로를 추가했다. 로컬 macOS에서는 ptxas를 실행하지 않았으며 assembly 결과는 CI report로 별도 확인한다.
+
+[출력 실험](../experiments/gpu/fir-projections/README.md)은 3개 재현 artifact와 package/toolchain lock, source·license 근거를 보관한다. GPU hardware 실행, 실제 CUDA guest kernel decode/ABI 복원, GPU 병렬 메모리·분기·동기화·atomic과 자체 SASS backend는 미지원이다.
 
 ## 남은 문제와 다음 구현
 
