@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "source": {
+    "path": "utils/signatures/typeinfo/generic/generic_clib_64_signatures.fpk",
+    "sha256": "35e4be1ffac1002e358c17b3e8f02f0468c71a39ce7322e22e865bf3335836d3",
+    "commit": "96fc71f75cecdee305faf9497561c577a8955468",
+    "grammar": "pipe-signatures-v1"
+  },
+  "records": 31418,
+  "parameters": 15455,
+  "source_sha256": "4bd0064666327e2aee27536baa10610c3d0eadcd3743796093c34be5f7437a82",
+  "package_sha256": "8e00d49089fea6bcd3cf3a9e3906f7938b3f831745c04168a664a850a69b2316",
+  "package_bytes": 1489371,
+  "status": "candidate-metadata-only",
+  "limits": [
+    "unresolved type spellings",
+    "symbol function identity unverified",
+    "missing variadic marker means unknown",
+    "no ABI or execution semantics"
+  ],
+  "validation": "passed",
+  "reproduction": "identical",
+  "native_reader": "passed: all records decoded; 3 exact queries",
+  "compiler_commit": "a67807616a2d4c2b623819b2ded5d1b0e3b0fc29",
+  "native_tests_passed": 37,
+  "python_tests_passed": 21,
+  "validation_scope": "metadata import, owned compilation and native parse/query; no signature-loader or structured-FIR execution claim"
+}

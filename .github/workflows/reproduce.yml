@@ -19,13 +19,18 @@ jobs:
           git init Fission
           git -C Fission remote add origin https://github.com/fission-systems/Fission.git
           git -C Fission sparse-checkout init --cone
-          git -C Fission sparse-checkout set utils/sleigh-specs/compiled utils/sleigh-specs/languages
+          git -C Fission sparse-checkout set utils/sleigh-specs/compiled utils/sleigh-specs/languages utils/signatures
           git -C Fission fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
           git -C Fission checkout --detach FETCH_HEAD
       - run: make test reproduce
       - run: make migration-reproduce
       - run: make layout-reproduce
       - run: make sla-migration-reproduce
+      - name: Reproduce owned asset inventory and library candidates
+        run: |
+          python3 tools/asset_inventory.py
+          cmp artifacts/legacy-assets.json experiments/migration/asset-replacement/legacy-assets.json
+          make library-migration-reproduce
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -35,6 +40,7 @@ jobs:
             artifacts/reproduction.json
             artifacts/register-layout.json
             artifacts/sla-migration.json
+            artifacts/library-migration.json
           if-no-files-found: ignore
   sop2-and-fir:
     runs-on: ubuntu-24.04
@@ -48,7 +54,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 3eb6866250321fa2c0aef54238ae2b8168737a35
+          git -C .compiler fetch --depth=1 origin a67807616a2d4c2b623819b2ded5d1b0e3b0fc29
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -71,6 +77,25 @@ jobs:
           path: |
             artifacts/gpu-projection.json
             artifacts/gpu-projection/
+          if-no-files-found: ignore
+      - name: Verify owned library compiler and native reader
+        run: |
+          git init .library-input
+          git -C .library-input remote add origin https://github.com/fission-systems/Fission.git
+          git -C .library-input sparse-checkout init --cone
+          git -C .library-input sparse-checkout set utils/signatures/typeinfo/generic
+          git -C .library-input fetch --depth=1 --filter=blob:none origin 96fc71f75cecdee305faf9497561c577a8955468
+          git -C .library-input checkout --detach FETCH_HEAD
+          python3 tools/library_migration_reproduce.py --fission-root .library-input --fslc .compiler/target/debug/fslc
+          python3 tools/fsl_library_migrate.py --library-source .compiler/crates/fission-fsl/specs/library-candidates.fslib --output-dir artifacts/library-fixture
+          cmp artifacts/library-fixture/library.fsldb .compiler/crates/fission-fsl/specs/library-candidates.fsldb
+          .compiler/target/debug/fslc library-query artifacts/library-fixture/library.fsldb beta
+      - name: Preserve library reader evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: library-reader-report
+          path: artifacts/library-migration.json
           if-no-files-found: ignore
       - name: Verify migrated source copies and ABI metadata
         run: |

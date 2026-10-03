@@ -1,4 +1,4 @@
-.PHONY: reproduce test migration-reproduce layout-reproduce sla-migration-reproduce
+.PHONY: reproduce test migration-reproduce layout-reproduce sla-migration-reproduce library-migration-reproduce
 reproduce:
 	python3 tools/reproduce.py
 
@@ -13,3 +13,6 @@ layout-reproduce:
 
 sla-migration-reproduce:
 	python3 tools/sla_migration_reproduce.py
+
+library-migration-reproduce:
+	python3 tools/library_migration_reproduce.py
