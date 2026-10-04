@@ -54,7 +54,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 7f7b22a344851aa6a5abcd3738fac979202f20eb
+          git -C .compiler fetch --depth=1 origin 16f84f47e0cb53278fddde2522dfbe581fce5ddf
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -72,6 +72,17 @@ jobs:
         run: |
           cmp experiments/fir/register-control/register-branch-convert.fsl .compiler/crates/fission-fsl/specs/register-branch-convert.fsl
           python3 tools/register_fir_reproduce.py --fslc .compiler/target/debug/fslc
+      - name: Reproduce sequential FIR state and byte origins
+        run: |
+          cmp experiments/fir/sequence/amdgcn-gfx900-scalar-sequence.fsl .compiler/crates/fission-fsl/specs/amdgcn-gfx900-scalar-sequence.fsl
+          python3 tools/sequence_fir_reproduce.py --fslc .compiler/target/debug/fslc
+      - name: Preserve sequence evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: sequence-fir-report
+          path: artifacts/sequence-fir.json
+          if-no-files-found: ignore
       - name: Preserve register CFG evidence
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6

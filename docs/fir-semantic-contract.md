@@ -60,7 +60,7 @@ outcome       = 정상 종료 | trap | 예외 | 그 밖의 명시된 실행 결�
 
 ## 다음 구현 단위
 
-[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)에 따라 block parameter·terminator·domain region·ordered effects를 같은 FIR 안에 보존한다. 연산열 lowering을 모든 분석·출력 소비자의 필수 경로로 삼지 않는다. 2026-10-04에 block/branch/join과 정수·스택 실행을 [첫 구조 slice](../experiments/fir/structured-control/README.md)로 구현했다. [후속 slice](../experiments/fir/register-control/README.md)는 확장·절단과 비순환 scalar register/flag CFG를 지원한다. nested domain region·effect SSA·multi-instruction function lifting은 후속 범위다.
+[자체 자산·구조 FIR 결정](owned-assets-and-structured-fir.md)에 따라 block parameter·terminator·domain region·ordered effects를 같은 FIR 안에 보존한다. 연산열 lowering을 모든 분석·출력 소비자의 필수 경로로 삼지 않는다. 2026-10-04에 block/branch/join과 정수·스택 실행을 [첫 구조 slice](../experiments/fir/structured-control/README.md)로 구현했다. [후속 slice](../experiments/fir/register-control/README.md)는 확장·절단과 비순환 scalar register/flag CFG를 지원한다. 명시한 window의 [순차 instruction state/origin 연결](../experiments/fir/sequence/README.md)을 추가했다. nested domain region·effect SSA·inter-instruction branch·실제 binary function lifting은 후속 범위다.
 
 1. 현재 연산별로 타입 규칙·비트 결과·상태 효과·실패 범위를 문서화하고 compiler/reference/C/Rust 경로와 연결한다.
 2. 즉시값·비교·조건 분기의 자체 FIR 계약과 reference/C/Rust 실행을 구현했다. 확장·절단을 v7에 추가했고 같은 graph의 register/flag 효과를 실행한다. SLA control mapping은 후속 확장이다.

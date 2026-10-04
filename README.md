@@ -19,10 +19,13 @@
 | 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
 | 자체 자산 / library corpus | 988개 자산 인벤토리; FPK 한 파일의 31,418개 후보를 `.fslib` / `.fsldb`로 이관, native exact 조회 |
 | FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택·register/flag reference/C/Rust 실행; nested domain region·함수 lifting 미구현 |
+| 순차 명령 상태 / origin | 명시한 고정폭 window의 기존 FIR body 연결; 주소·바이트 범위·입력/패키지 해시와 spec evidence, reference/C/Rust 실행 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택, scalar·masked lane 상태, eBPF leaf와 자체 register CFG의 C·Rust 출력 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
 | AI 평가 | 계획·설계 단계 |
+
+[순차 명령·상태/origin 실험](experiments/fir/sequence/README.md)은 명시한 window의 두 scalar body와 세 register CFG body 연결을 검증했다. 실제 함수 발견·분기 대상 복원은 지원하지 않는다.
 
 [확장·절단/register CFG 실험](experiments/fir/register-control/README.md)은 자체 명세의 reference/C/Rust 비교를 기록한다. 루프 실행·GPU CFG·메모리·실제 binary function lifting은 아직 미지원이다.
 

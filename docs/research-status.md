@@ -33,6 +33,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`a67807616`](https://github.com/fission-systems/Fission/commit/a67807616a2d4c2b623819b2ded5d1b0e3b0fc29) | 자체 `.fsldb` prototype candidate reader와 native exact symbol 조회 |
 | [`2107f6295`](https://github.com/fission-systems/Fission/commit/2107f6295b8b891301a6aeb6652b5a9c749825b3) | `.fslc` v6 typed block·즉시값·비교·분기와 비순환 정수/스택 reference/C/Rust 실행 |
 | [`7f7b22a34`](https://github.com/fission-systems/Fission/commit/7f7b22a344851aa6a5abcd3738fac979202f20eb) | `.fslc` v7 정수 확장·절단과 비순환 scalar register/flag CFG reference/C/Rust 실행 |
+| [`16f84f47e`](https://github.com/fission-systems/Fission/commit/16f84f47e0cb53278fddde2522dfbe581fce5ddf) | `.fslseq` v1 순차 FIR instance 상태 전달·byte origin과 reference/C/Rust 실행 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -155,7 +156,27 @@ Fission `7f7b22a34`는 `IntConvert`의 zero extension·sign extension·truncatio
 - 이번 단계의 새 C/Rust 비교 합계 48,208회가 통과했다. Rust 전체 48개, Python 24개, formatting과 warning-denied Clippy가 통과했다. 기존 carry/wave/SLA/layout/library와 역사적 artifact 재현도 통과했다.
 - `register_fir_reproduce.py`는 source·803-byte package·3 output 해시를 검사하고 native CLI 정상 상태 44개와 거부 3개를 독립 계산과 비교한다. CI가 고정 compiler commit으로 같은 gate를 실행한다.
 
-모든 syntactic path의 raw field·selector·flag 전제를 효과 전 검사한다. Untaken branch도 전제에 포함하며 거부 시 상태를 보존한다. 이 preflight는 guest fault semantics가 아니다. Cyclic graph는 저장·진단할 수 있지만 실행/source backend는 거부한다. **검증은 자체 작성 명세 기반이며, 루프 실행·GPU CFG·메모리·실제 binary function lifting은 아직 미지원이다.** 다음은 여러 instruction body의 상태·origin 계약을 연결하는 단계다.
+모든 syntactic path의 raw field·selector·flag 전제를 효과 전 검사한다. Untaken branch도 전제에 포함하며 거부 시 상태를 보존한다. 이 preflight는 guest fault semantics가 아니다. Cyclic graph는 저장·진단할 수 있지만 실행/source backend는 거부한다. **검증은 자체 작성 명세 기반이며, 루프 실행·GPU CFG·메모리·실제 binary function lifting은 아직 미지원이다.** 이후의 순차 instruction body 상태·origin 연결은 아래에 기록한다.
+
+## 순차 명령 상태·origin 연결 — 2026-10-04
+
+Native 구현은 Fission [`16f84f47e`](https://github.com/fission-systems/Fission/commit/16f84f47e0cb53278fddde2522dfbe581fce5ddf)다.
+
+`FirSequence`는 하나의 immutable `.fslc` body pool과 instruction instance를 연결한다. 각 instance는 canonical instruction index, 명령별 주소·입력 window 내 offset·byte length·원본 bytes/fields를 보존한다. Input-window/package SHA-256과 body의 spec evidence를 통해 출처를 연결한다. 값 ID는 body invocation 내부 범위이고 순서 있는 logical register/flag 상태만 다음 instance에 전달한다. 별도 IR을 추가하거나 op를 평탄화·복제하지 않는다.
+
+`.fslseq` v1은 기존 `.fslc`와 명시한 input window를 담는 96-byte header의 실행 계획이다. 로딩 시 길이·EOF·해시를 확인하고 constructor로 명령 선택과 origin을 다시 유도한다. 기존 `.fslc` byte layout과 이전 잠금 artifact는 유지된다. Base address와 exact bank ABI는 caller supplied이고, input hash는 whole-file hash가 아니다. Package hash도 원본 `.fsl` source hash가 아니며 authenticity나 주소 매핑의 증명이 아니다.
+
+선택된 모든 scalar body와 selector를 효과 전 검증한다. Reference/C/Rust wrapper는 임시 상태에 순차 실행하고 전부 성공했을 때만 원래 상태에 commit한다. 이 transaction은 guest fault ordering·CPU atomic operation·concurrent memory semantics가 아니다. 현재 primitive는 dynamic guest fault가 없으며 late failure 경로를 guest exception 지원 증거로 세지 않는다. Register·flag bank는 각각 최대 4,096 slot이고 exact size가 계약이다. Empty bank도 사용하지 않는 body에서 명시적으로 허용한다.
+
+[실험/lock](../experiments/fir/sequence/README.md):
+
+- 자체 작성한 두 scalar 명령 window의 carry 전달은 reference/u128 oracle 1,060개에서 일치했다.
+- Scalar sequence의 5개 폭 × 2개 alias 배치 × 132행은 C/Rust O0/O2 5,280회 비교가 통과했다. 32비트 이외의 폭은 synthetic primitive 검사다.
+- 세 register CFG body 연결의 256개 정상·3개 실패 입력은 1,036회 비교, 명시적 zero bank 2개는 8회 비교가 통과했다. 새 재컴파일 비교 합계는 6,324회다.
+- Rust 전체 53개, Python 27개, formatting과 warning-denied Clippy가 통과했다. Envelope 절단·해시/bytes 변조·주소 overflow·늦은 unsupported word·bank/selector·cycle/stack 거부와 4,096-step 한계를 포함한다. Endianness transport도 합성 계약으로 확인했으며 GFX900 big endian 지원을 뜻하지 않는다.
+- 재현기는 7,687-byte scalar envelope와 911-byte register envelope를 Python에서 독립 확인하고 6개 출력 artifact, CLI 정상 상태 112개·실패 4개를 비교한다. 이전 structure/conversion hash와 historical/SLA/layout/ABI/library artifact도 동일하게 재현됐다.
+
+이 단계는 명시적으로 공급한 window의 **순차 실행**이다. FIR block terminator는 instruction body 안에서만 분기하며 return 후 다음 word를 실행한다. Guest PC·명령 사이 branch target·함수 entry/return을 복원한 것이 아니다. **검증은 자체 작성 명세/window 기반이고, 루프 실행·GPU CFG·메모리·실제 binary function lifting은 여전히 미지원이다.** 다음은 inter-instruction branch/PC 계약과 loader-backed byte origin을 연결하는 단계다. Sequence native Cranelift JIT/AOT·CUDA/PTX, variable-width/mixed profile도 미지원이다.
 
 ## 남은 문제와 다음 구현
 

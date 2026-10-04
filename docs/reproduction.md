@@ -41,7 +41,7 @@ Reports preserve unresolved types and unknown variadic evidence. These gates
 do not replace the product signature loader or establish callable ABI semantics.
 
 The second CI job fetches Fission compiler commit
-`7f7b22a344851aa6a5abcd3738fac979202f20eb` separately into `.compiler/`. It builds
+`16f84f47e0cb53278fddde2522dfbe581fce5ddf` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -65,6 +65,7 @@ binary function lifting remain unsupported.
 ```sh
 python3 tools/structured_fir_reproduce.py --fslc /absolute/path/to/fslc
 python3 tools/register_fir_reproduce.py --fslc /absolute/path/to/fslc
+python3 tools/sequence_fir_reproduce.py --fslc /absolute/path/to/fslc
 ```
 
 ```sh
@@ -137,3 +138,14 @@ registry extensions. Historical artifact/migration locks remain unchanged.
 # CUDA C++ / PTX projection
 
 동일 FIR의 GPU reference 출력은 `python3 tools/gpu_projection_validate.py --fslc /path/to/fslc --clang clang-18`로 재현한다. 3개 projection artifact와 package lock, 41 profiles의 scalar reference/Clang device compilation, 8개 refusal을 검사한다. Linux에서는 `python3 tools/gpu_projection_toolchain.py`로 hash-locked ptxas와 license를 복원한 후 `--ptxas .cuda-toolchain/ptxas`를 추가한다. [실험 범위](../experiments/gpu/fir-projections/README.md)에 ABI·주소 전제와 hardware 실행 미검증을 기록한다.
+
+## Explicit instruction sequence reproduction
+
+`sequence_fir_reproduce.py` regenerates two `.fslseq` envelopes and six FIR/C/Rust
+outputs. It independently verifies their embedded package/window bytes, hashes,
+lengths, base and bank contract, then compares 112 native CLI oracle states and
+four failures. Native sequence tests add 6,324 C/Rust O0/O2 comparisons and a
+separate 1,060-state u128 arithmetic oracle. The ABI is exact logical bank sizes;
+invalid input preserves state. These are authored sequential instruction windows
+and do not establish real binary function lifting, loops, GPU CFG or memory
+semantics. See [scope/lock](../experiments/fir/sequence/README.md).

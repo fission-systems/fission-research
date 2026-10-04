@@ -50,3 +50,5 @@ GPU hardware execution and structured native JIT/AOT are unsupported. CUDA/PTX
 backends refuse these bodies. The next bounded step is multi-instruction
 register-state composition with explicit origin and state contracts before
 attempting binary function lifting.
+
+후속 [sequence state/origin slice](../sequence/README.md)는 명시한 byte window에서 같은 FIR body들을 순차 연결한다. 실제 함수 발견·분기 대상 복원은 아직 미지원이다. 위 수치는 register-control 단계의 기록이다.

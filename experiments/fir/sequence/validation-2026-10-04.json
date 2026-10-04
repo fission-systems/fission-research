@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "scope": "explicit sequential instruction window; no binary function lifting or GPU CFG claim",
+  "fixtures": [
+    {
+      "name": "scalar-chain",
+      "sequence_sha256": "5a25ece29840750bbcc656d0bd00de326ff578950094b03bf67498961f1b8b06",
+      "outputs_identical": 3,
+      "origin_envelope": "independently verified",
+      "native_cli_oracle_cases": 100,
+      "native_cli_failure_cases": 2
+    },
+    {
+      "name": "register-chain",
+      "sequence_sha256": "1b9f521e7b0514a9536f401747f9c9f772747541d331ca5541930814a5f24325",
+      "outputs_identical": 3,
+      "origin_envelope": "independently verified",
+      "native_cli_oracle_cases": 12,
+      "native_cli_failure_cases": 2
+    }
+  ],
+  "date": "2026-10-04",
+  "compiler_commit": "16f84f47e0cb53278fddde2522dfbe581fce5ddf",
+  "native_gate": {
+    "runner": "nextest --no-capture -j 1",
+    "passed": 53,
+    "skipped": 0,
+    "leaky": 0,
+    "scope": "fission-fsl crate"
+  },
+  "python_tests": 27,
+  "formatting": "passed",
+  "warning_denied_clippy": "passed",
+  "sequence_gates": {
+    "scalar_reference_u128_oracle": 1060,
+    "scalar_source_configurations": 10,
+    "scalar_source_rows": 1320,
+    "scalar_c_rust_o0_o2_comparisons": 5280,
+    "structured_source_rows": 259,
+    "structured_c_rust_o0_o2_comparisons": 1036,
+    "empty_bank_rows": 2,
+    "empty_bank_c_rust_o0_o2_comparisons": 8,
+    "total_new_source_comparisons": 6324
+  },
+  "regressions": {
+    "v6_outputs_identical": 3,
+    "v7_outputs_identical": 3,
+    "historical_artifacts_identical": 9,
+    "migration_artifacts_identical": 4,
+    "layout_artifacts_identical": 4,
+    "sla_artifacts_identical": 3,
+    "library_candidates_identical": 31418,
+    "library_parameters_identical": 15455
+  },
+  "limits": [
+    "self-authored specifications and fixed-width instruction windows",
+    "explicit sequential execution only; no inter-instruction branch/PC recovery",
+    "caller-supplied byte base and exact logical bank ABI",
+    "window/package content hashes; no whole-file/source text/authenticity claim",
+    "wrapper transaction is not guest fault ordering or concurrent atomicity",
+    "no GPU hardware execution or whole-function equivalence evidence",
+    "no loops, GPU CFG, memory, calls, exceptions or real binary function lifting",
+    "no mixed profiles, variable-width streams or sequence native Cranelift JIT/AOT",
+    "CUDA/PTX sequence output refuses"
+  ]
+}

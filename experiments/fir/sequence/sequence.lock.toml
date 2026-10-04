@@ -1,0 +1,31 @@
+schema = 1
+
+[[fixtures]]
+name = "scalar-chain"
+source = "amdgcn-gfx900-scalar-sequence.fsl"
+profile = "amdgcn.gfx900.scalar.sequence"
+base_address = 4096
+register_count = 7
+flag_count = 2
+input_hex = "0002048001030582"
+source_sha256 = "0a336185f33b9a34271e8491d6b258a5851ae3f749e3a52abe8985bc6308fd75"
+package_sha256 = "8fceee28dcf6055580c01fe2fb665f7ce0e92e110507d4457b68eba253debc06"
+sequence_sha256 = "5a25ece29840750bbcc656d0bd00de326ff578950094b03bf67498961f1b8b06"
+fir_sha256 = "ba24318ea5218cfa9611aa0f7207f58ea9f3fe9b73809e79afa55fcf99ff3dd3"
+c_sha256 = "6c2f5c180dc558078bbeb80a459600ee4a1a47cd67c7d68a8dd328bf8f3a1671"
+rs_sha256 = "0d80d97934cb80a99a4d16f7072a1fc211641614146b2a6e2ea4a669972a8b47"
+
+[[fixtures]]
+name = "register-chain"
+source = "../register-control/register-branch-convert.fsl"
+profile = "register.branch.convert"
+base_address = 4096
+register_count = 3
+flag_count = 3
+input_hex = "10a2000021a0000002a10000"
+source_sha256 = "77fe1bf9650daeed1f972b013c68ab555fec65ecb2cf5b31340c64ef7aa4e7d3"
+package_sha256 = "39c3146c31657708041b1e7cd4207876f3bb78c41c2fbf3106beec467f7154f1"
+sequence_sha256 = "1b9f521e7b0514a9536f401747f9c9f772747541d331ca5541930814a5f24325"
+fir_sha256 = "7cc48784957bcaff893ea7b957ba69afbf4480190c3e2e7fdd1223c61e3e8198"
+c_sha256 = "fbf26d6b74ccc1aa1927626579b1547197c26b72906e283e24110352f3557d3d"
+rs_sha256 = "4aa215bc903f525f68257962733226ea9edf872427f940b9649512bcb15c4908"
