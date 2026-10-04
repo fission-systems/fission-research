@@ -32,6 +32,7 @@ Fission 작업 브랜치는 `codex/fsl-jvm-iadd-parity`다. 최근 구현 스냅
 | [`3eb686625`](https://github.com/fission-systems/Fission/commit/3eb6866250321fa2c0aef54238ae2b8168737a35) | 기존 단일 stack FIR의 CUDA C++ / PTX reference kernel 출력 |
 | [`a67807616`](https://github.com/fission-systems/Fission/commit/a67807616a2d4c2b623819b2ded5d1b0e3b0fc29) | 자체 `.fsldb` prototype candidate reader와 native exact symbol 조회 |
 | [`2107f6295`](https://github.com/fission-systems/Fission/commit/2107f6295b8b891301a6aeb6652b5a9c749825b3) | `.fslc` v6 typed block·즉시값·비교·분기와 비순환 정수/스택 reference/C/Rust 실행 |
+| [`7f7b22a34`](https://github.com/fission-systems/Fission/commit/7f7b22a344851aa6a5abcd3738fac979202f20eb) | `.fslc` v7 정수 확장·절단과 비순환 scalar register/flag CFG reference/C/Rust 실행 |
 
 Rust 구현을 연구 리포에 복사하지 않는다. 명세 소스와 API는 [해당 커밋의 crate](https://github.com/fission-systems/Fission/tree/5376310b2077807de713d908ea100411efd73ef9/crates/fission-fsl), 한계는 [GFX900 구현 보고서](https://github.com/fission-systems/Fission/blob/5376310b2077807de713d908ea100411efd73ef9/docs/research/fsl-gfx900-encoding-slice.md)를 참조한다. 이 기록은 메인 브랜치 채택이나 PR 병합을 뜻하지 않는다.
 
@@ -134,11 +135,27 @@ Fission `a67807616`은 FPK를 호출하지 않는 독립 reader와 native inspec
 
 Fission `2107f6295`는 같은 값/연산 테이블에 `FirBlock`의 op 범위·block parameter와 return/branch/conditional terminator를 연결한다. 즉시값과 equality/unsigned-less/signed-less 비교를 자체 FIR로 정의했다. Block 내부 값은 지역 정의와 parameter만 참조하며 edge의 arity·정확한 타입을 검사한다. Source/package/reference/output 경계가 같은 검증을 사용한다. `.fslc` v6에 구조를 저장하고 v1–v5 package byte layout은 유지한다.
 
-첫 backend 범위는 비순환 정수/스택 semantic-body CFG다. Join과 모든 return의 stack delta는 같아야 한다. 모든 syntactic path의 최악 depth를 preflight하며 선택된 successor만 실행한다. 실행하지 않는 path도 capacity 전제를 높일 수 있고, 이 실패 status는 guest trap이 아니다. Cyclic CFG·unequal-delta join은 구조를 보존하지만 실행과 C/Rust 출력은 거부한다. GPU/register/wave/native lift backend도 control body를 거부한다.
+첫 backend 범위는 비순환 정수/스택 semantic-body CFG다. Join과 모든 return의 stack delta는 같아야 한다. 모든 syntactic path의 최악 depth를 preflight하며 선택된 successor만 실행한다. 실행하지 않는 path도 capacity 전제를 높일 수 있고, 이 실패 status는 guest trap이 아니다. Cyclic CFG·unequal-delta join은 구조를 보존하지만 실행과 C/Rust 출력은 거부한다. 이 v6 단계에서는 GPU/register/wave/native lift backend도 control body를 거부했다. 후속 v7 단계의 scalar register CFG 지원은 아래에 기록한다.
 
 [실험 기록](../experiments/fir/structured-control/README.md): 16개 프로파일 / 2,048개 독립·reference 상태 / 8,192개 C/Rust O0/O2 비교가 통과했다. 별도 65,536개 input oracle, binary compatibility·scope/type/refusal 및 native CLI 검사를 포함한다. Rust 전체 nextest 43개가 serial 실행에서 통과했고 skip/leaky는 0이다. 병렬 실행에서는 한 leaky classification이 관찰되어 serial gate를 재실행했다. Formatting과 warning-denied Clippy, Python 22개 검사와 기존 artifact 재현이 통과했다.
 
-CI는 같은 compiler commit으로 control gate와 package/output hash·CLI oracle 재현을 수행한다. 현재는 자체 작성한 semantic-body fixture 증거다. 실제 binary function lifting, loops 실행, memory/exception/call, GPU divergence와 nested domain region, 구조 FIR native JIT/AOT는 미지원이다. 다음은 typed extension/truncation과 register-state CFG·여러 명령 연결을 단계별로 추가하는 것이다.
+CI는 같은 compiler commit으로 control gate와 package/output hash·CLI oracle 재현을 수행한다. 현재는 자체 작성한 semantic-body fixture 증거다. 실제 binary function lifting, loops 실행, memory/exception/call, GPU divergence와 nested domain region, 구조 FIR native JIT/AOT는 미지원이다. 이후 단계의 확장·절단과 register-state CFG 검증은 아래 기록을 참조한다. 여러 명령 연결은 아직 미지원이다.
+
+## 정수 확장·절단과 register-state CFG — 2026-10-04
+
+Fission `7f7b22a34`는 `IntConvert`의 zero extension·sign extension·truncation을 단일 FIR에 추가했다. 입력/출력은 1..64비트이며 확장은 엄격히 더 넓게, 절단은 더 좁게 한다. 부호는 일치해야 하며 zext는 unsigned, sext는 signed만 허용한다. 새 op를 쓸 때 `.fslc` v7을 선택하고 v1–v6 byte layout은 유지한다. 기존 v6 package와 FIR/C/Rust 해시가 동일하게 재현됐다.
+
+같은 block graph를 scalar register/flag reference와 C/Rust가 실행한다. 선택된 block만 쓰기 효과를 수행하고 join의 읽기는 그 경로의 선행 쓰기를 관찰한다. edge는 SSA 인자를 동시에 전달하며 register/flag 상태는 하나의 순서 있는 mutable runtime context로 유지한다. First-class domain state/effect SSA, memory token이나 GPU lane join을 구현한 것은 아니다. Narrow write는 logical slot 전체를 결과 bit pattern으로 교체한다. Byte-layout adapter의 exact-width·disjoint-binding 제약은 유지되므로 mixed-width fixture를 그 adapter의 검증으로 세지 않는다.
+
+[실험과 검증 기록](../experiments/fir/register-control/README.md):
+
+- 변환 프로파일 24개, reference/별도 widened oracle 3,072개, C/Rust O0/O2 12,288회 비교.
+- Register CFG는 256 input × 27 alias 배치의 6,912개 정상 상태와 거부 8개, 재컴파일 27,680회 비교. 별도 exhaustive reference gate도 실행했다.
+- 자체 구성한 32/64비트 carry CFG는 reference/oracle 2,048개와 source ABI 거부 12개, 재컴파일 8,240회 비교. 실제 GPU CFG를 복원한 증거는 아니다.
+- 이번 단계의 새 C/Rust 비교 합계 48,208회가 통과했다. Rust 전체 48개, Python 24개, formatting과 warning-denied Clippy가 통과했다. 기존 carry/wave/SLA/layout/library와 역사적 artifact 재현도 통과했다.
+- `register_fir_reproduce.py`는 source·803-byte package·3 output 해시를 검사하고 native CLI 정상 상태 44개와 거부 3개를 독립 계산과 비교한다. CI가 고정 compiler commit으로 같은 gate를 실행한다.
+
+모든 syntactic path의 raw field·selector·flag 전제를 효과 전 검사한다. Untaken branch도 전제에 포함하며 거부 시 상태를 보존한다. 이 preflight는 guest fault semantics가 아니다. Cyclic graph는 저장·진단할 수 있지만 실행/source backend는 거부한다. **검증은 자체 작성 명세 기반이며, 루프 실행·GPU CFG·메모리·실제 binary function lifting은 아직 미지원이다.** 다음은 여러 instruction body의 상태·origin 계약을 연결하는 단계다.
 
 ## 남은 문제와 다음 구현
 

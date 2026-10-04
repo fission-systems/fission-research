@@ -41,7 +41,7 @@ Reports preserve unresolved types and unknown variadic evidence. These gates
 do not replace the product signature loader or establish callable ABI semantics.
 
 The second CI job fetches Fission compiler commit
-`2107f6295b8b891301a6aeb6652b5a9c749825b3` separately into `.compiler/`. It builds
+`7f7b22a344851aa6a5abcd3738fac979202f20eb` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -53,6 +53,19 @@ separate test covers 65,536 bounded inputs. `tools/structured_fir_reproduce.py`
 regenerates a locked v6 package and FIR/C/Rust outputs, then verifies 12 native
 CLI oracle cases and two failure cases. These are self-authored CFG fixtures,
 not real binary function decompilation or whole-function equivalence evidence.
+
+The v7 conversion/register CFG gate adds 24 conversion profiles and an
+exhaustive scalar register/flag diamond. Its C/Rust O0/O2 comparisons total
+48,208: conversions 12,288; register CFG 27,680; two constructed carry CFGs
+8,240 (including source ABI refusals). `tools/register_fir_reproduce.py`
+regenerates the locked 803-byte package and three outputs, then checks 44
+native CLI oracle states and three failures. Loops, memory, GPU CFG and real
+binary function lifting remain unsupported.
+
+```sh
+python3 tools/structured_fir_reproduce.py --fslc /absolute/path/to/fslc
+python3 tools/register_fir_reproduce.py --fslc /absolute/path/to/fslc
+```
 
 ```sh
 cargo test -p fission-fsl --test recompilation -- --nocapture

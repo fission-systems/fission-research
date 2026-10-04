@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "scope": "self-authored register/flag semantic-body CFG; no ISA/function/hardware oracle claim",
+  "package_sha256": "39c3146c31657708041b1e7cd4207876f3bb78c41c2fbf3106beec467f7154f1",
+  "artifacts_identical": 3,
+  "native_cli_oracle_cases": 44,
+  "native_cli_failure_cases": 3,
+  "compiler_commit": "7f7b22a344851aa6a5abcd3738fac979202f20eb",
+  "date": "2026-10-04",
+  "native_gate": {
+    "runner": "nextest --no-capture -j 1",
+    "passed": 48,
+    "skipped": 0,
+    "leaky": 0
+  },
+  "python_tests": 24,
+  "formatting": "passed",
+  "warning_denied_clippy": "passed",
+  "new_native_gates": {
+    "conversion": {
+      "profiles": 24,
+      "reference_oracle_states": 3072,
+      "c_rust_o0_o2_comparisons": 12288
+    },
+    "register_cfg": {
+      "reference_oracle_states": 6920,
+      "c_rust_o0_o2_comparisons": 27680,
+      "separate_exhaustive_alias_states": 6912
+    },
+    "constructed_carry_cfg": {
+      "widths": [
+        32,
+        64
+      ],
+      "reference_oracle_states": 2048,
+      "source_abi_failure_rows": 12,
+      "c_rust_o0_o2_comparisons": 8240
+    },
+    "total_new_c_rust_comparisons": 48208
+  },
+  "regressions": {
+    "v6_outputs_identical": 3,
+    "v6_native_cli_oracle_cases": 12,
+    "v6_native_cli_failure_cases": 2,
+    "historical_artifacts_identical": 9,
+    "migration_artifacts_identical": 4,
+    "layout_artifacts_identical": 4,
+    "sla_artifacts_identical": 3,
+    "library_candidates_identical": 31418,
+    "library_parameters_identical": 15455
+  },
+  "limits": [
+    "self-authored semantic-body CFG and widened integer oracle",
+    "one ordered mutable logical register/flag context; no first-class effect SSA",
+    "strict matching conversion signedness and 1..64 bit execution widths",
+    "conservative preflight includes untaken syntactic paths",
+    "mixed-width logical-slot fixture is not byte-layout binding validation",
+    "no real binary function lifting, loops, memory, calls or exceptions",
+    "no GPU CFG, hardware execution or whole-function equivalence",
+    "no structured native JIT/AOT or CUDA/PTX execution"
+  ]
+}

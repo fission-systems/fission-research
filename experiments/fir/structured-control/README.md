@@ -50,3 +50,5 @@ Structured GPU/SIMT 실행, register-state CFG, memory/exception/call, multi-ins
 binary function lifting, nested domain region, 구조 FIR의 native JIT/AOT 실행은
 미지원이다. 기존 GPU·register·native lift-record 소비자는 control body를 거부해
 flat op 테이블을 무조건 실행하지 못하도록 했다.
+
+후속 [v7 register-control slice](../register-control/README.md)는 확장·절단과 scalar register/flag CFG를 같은 FIR에 추가했다. 위 거부 범위와 측정 수치는 v6 단계의 역사적 기록이다.

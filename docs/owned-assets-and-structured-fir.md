@@ -25,7 +25,7 @@ FPK는 이미 Fission의 자체 컨테이너다. 기존 구현의 sorted text bl
 
 Ghidra의 raw P-code는 명령 하나를 varnode와 저수준 연산열로 번역한다. branch를 표현하고 graph 단계에서는 SSA 등의 분석 연산도 추가한다. 그러므로 문제를 “P-code에는 CFG가 없다”로 정의하지 않는다. 우리가 피하려는 것은 명령의 의미 경계, 타입, lane/VM/memory 도메인과 효과를 먼저 연산열로 풀고 이후 소비자가 재추측하는 경로다. [Ghidra P-code reference](https://ghidra.re/ghidra_docs/languages/html/pcoderef.html), [SLEIGH manual](https://ghidra.re/ghidra_docs/languages/html/sleigh.html).
 
-채택한 단일 FIR의 구조 계약은 다음과 같다. **2026-10-04에는 instruction semantic body의 block parameter·branch·join과 비순환 정수/스택 실행을 구현했다. Function lifting, nested domain region과 도메인 상태 전달의 전체 계약은 아직 설계 단계다.** [구현 범위와 재현](../experiments/fir/structured-control/README.md).
+채택한 단일 FIR의 구조 계약은 다음과 같다. **2026-10-04에는 instruction semantic body의 block parameter·branch·join과 비순환 정수/스택 실행을 구현했고, 후속 v7 slice는 확장·절단과 scalar register/flag CFG를 지원한다. Function lifting, nested domain region과 도메인 상태 전달의 전체 계약은 아직 설계 단계다.** [구현 범위와 재현](../experiments/fir/structured-control/README.md).
 
 | 구성 요소 | 보존할 의미와 검증 조건 |
 |---|---|
@@ -55,7 +55,7 @@ FSL / offline legacy importer
 ## 다음 구현과 수용 기준
 
 1. `.fslc` v6에 block parameter·terminator를 추가했다. 기존 단일 명령 패키지는 entry/return view로 읽으며 기존 바이트를 유지한다. 즉시값·비교·분기는 같은 FIR의 reference/C/Rust 경로에서 검증했다. 현재 범위는 비순환 정수/스택 semantic body다.
-2. 두 successor와 state join 사례에서 branch argument 타입·dominance·register alias·효과 순서를 검사한다. 기존 carry/lane/stack 의미는 회귀 비교한다.
+2. [register CFG 실험](../experiments/fir/register-control/README.md)에서 두 successor·join의 block scope·인자 타입·logical slot alias·효과 순서를 검사했다. First-class domain state/effect SSA와 GPU lane join은 다음 계약이다. 기존 carry/lane/stack 의미는 회귀 비교한다.
 3. predication/lane region에서 비활성 lane 보존과 scalar 효과 1회 실행을 확인한다. reconvergence와 barrier는 계약·검증이 갖춰진 후 지원한다.
 4. source/SLA 이관기를 그 구조 계약으로 확장하고, 미지원 constructor의 거부 사유를 유지한다. P-code opcode 복제나 독립 의미론 없는 opaque opcode는 대체 완료로 세지 않는다.
 5. profile manifest와 각 corpus family를 연결한 뒤 실제 decompiler routing을 전환한다. 자체 artifact만 설치한 실행과 기존 corpus 비교를 제품 전환의 gate로 둔다.
