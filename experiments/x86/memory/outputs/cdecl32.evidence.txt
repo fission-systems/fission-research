@@ -1,0 +1,8 @@
+input evidence mode=32 decoder=owned-x86-v1 input-sha256=03eb65ee1278aaea9e96db8222739d1ba135fbd627cad205af3cafa49abc3a34 package-sha256=c4cc794b0e8f103591df300da4fc1dcfa7edfb78dee9e0e015a7ee0385da9dad
+status=bounded-candidates convention=unselected return-register=0 source-types=unknown
+binary file-sha256=1e5840c7021534dde18c4871cedafb9a55c885be45549b8884cb709277a7f0fc file-offset=4096 section=".text"
+entry-register slot=4 role=address/stack-context confidence=dependency-only
+memory-read id=0 instruction=0x401000 raw=8b442408 fir-op=17 value-bits=32 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(4), offset: 8, bits: 32 })
+memory-read id=1 instruction=0x401004 raw=03442404 fir-op=17 value-bits=32 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(4), offset: 4, bits: 32 })
+memory-read id=2 instruction=0x401008 raw=c3 fir-op=2 value-bits=32 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 0, bits: 32 })
+limits=flat-memory; no ABI selection, source prototype, argument count, signedness, pointer type or completeness proof; unknown control analysis refuses

@@ -1,0 +1,349 @@
+{
+  "status": "passed",
+  "fixtures": [
+    {
+      "name": "cdecl32",
+      "mode": 32,
+      "input_sha256": "03eb65ee1278aaea9e96db8222739d1ba135fbd627cad205af3cafa49abc3a34",
+      "fir_states": 256,
+      "c_rust_O0_O2_comparisons": 1024,
+      "machine_execution": {
+        "adapter": "not available",
+        "result_and_defined_flags_cases": 0,
+        "compared_flags": [
+          "CF",
+          "PF",
+          "ZF",
+          "SF",
+          "OF",
+          "AF"
+        ],
+        "excluded": "all-register hardware snapshots, guest memory/fault/concurrency, arbitrary relocation, arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 96
+        },
+        "examples": [
+          {
+            "inputs": [
+              1,
+              15
+            ],
+            "legacy_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": "not run"
+          },
+          {
+            "inputs": [
+              1,
+              255
+            ],
+            "legacy_flags": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": "not run"
+          },
+          {
+            "inputs": [
+              1,
+              4294967295
+            ],
+            "legacy_flags": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": "not run"
+          },
+          {
+            "inputs": [
+              1,
+              2147483647
+            ],
+            "legacy_flags": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              0
+            ],
+            "fir_flags": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              1
+            ],
+            "original_machine_flags": "not run"
+          }
+        ],
+        "undefined_AF_samples_excluded": 0,
+        "baseline": "actual Fission SLA and canonical P-code evaluator; implementation differences, not P-code expressive limits"
+      }
+    },
+    {
+      "name": "pointer64",
+      "mode": 64,
+      "input_sha256": "620d79c713991a3cdfa8915af87b58fe672bc9f6fd18b966d5466becc4aef0c9",
+      "fir_states": 256,
+      "c_rust_O0_O2_comparisons": 1024,
+      "machine_execution": {
+        "adapter": "rosetta64",
+        "result_and_defined_flags_cases": 256,
+        "compared_flags": [
+          "CF",
+          "PF",
+          "ZF",
+          "SF",
+          "OF",
+          "AF"
+        ],
+        "excluded": "all-register hardware snapshots, guest memory/fault/concurrency, arbitrary relocation, arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 96
+        },
+        "examples": [
+          {
+            "inputs": [
+              1,
+              15
+            ],
+            "legacy_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "inputs": [
+              1,
+              255
+            ],
+            "legacy_flags": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": [
+              0,
+              1,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "inputs": [
+              1,
+              18446744073709551615
+            ],
+            "legacy_flags": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              0
+            ],
+            "fir_flags": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "original_machine_flags": [
+              1,
+              1,
+              1,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "inputs": [
+              1,
+              9223372036854775807
+            ],
+            "legacy_flags": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              0
+            ],
+            "fir_flags": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              1
+            ],
+            "original_machine_flags": [
+              0,
+              1,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "undefined_AF_samples_excluded": 0,
+        "baseline": "actual Fission SLA and canonical P-code evaluator; implementation differences, not P-code expressive limits"
+      }
+    },
+    {
+      "name": "pointer64_xor",
+      "mode": 64,
+      "input_sha256": "e6952e3140fb8cfb7b14260de57110c09cb6a9eefcf3a7bb3acb3ddee407ff76",
+      "fir_states": 256,
+      "c_rust_O0_O2_comparisons": 1024,
+      "machine_execution": {
+        "adapter": "rosetta64",
+        "result_and_defined_flags_cases": 256,
+        "compared_flags": [
+          "CF",
+          "PF",
+          "ZF",
+          "SF",
+          "OF"
+        ],
+        "excluded": "all-register hardware snapshots, guest memory/fault/concurrency, arbitrary relocation, arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 0
+        },
+        "examples": [],
+        "undefined_AF_samples_excluded": 256,
+        "baseline": "actual Fission SLA and canonical P-code evaluator; implementation differences, not P-code expressive limits"
+      }
+    }
+  ],
+  "scope": "three compiled leaf ELF spans; no global decompiler quality or full x86/ABI equivalence claim",
+  "validator_sha256": "6008c9fed886c37b4140cdb38bbc655d13b5c2f05d4c94b63407fbf6a334d74d",
+  "compiler_executable_sha256": "35e4c5204cb6f0a5792195c5f1209958a11681948e67874218cf4195f796db0c",
+  "tools": {
+    "cc": "Homebrew clang version 22.1.8",
+    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+    "host_system": "Darwin",
+    "host_machine": "arm64"
+  },
+  "baseline_provenance": {
+    "checkout_commit": "dc665c7c9341e76587ceb968849f604083245949",
+    "source_sha256": {
+      "crates/fission-emulator/examples/x86_fir_baseline.rs": "1ab68ec61b34e9e5364839a54f43e0903f51abf9066c37cea4abb28f9e938a65",
+      "crates/fission-emulator/src/pcode/eval.rs": "f56ad05a0545e582a3abcf776340f38a888dd76d90c4f230acb24dcf77f4d998",
+      "utils/sleigh-specs/languages/x86/ia.sinc": "46bba656291d90c2ef801be4a78664dd5914ca05b85e59e9bfdeb26068fe9784",
+      "utils/sleigh-specs/compiled/x86/x86-64.sla": "d5adc314e2278228b380d8f653b2b579fa4a65986bb1d39b095e461fd5432481",
+      "utils/sleigh-specs/compiled/x86/x86.sla": "148ac1b90dede3d080064ca4a171f8b4c85576db41122c2c9e4de52da8a405dd"
+    },
+    "executable_sha256": "42824c0c0ed6639f90f8e2712f726471c8da679472126e60be5a9e4d4db98262"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "format": "x86-memory-source-v1",
+  "source_commit": "96fc71f75cecdee305faf9497561c577a8955468",
+  "fixture_compiler": "Homebrew clang/LLD 22.1.8",
+  "fixture_command": "clang --target={i386|x86_64}-pc-linux-gnu -O2 -fno-asynchronous-unwind-tables -fno-stack-protector -fuse-ld=lld -nostdlib -static -Wl,-e,fsl_add -Wl,-Ttext=0x401000 -Wl,--build-id=none SOURCE -o ELF",
+  "inputs": {
+    "fixtures/cdecl32.c": "78c4f15262063bff97b6a79c0566f2a1600c6368ee259824d20c29dd458f88c6",
+    "fixtures/cdecl32.elf": "1e5840c7021534dde18c4871cedafb9a55c885be45549b8884cb709277a7f0fc",
+    "fixtures/pointer64.c": "3a0317962c6742656cf0648cdec50bdd989bba5a32bf58bb5396b53a68fc1b06",
+    "fixtures/pointer64.elf": "90e5c3a8c2ee6136272f708cf638fd4cb222320153f45d8bec7fa0dbdbc97578",
+    "specs/migration.json": "a670ed58e0318ba6310a9689da4a45556a5a4e643ce4ed68d6ecf9b06e5d184c",
+    "specs/scalar-bodies.fsl": "c95db8067d7d3893369c131aa273105dadbfa86e8d5aa8c01d3340a27fbc79f5",
+    "specs/scalar.fslx": "d819f2fb868e594e523b6ec0d178c256cdd0aafe2af4b714c9f8f5a7e84ca338",
+    "specs/x86-32.fslregs": "95b3b91c35787e56158794c2129dc99f992c227a6ef9b8502cd156cf03a61787",
+    "specs/x86-64.fslregs": "61454c365a8800027cc5d96e67d0e04919b57e52b101bcb17ffb18b46b64eb4b",
+    "fixtures/pointer64_xor.c": "3a8363f1d89528d53bee5b6b39c0a3d66465b5cdd5f21bec3fa306340868cce1",
+    "fixtures/pointer64_xor.elf": "3c471b98aa445c254e1fd5483f31300ee3e5ca04dec63efd27a8511f97e15846"
+  },
+  "package_sha256": "c4cc794b0e8f103591df300da4fc1dcfa7edfb78dee9e0e015a7ee0385da9dad",
+  "fixtures": [
+    {
+      "name": "cdecl32",
+      "mode": 32,
+      "hex": "8b44240803442404c3",
+      "file_offset": 4096,
+      "operation": "add"
+    },
+    {
+      "name": "pointer64",
+      "mode": 64,
+      "hex": "488b4708480307c3",
+      "file_offset": 4096,
+      "operation": "add"
+    },
+    {
+      "name": "pointer64_xor",
+      "mode": 64,
+      "hex": "488b4708483307c3",
+      "file_offset": 4096,
+      "operation": "xor"
+    }
+  ],
+  "output_sha256": {
+    "outputs/cdecl32.c": "083766223a27221dba241eb6987f26332ea432c79d9d047947fa4f1f643f261c",
+    "outputs/cdecl32.evidence.txt": "d5bda60608e3f8eae9c68e312775fbed9a49f56931934c50386a2201e29088e9",
+    "outputs/cdecl32.fir": "b0c5039ca01c20806b7f6ea2ab1192ef8515476c4832ea3b497f189009aa6b87",
+    "outputs/cdecl32.rs": "ec9dab26a78034f5b396c812adb110bfba502dcdb33404d0d0677942ad08b464",
+    "outputs/pointer64.c": "8cf97cfb685c30218003f16b47a4a9d9e418321297e8f1dcfbd729d4c104f329",
+    "outputs/pointer64.evidence.txt": "0d3f88798c31aa595d57afad6a60202a93e7b9faf319de775e267d6337d1e21b",
+    "outputs/pointer64.fir": "9e61fd3ebc0cb989577fcd039273f104cbc1087d3602f009dad5de827027952f",
+    "outputs/pointer64.rs": "cb30c546fe04ccbded4b325092668e60910e3ffff1b53f71b5dc86c832d1541c",
+    "outputs/pointer64_xor.c": "2e1199085d00c1ca652750bc16df964bce311331ad5ce2d531f6763ae9dd1aea",
+    "outputs/pointer64_xor.evidence.txt": "72b81cd55c3389713832d3fda29416b5be844ce9af13bb50bc2b2193e8b75162",
+    "outputs/pointer64_xor.fir": "4a83e8b06f0d6188f0baddafdf7265db396bf4a291125bf97817dd951616402e",
+    "outputs/pointer64_xor.rs": "ad2a07bdef84c184e9f94fb19461fb98f4da6fe36f796d9b5e1873c43cb76af7"
+  },
+  "compiler_commit": "dc665c7c9341e76587ceb968849f604083245949"
+}
