@@ -1,7 +1,7 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
 > 아래는 2026-10-05 스냅샷이다. 2026-10-11의 자체 x86 디코드·FIR 출력과 현재 한계는
-> [x86 연구 기록](../experiments/x86/README.md)과 [research-status](research-status.md)를 먼저 읽는다.
+> [현재 x86 이관 계약](ai-handoff-x86.md)과 [research-status](research-status.md)를 먼저 읽는다.
 > 외부 instruction decoder 의존성 없이 진행한다. Branch/dirty 상태는 시작 시 다시 확인한다.
 
 작성·상태 확인: **2026-10-05, Asia/Seoul**.
@@ -278,7 +278,7 @@ GPU memory/kernel ABI, 일반 SLA migration, 최종 machine-code backend는 후�
   CI compiler pin을 업데이트하고 연구 `main`에 commit/push한다.
 - PR #176을 업데이트하고 merge하지 않는다. 이번 문서 작성은 다음 단계 구현이 아니다.
 
-## 9. 다른 AI에게 전달할 시작 프롬프트
+## 9. 과거 시작 프롬프트 — 현재 작업에는 위 x86 이관 계약 사용
 
 ```text
 Fission FSL/FIR 연구를 이어받아 주세요.

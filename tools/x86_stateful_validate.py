@@ -324,6 +324,9 @@ def validate(cli, baseline, cc, rustc, work, host):
                 rollback_failure_budget=failure_budget,
                 machine_execution=dict(
                     adapter=host if machine else "not available",
+                    adapter_executable_sha256=(
+                        digest(Path(machine[-1])) if machine else "not available"
+                    ),
                     cases=machine_cases,
                     observables="result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
                     excluded="full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI",
@@ -333,6 +336,7 @@ def validate(cli, baseline, cc, rustc, work, host):
         )
     return dict(
         status="passed",
+        source_lock_sha256=digest(GOLDEN / "source.lock.json"),
         fixtures=reports,
         scope="three compiled stack/store spans; no full x86, ABI recovery or whole-function equivalence proof",
     )
@@ -379,6 +383,7 @@ def main():
             host,
         )
     r["validator_sha256"] = digest(Path(__file__))
+    r["shared_oracle_model_sha256"] = digest(ROOT / "tools/x86_semantics_validate.py")
     r["expected_native_compiler_commit"] = json.loads(
         (GOLDEN / "source.lock.json").read_text()
     )["native_compiler_commit"]

@@ -23,8 +23,8 @@ count를 만들어 예쁜 출력을 얻는 방식은 검증 계약으로 인정�
 | 원본 근거 | x86 raw bytes/address/span/input·package hash/spec evidence | relocation/symbol/DWARF의 통합 query와 충돌 추적 |
 | 구조 | typed FIR block arguments/branches; bounded body execution | recovered guest CFG joins/loops와 domain regions |
 | 상태 | register/flag/lane effects, x86 six known bits | first-class definedness, ordered effect identities |
-| 메모리 | bounded readonly flat byte window | address spaces, store/order/atomic/barrier/fault contracts |
-| ABI | metadata linking 및 straight leaf input dependency 후보 | stack frame/call/return, convention allocation 및 검증 |
+| 메모리 | bounded readonly/mutable flat byte window, ordered store, conservative forwarding/alias evidence | address spaces, guest ordering/atomic/barrier/fault contracts |
+| ABI | metadata linking, 제한된 stack frame/spill 복구와 input dependency 후보 | call/return, convention allocation 및 검증 |
 | 출력 | 동일 FIR에서 explicit-state C/Rust 및 제한된 GPU 출력 | 더 많은 executable backend와 runtime 계약 |
 
 현재 FIR의 flat memory가 P-code의 space ID보다 풍부하다고 주장하지 않는다.
@@ -45,5 +45,8 @@ FIR metadata와 구조의 효과를 보려면 같은 input corpus와 독립 orac
 
 3번 controlled ablation과 동일 coverage의 일반 함수 비교는 아직 수행하지 않았다.
 [세 leaf 실행 실험](../experiments/x86/memory/README.md)은 1번과 제한된 2번의 시작이다.
+후속 [store·stack frame 실험](../experiments/x86/stateful/README.md)도 같은 두 단계의
+제한된 실행 비교다. Store-forwarding/alias 후보가 source-level ABI 복구의 정확도를
+얼마나 바꾸는지는 아직 별도로 측정하지 않았다.
 현재 관찰로는 AF 명세 누락을 찾았고 undefined AF를 정확도에서 제외했다는 주장만 한다.
 FIR/P-code 전체 아키텍처의 우열이나 전체 x86 migration 성공을 주장하지 않는다.

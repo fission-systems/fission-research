@@ -27,6 +27,16 @@
 외부 instruction decoder나 새 dependency/Cargo.lock 변경은 없다. 기존 Fission loader,
 canonical FIR validator/evaluator/emitter를 사용하며 production main을 변경하지 않는다.
 
+### 추가 방식 기록
+
+| 추가 | 명세 | 공통 primitive / ISA operand binding |
+|---|---|---|
+| MOV register→memory | 값·주소 폭 조합 9 bodies | 공통 `MemoryStoreLittle` 1개; 기존 ModRM/SIB reader의 memory-destination 연결 확장 |
+| PUSH/POP register | 폭 16/32/64의 6 bodies, encoding rules 2개 | 위 store primitive 공유; x86 operand forms `push_reg`/`pop_reg` 2개 추가 |
+
+아키텍처별 arithmetic semantic executor는 0개다. 이번 추가는 compiler/reader도
+변경했으므로 **15개 body의 명세-only 추가 성공률로 계산하지 않는다.**
+
 ## 고정 compiled ELF
 
 | 함수 | 생성 조건 | 실제 효과 |
@@ -39,6 +49,9 @@ canonical FIR validator/evaluator/emitter를 사용하며 production main을 변
 원본 bytes, package 및 12개 FIR/C/Rust/input-evidence hash는 `source.lock.json`에 있다.
 Oracle adapter는 locked ELF bytes를 그대로 내장한다. 이 세 span은 PC-relative 참조가
 없어서 adapter 주소로 이동 가능하다. 임의 바이너리 relocation 지원을 주장하지 않는다.
+64-bit adapter는 RBP를 indirect target의 입력 레지스터로 배정하지 못하게 하고,
+call-site stack alignment를 검사한다. Adapter executable 및 source lock와 공통
+arithmetic oracle module의 SHA-256도 실행 report에 기록한다.
 
 ## 입력 근거와 별칭
 

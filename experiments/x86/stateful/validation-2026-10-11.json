@@ -1,5 +1,6 @@
 {
   "status": "passed",
+  "source_lock_sha256": "7f3409c8799c5907feea227ac8de83933aa8be2c9c3174e53557165ca31e8834",
   "fixtures": [
     {
       "name": "frame32",
@@ -9,6 +10,7 @@
       "rollback_failure_budget": 1,
       "machine_execution": {
         "adapter": "not available",
+        "adapter_executable_sha256": "not available",
         "cases": 0,
         "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
         "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
@@ -38,6 +40,7 @@
       "rollback_failure_budget": 1,
       "machine_execution": {
         "adapter": "rosetta64",
+        "adapter_executable_sha256": "8285962de4a42c9e0d8ab548b24e62f26af2f60e509c7c6ef6d993648a9a78f6",
         "cases": 256,
         "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
         "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
@@ -67,6 +70,7 @@
       "rollback_failure_budget": 3,
       "machine_execution": {
         "adapter": "rosetta64",
+        "adapter_executable_sha256": "1ad19dca99af97bfe8e9bfdd45b22dae2a6a23f81d4666ea2524c422f0222c8a",
         "cases": 256,
         "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
         "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
@@ -90,7 +94,8 @@
     }
   ],
   "scope": "three compiled stack/store spans; no full x86, ABI recovery or whole-function equivalence proof",
-  "validator_sha256": "01292934313288efa62fd07592aaa811a4001c0dcbb5c5b737a659d26c6d87be",
+  "validator_sha256": "f897a60e3251048d579c3081351ee21f7d0040750bc748a3bacbb1c931485aca",
+  "shared_oracle_model_sha256": "6008c9fed886c37b4140cdb38bbc655d13b5c2f05d4c94b63407fbf6a334d74d",
   "expected_native_compiler_commit": "8211a05610204670a4f5542298d8a4e0d9fe5983",
   "compiler_executable_sha256": "d5b76716959ddeae829fce5910a2594334c14239aa235c37b684b494ce37f8ed",
   "tools": {
