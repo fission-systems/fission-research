@@ -1,0 +1,96 @@
+{
+  "format": "owned-x86-reproduction-v1",
+  "compiler": "Homebrew clang 22.1.8; LLD 22.1.8",
+  "binary_build_command": "clang --target={i386|x86_64}-pc-linux-gnu -O2 -fno-asynchronous-unwind-tables -fno-stack-protector -fuse-ld=lld -nostdlib -static -no-pie -Wl,-e,fsl_add -Wl,-Ttext=0x401000 -Wl,--build-id=none SOURCE -o ELF",
+  "input_sha256": {
+    "fixtures/add32.c": "1b82bbb1c319d845d34f9a60eb9e5f46a0d25fb980c3dfc184d7ecfff09c24c0",
+    "fixtures/add32.elf": "7d74d7aee6953af304cd24741c97abc291e579d45d146234c069face64f6179a",
+    "fixtures/add64.c": "a342a8ef14df8bd8d71dc3ddc80efec0308e8d22229a45aedcae6ac495c6f699",
+    "fixtures/add64.elf": "588d20aa4045b9e6694a8d39931f0bbf10881bfcf1b0090a4b3830ba2704184f",
+    "specs/migration.json": "699f240241e49e62e5d970c21aa5d5b9ac2588af6c4ff2ac8fba0d189b3c33ce",
+    "specs/scalar-bodies.fsl": "dd2420ba98be26839d4ba8ed1bc415c391d2fbd2b93d1eeb4e0b8159c1602ed4",
+    "specs/scalar.fslx": "d819f2fb868e594e523b6ec0d178c256cdd0aafe2af4b714c9f8f5a7e84ca338",
+    "specs/x86-32.fslregs": "95b3b91c35787e56158794c2129dc99f992c227a6ef9b8502cd156cf03a61787",
+    "specs/x86-64.fslregs": "61454c365a8800027cc5d96e67d0e04919b57e52b101bcb17ffb18b46b64eb4b"
+  },
+  "package_sha256": "0423223eaf7238013177aceb9b7c09f7448a682752668e3124ab9c651b46515a",
+  "flags": "0,0,0,0,0,0,1,1,1,1,1,1",
+  "memory_base": "0x2000",
+  "memory_hex": "efbeadde00000000",
+  "budget": 100,
+  "fixtures": [
+    {
+      "name": "scalar-16",
+      "mode": 16,
+      "address": "0x1000",
+      "kind": "raw",
+      "hex": "b80700bb050001d8c3",
+      "registers": "0,0,0,0,8192,0,0,0,0,0,0,0,0,0,0,0,0",
+      "output_sha256": {
+        "fir": "0e75cb2af2dbc006c2ea5a647a055cab4a77df8978e3a13914d99fc6e48005d6",
+        "c": "8dc98d7124a7f1e9ebe9afe0eac1303365dd4e8871499efab8e9f92c3e16b0b8",
+        "rs": "2580f0604deac6f52e7b3ae92b1c88ebd9955bdc444f169f3ba7281b11c92005",
+        "execution.txt": "03ca7b9145bce4aa840f993f3946bfa4e6d55b28afe38a8eef8ed770f54b0a7e"
+      }
+    },
+    {
+      "name": "scalar-32",
+      "mode": 32,
+      "address": "0x1000",
+      "kind": "raw",
+      "hex": "b807000000bb0500000001d8c3",
+      "registers": "0,0,0,0,8192,0,0,0,0,0,0,0,0,0,0,0,0",
+      "output_sha256": {
+        "fir": "c624bb4ae440c93a66bb1f0fb5e5d67f44a30041f3e8aaae02fdcb24e2c1f1b1",
+        "c": "fca757a4e19b8f4625fee99581ef30ca0e6610525a11774401180f177d40064d",
+        "rs": "406a055d92975c3a4399141cfecba095574e98205e3a81bfabbe685e069af717",
+        "execution.txt": "5984cc94baa4bb0057e63d9088c0f61c53274a0fce31f6830e099d5b366d6d42"
+      }
+    },
+    {
+      "name": "scalar-64",
+      "mode": 64,
+      "address": "0x1000",
+      "kind": "raw",
+      "hex": "48b8070000000000000048bb05000000000000004801d8c3",
+      "registers": "0,0,0,0,8192,0,0,0,0,0,0,0,0,0,0,0,0",
+      "output_sha256": {
+        "fir": "f6634fbbd612a9698d3a86d8d6c6b303cb85c6afefab2b35e66d3f6375705e88",
+        "c": "f054272c4969a8ed3593cda038d198751a4d4ae997bbca10d612bc1b5f1a49b5",
+        "rs": "1c4896871d9102db58fa4fdb4e9f74bfc6c5cf99bc538deaf5ec3ffe158da2c5",
+        "execution.txt": "0e818b0b7160aeedc108704f9fd86caacc094148bb53f5ef6b23c804f7246bac"
+      }
+    },
+    {
+      "name": "elf-32",
+      "mode": 32,
+      "address": "0x401000",
+      "kind": "binary",
+      "binary": "fixtures/add32.elf",
+      "size": 3,
+      "registers": "7,0,5,0,8192,0,0,0,0,0,0,0,0,0,0,0,0",
+      "output_sha256": {
+        "fir": "35e647de0ec4b6b1b4ce46a2a6385dfbb178948628f70612b8e4b02d343af432",
+        "c": "b86b1a11b2015799a4e1d59a63b2a5843f96d1af7e8ea5768ccdcd99004b69e2",
+        "rs": "a778d1dab2e796f19c2940ad108009b0125452fce9826a975c927318c4f02f0c",
+        "execution.txt": "fdc11952cbd051872be92e8942c904103468af93178e68508026a4afaa70401c"
+      }
+    },
+    {
+      "name": "elf-64",
+      "mode": 64,
+      "address": "0x401000",
+      "kind": "binary",
+      "binary": "fixtures/add64.elf",
+      "size": 5,
+      "registers": "0,0,0,0,8192,0,5,7,0,0,0,0,0,0,0,0,0",
+      "output_sha256": {
+        "fir": "7e66654c1f5522e2d7bf8a6a4eb5644c55e6552c8707c542ceb4ab7721d3f193",
+        "c": "6ef428ca4614b0140710ee92d4a1c515315551abe51ebd9fcb6a3a604c55f9b3",
+        "rs": "fd4dd989df5a11e8e06b45a9587240beda4452d4ce427e42e7755ed50e4ab130",
+        "execution.txt": "d3d012a19364dff0cd960c0835b0f25a8a2736e7ad2013d1e544469436b2e718"
+      }
+    }
+  ],
+  "native_compiler_commit": "55905c3975bc362d4121d0e11b7f60248fc555b9"
+}
