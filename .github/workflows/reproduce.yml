@@ -74,11 +74,15 @@ jobs:
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: '3.12'
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.25.5'
+          cache: false
       - name: Fetch pinned experimental compiler
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin cc02f3be760e43153ccb212d3640d45905e3b8c6
+          git -C .compiler fetch --depth=1 origin 97366a84157afe163236a99e309fcd4fbfb8e2ae
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -160,6 +164,17 @@ jobs:
         with:
           name: output-backend-contract
           path: artifacts/output-backend.json
+          if-no-files-found: ignore
+      - name: Validate Go against independent state models and C/Rust
+        run: |
+          cargo +1.98.1 test --manifest-path .compiler/Cargo.toml --locked -p fission-fsl --features x86 --test go_backend
+          python3 tools/go_backend_validate.py --fsl-x86 .compiler/target/debug/fsl-x86 --fslc .compiler/target/debug/fslc --cc clang-18 --rustc 'rustup run 1.98.1 rustc'
+      - name: Preserve Go execution and source evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: go-backend-contract
+          path: artifacts/go-backend.json
           if-no-files-found: ignore
       - name: Reproduce structured FIR and execute native branches
         run: |

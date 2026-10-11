@@ -118,9 +118,9 @@ def reproduce(cli, cc, rustc, record=False):
                         execution_equivalence="not measured by this gate",
                     )
                 )
-        unregistered = work / "unsupported-go"
+        unregistered = work / "unsupported-python"
         refused = subprocess.run(
-            [str(x) for x in [cli, "bundle-binary", *ctx, "go", unregistered]],
+            [str(x) for x in [cli, "bundle-binary", *ctx, "python", unregistered]],
             capture_output=True,
         )
         if refused.returncode == 0 or unregistered.exists():

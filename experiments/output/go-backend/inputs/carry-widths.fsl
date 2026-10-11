@@ -1,0 +1,79 @@
+# Synthetic fixed-width arithmetic contract; not an ISA profile.
+language go.arithmetic {
+byte_order little; address_unit byte;
+instruction carry1 {
+ encoding 32 mask 0xfffff000 value 0x1000 {
+  field left offset 0 bits 4; field right offset 4 bits 4; field destination offset 8 bits 4;
+ }
+ mnemonic "synthetic.carry1";
+ evidence "self-authored" "synthetic" "v1" "Carry-in/out and ordered read/write at width 1; no ISA claim.";
+ semantics {
+  %left: u1 = register.read left;
+  %right: u1 = register.read right;
+  %carry_in: u1 = flag.read 0;
+  %sum: u1 = u1.add.carry %left, %right, %carry_in;
+  %carry: u1 = int.add.carry.in %left, %right, %carry_in;
+  register.write destination, %sum; flag.write 0, %carry;
+ }
+}
+instruction carry8 {
+ encoding 32 mask 0xfffff000 value 0x2000 {
+  field left offset 0 bits 4; field right offset 4 bits 4; field destination offset 8 bits 4;
+ }
+ mnemonic "synthetic.carry8";
+ evidence "self-authored" "synthetic" "v1" "Carry-in/out and ordered read/write at width 8; no ISA claim.";
+ semantics {
+  %left: u8 = register.read left;
+  %right: u8 = register.read right;
+  %carry_in: u1 = flag.read 0;
+  %sum: u8 = u8.add.carry %left, %right, %carry_in;
+  %carry: u1 = int.add.carry.in %left, %right, %carry_in;
+  register.write destination, %sum; flag.write 0, %carry;
+ }
+}
+instruction carry16 {
+ encoding 32 mask 0xfffff000 value 0x3000 {
+  field left offset 0 bits 4; field right offset 4 bits 4; field destination offset 8 bits 4;
+ }
+ mnemonic "synthetic.carry16";
+ evidence "self-authored" "synthetic" "v1" "Carry-in/out and ordered read/write at width 16; no ISA claim.";
+ semantics {
+  %left: u16 = register.read left;
+  %right: u16 = register.read right;
+  %carry_in: u1 = flag.read 0;
+  %sum: u16 = u16.add.carry %left, %right, %carry_in;
+  %carry: u1 = int.add.carry.in %left, %right, %carry_in;
+  register.write destination, %sum; flag.write 0, %carry;
+ }
+}
+instruction carry32 {
+ encoding 32 mask 0xfffff000 value 0x4000 {
+  field left offset 0 bits 4; field right offset 4 bits 4; field destination offset 8 bits 4;
+ }
+ mnemonic "synthetic.carry32";
+ evidence "self-authored" "synthetic" "v1" "Carry-in/out and ordered read/write at width 32; no ISA claim.";
+ semantics {
+  %left: u32 = register.read left;
+  %right: u32 = register.read right;
+  %carry_in: u1 = flag.read 0;
+  %sum: u32 = u32.add.carry %left, %right, %carry_in;
+  %carry: u1 = int.add.carry.in %left, %right, %carry_in;
+  register.write destination, %sum; flag.write 0, %carry;
+ }
+}
+instruction carry64 {
+ encoding 32 mask 0xfffff000 value 0x5000 {
+  field left offset 0 bits 4; field right offset 4 bits 4; field destination offset 8 bits 4;
+ }
+ mnemonic "synthetic.carry64";
+ evidence "self-authored" "synthetic" "v1" "Carry-in/out and ordered read/write at width 64; no ISA claim.";
+ semantics {
+  %left: u64 = register.read left;
+  %right: u64 = register.read right;
+  %carry_in: u1 = flag.read 0;
+  %sum: u64 = u64.add.carry %left, %right, %carry_in;
+  %carry: u1 = int.add.carry.in %left, %right, %carry_in;
+  register.write destination, %sum; flag.write 0, %carry;
+ }
+}
+}

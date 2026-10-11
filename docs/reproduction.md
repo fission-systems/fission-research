@@ -205,3 +205,17 @@ This compares 18 locked metadata artifacts and six unchanged source files,
 compiles six bundles and checks seven refusals. It does not measure execution
 equivalence. The existing x86 immediate validator remains a separate regression
 gate. See [the contract and limits](../experiments/output/backend-contract/README.md).
+
+## Go execution projection
+
+```sh
+python3 tools/go_backend_validate.py --fsl-x86 /absolute/path/to/fsl-x86 \
+  --fslc /absolute/path/to/fslc --go go --cc clang-18 \
+  --rustc 'rustup run 1.98.1 rustc'
+```
+
+This reuses six locked ELF fixtures and independent state/byte expectations.
+16 Go source files reproduce; Go runs at default and disabled optimizations,
+C/Rust O0/O2 run the same window cases. Synthetic domains are separate evidence.
+Linux host amd64/386 archive builds are not execution on those hosts.
+[Inputs, counts and limitations](../experiments/output/go-backend/README.md).

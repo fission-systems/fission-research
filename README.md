@@ -8,7 +8,7 @@
 
 최신 x86 실험은 [변위·즉시값 분리와 16/32/64비트 메모리 쓰기](experiments/x86/immediate/README.md)다. 이전 [store·스택 프레임 실험](experiments/x86/stateful/README.md)과 [readonly memory 단계](experiments/x86/memory/README.md)도 유지한다. [초기 자체 x86 연구 기록](experiments/x86/README.md)의 artifact도 유지한다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
 
-[SLEIGH/NIR/HIR 대비 성숙도 비교](docs/fsl-fir-maturity-comparison.md)와 [C/Rust 공통 출력 backend 실험](experiments/output/backend-contract/README.md)을 추가했다. 출력 admission·artifact bundle·컴파일·실행 증거를 각각 기록한다. Go/Python/Java 출력과 일반 함수 복구는 아직 미지원이다.
+[SLEIGH/NIR/HIR 대비 성숙도 비교](docs/fsl-fir-maturity-comparison.md)와 [C/Rust 공통 출력 backend 실험](experiments/output/backend-contract/README.md)을 추가했다. 출력 admission·artifact bundle·컴파일·실행 증거를 각각 기록한다. [Go backend](experiments/output/go-backend/README.md)는 같은 FIR 계약의 instruction/window 출력을 지원한다. Python/Java 출력과 일반 함수 복구는 아직 미지원이다.
 
 ### 연구 성숙도
 
@@ -29,7 +29,7 @@
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM·GPU·eBPF·자체 CFG 및 x86 ELF spans; 각 stateful/immediate gate의 x86 상태 768개 / C·Rust O0·O2 성공·rollback 실행 6,144회; 전체 함수 동치 증명은 아님 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
-| 범용 출력 인터페이스 | borrowed FIR 기반 descriptor/plan/emit과 registry; C11/Rust 2021 연결, Go 및 managed 언어 미구현 |
+| 범용 출력 인터페이스 | borrowed FIR 기반 descriptor/plan/emit과 registry; C11/Rust 2021/Go 1.25 연결; managed 언어 미구현 |
 | AI 평가 | 계획·설계 단계 |
 
 [순차 명령·상태/origin 실험](experiments/fir/sequence/README.md)은 명시한 window의 두 scalar body와 세 register CFG body 연결을 검증했다. 실제 함수 발견·분기 대상 복원은 지원하지 않는다.

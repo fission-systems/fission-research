@@ -1,5 +1,9 @@
 # Source backend contract — first slice
 
+Historical snapshot at `cc02f3be7`. [The Go continuation](../go-backend/README.md)
+now registers Go. Current reproduction uses an unregistered Python refusal;
+the previous report correctly preserves its observed Go refusal.
+
 The native experimental branch now provides `OutputBackend` descriptor/plan/emit
 and an in-process registry. C11 and Rust 2021 use borrowed canonical FIR through
 this interface; the existing rendering implementations and source bytes remain

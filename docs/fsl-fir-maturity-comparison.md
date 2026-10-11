@@ -11,8 +11,8 @@ benchmark를 이번 단계에서 다시 측정한 결과는 아니다. 성숙도
 | ISA 자산 | 다수 SLEIGH/SLA, context와 operand/template 처리 경로 | x86 v2 48 encoding rules / 150 폭별 body, GPU·eBPF·JVM의 작은 slice | 전체 명령·prefix·context·예외 이관에서 매우 큼 |
 | 의미 표현 | P-code lifting과 이후 NIR/HIR 분석·표현 | 단일 typed FIR, ordered register/flag/memory/lane effects, block 인자·분기 | FIR의 새 철학을 시험할 기반은 있으나 넓은 의미 coverage가 없음 |
 | 함수 분석 | CFG, normalization, structuring, 타입·call fact 전달 경로 | caller 지정 x86 spans, entry dependency·store/alias 후보와 명시적 상태 | 일반 CALL/ABI/CFG·타입 복구가 가장 큰 격차 |
-| 디컴파일 출력 | 제품 CLI의 C 지향 함수 출력 경로 | 제한된 계약의 C/Rust 상태 실행 코드; stack FIR CUDA/PTX reference | 일반 소스 함수·프로젝트 재구성 수준에 못 미침 |
-| 출력 확장 | 기존 renderer와 제품 경로 | 이번 단계에서 C/Rust 공통 backend plan/bundle/registry | 확장 계약을 도입했지만 Go/Python/Java는 미구현 |
+| 디컴파일 출력 | 제품 CLI의 C 지향 함수 출력 경로 | 제한된 계약의 C/Rust/Go 상태 실행 코드; stack FIR CUDA/PTX reference | 일반 소스 함수·프로젝트 재구성 수준에 못 미침 |
+| 출력 확장 | 기존 renderer와 제품 경로 | C/Rust/Go 공통 backend plan/bundle/registry | 확장 계약을 도입했지만 Go의 제한된 실행 출력을 검증했으며 Python/Java는 미구현 |
 | 통합 | loader→facts→decompiler와 테스트·benchmark 인프라 | 실험 crate/CLI에서 기존 loader를 재사용 | 제품 기본 경로 전환·자산 전체 대체는 미완료 |
 | 정확성 증거 | 기존 테스트/평가 경로가 있으나 모든 함수 동치 보장은 없음 | 제한된 state/byte/재컴파일/original 실행 비교와 실패 시 상태 보존 | 실험의 엄밀함과 제품 범위는 별개; 광범위 비교가 더 필요 |
 

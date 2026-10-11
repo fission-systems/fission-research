@@ -1,0 +1,88 @@
+{
+  "status": "passed",
+  "x86": [
+    {
+      "fixture": "stateful-frame32",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "b92f96e9a69c108d5a94e523eafa5be17032af5e7e12ba6118228c172c6f9b06"
+    },
+    {
+      "fixture": "stateful-frame64",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "1617d770c8628aa53525839a1d5b0d6826be0b4d4016822473e44fcf7bfe659a"
+    },
+    {
+      "fixture": "stateful-store64",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "28f7a19018f3b0c12d8caf1ba90929692407a885380d728f33ec3b2ce134f52c"
+    },
+    {
+      "fixture": "immediate-imm16",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "a9dd19d1da2b875e7bc0e5509c42595483a2cd548bc8222290fb0aa596baf169"
+    },
+    {
+      "fixture": "immediate-imm32",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "aa5e516ce465084167f667d816d0927e63c6317fc7a42508ac86eb1d1fd14740"
+    },
+    {
+      "fixture": "immediate-imm64",
+      "go_comparisons": 1024,
+      "c_rust_comparisons": 2048,
+      "source_sha256": "c14c8220c29e8a9aef480079ab64fc117cb98a9c7c6504c6ba88af0734e5f096"
+    }
+  ],
+  "domain_comparisons": 18426,
+  "host_cross_compilations": 12,
+  "source_artifacts": 16,
+  "scope": "bounded Go/C/Rust state and memory comparisons; synthetic domains; no original machine execution in this gate or full-function equivalence",
+  "tools": {
+    "go": "go version go1.25.5 darwin/arm64",
+    "cc": "Homebrew clang version 22.1.8",
+    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)"
+  },
+  "validator_sha256": "f4ef73eb40ba2ffeff9a834512d57084537a8dcec0d3e3fe99f0a1e77b888473",
+  "shared_models_sha256": {
+    "x86_semantics_validate.py": "6008c9fed886c37b4140cdb38bbc655d13b5c2f05d4c94b63407fbf6a334d74d",
+    "x86_stateful_validate.py": "8d793089d4f6ebedad51fdbe76416d6d6bbd89d7503067d1fb3deee751ce14e4"
+  },
+  "source_lock_sha256": "7edb823815e0ffeb5dc93d25d71436709a82809780e21d0e4221d934cea39d52",
+  "compiler_executable_sha256": {
+    "fslc": "8061f7931a41f7df513b96d9941672401b950371c6e385573e617b8b627ea3ca",
+    "fsl-x86": "94fd51ff15041653f3e793697811bd04939b703a22186bbf803f16474a4eca65"
+  },
+  "compiler_source_provenance": {
+    "checkout_commit": "97366a84157afe163236a99e309fcd4fbfb8e2ae",
+    "checkout_dirty": false,
+    "source_sha256": {
+      "crates/fission-fsl/src/abi.rs": "7ef7b96547f4a092fa64948c4f03af8b56e3cbf2d43c26c7476b1444bb7c7dc3",
+      "crates/fission-fsl/src/backend.rs": "3bffefd1d27e12baf264418b5bb9ab780941a3b084ff3b3c8199e664c152d36b",
+      "crates/fission-fsl/src/control.rs": "fea8a6c3e2be7f869bdeba5af409dfa8962d5ca65ff44e28dedf64f6d0030b3c",
+      "crates/fission-fsl/src/encoding.rs": "3c4f34fd360e0e08ffdfc847de92770851c5c5e77f4f662375d14478b1f2096a",
+      "crates/fission-fsl/src/go_output.rs": "8b8ddffd7cf097d2c6e8c4c5fb993fe5f4ce72c34cd993b918b299d6d8aae92f",
+      "crates/fission-fsl/src/gpu_output.rs": "a4774438d61a0abd4cd05921f59d84abc4e317b761065a692547d857fc841789",
+      "crates/fission-fsl/src/jit.rs": "585711d25f5ac5c4930cc43587fd318e64bccfe35c4634812482e67ffceebe23",
+      "crates/fission-fsl/src/lib.rs": "74a7765dd6069ed4308a5582f4973d2999977a16dc11636416e09d6ae08ff223",
+      "crates/fission-fsl/src/library.rs": "25c7745e57437a13bbfda9a6bf863963ca7cc6fb25736425984b2685bfc2febe",
+      "crates/fission-fsl/src/main.rs": "0c48738c49f16862731b8d1b7ea8ea25a25142b0cb36626acb3c328cf1c58589",
+      "crates/fission-fsl/src/output.rs": "c7e3ad69f39a0b74c6a96f60c825ab94612741fcc6de26a0736266b9aeb2d4c1",
+      "crates/fission-fsl/src/package.rs": "8b48e2f25741c50633d66a7e1e25988e59ec21381c57d24c074ddaad935030b1",
+      "crates/fission-fsl/src/parser.rs": "78aadf29dcf8c202b67e312ee58da0b06eb90a6b5a6c79c9935fc8f8fd25db4e",
+      "crates/fission-fsl/src/recovery.rs": "07163dd696dc704ff8e6f1017c9942dcfece1fa2621dbdc204573a90aed0e15e",
+      "crates/fission-fsl/src/registers.rs": "ab71bdc1484b8b77ceb9629d10047a73eef871f79c6ab2904e5ab0428fdfd77e",
+      "crates/fission-fsl/src/semantics.rs": "a4273a0cbb8b7caee91c09d7fb68dc41b68b02484c5e12ce5e3f2bb22d46522c",
+      "crates/fission-fsl/src/sequence.rs": "f4851c33f709a6ed02ce64467c62ad6dfc964929b81f69f8621e452f5a98ee0f",
+      "crates/fission-fsl/src/state.rs": "6b9c8f7d0f938571ccc94becc14a882e9498c5631c3d8ff0290742d816a182c2",
+      "crates/fission-fsl/src/wave.rs": "a99605e7ace8315994e54cf30681d2545eef8b22a420d35b8d98a385b5c964e3",
+      "crates/fission-fsl/src/x86.rs": "fc9cc27b404f562524ee1cdcd86e12f1f7b2bf795298396029262ab71db1bc92",
+      "crates/fission-fsl/src/x86_decode.rs": "646e7ee09df2eebf0a072c8ebb98e5ea046cb1460e866109875a835f0009de3b",
+      "crates/fission-fsl/src/x86_main.rs": "ea9cb8d0a7579056845ab499c6fa036ecee34b39eacdd71ca9c9df8dea6347ef"
+    }
+  }
+}

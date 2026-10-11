@@ -1,0 +1,33 @@
+{
+  "format": "fsl-go-backend-v1",
+  "native_compiler_commit": "97366a84157afe163236a99e309fcd4fbfb8e2ae",
+  "inputs": {
+    "amdgcn-gfx900-vadd-u32-wave64.fsl": "13834a9ba26405ab917168a546e9ef0a0d8b0c1e0d19a7aaa240509e1bc4caee",
+    "carry-widths.fsl": "e30cf14b5e17083ab97e6393fb98b7dc58ec6c2e0ab5754499ff2583ac0bbb5a",
+    "jvm-se26-iadd.fsl": "d6cbe80eac0293166e9a33c14bb50b03f2c823e57aeee3eab9d574eff2a37228",
+    "register-branch-convert.fsl": "77fe1bf9650daeed1f972b013c68ab555fec65ecb2cf5b31340c64ef7aa4e7d3",
+    "stack-branch-join.fsl": "fd5d0a6d2281f3ef330f4f1a0e7c6be7e4773c1ae54968d2eb336d65b5ec7a8d"
+  },
+  "parent_locks": {
+    "stateful": "7f3409c8799c5907feea227ac8de83933aa8be2c9c3174e53557165ca31e8834",
+    "immediate": "a43a5a4a0bc1c99f46c525b7214ff44083be86be21e6435bb0398768ad032096"
+  },
+  "source_sha256": {
+    "stateful-frame32.go": "b92f96e9a69c108d5a94e523eafa5be17032af5e7e12ba6118228c172c6f9b06",
+    "stateful-frame64.go": "1617d770c8628aa53525839a1d5b0d6826be0b4d4016822473e44fcf7bfe659a",
+    "stateful-store64.go": "28f7a19018f3b0c12d8caf1ba90929692407a885380d728f33ec3b2ce134f52c",
+    "immediate-imm16.go": "a9dd19d1da2b875e7bc0e5509c42595483a2cd548bc8222290fb0aa596baf169",
+    "immediate-imm32.go": "aa5e516ce465084167f667d816d0927e63c6317fc7a42508ac86eb1d1fd14740",
+    "immediate-imm64.go": "c14c8220c29e8a9aef480079ab64fc117cb98a9c7c6504c6ba88af0734e5f096",
+    "stack32.go": "32c7f0f5fa4cb273422e25891d0a779b9376bbd2e2b59873a755faa3f25bc111",
+    "branch32.go": "106a44291d707ffd49c5966543526b640cf3b4d9b6468b539d6e0e486bd9d5b9",
+    "register32.go": "189b623947a53f063e12c8400d70e83e6abbfed045ee1600d25ab02e1b299cb6",
+    "carry1.go": "c0c20964a2535e4293ec2773bb3539a656b378a414d66085c831c9bb767d6a2a",
+    "carry8.go": "f11a77592176f83183b98bb4c3c1d85e4d784043c5525b6a4adf9cce7c22d752",
+    "carry16.go": "be0d610a60ec0a2d245018174496471b2f9ca96dcdec6608c1b323c4dfe26162",
+    "carry32.go": "f47fabdd82e428b44615f23a6b955085fa0c6d82f293e641a60b4fc0cfc3f0fd",
+    "carry64.go": "2e41dfb6892a034d1e6e1132f749e7ccc0ea117afe3a875d5d50fc144fc4299e",
+    "wave-vgpr32.go": "0d39ab9482adf2e21f575c3fc67cdd0f082e3b1cd2847f634d885e295d8abdf9",
+    "wave-sgpr32.go": "8d68cdc12c64c755eac9c6513b58e6fcbfb80be8f69ad2b32f22f1744382817b"
+  }
+}

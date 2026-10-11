@@ -370,3 +370,32 @@ records the bounded regression and compiler pin: 768 FIR states, 6,144 C/Rust
 success/rollback comparisons and 768 Rosetta original-byte cases passed again
 with the clean native snapshot. The same legacy AF omission remains; no IR
 superiority claim. Remote CI is checked separately.
+
+## 2026-10-11 — Go output backend
+
+Native `97366a84157afe163236a99e309fcd4fbfb8e2ae` registers Go 1.25 over the existing borrowed canonical FIR plans.
+Shared contract admission supports integer/stack, acyclic scalar CFG, wave
+mask/broadcast and bound x86 windows. No new semantic IR, package version or
+external decoder/library dependency. Generated Go uses uint64 plus width masks,
+simultaneous block parameter assignment and explicit ordered effects. x86 uses
+private snapshots and success-only state/memory/exit commit. Safe Go output-bank
+aliases and exit-pointer aliases refuse; concurrent access and unsafe host
+aliases remain outside the contract. Heap exhaustion is not a guest status.
+
+Native full x86 nextest **80 passed / 0 skipped**, strict Clippy on/off and fmt
+passed; research Python **35**. Six locked actual frame/store/immediate ELF spans:
+**6,144 Go** default/optimization-disabled full modeled state/byte/rollback
+comparisons and **12,288 C/Rust** O0/O2 comparisons on the same inputs passed.
+**18,426 Go** synthetic domain comparisons cover widths/carry, register alias,
+stack/branch/conversion and VGPR/SGPR broadcast wave64. **12** Linux amd64/386
+host archive compilations are compile-only evidence. Six windows and ten domain
+source artifacts are locked. Previous C/Rust plans/sources and refusal checks
+reproduce; the currently unregistered backend check now uses Python. Historical
+Go refusal was observed at the previous pin and is not rewritten.
+
+[Go experiment](../experiments/output/go-backend/README.md) records clean local
+provenance and CI reproduction. This gate does not execute original machine
+bytes; the separate prior original/FIR/SLA gates remain in CI. Source prototypes,
+complete ABI/CFG/x86 migration, semantic-body loops, guest faults/concurrency,
+GPU hardware, Go FirSequence and full Python/JVM/WASM frontend/output support
+are not established. No performance or IR-superiority claim.
