@@ -1,0 +1,75 @@
+{
+  "format": "x86-immediate-v2",
+  "source_commit": "96fc71f75cecdee305faf9497561c577a8955468",
+  "native_compiler_commit": "867dae1fa0f278e87f6dc3e8244ca4fd307cced5",
+  "fixture_compiler": "Homebrew clang/LLD 22.1.8",
+  "fixture_command": "clang --target=x86_64-pc-linux-gnu -O2 -fomit-frame-pointer -fno-asynchronous-unwind-tables -fno-stack-protector -fno-strict-aliasing -fuse-ld=lld -nostdlib -static -Wl,-e,fsl_add -Wl,-Ttext=0x401000 -Wl,--build-id=none SOURCE -o ELF",
+  "fixtures": [
+    {
+      "name": "imm16",
+      "mode": 64,
+      "size": 14,
+      "hex": "488b470848030766c747087698c3",
+      "file_offset": 4096,
+      "literal_store": {
+        "offset": 8,
+        "bits": 16,
+        "value": 39030
+      }
+    },
+    {
+      "name": "imm32",
+      "mode": 64,
+      "size": 15,
+      "hex": "488b4708480307c7470821436587c3",
+      "file_offset": 4096,
+      "literal_store": {
+        "offset": 8,
+        "bits": 32,
+        "value": 2271560481
+      }
+    },
+    {
+      "name": "imm64",
+      "mode": 64,
+      "size": 16,
+      "hex": "488b470848030748c74708f9ffffffc3",
+      "file_offset": 4096,
+      "literal_store": {
+        "offset": 8,
+        "bits": 64,
+        "value": 18446744073709551609
+      }
+    }
+  ],
+  "package_sha256": "4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470",
+  "inputs": {
+    "fixtures/imm16.c": "62c2bcb294ae5a086bddc89501d4b41fc784ff1562f3c95b1c7873e2382ec59d",
+    "fixtures/imm16.elf": "42043119c8816d9e51bb30fa376b2328bf83b724de49ea7831a6d720d865174f",
+    "fixtures/imm32.c": "c1e49a1c10ad878a3a35209f832cb7a525d21e5fbbf91c16af165f7f7a13d9bd",
+    "fixtures/imm32.elf": "bff27405302d38af46ff7a3d58df0cf1e7c4606e1c61a5a60b6e88882e1b5240",
+    "fixtures/imm64.c": "45a3fff34a4141f2fde96cbc0a3828c2b1e673246e5db9918a7ec5cf1c436b67",
+    "fixtures/imm64.elf": "0a3e5287a17fcd00710c666eff855e79abc3e2e53362f7c9a960a52e76f85bcb",
+    "specs/migration.json": "f6b9d3db468deef00fdccef6e6adb358a593da582a14689fefbec95b823246f7",
+    "specs/scalar-bodies.fsl": "7263ae430bd0c23d230eec4430c10f3b57b59d3cc2c2fe2c280421c1bdc4569d",
+    "specs/scalar.fslx": "10a318165b462f5d7fc7ed5b95f84267a518b8681af183af6ef1ee79ff241954",
+    "specs/x86-32.fslregs": "95b3b91c35787e56158794c2129dc99f992c227a6ef9b8502cd156cf03a61787",
+    "specs/x86-64.fslregs": "61454c365a8800027cc5d96e67d0e04919b57e52b101bcb17ffb18b46b64eb4b",
+    "oracle32.S": "3c4007545e8a7893e3675e0325021c1c8b9a66027f34a788465acafbee1300f3",
+    "oracle64.c": "9496f0554741ca72b593f210fc578e0b16bbe00129f3b284075b9e86c8c63b30"
+  },
+  "output_sha256": {
+    "outputs/imm16.c": "baf11c7f953a94564ead5ec4d564d4eca8cc44901592bc0e959a69b18925578a",
+    "outputs/imm16.evidence.txt": "0278b3b06fe9b222f41e3972891285b5a19309427224c4a941f75b2abc4c1dee",
+    "outputs/imm16.fir": "0672344fc1d15f065e56c29196a2591777899e043fe87d5e24afa59155250957",
+    "outputs/imm16.rs": "1c8d813ba08c010fc0e8959a6334b9e1730f01ee2dcdb7eb985e8af72083d7a2",
+    "outputs/imm32.c": "dd3f98d7475974f5cf900b8ed11899859f27049b1c0cfe803a7381fca02e6dc8",
+    "outputs/imm32.evidence.txt": "751a656d6ff1746b24e9cc819335127376d2ce9a1b41d0f576455c9083abe94f",
+    "outputs/imm32.fir": "d9690404cba3c326beb8c96233753786a72a886de74d38e082ffb3df2483699f",
+    "outputs/imm32.rs": "ad1e3878566844fc9a7cf3969908b2ad4a39b572a1747b6c62e07c88e93fafe6",
+    "outputs/imm64.c": "e9299b8f2dd9121b7c44800f092cf745b2aa2b49c0cc724445e451efde2fe347",
+    "outputs/imm64.evidence.txt": "3eb6b9ffb00ddff2eb9270c11c466b250f463d1e1d064287281a201a38a0c459",
+    "outputs/imm64.fir": "d50a393ba347d5d3fb67dfad694c4622ccc9d23875d19f7fc9307e40d8cd30be",
+    "outputs/imm64.rs": "47130583f73ed834d27f84b029f062e6a8f7e0740b6e6e51bf98a63b6227df7a"
+  }
+}

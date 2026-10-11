@@ -1,0 +1,10 @@
+input evidence mode=64 decoder=owned-x86-v2 input-sha256=fa50c93818152c8e9db07241ec9d3a8ec0c9314be62ff73f2164e65e921f64d8 package-sha256=4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470
+status=bounded-candidates convention=unselected return-register=0 source-types=unknown
+binary file-sha256=0a3e5287a17fcd00710c666eff855e79abc3e2e53362f7c9a960a52e76f85bcb file-offset=4096 section=".text"
+entry-register slot=7 role=return-data-candidate confidence=dependency-only
+memory-read id=0 instruction=0x401000 raw=488b4708 fir-op=16 value-bits=64 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(7), offset: 8, bits: 64 })
+memory-read id=1 instruction=0x401004 raw=480307 fir-op=16 value-bits=64 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(7), offset: 0, bits: 64 })
+memory-read id=2 instruction=0x40100f raw=c3 fir-op=2 value-bits=64 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 0, bits: 64 })
+memory-read-alias id=2 possible-stores=[0] confidence=overapproximation
+memory-write id=0 instruction=0x401007 raw=48c74708f9ffffff fir-op=20 value-bits=64 address=Some(AffineAddress { entry_register: Some(7), offset: 8, bits: 64 }) dependencies={Register(7)}
+limits=flat-memory; no ABI selection, source prototype, argument count, signedness, pointer type or completeness proof; unknown control analysis refuses

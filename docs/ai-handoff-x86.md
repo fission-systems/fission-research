@@ -1,5 +1,9 @@
 # 현재 x86 FSL/FIR 작업 이관 — 2026-10-11
 
+현재 native head는 `867dae1fa0f278e87f6dc3e8244ca4fd307cced5`이며, 최신
+[v2 변위·즉시값 분리 단계](../experiments/x86/immediate/README.md)와 이 문서
+끝의 Follow-up을 먼저 읽는다. 아래 본문은 v1 stateful 단계의 보존 기록이다.
+
 이 문서는 이전 FirSequence 단계의 이관 자료보다 최신이다. 시작할 때 branch,
 dirty state, AGENTS.md, PR #176과 CI를 다시 확인한다.
 
@@ -79,7 +83,7 @@ CI 결론은 live run과 보관 보고서를 확인하고 과거 결과와 구�
 통과했다. 후자의 Linux original32/64 768회와 FIR 768/C·Rust 6,144회가 일치했다.
 Report 보관 이후의 data/doc-only head 재실행과 이 측정 head의 결과를 구분한다.
 
-## 다음 구현의 경계
+## v1 당시 다음 구현의 경계 (1번은 v2에서 구현됨)
 
 1. 현재 normalized operand token은 displacement와 immediate가 같은 field를
    사용한다. **분리 binding/형식 검증**을 먼저 설계하고 memory immediate를 거부하는
@@ -94,3 +98,23 @@ Report 보관 이후의 data/doc-only head 재실행과 이 측정 head의 결�
 FSL만 수정한 추가, 공통 primitive, ISA operand binding, architecture semantic escape를
 각각 기록한다. Native experimental commit/push → research fixture/lock/CI pin 갱신 →
 research main commit/push 순서로 진행하고 기존 PR 설명을 갱신한다.
+
+## Follow-up: split operand binding (2026-10-11)
+
+Current native head is `867dae1fa0f278e87f6dc3e8244ca4fd307cced5`; prior 8211a0561 describes the v1
+stateful experiment. [V2 fixture/lock](../experiments/x86/immediate/README.md)
+adds MOV immediate stores, 48 rules / 150 bodies, and preserves the three
+historical pools. New `FSLXPKG2` binds normalized address addend and literal
+separately. Canonical FIR remains v11, no new decoder dependency or arithmetic
+semantic executor. Other memory ALU immediates still refuse.
+
+Local validation: native 71 tests, Python 29; new actual AMD64 spans give
+768 FIR states / 6,144 C-Rust success+rollback / 768 Rosetta original cases.
+V1 stateful validation and four generator modes also reproduce. Native code
+and docs are committed on the named experimental branch; product main untouched.
+Research workflow pins this head and runs the new gate in Linux. CI completion
+must be checked live separately from the local archived measurements.
+
+Next: CALL/return state-memory-control contract, callee ABI evidence and
+recovered guest CFG joins/loops. Keep unknown ABI/prototypes as candidates.
+Matched-coverage ablation is still required for an IR accuracy claim.

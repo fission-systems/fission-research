@@ -318,3 +318,30 @@ Memory immediate는 displacement와 literal의 별도 binding이 없어 거부�
 5. AMD 세대별 규칙을 구분하고, NVIDIA sm_80·Intel Xe는 고정 참고 소스를 기반으로 별도 slice를 만든다. 현재 이들의 바이너리 지원을 주장하지 않는다.
 6. CFG·메모리 공간·kernel ABI·동기화·컨테이너 정보를 연결한 뒤 전체 커널의 동작 보존 재컴파일을 평가한다.
 7. 초기 register layout과 eBPF ABI linking을 GPU lane bank·kernel ABI로 확장하고, `cspec` 거부 목록의 group·join·stack storage·allocation rule을 지원한다. 최초 SLA bound-add registry를 context·다른 ConstructTpl 연산으로 확장한다.
+
+## 2026-10-11 — independent x86 displacement/literal bindings
+
+[New optional v2 pool](../experiments/x86/immediate/README.md) preserves old v1
+packages and adds a seventh normalized operand field. 48 rules / 150 FIR bodies
+include nine authored MOV immediate-store bodies. Canonical FIR remains v11;
+no new semantic primitive, runtime decoder library or architecture arithmetic
+executor was added. The shared operand/package binding changed, so this is not
+claimed as entirely specification-only expansion.
+
+Three actual Clang O2 AMD64 ELF spans write 16/32/64-bit literals at RDI+8 after
+computing the old two-word sum. Local FIR 768 states, C/Rust O0/O2 successful and
+rollback comparisons 6,144, and Rosetta64 original-byte cases 768 agree. The
+actual SLA/canonical evaluator agrees on GPR/exit/160-byte memory and five flags;
+AF differs96/256 per fixture due to the reference spec omission. These are
+bounded observables, not a whole-function equivalence proof or IR superiority.
+
+Native tests cover malformed/downgraded schemas, independent values, SIB,
+IP-relative addressing, negative displacement, 16/32/64 modes, prefixes and late
+rollback. Python tests cover partial-store oracle and historical generation.
+Original packages/projections and stateful validation remain reproducible.
+CALL/callee ABI, memory ALU destinations, byte/high-byte registers, guest fault
+model and complete recovered CFG/type/x86 migration remain incomplete.
+
+Native continuation commit: `867dae1fa0f278e87f6dc3e8244ca4fd307cced5` on the experimental branch.
+Full x86 nextest **71 passed/0 skipped**, Python **29**, strict FSL Clippy
+with/without x86 and formatting passed. Native product main is unchanged.

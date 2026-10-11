@@ -77,17 +77,22 @@ def layout(text: str, long_mode: bool, evidence: str) -> str:
     return "\n".join(out + ["}", ""])
 
 
-def bodies(evidence: str, memory_sources: bool = False, memory_writes: bool = False) -> str:
+def bodies(evidence: str, memory_sources: bool = False, memory_writes: bool = False, memory_immediates: bool = False) -> str:
     records = []
     body_ops = {}
 
-    def add(name: str, ops: list[str], extra_evidence: str = "") -> None:
+    def add(name: str, ops: list[str], extra_evidence: str = "", split: bool = False) -> None:
         body_ops[name] = ops
         index = len(records) + 1
         fields = [('destination', 0, 5), ('source', 5, 5), ('base', 10, 5), ('index', 15, 5), ('immediate', 20, 64), ('scale', 84, 2)]
+        if split:
+            fields = [('destination', 0, 5), ('source', 5, 5), ('base', 10, 5), ('index', 15, 5), ('displacement', 20, 64), ('scale', 84, 2), ('literal', 86, 32)]
+        mask = ((1 << 10) - 1) << 118 if split else 0xffff << 112
+        value = index << (118 if split else 112)
+        encoding = f"        encoding 128 mask 0x{mask:032x} value 0x{value:032x} {{" if split else f"        encoding 128 mask 0xffff0000000000000000000000000000 value 0x{index:x}0000000000000000000000000000 {{"
         records.append("\n".join([
             f"    instruction {name} {{",
-            f"        encoding 128 mask 0xffff0000000000000000000000000000 value 0x{index:x}0000000000000000000000000000 {{",
+            encoding,
             *[f"            field {n} offset {o} bits {b};" for n, o, b in fields],
             "        }", f'        mnemonic "{name}";', "        " + evidence,
             *(["        " + extra_evidence] if extra_evidence else []),
@@ -234,11 +239,33 @@ def bodies(evidence: str, memory_sources: bool = False, memory_writes: bool = Fa
             stack_write(ops, "after")
             write_result(ops, bits, "value")
             add(f"pop{bits}", ops, stack_evidence)
+    if memory_immediates:
+        mov_evidence = (
+            'evidence "intel-mov-immediate" '
+            '"https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2b-manual.pdf" '
+            '"sha256:036ae35aec4da9dd54ba3b683547f09963f69609a3b98eae15586a692c4cd3d2" '
+            '"MOV C7 /0: imm16/imm32 store; REX.W sign extends imm32 to 64 bits; flags unaffected. Flat bounded memory; no faults, segments or concurrency.";'
+        )
+        for bits in [16, 32, 64]:
+            for address_bits in [16, 32, 64]:
+                address = body_ops[f"lea{bits}_a{address_bits}"]
+                end = next(i for i, line in enumerate(address) if line.startswith("%addr:")) + 1
+                prefix = [line.replace("field.read immediate", "field.read displacement") for line in address[:end]]
+                if address_bits < 64:
+                    prefix += ["%memory_address: u64 = int.zext %addr;"]
+                pointer = "memory_address" if address_bits < 64 else "addr"
+                value = ["%literal64: u64 = field.read literal;"]
+                if bits < 64:
+                    value += [f"%value: u{bits} = int.trunc %literal64;"]
+                else:
+                    # (x xor signbit) - signbit extends the imm32 bit pattern.
+                    value += ["%sign32: u64 = int.const 0x80000000;", "%biased: u64 = u64.xor %literal64, %sign32;", "%value: u64 = u64.sub %biased, %sign32;"]
+                add(f"mov{bits}_imm_store_a{address_bits}", prefix + value + [f"memory.store.le %{pointer}, %value;", "return;", "}"], extra_evidence=mov_evidence, split=True)
     return "\n".join(["# Normalized operand tokens are not machine encodings.", "language x86.scalar.bodies {", "    byte_order little;", "    address_unit byte;", *records, "}", ""])
 
 
-def rules(stack: bool = False) -> str:
-    lines = ['frontend x86.scalar {', 'decoder owned-x86-v1;']
+def rules(stack: bool = False, memory_immediates: bool = False) -> str:
+    lines = ['frontend x86.scalar {', 'decoder owned-x86-v2;' if memory_immediates else 'decoder owned-x86-v1;']
     def rule(name: str, opcode: str, form: str, body: str, ext: str = "-", mask: str = "ff") -> None:
         lines.append(f"rule {name} {opcode} {mask} {ext} {form} {body};")
     for op, rm, reg, acc, ext in [("mov", "89", "8b", None, None), ("add", "01", "03", "05", "0"),
@@ -275,7 +302,10 @@ def main() -> None:
     ap.add_argument("--output-dir", required=True, type=Path)
     ap.add_argument("--memory-sources", action="store_true", help="append authored scalar memory-source bodies")
     ap.add_argument("--memory-writes", action="store_true", help="append MOV stores and unprefixed register PUSH/POP")
+    ap.add_argument("--memory-immediates", action="store_true", help="v2 split displacement/literal binding and C7 memory MOV")
     a = ap.parse_args()
+    if a.memory_immediates:
+        a.memory_writes = True
     root = a.fission_root.resolve()
     revision = subprocess.check_output(["git", "-C", str(root), "rev-parse", "HEAD"], text=True).strip()
     folder = root / "utils/sleigh-specs/languages/x86"
@@ -284,7 +314,7 @@ def main() -> None:
     claim = "Authored scalar FIR uses source encoding/defined effects as reference; AF is supplied from Intel SDM. Not complete SLEIGH translation."
     evidence = f'evidence "x86-migration" "https://github.com/fission-systems/Fission/blob/{revision}/utils/sleigh-specs/languages/x86/ia.sinc" "sha256:{digest}" "{claim}";'
     a.output_dir.mkdir(parents=True, exist_ok=True)
-    outputs = {"scalar-bodies.fsl": bodies(evidence, a.memory_sources or a.memory_writes, a.memory_writes), "scalar.fslx": rules(a.memory_writes)}
+    outputs = {"scalar-bodies.fsl": bodies(evidence, a.memory_sources or a.memory_writes, a.memory_writes, a.memory_immediates), "scalar.fslx": rules(a.memory_writes, a.memory_immediates)}
     for mode in [32, 64]:
         layout_evidence = evidence.replace(claim, "Register and space declarations migrated from the ia.sinc prefix; offsets and overlapping views preserved; context and calling ABI not migrated.")
         outputs[f"x86-{mode}.fslregs"] = layout(source.read_text(), mode == 64, layout_evidence)

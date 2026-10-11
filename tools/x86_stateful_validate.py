@@ -36,7 +36,7 @@ def initial(bits, a, b):
     )
 
 
-def expected(name, bits, a, b, row, fail=False):
+def expected(name, bits, a, b, row, fail=False, store=None):
     if fail:
         return [3, *row["registers"], *row["flags"], 99], bytes.fromhex(
             row["memory_hex"]
@@ -51,6 +51,10 @@ def expected(name, bits, a, b, row, fail=False):
         result[2] = 0x2010  # RCX
     if name == "store64":
         m[144:152] = result[1].to_bytes(8, "little")
+    if store:
+        offset = 144 + store["offset"]
+        count = store["bits"] // 8
+        m[offset : offset + count] = store["value"].to_bytes(count, "little")
     return result, bytes(m)
 
 
@@ -185,7 +189,8 @@ def validate(cli, baseline, cc, rustc, work, host):
         pairs = cases(bits)
         states = [initial(bits, a, b) for a, b in pairs]
         answers = [
-            expected(name, bits, a, b, row) for (a, b), row in zip(pairs, states)
+            expected(name, bits, a, b, row, store=f.get("literal_store"))
+            for (a, b), row in zip(pairs, states)
         ]
         for row, (state, memory) in zip(states, answers):
             observed = run(
@@ -218,9 +223,10 @@ def validate(cli, baseline, cc, rustc, work, host):
                 raise ValueError("FIR state/memory mismatch")
         # Exhaust budget after an actual write: PUSH in frames, MOV store in store64.
         all_answers = answers + [
-            expected(name, bits, a, b, row, True) for (a, b), row in zip(pairs, states)
+            expected(name, bits, a, b, row, True, f.get("literal_store"))
+            for (a, b), row in zip(pairs, states)
         ]
-        failure_budget = 3 if name == "store64" else 1
+        failure_budget = 3 if name == "store64" or f.get("literal_store") else 1
         payload = b"".join(
             struct.pack("<QQQ", a, b, budget)
             for budget in [100, failure_budget]
@@ -272,10 +278,7 @@ def validate(cli, baseline, cc, rustc, work, host):
                     or balance != 0
                 ):
                     raise ValueError("original result/flags/frame mismatch")
-                if bits == 64 and values[2:4] != (
-                    state[1] if name == "store64" else a,
-                    b,
-                ):
+                if bits == 64 and values[2:4] != struct.unpack("<QQ", memory[144:160]):
                     raise ValueError("original external memory effect mismatch")
                 machine_cases += 1
         baseline_report = {"status": "not requested"}
@@ -338,12 +341,14 @@ def validate(cli, baseline, cc, rustc, work, host):
         status="passed",
         source_lock_sha256=digest(GOLDEN / "source.lock.json"),
         fixtures=reports,
-        scope="three compiled stack/store spans; no full x86, ABI recovery or whole-function equivalence proof",
+        scope="locked compiled stack/store spans; no full x86, ABI recovery or whole-function equivalence proof",
     )
 
 
 def main():
+    global GOLDEN
     p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--fixture-root", type=Path, default=GOLDEN)
     p.add_argument("--fsl-x86", type=Path, required=True)
     p.add_argument("--pcode-baseline", type=Path)
     p.add_argument("--baseline-root", type=Path)
@@ -356,6 +361,7 @@ def main():
     )
     p.add_argument("--report", type=Path, default=ROOT / "artifacts/x86-stateful.json")
     a = p.parse_args()
+    GOLDEN = a.fixture_root.resolve()
     if a.pcode_baseline and not a.baseline_root:
         p.error("--pcode-baseline requires --baseline-root")
     host = a.machine_host
@@ -430,7 +436,8 @@ def main():
         )
     a.report.write_text(json.dumps(r, indent=2) + "\n")
     print(
-        "Stateful x86: 768 FIR states and 6144 C/Rust success/rollback comparisons passed; machine/P-code observations separate"
+        f"Stateful x86: {sum(f['fir_states'] for f in r['fixtures'])} FIR states and "
+        f"{sum(f['c_rust_success_and_rollback_comparisons'] for f in r['fixtures'])} C/Rust success/rollback comparisons passed; machine/P-code observations separate"
     )
 
 

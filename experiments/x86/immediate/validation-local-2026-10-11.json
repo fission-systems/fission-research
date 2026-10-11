@@ -1,0 +1,145 @@
+{
+  "status": "passed",
+  "source_lock_sha256": "a43a5a4a0bc1c99f46c525b7214ff44083be86be21e6435bb0398768ad032096",
+  "fixtures": [
+    {
+      "name": "imm16",
+      "mode": 64,
+      "fir_states": 256,
+      "c_rust_success_and_rollback_comparisons": 2048,
+      "rollback_failure_budget": 3,
+      "machine_execution": {
+        "adapter": "rosetta64",
+        "adapter_executable_sha256": "309215dbdffdb693e8574aafcc5bd728bf6c4ec2eedf40292aa18f28507365ad",
+        "cases": 256,
+        "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
+        "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "memory": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 96
+        },
+        "scope": "actual SLA/canonical evaluator implementation; not IR superiority"
+      }
+    },
+    {
+      "name": "imm32",
+      "mode": 64,
+      "fir_states": 256,
+      "c_rust_success_and_rollback_comparisons": 2048,
+      "rollback_failure_budget": 3,
+      "machine_execution": {
+        "adapter": "rosetta64",
+        "adapter_executable_sha256": "e664ee71db75720861b5f22672b309f1752bf996785823c48168691072c3cdbd",
+        "cases": 256,
+        "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
+        "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "memory": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 96
+        },
+        "scope": "actual SLA/canonical evaluator implementation; not IR superiority"
+      }
+    },
+    {
+      "name": "imm64",
+      "mode": 64,
+      "fir_states": 256,
+      "c_rust_success_and_rollback_comparisons": 2048,
+      "rollback_failure_budget": 3,
+      "machine_execution": {
+        "adapter": "rosetta64",
+        "adapter_executable_sha256": "e98f628d77fb486312d310b23e9a8e7f81ce5dcc82f065addbf93d72a500a3db",
+        "cases": 256,
+        "observables": "result, six defined arithmetic flags, preserved RBP, balanced SP; external two-word memory in 64-bit adapters",
+        "excluded": "full register/stack memory hardware snapshots, faults, concurrency and arbitrary ABI"
+      },
+      "pcode_baseline": {
+        "status": "measured",
+        "cases": 256,
+        "differences_from_fir": {
+          "registers": 0,
+          "exit": 0,
+          "memory": 0,
+          "CF": 0,
+          "PF": 0,
+          "ZF": 0,
+          "SF": 0,
+          "OF": 0,
+          "AF": 96
+        },
+        "scope": "actual SLA/canonical evaluator implementation; not IR superiority"
+      }
+    }
+  ],
+  "scope": "locked compiled stack/store spans; no full x86, ABI recovery or whole-function equivalence proof",
+  "validator_sha256": "8d793089d4f6ebedad51fdbe76416d6d6bbd89d7503067d1fb3deee751ce14e4",
+  "shared_oracle_model_sha256": "6008c9fed886c37b4140cdb38bbc655d13b5c2f05d4c94b63407fbf6a334d74d",
+  "expected_native_compiler_commit": "867dae1fa0f278e87f6dc3e8244ca4fd307cced5",
+  "compiler_executable_sha256": "ef1bbc65d06e43dd3fd0a7f9120078f6c57a016a21e032cc09eefb47aea51f4c",
+  "tools": {
+    "cc": "Homebrew clang version 22.1.8",
+    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)",
+    "host_system": "Darwin",
+    "host_machine": "arm64"
+  },
+  "baseline_provenance": {
+    "checkout_commit": "867dae1fa0f278e87f6dc3e8244ca4fd307cced5",
+    "source_sha256": {
+      "crates/fission-emulator/examples/x86_fir_baseline.rs": "27a2497289b3570eeafebf1f994c8edd15f27615e60e25dc4512dafdc88d3811",
+      "crates/fission-emulator/src/pcode/eval.rs": "f56ad05a0545e582a3abcf776340f38a888dd76d90c4f230acb24dcf77f4d998",
+      "utils/sleigh-specs/languages/x86/ia.sinc": "46bba656291d90c2ef801be4a78664dd5914ca05b85e59e9bfdeb26068fe9784",
+      "utils/sleigh-specs/compiled/x86/x86-64.sla": "d5adc314e2278228b380d8f653b2b579fa4a65986bb1d39b095e461fd5432481",
+      "utils/sleigh-specs/compiled/x86/x86.sla": "148ac1b90dede3d080064ca4a171f8b4c85576db41122c2c9e4de52da8a405dd"
+    },
+    "executable_sha256": "705df6986078c6dca70707286a68251305dd476d63268ca8880a5026da349923"
+  },
+  "compiler_source_provenance": {
+    "checkout_commit": "867dae1fa0f278e87f6dc3e8244ca4fd307cced5",
+    "checkout_dirty": false,
+    "source_sha256": {
+      "crates/fission-fsl/src/abi.rs": "7ef7b96547f4a092fa64948c4f03af8b56e3cbf2d43c26c7476b1444bb7c7dc3",
+      "crates/fission-fsl/src/control.rs": "fea8a6c3e2be7f869bdeba5af409dfa8962d5ca65ff44e28dedf64f6d0030b3c",
+      "crates/fission-fsl/src/encoding.rs": "3c4f34fd360e0e08ffdfc847de92770851c5c5e77f4f662375d14478b1f2096a",
+      "crates/fission-fsl/src/gpu_output.rs": "a4774438d61a0abd4cd05921f59d84abc4e317b761065a692547d857fc841789",
+      "crates/fission-fsl/src/jit.rs": "585711d25f5ac5c4930cc43587fd318e64bccfe35c4634812482e67ffceebe23",
+      "crates/fission-fsl/src/lib.rs": "b688f1a8e0bbfe6f87134520bfa097218428690d26d7af941bfab8a589fcea29",
+      "crates/fission-fsl/src/library.rs": "25c7745e57437a13bbfda9a6bf863963ca7cc6fb25736425984b2685bfc2febe",
+      "crates/fission-fsl/src/main.rs": "193d81c9b3817148852d66c3eae65de5830d33cbffc45fca89d9f3b7afcfe96a",
+      "crates/fission-fsl/src/output.rs": "722158f0f243529d6954e579ee80ddb8aa653d76dce4b5f3df7b91364b9802bc",
+      "crates/fission-fsl/src/package.rs": "8b48e2f25741c50633d66a7e1e25988e59ec21381c57d24c074ddaad935030b1",
+      "crates/fission-fsl/src/parser.rs": "78aadf29dcf8c202b67e312ee58da0b06eb90a6b5a6c79c9935fc8f8fd25db4e",
+      "crates/fission-fsl/src/recovery.rs": "07163dd696dc704ff8e6f1017c9942dcfece1fa2621dbdc204573a90aed0e15e",
+      "crates/fission-fsl/src/registers.rs": "ab71bdc1484b8b77ceb9629d10047a73eef871f79c6ab2904e5ab0428fdfd77e",
+      "crates/fission-fsl/src/semantics.rs": "a4273a0cbb8b7caee91c09d7fb68dc41b68b02484c5e12ce5e3f2bb22d46522c",
+      "crates/fission-fsl/src/sequence.rs": "f4851c33f709a6ed02ce64467c62ad6dfc964929b81f69f8621e452f5a98ee0f",
+      "crates/fission-fsl/src/state.rs": "6b9c8f7d0f938571ccc94becc14a882e9498c5631c3d8ff0290742d816a182c2",
+      "crates/fission-fsl/src/wave.rs": "a99605e7ace8315994e54cf30681d2545eef8b22a420d35b8d98a385b5c964e3",
+      "crates/fission-fsl/src/x86.rs": "c980fd68c91cd0e033194246c15753b5d46c60af6e018218522f7c91781b58ad",
+      "crates/fission-fsl/src/x86_decode.rs": "646e7ee09df2eebf0a072c8ebb98e5ea046cb1460e866109875a835f0009de3b",
+      "crates/fission-fsl/src/x86_main.rs": "3cca5132bd6116e37fbf8c5b8f06b132e0c69e43f12b56e730aef8c2875467c9"
+    },
+    "scope": "supplied checkout source snapshot and executable hash; no binary reproducible-build attestation"
+  }
+}

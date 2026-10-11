@@ -175,3 +175,21 @@ requires all three adapters (768 cases). The baseline is an implementation
 comparison, not an expected mismatch count or proof of an IR expressive limit.
 See [stateful contracts and scope](../experiments/x86/stateful/README.md): bounded
 flat memory, modern IA-32 stack ordering, no complete ABI or full x86 migration.
+
+## Split x86 operand reproduction
+
+The optional fourth x86 pool is generated with `--memory-immediates`. CI compares
+its five source/inventory files and executes three compiled AMD64 C7-store
+spans using the same independent stateful validator:
+
+```sh
+python3 tools/x86_stateful_validate.py --fixture-root experiments/x86/immediate \
+  --fsl-x86 /absolute/path/to/fsl-x86 --cc clang-18 \
+  --rustc 'rustup run 1.98.1 rustc' --machine-host native-x86 \
+  --report artifacts/x86-immediate.json
+```
+
+This gate checks 768 modeled states, 6,144 compiled success/rollback rows and
+768 original-byte cases. Partial stores preserve neighboring bytes; imm32 is
+sign extended for 64-bit writes. Existing v1 hashes remain unchanged. See
+[format, accounting and limits](../experiments/x86/immediate/README.md).
