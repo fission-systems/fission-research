@@ -54,5 +54,9 @@
     "outputs/pointer64_xor.fir": "4a83e8b06f0d6188f0baddafdf7265db396bf4a291125bf97817dd951616402e",
     "outputs/pointer64_xor.rs": "ad2a07bdef84c184e9f94fb19461fb98f4da6fe36f796d9b5e1873c43cb76af7"
   },
-  "compiler_commit": "dc665c7c9341e76587ceb968849f604083245949"
+  "compiler_commit": "dc665c7c9341e76587ceb968849f604083245949",
+  "validation_reports": {
+    "validation-2026-10-11.json": "b743802fb34a82e60143ba1a4c14d4f8bde6278f85f73c67c1a10e279cdddae1",
+    "validation-linux-ci-38100633006.json": "720540ece83bfa7357810f769e102972ebff8d94610ea2c869a12c75d0701a01"
+  }
 }

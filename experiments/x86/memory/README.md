@@ -41,6 +41,9 @@ entry dependency와 modular affine address를 추적한다. Unknown branch와 �
 
 [로컬 보고서](validation-2026-10-11.json)는 compiler/tool/host 및 기존 SLA,
 canonical evaluator와 baseline executable 해시를 기록한다.
+[Linux x86 CI 보고서](validation-linux-ci-38100633006.json)는 같은 compiler commit의
+[실행 38100633006](https://github.com/fission-systems/fission-research/actions/runs/38100633006)에서
+받은 원본 artifact다. Ubuntu clang 18.1.3 / Rust 1.98.1 / x86_64에서 측정했다.
 
 | 검사 | 실제 결과 |
 |---|---|
@@ -48,7 +51,7 @@ canonical evaluator와 baseline executable 해시를 기록한다.
 | 세 ELF의 FIR 상태 | 256 × 3 = 768, 독립 arithmetic/state 계산과 일치 |
 | 생성 C/Rust O0/O2 실행 | 3,072회, 전체 modeled state와 exit 일치 |
 | 원본 64-bit ADD/XOR bytes | Rosetta 실행 512회, 결과와 정의된 arithmetic flags 일치 |
-| 원본 32-bit bytes | ARM64 macOS에서 실행하지 않음; Linux x86 CI에 adapter 연결 |
+| 원본 32/64-bit bytes | Linux x86 CI 768회, result와 defined flags 일치; 로컬 i386 미실행 |
 | 기존 SLA/P-code ADD | 각 fixture 256개 중 AF 차이 96개; 다른 flags/GPR/exit 차이 0 |
 | 기존 SLA/P-code XOR | 정의된 flags/GPR/exit 차이 0; undefined AF 256개 제외 |
 | 초기 artifact 재현 | 기존 15개 출력 / reference 실행 5개 / source compile 10개 유지 |
@@ -94,7 +97,8 @@ random 192개다. P-code 차이는 관찰값이며 예상 차이를 강제로 �
 Machine 실행이 가능한 host는 그것도 필수 비교한다. `none`은 report에 미실행으로 남는다.
 
 Linux x86 CI에서는 original32의 libc 없는 static i386 adapter와 original64 adapter를
-실행하도록 설정했다. 원본 ELF의 locked instruction bytes를 그대로 내장하며 decoder나
+실제로 실행했다. 세 fixture 각각 256회, 총 768회가 FIR과 일치했다. Generated C/Rust
+3,072회도 재검증했으며 legacy ADD AF 차이 96개씩과 XOR AF 제외도 재현했다. 원본 ELF의 locked instruction bytes를 그대로 내장하며 decoder나
 C 재구현이 아니다. 이 세 leaf는 PC-relative 참조가 없어서 adapter 주소로 옮길 수 있다.
 원본 machine oracle는 result와 defined flags만 비교한다. All-register hardware snapshot,
 fault·privilege·concurrency·임의 relocation·전체 ABI는 측정하지 않는다.

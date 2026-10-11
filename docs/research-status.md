@@ -248,6 +248,13 @@ original32/64 adapters와 실제 SLA baseline 비교를 실행한다. CI 결과�
 artifact와 exact commit에서 확인해야 한다. 로컬 보고서는 Rosetta 측정이며 Linux
 native 실행으로 이름을 바꾸지 않는다.
 
+추가 CI 관찰: [Linux 실행 38100633006](https://github.com/fission-systems/fission-research/actions/runs/38100633006)의
+x86 semantic-comparison artifact를 보관했다. Compiler `dc665c7c9`, Ubuntu clang 18.1.3,
+Rust 1.98.1, Linux x86_64에서 original32/64 bytes 각각 256회, 총 768회 result/defined
+flags 비교가 통과했다. FIR 상태 768개와 C/Rust 3,072회도 통과하고, legacy ADD의 AF
+차이 96개씩 / XOR AF 256개 제외가 재현됐다. 이 artifact의 통과와 전체 workflow의
+상태는 구분한다. [고정 Linux 보고서](../experiments/x86/memory/validation-linux-ci-38100633006.json).
+
 Memory는 readonly flat window이고 segment bases=0이다. Store/stack frame/CALL,
 ABI allocation, general guest CFG joins, faults/ordering 및 전체 x86 자산은 아직 미지원이다.
 이번 세 leaf 관찰은 전체 함수 동치 증명이나 일반 디컴파일 품질 측정이 아니다.
