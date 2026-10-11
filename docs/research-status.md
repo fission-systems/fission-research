@@ -211,6 +211,47 @@ indirect control, byte/high-byte register, SIMD/x87/AVX, full cspec/pspec/contex
 주장하지 않는다. 이전 단계의 “메모리·함수 lifting 미지원” 기록은 해당 단계의 범위를 뜻하며,
 현재 추가된 기능은 위의 명시적인 x86 window / RET memory 범위에 한정된다.
 
+## 2026-10-11 — readonly x86 memory와 입력 근거 / 독립 실행 비교
+
+[후속 실험](../experiments/x86/memory/README.md)은 기본 cdecl32 ADD와 SysV AMD64
+pointer ADD/XOR의 세 compiled ELF를 고정했다. 46개 encoding rule을 유지하고,
+optional FSL body pool을 63→126개로 늘렸다. Generic RegRm memory source가 기존
+LEA 주소 reader와 canonical memory/read/arithmetic FIR body를 사용한다. 외부
+instruction decoder와 새 dependency는 없으며 Cargo.lock 변경도 없다.
+
+Canonical FIR의 derived abstract analysis가 entry ESP+4/+8와 entry RDI+0/+8 읽기
+의존성을 추적하고 원본 bytes/address/FIR operation/width를 남긴다. Convention은
+unselected, source prototype/type/argument count는 unknown이다. Unknown branch는
+거부한다. 전체 ABI 복구로 해석하지 않는다.
+
+로컬 관찰:
+
+- Full x86-feature nextest 61 passed / 0 skipped; 새 기계적 검사 3개 포함.
+- 세 ELF 768 FIR 상태가 independent arithmetic/state 계산과 일치.
+- 동일 FIR의 C/Rust O0/O2 executable 비교 3,072회 통과.
+- 원본 64-bit ADD/XOR bytes의 Rosetta 실행 512회: result와 defined arithmetic flags 일치.
+  ARM64 macOS에서 원본 i386 실행은 하지 않았다. Linux x86 CI는 세 span을 실행하도록 연결했다.
+- 실제 compiled SLA + canonical P-code evaluator 비교: ADD 각각 AF 96/256 차이,
+  다른 flags/registers/exit 차이 0. XOR undefined AF 256개는 제외하며 나머지 차이 0.
+- 초기 63-body artifact 재현도 15개 출력 / reference 실행 5개 / source compile 10개 유지.
+- FSL strict Clippy/format 통과. Baseline build와 CI-equivalent Clippy 통과.
+  Unqualified strict baseline Clippy는 기존 solver/emulator style/complexity lint에서 실패;
+  해당 libraries 변경은 없다.
+
+AF 차이는 기존 x86 `resultflags`의 AF 미구현 사례이며 P-code 표현력 한계는 아니다.
+FIR의 richer evidence가 분석 정확도를 높이는지에 대한 controlled ablation은 아직
+수행하지 않았다. [정확성 평가 설계](fir-evidence-and-accuracy.md)는 현재와 계획을 구분한다.
+
+Native compiler: `dc665c7c9341e76587ceb968849f604083245949`, 실험 브랜치만 변경.
+Research CI는 이 compiler commit을 고정해 package/output/evidence 재현, C/Rust 실행,
+original32/64 adapters와 실제 SLA baseline 비교를 실행한다. CI 결과는 각 실행의
+artifact와 exact commit에서 확인해야 한다. 로컬 보고서는 Rosetta 측정이며 Linux
+native 실행으로 이름을 바꾸지 않는다.
+
+Memory는 readonly flat window이고 segment bases=0이다. Store/stack frame/CALL,
+ABI allocation, general guest CFG joins, faults/ordering 및 전체 x86 자산은 아직 미지원이다.
+이번 세 leaf 관찰은 전체 함수 동치 증명이나 일반 디컴파일 품질 측정이 아니다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.

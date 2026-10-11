@@ -37,6 +37,12 @@ jobs:
           for name in scalar.fslx scalar-bodies.fsl x86-32.fslregs x86-64.fslregs migration.json; do
             cmp "artifacts/x86-specs/$name" "experiments/x86/specs/$name"
           done
+      - name: Reproduce readonly x86 memory-source declarations
+        run: |
+          python3 tools/x86_migrate.py --fission-root Fission --memory-sources --output-dir artifacts/x86-memory-specs
+          for name in scalar.fslx scalar-bodies.fsl x86-32.fslregs x86-64.fslregs migration.json; do
+            cmp "artifacts/x86-memory-specs/$name" "experiments/x86/memory/specs/$name"
+          done
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -50,7 +56,7 @@ jobs:
           if-no-files-found: ignore
   sop2-and-fir:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
@@ -60,7 +66,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 55905c3975bc362d4121d0e11b7f60248fc555b9
+          git -C .compiler fetch --depth=1 origin dc665c7c9341e76587ceb968849f604083245949
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -86,6 +92,21 @@ jobs:
         with:
           name: owned-x86-report
           path: artifacts/x86-reproduction.json
+          if-no-files-found: ignore
+      - name: Validate memory-source FIR against recompilation and original x86 execution
+        env:
+          FISSION_RESOURCE_ROOT: ${{ github.workspace }}/.compiler
+        run: |
+          cargo +1.98.1 test --manifest-path .compiler/Cargo.toml --locked -p fission-fsl --features x86 --test x86_memory
+          cargo +1.98.1 build --manifest-path .compiler/Cargo.toml --locked -p fission-emulator --example x86_fir_baseline
+          cmp experiments/x86/memory/specs/scalar-bodies.fsl .compiler/crates/fission-fsl/specs/x86/scalar-memory-bodies.fsl
+          python3 tools/x86_semantics_validate.py --fsl-x86 .compiler/target/debug/fsl-x86 --pcode-baseline .compiler/target/debug/examples/x86_fir_baseline --baseline-root .compiler --cc clang-18 --rustc 'rustup run 1.98.1 rustc' --machine-host native-x86
+      - name: Preserve x86 semantic comparison evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: x86-semantic-comparison
+          path: artifacts/x86-semantics.json
           if-no-files-found: ignore
       - name: Reproduce structured FIR and execute native branches
         run: |
