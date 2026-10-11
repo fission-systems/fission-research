@@ -43,6 +43,12 @@ jobs:
           for name in scalar.fslx scalar-bodies.fsl x86-32.fslregs x86-64.fslregs migration.json; do
             cmp "artifacts/x86-memory-specs/$name" "experiments/x86/memory/specs/$name"
           done
+      - name: Reproduce x86 store and stack declarations
+        run: |
+          python3 tools/x86_migrate.py --fission-root Fission --memory-writes --output-dir artifacts/x86-stateful-specs
+          for name in scalar.fslx scalar-bodies.fsl x86-32.fslregs x86-64.fslregs migration.json; do
+            cmp "artifacts/x86-stateful-specs/$name" "experiments/x86/stateful/specs/$name"
+          done
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -66,7 +72,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin dc665c7c9341e76587ceb968849f604083245949
+          git -C .compiler fetch --depth=1 origin 8211a05610204670a4f5542298d8a4e0d9fe5983
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -107,6 +113,21 @@ jobs:
         with:
           name: x86-semantic-comparison
           path: artifacts/x86-semantics.json
+          if-no-files-found: ignore
+      - name: Validate ordered stores and stack frames against original x86 execution
+        env:
+          FISSION_RESOURCE_ROOT: ${{ github.workspace }}/.compiler
+        run: |
+          cargo +1.98.1 test --manifest-path .compiler/Cargo.toml --locked -p fission-fsl --features x86 --test memory_store --test x86_stateful
+          cmp experiments/x86/stateful/specs/scalar.fslx .compiler/crates/fission-fsl/specs/x86/scalar-stateful.fslx
+          cmp experiments/x86/stateful/specs/scalar-bodies.fsl .compiler/crates/fission-fsl/specs/x86/scalar-stateful-bodies.fsl
+          python3 tools/x86_stateful_validate.py --fsl-x86 .compiler/target/debug/fsl-x86 --pcode-baseline .compiler/target/debug/examples/x86_fir_baseline --baseline-root .compiler --cc clang-18 --rustc 'rustup run 1.98.1 rustc' --machine-host native-x86
+      - name: Preserve x86 store and stack execution evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: x86-stateful-comparison
+          path: artifacts/x86-stateful.json
           if-no-files-found: ignore
       - name: Reproduce structured FIR and execute native branches
         run: |

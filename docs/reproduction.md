@@ -41,7 +41,7 @@ Reports preserve unresolved types and unknown variadic evidence. These gates
 do not replace the product signature loader or establish callable ABI semantics.
 
 The second CI job fetches Fission compiler commit
-`16f84f47e0cb53278fddde2522dfbe581fce5ddf` separately into `.compiler/`. It builds
+`8211a05610204670a4f5542298d8a4e0d9fe5983` separately into `.compiler/`. It builds
 `fslc` with pinned Rust 1.98.1, runs its existing FIR execution/recompilation tests, then validates the
 research SOP2 profile against LLVM 18. Local validation also records the oracle
 version; the first local run used LLVM 22.1.8.
@@ -59,8 +59,8 @@ exhaustive scalar register/flag diamond. Its C/Rust O0/O2 comparisons total
 48,208: conversions 12,288; register CFG 27,680; two constructed carry CFGs
 8,240 (including source ABI refusals). `tools/register_fir_reproduce.py`
 regenerates the locked 803-byte package and three outputs, then checks 44
-native CLI oracle states and three failures. Loops, memory, GPU CFG and real
-binary function lifting remain unsupported.
+native CLI oracle states and three failures. These register-CFG fixtures do not
+validate loops, memory, GPU CFG or real binary function lifting.
 
 ```sh
 python3 tools/structured_fir_reproduce.py --fslc /absolute/path/to/fslc
@@ -149,3 +149,29 @@ separate 1,060-state u128 arithmetic oracle. The ABI is exact logical bank sizes
 invalid input preserves state. These are authored sequential instruction windows
 and do not establish real binary function lifting, loops, GPU CFG or memory
 semantics. See [scope/lock](../experiments/fir/sequence/README.md).
+
+## Owned x86 memory and stack gate
+
+The original x86 windows, readonly memory pool and stateful pool are retained
+separately. The historical job regenerates each pool and compares all five
+source/inventory artifacts. The compiler job reproduces the original projections,
+then executes the readonly and stateful ELF windows with C/Rust O0/O2 and original
+Linux x86 bytes. The i386 oracle is a static libc-free adapter; the 64-bit adapter
+checks two-word external memory in addition to result, flags and frame balance.
+
+```sh
+python3 tools/x86_stateful_validate.py \
+  --fsl-x86 /absolute/path/to/fsl-x86 \
+  --pcode-baseline /absolute/path/to/x86_fir_baseline \
+  --baseline-root /absolute/path/to/Fission \
+  --cc clang-18 --rustc 'rustup run 1.98.1 rustc' --machine-host native-x86
+```
+
+The stateful gate checks 768 modeled FIR states and 6,144 compiled success/rollback
+rows. Budget failures follow actual PUSH/MOV stores. Reports preserve host/tool,
+source/executable hashes, checkout provenance and measured SLA baseline differences.
+Local ARM64 macOS observes only 512 original-byte cases through Rosetta; Linux CI
+requires all three adapters (768 cases). The baseline is an implementation
+comparison, not an expected mismatch count or proof of an IR expressive limit.
+See [stateful contracts and scope](../experiments/x86/stateful/README.md): bounded
+flat memory, modern IA-32 stack ordering, no complete ABI or full x86 migration.
