@@ -6,6 +6,8 @@
 
 ## 현재 방향과 구현 위치
 
+최신 x86 실험의 범위·명세·실행 계약은 [자체 x86 연구 기록](experiments/x86/README.md)에 있다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
+
 ### 연구 성숙도
 
 | 항목 | 현재 구현 범위 |
@@ -14,11 +16,12 @@
 | FIR | 단일 의미 소유자 프로토타입; 정수 확장·절단, 스택·register/flag·masked lane 효과 |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 + 실행용 vector add 패턴 2개 |
 | JVM 디코드 | `iadd` 한 opcode |
+| 자체 x86 디코드 / 출력 | 외부 decoder 의존성 없이 46개 scalar 규칙 / 63개 FIR body; 16/32/64 raw window 및 ELF 2개 span의 FIR/C/Rust 출력 |
 | GPU 실행 의미 | scalar add/carry와 wave64 `v_add_u32` 구현; EXEC 쓰기·divergence·메모리·커널은 미구현 |
 | Sleigh / cspec 이관 | eBPF ADD64 한 leaf의 원문·직접 SLA 두 경로, ABI metadata 2개; SLA의 register layout도 이관 |
 | 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
 | 자체 자산 / library corpus | 988개 자산 인벤토리; FPK 한 파일의 31,418개 후보를 `.fslib` / `.fsldb`로 이관, native exact 조회 |
-| FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택·register/flag reference/C/Rust 실행; nested domain region·함수 lifting 미구현 |
+| FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택·register/flag reference/C/Rust 실행; nested domain region 미구현; x86의 caller 지정 함수 span lifting은 제한적으로 지원 |
 | 순차 명령 상태 / origin | 명시한 고정폭 window의 기존 FIR body 연결; 주소·바이트 범위·입력/패키지 해시와 spec evidence, reference/C/Rust 실행 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
 | 동작 보존 재컴파일 | 제한된 JVM 정수·스택, scalar·masked lane 상태, eBPF leaf와 자체 register CFG의 C·Rust 출력 |

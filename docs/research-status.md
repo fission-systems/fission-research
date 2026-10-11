@@ -178,6 +178,39 @@ Native 구현은 Fission [`16f84f47e`](https://github.com/fission-systems/Fissio
 
 이 단계는 명시적으로 공급한 window의 **순차 실행**이다. FIR block terminator는 instruction body 안에서만 분기하며 return 후 다음 word를 실행한다. Guest PC·명령 사이 branch target·함수 entry/return을 복원한 것이 아니다. **검증은 자체 작성 명세/window 기반이고, 루프 실행·GPU CFG·메모리·실제 binary function lifting은 여전히 미지원이다.** 다음은 inter-instruction branch/PC 계약과 loader-backed byte origin을 연결하는 단계다. Sequence native Cranelift JIT/AOT·CUDA/PTX, variable-width/mixed profile도 미지원이다.
 
+## 자체 x86 scalar window와 FIR 출력 — 2026-10-11
+
+Native 구현은 Fission [`55905c397`](https://github.com/fission-systems/Fission/commit/55905c3975bc362d4121d0e11b7f60248fc555b9)에 반영하고 실험 브랜치에 푸시했다.
+사용자 요청에 따라 x86 16/32/64비트를 자체 명세로 이관하는 경로를 시작했다.
+초기 연결에 사용했던 `iced-x86`는 제거했다. Native manifest/lock에는 외부 decoder
+의존성을 추가하지 않으며 기존 workspace loader를 optional `x86` feature로 사용한다.
+SHA-256/Cranelift와 loader의 기존 파일 파싱 의존성까지 제거했다는 뜻은 아니다.
+
+[실험과 재현 계약](../experiments/x86/README.md):
+
+- Own `.fslx` 46개 규칙과 `.fsl` 63개 canonical FIR body를 `.fslxc` binary로 컴파일했다.
+  Opcode/prefix/ModRM/SIB/immediate decoding은 Fission 소유이며 SLEIGH/P-code를 실행하지 않는다.
+- 고정 x86 자산 78개를 해시로 기록했다. `ia.sinc`의 register prefix에서 legacy 1,380개,
+  long-mode 1,440개 view를 이관하고 native parser로 읽었다. 다른 constructor/cspec/pspec/context는
+  inventoried 상태이며 전체 자산을 자동 변환한 것은 아니다. Scalar 의미는 참고 자료를 바탕으로 작성했다.
+- 기존 다른 AI의 generic Sub/And/Or/Xor 변경을 보존했다. 동일 FIR에 bounded little-endian
+  scalar memory load를 추가해 near RET의 stack read·SP 증가·exit PC를 표현했다.
+- Raw 16/32/64 window와 Clang이 생성한 ELF 32/64 span 두 개에서 FIR/C/Rust 15개 출력을 만들었다.
+  공급한 상태 5개는 FIR reference 실행에서 RAX=12와 mode별 RET 결과를 냈다.
+- C 5개와 Rust 5개 source는 warnings-as-errors로 컴파일했다. Native x86 feature build 및
+  Clippy가 통과했다. 이번 로컬 작업에서 기존 unit suite는 재실행하지 않았다.
+- `x86_reproduce.py`는 package·input·output lock을 비교하고 5개 reference 실행을 재생성한다.
+  이는 self-derived artifact 재현이며 독립 ISA oracle 또는 생성된 코드의 runtime 동치 검증이 아니다.
+
+새 경로는 caller가 지정한 file-backed executable span만 읽으며 source signature·ABI·locals를
+복원하지 않는다. Direct branch는 window 내부 instruction start로 제한하며 예산으로 재방문을
+제한한다. Stack memory는 readonly flat byte window이고 16비트 SS.base는 0이라는 계약이다.
+Wrapper 실패 rollback은 CPU fault/atomicity 모델이 아니다. Memory operands/store, CALL/callee ABI,
+indirect control, byte/high-byte register, SIMD/x87/AVX, full cspec/pspec/context는 아직 미지원이다.
+실제 x86 hardware 실행과 full corpus coverage를 측정하지 않았으므로 전체 x86 디컴파일 완료로
+주장하지 않는다. 이전 단계의 “메모리·함수 lifting 미지원” 기록은 해당 단계의 범위를 뜻하며,
+현재 추가된 기능은 위의 명시적인 x86 window / RET memory 범위에 한정된다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.

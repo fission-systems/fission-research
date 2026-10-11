@@ -31,6 +31,12 @@ jobs:
           python3 tools/asset_inventory.py
           cmp artifacts/legacy-assets.json experiments/migration/asset-replacement/legacy-assets.json
           make library-migration-reproduce
+      - name: Reproduce x86 source inventory and register declarations
+        run: |
+          python3 tools/x86_migrate.py --fission-root Fission --output-dir artifacts/x86-specs
+          for name in scalar.fslx scalar-bodies.fsl x86-32.fslregs x86-64.fslregs migration.json; do
+            cmp "artifacts/x86-specs/$name" "experiments/x86/specs/$name"
+          done
       - name: Preserve reproduction report
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -54,7 +60,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 16f84f47e0cb53278fddde2522dfbe581fce5ddf
+          git -C .compiler fetch --depth=1 origin 55905c3975bc362d4121d0e11b7f60248fc555b9
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -64,6 +70,23 @@ jobs:
           rustup toolchain install 1.98.1 --profile minimal --no-self-update
           cargo +1.98.1 build --locked -p fission-fsl --bin fslc
           cargo +1.98.1 test --locked -p fission-fsl -- --nocapture
+      - name: Build owned x86 frontend and reproduce selected spans
+        env:
+          FISSION_RESOURCE_ROOT: ${{ github.workspace }}/.compiler
+        run: |
+          cargo +1.98.1 build --manifest-path .compiler/Cargo.toml --locked -p fission-fsl --features x86 --bin fsl-x86
+          cmp experiments/x86/specs/scalar.fslx .compiler/crates/fission-fsl/specs/x86/scalar.fslx
+          cmp experiments/x86/specs/scalar-bodies.fsl .compiler/crates/fission-fsl/specs/x86/scalar-bodies.fsl
+          .compiler/target/debug/fslc check-layout experiments/x86/specs/x86-32.fslregs
+          .compiler/target/debug/fslc check-layout experiments/x86/specs/x86-64.fslregs
+          python3 tools/x86_reproduce.py --fsl-x86 .compiler/target/debug/fsl-x86 --cc clang-18 --rustc 'rustup run 1.98.1 rustc'
+      - name: Preserve owned x86 reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: owned-x86-report
+          path: artifacts/x86-reproduction.json
+          if-no-files-found: ignore
       - name: Reproduce structured FIR and execute native branches
         run: |
           cmp experiments/fir/structured-control/stack-branch-join.fsl .compiler/crates/fission-fsl/specs/stack-branch-join.fsl
