@@ -1,0 +1,559 @@
+{
+  "format": "fission-x86-migration-v1",
+  "source_commit": "96fc71f75cecdee305faf9497561c577a8955468",
+  "assets": [
+    {
+      "path": "utils/sleigh-specs/languages/x86/adx.sinc",
+      "sha256": "0eed99ef539a602beea5eafddb4892c0c3a8588e9d7306bba536dacd3c88d448",
+      "bytes": 1097,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 4
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx.sinc",
+      "sha256": "8d39806d025101113297fc4a65092a1eb2f741cabec8b6edd92053b1e0a0a62e",
+      "bytes": 129239,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 362
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx2.sinc",
+      "sha256": "ef3b84ee87cd4feef2c93b8d9fadf075e963d562fd41f1e39d245fe6bd067e9f",
+      "bytes": 51812,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 149
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx2_manual.sinc",
+      "sha256": "2fc5aa6ea2f6a93c5ab362c1b02413ed6c8632b4c4c96f822b63721ef4ffcf71",
+      "bytes": 10813,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 19
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx512.sinc",
+      "sha256": "4a3b679f76efbd32751167e366c83fdd729ac62f888d88c07648de42b92f38c1",
+      "bytes": 790429,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 1706
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx512_manual.sinc",
+      "sha256": "f13a83dd8c05012fec7de3a213017a132a511f34c660003a8803cb58451e3518",
+      "bytes": 62147,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 177
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/avx_manual.sinc",
+      "sha256": "b21b9c8426bcb65ff68b372473e88f84b5e60406da70b1a04e4a0173f1d5a27d",
+      "bytes": 15190,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 34
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/bmi1.sinc",
+      "sha256": "5709517a8eb8f40d98bd554a2e01aa7631153dc91df25e3747b7be9e96b8f3cf",
+      "bytes": 4817,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 13
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/bmi2.sinc",
+      "sha256": "e1af5bb84f0a65cf9af89257c91f502c3f22a84950e3da0baf71026f2b157a69",
+      "bytes": 5671,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 16
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/cet.sinc",
+      "sha256": "8e15e30b3eaf72fbe5f54e07992d43438f1e380310c409f0480a2df6ede194d7",
+      "bytes": 2725,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 14
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/clwb.sinc",
+      "sha256": "9000fedf783efc006025fd5355061dbeaeb4d025d589512c216e9e04757befb9",
+      "bytes": 455,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 2
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/fma.sinc",
+      "sha256": "71da41cffda5a41c109ae71ca9b70b7ca9974dda0355664083bdc95a9b84fe5d",
+      "bytes": 35376,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 96
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/ia.sinc",
+      "sha256": "46bba656291d90c2ef801be4a78664dd5914ca05b85e59e9bfdeb26068fe9784",
+      "bytes": 538769,
+      "status": "register-prefix-migrated",
+      "constructor_records": 1805
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/lockable.sinc",
+      "sha256": "d8b90aa04766ef32f3a5898fcc8473baa2b157a6ea111179c6888c58f5500097",
+      "bytes": 32374,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 125
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/lzcnt.sinc",
+      "sha256": "7ada365d803e610988a9f9ff2bdf54ae2dab8a3f454173353b774f44bbc3d3ab",
+      "bytes": 716,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 3
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/macros.sinc",
+      "sha256": "4107a81f9aadd9566c95fff301b68ef3054ee59b44ead8daa83e8808d122d146",
+      "bytes": 117,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/mpx.sinc",
+      "sha256": "e1cac27dc26ea99f9b2ae4428fb1e2b8c072fec6cbd78842fa9cd60daa73d9ed",
+      "bytes": 10113,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 26
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV1.lang",
+      "sha256": "ad05d6c80492f34cde3462d6f0032a7d3474f80412f3599eea0213d380407a52",
+      "bytes": 8569,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV1.trans",
+      "sha256": "abba316c3c6eb8e113cc64e370caea27a6e89f8945164411b03337ce83cdd7fc",
+      "bytes": 271,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV2.lang",
+      "sha256": "7e8aa599c0f82ccfa869e3e99dc814773b484f2756e81328f69ee85c1c090e68",
+      "bytes": 52564,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV2.trans",
+      "sha256": "704897c7ee4d69b2515eb2a3d2f0312fc67ac8cd227a5c39e13c01fb8e677d58",
+      "bytes": 271,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV3.lang",
+      "sha256": "41f1660b7733acef889746560ea7bb6fc3239497643cee11aeb815560986c369",
+      "bytes": 53060,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86RealV3.trans",
+      "sha256": "793da757a140dc4d9062e625c76221a2c14e0f0192a2915beff37def6dcd2897",
+      "bytes": 271,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V1.lang",
+      "sha256": "086eac45021e98212240c0d9c91bf95dcad311e511f0233025db925caee8e7c6",
+      "bytes": 8607,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V1.trans",
+      "sha256": "ddc878fdbbd719fc5fdea48c1af59983a75e846fe0deb89b088c2680b4ae3b56",
+      "bytes": 313,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V2.lang",
+      "sha256": "dc5292c00f37c3972d77c17ae7440f410b3230d4eca12dffc092684d949060d6",
+      "bytes": 52794,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V2.trans",
+      "sha256": "6d73ff33f86391effabc9cfb67b08de6d8d05941bb8d23cfc9872cf9ccd9b3f5",
+      "bytes": 555,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V3.lang",
+      "sha256": "45501d2a5447457c5bc59fcd9a169def594f3dab87ee7154f2a7ad02fd4b87c3",
+      "bytes": 53290,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86V3.trans",
+      "sha256": "cef1979ff1f879a4fa2d3d76282be393d7137a6ad0520fca6ad010c012879926",
+      "bytes": 555,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_compat32_v2.lang",
+      "sha256": "f91df794605144407e755274727d9e34a102bb3bcf7391ab6d5733eca63a5f0c",
+      "bytes": 56260,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_compat32_v2.trans",
+      "sha256": "dcb9df8bcc2b6555a51d9be2d772e4508f9c9599c8ccc57dfcd86bfab8c86174",
+      "bytes": 315,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_compat32_v3.lang",
+      "sha256": "faffb8303e58639525486841d6660814f9570fb8192066559da3b7266564126f",
+      "bytes": 56756,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_compat32_v3.trans",
+      "sha256": "838932c2906ce247d69b5b46b5703ff0555f50c77ee49aba7b7da7f2a8a9c01d",
+      "bytes": 315,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v1.lang",
+      "sha256": "0407f6abe6863b67fa1228ca11d1e5e1205ead2be938f03c01fec6c90bd45b4e",
+      "bytes": 12768,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v1.trans",
+      "sha256": "2bfb4e428849f8e979b5daa6ab08bf6ec3cd0b59158645ba2d5d43a69754b4ad",
+      "bytes": 313,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v2.lang",
+      "sha256": "59bebdbfeed24becd366ac2b9088dd61d57bd2be705145f02150c210f9793ee7",
+      "bytes": 56349,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v2.trans",
+      "sha256": "5f0a3d425fa4eae425b1f90c676054a531a3c64204a08cfb7c291dd2ad216cb3",
+      "bytes": 429,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v3.lang",
+      "sha256": "072d0997eec4f06b32098562d420e18fc01ac8089a0e6c08c32f2908ab19a16e",
+      "bytes": 56886,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_64bit_v3.trans",
+      "sha256": "cc0c45f5ad4ffe71e8fc192c003311cc79e4d61c98cb129214ee72fd288edac4",
+      "bytes": 429,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_ProtV2.lang",
+      "sha256": "280c9e4ca24eeaeefdb061b2ba225c18948ab910faecd970ac674587c8370e29",
+      "bytes": 52579,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_ProtV2.trans",
+      "sha256": "d6746c0eb1584a8f62f890b83aa5de74512fc3a7607e0c1d5c57dcb793ab3de4",
+      "bytes": 281,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_ProtV3.lang",
+      "sha256": "e80ed91dec36080d4d6f2295f2cba75dd0c06803b38948fb27ed2c36e75c9474",
+      "bytes": 53075,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86_ProtV3.trans",
+      "sha256": "b3ac348ababdb192703499922e6cb9affe474b75dacb984d5f4f69b016db2f88",
+      "bytes": 281,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV1.lang",
+      "sha256": "5e8118a5447187f7536b06b24031d47c8ed55a39d0b772f8033d3d9d13fe00fc",
+      "bytes": 8659,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV1.trans",
+      "sha256": "fbaab22736e45d39b2a9e5269109cdbae27773b8a80ab207e7d54432f2f7ba3a",
+      "bytes": 297,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV2.lang",
+      "sha256": "bb692af42775c081249d5f6c30a03d30489ae36f605382451c07eda8ede75a99",
+      "bytes": 52595,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV2.trans",
+      "sha256": "456757fff9750e98488d4a286a6bdd6f0b697fbfcd54307cccf648f1e67d6349",
+      "bytes": 297,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV3.lang",
+      "sha256": "4f3e5112dd4d22697712d4952eb26d92872197168f2ffd05c30890be1f7149fe",
+      "bytes": 53091,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/old/x86smmV3.trans",
+      "sha256": "3a1e0bacccb2387ccd5b823ace1eda944a1a1b4bbfaa04c787f8f1164911bce4",
+      "bytes": 297,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/pclmulqdq.sinc",
+      "sha256": "08b2a1065005f42873165851a67ac8788d164d4be9f6117ae7a816b80a09cb2d",
+      "bytes": 5009,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 12
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/rdrand.sinc",
+      "sha256": "7debb61625bc32db031038cb05760c60435e884c53695a124e62b0bd9a478340",
+      "bytes": 1189,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 6
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/sgx.sinc",
+      "sha256": "5fa914ab258dc6dbfdcc2b487b78682b7457fa2fbea01b45be55fcabcd39aabc",
+      "bytes": 4989,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 2
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/sha.sinc",
+      "sha256": "8b6b67c3d6c55b6ed35596cf70b9e09f455476b49a68f79f0f23e1fb5d5ab139",
+      "bytes": 1977,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 7
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/smx.sinc",
+      "sha256": "1854dba219a63d40ad3420d778315cb6d7a995f47a18baff6c07008173784603",
+      "bytes": 1373,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 1
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-16-real.pspec",
+      "sha256": "c98ae41a8a4bf9fe6a0b448ae1ac1a6f11777b8e95510650b17d5e73b6293f0b",
+      "bytes": 944,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-16.cspec",
+      "sha256": "85f7c1fd851a51518885d94f34fbc677e7cc289dc2a86d2244f5b9114dcedede",
+      "bytes": 4862,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-16.gdis",
+      "sha256": "f872d703809df47716f238cd29dd74604b35a61ccf640ef76c720c68d7cc759a",
+      "bytes": 47,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-16.pspec",
+      "sha256": "b9cead4956f69d80b32d5a501bb2e7b7dbf9d52e6169be595b3ee3810235cc74",
+      "bytes": 955,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-32-golang.cspec",
+      "sha256": "5c75fcbb539a1302fbbcf4fa5baa4d29d43b32bfa261c0366633829d1ebed213",
+      "bytes": 8897,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-32-golang.register.info",
+      "sha256": "4e32f5ba6ed53b6022469f9702ba1e4d861495d8e9ed37ed6ab2504ca5b5561c",
+      "bytes": 323,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-compat32.pspec",
+      "sha256": "9a0c179eefb5e23f5beedc9be0f21fe6a94463fbf0a06b75f8e01359ab32767e",
+      "bytes": 7124,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-gcc.cspec",
+      "sha256": "5eaa848f3eba7ebd4023541f9f37645dae077e8426fb562592f398d599530a9e",
+      "bytes": 12182,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-golang.cspec",
+      "sha256": "d999ff0cb58c30c93b31564991061fd1bbd6b88752054786a7d895e45fcd6a60",
+      "bytes": 13124,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-golang.register.info",
+      "sha256": "3f23aacd3727b42a31665d1f73bf8704aa5e2004c2eb2b8df998e35595e0fcdc",
+      "bytes": 874,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-swift.cspec",
+      "sha256": "e3e24ed6672ff467f28bbb41094f88a856caf0b9ae4595f4b37c743c355184bc",
+      "bytes": 8266,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64-win.cspec",
+      "sha256": "fc40214ffcad2080f8b468bad6738254eabeabd54231d96efe2d88cd04f19d53",
+      "bytes": 7474,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64.dwarf",
+      "sha256": "5bde75e5d277770c148d5da95464e82bbd1b4823aa37bc38b971396ee7c02ee6",
+      "bytes": 2596,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64.pspec",
+      "sha256": "3c3dab75a2ac0b98b0552856f690e613d661e0df7cf94d6252e5604d9821629f",
+      "bytes": 11721,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86-64.slaspec",
+      "sha256": "9d66a01a4219ab0bee0697caf2d1ee389e094e927a857299cebb6182e40a4e6e",
+      "bytes": 106,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86.dwarf",
+      "sha256": "598ad09d375b6aa8622bc7b1052ca3a0ad1d0d4f3a533abd266f4bbbd8959727",
+      "bytes": 2237,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86.ldefs",
+      "sha256": "b2aa14d94a6162844b18bf47f2aed8579bf90cef3459f6e322b9c1f58146098b",
+      "bytes": 5390,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86.opinion",
+      "sha256": "c209534f7a9c05906cf9eef0bcc498f07e499b0e3a30802604ef7070ec806696",
+      "bytes": 6116,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86.pspec",
+      "sha256": "7416f5f65369a1cf9c1f6f83b6749169418fb51cc674c45efe39d2f274756ccb",
+      "bytes": 9859,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86.slaspec",
+      "sha256": "90532445ab2bb2a622d648e4dfc172bd42351ab5a9c90f19d166d2117844af67",
+      "bytes": 450,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86borland.cspec",
+      "sha256": "665a7b590d587c5544a2f16a0a819b3d0ba1e908d9336535c4ef0718b4d301e6",
+      "bytes": 4238,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86delphi.cspec",
+      "sha256": "c8a472adcf38cf14f8f3c72bd560380f11cb02ab34adec797f6bf16ec5cd2f18",
+      "bytes": 2740,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86gcc.cspec",
+      "sha256": "37ac2ec43156602443b4e5625625ae5e71c61d151a8b06ece6068648046f80cd",
+      "bytes": 12938,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    },
+    {
+      "path": "utils/sleigh-specs/languages/x86/x86win.cspec",
+      "sha256": "5145482b1c9aa6a9c6ad4d5554f98a35fb11b82a13e226df96018a171ea94988",
+      "bytes": 10875,
+      "status": "inventoried-not-migrated",
+      "constructor_records": 0
+    }
+  ],
+  "outputs": {
+    "scalar-bodies.fsl": "75cac13603f2bbc4f465659838a67b58c428b938441c80ce5e7e1a09d5feb968",
+    "scalar.fslx": "08bcc29c2da664f53ad714c366cc9c2880d82d8338ce0ea424c77098f0736000",
+    "x86-32.fslregs": "95b3b91c35787e56158794c2129dc99f992c227a6ef9b8502cd156cf03a61787",
+    "x86-64.fslregs": "61454c365a8800027cc5d96e67d0e04919b57e52b101bcb17ffb18b46b64eb4b"
+  },
+  "scope": "legacy/long-mode register declarations plus authored scalar FIR and owned opcode/prefix/ModRM/SIB decode rules; cspec/pspec/context/SIMD/privileged semantics inventoried, not translated; no external decoder library"
+}

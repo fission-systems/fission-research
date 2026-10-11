@@ -259,6 +259,45 @@ Memory는 readonly flat window이고 segment bases=0이다. Store/stack frame/CA
 ABI allocation, general guest CFG joins, faults/ordering 및 전체 x86 자산은 아직 미지원이다.
 이번 세 leaf 관찰은 전체 함수 동치 증명이나 일반 디컴파일 품질 측정이 아니다.
 
+## 2026-10-11 — ordered memory store와 실제 stack frame
+
+[Stateful x86 실험](../experiments/x86/stateful/README.md)은 generic `memory.store.le`
+canonical FIR 효과와 명시적인 readonly/mutable window 권한을 추가했다. `.fslc` v11,
+op tag 22이며 이전 package/artifact는 유지한다. Decoder library/dependency/Cargo.lock
+변경은 없다. 48 rules / 141 bodies: MOV register→memory 9개와 unprefixed register
+PUSH/POP 6개를 readonly pool에 추가했다. Stack 효과도 FSL body가 소유한다.
+구현 pin은 `8211a05610204670a4f5542298d8a4e0d9fe5983`이다. 16비트 stack은 현대
+IA-32 기준이며 8086 PUSH SP를 포함하지 않는다. Stack address width=mode/SS.base=0
+계약과 별도 Intel SDM 출처·PDF hash를 FSL evidence에 남겼다.
+
+`execute_decoded_memory`와 `X86Program::execute_mut`는 state/memory를 성공 때만
+commit한다. Mutable window는 최대 1 MiB. C/Rust 출력은 동일 길이 disjoint scratch를
+받고 실패 시 caller state/memory/exit를 보존한다. Scratch는 unspecified이며 이 wrapper
+transaction은 CPU fault ordering/atomicity를 뜻하지 않는다.
+
+Derived memory analysis는 exact same-address/same-width store forwarding과 같은 modular
+root의 disjoint range를 추적한다. Partial/unknown alias는 external-read와 possible-store
+의존성을 함께 보존하는 overapproximation이다. Frame64의 RBP 후보가 남을 수 있으며
+임의 pointer/stack disjointness나 source prototype을 가정하지 않는다.
+
+로컬 관찰:
+
+- Full x86-feature nextest 66 passed / 0 skipped. 추가 focused guard/alias 검사는 별도 실행.
+- Clang/LLD 22.1.8의 O0 cdecl32 EBP frame, O0 AMD64 pointer spill/reload, O2 AMD64 store:
+  768 FIR 상태가 independent arithmetic/register/160-byte memory 계산과 일치.
+- C/Rust O0/O2: success 3,072 + 실제 write 이후 budget failure rollback 3,072 = 6,144회.
+- Rosetta64 original-byte execution 512회: result, six defined flags, RBP 보존, SP balance,
+  외부 two-word memory 효과 일치. Original32는 로컬에서 미실행이며 Linux CI에 연결한다.
+- 실제 SLA/canonical evaluator: 각 fixture 256회 GPR/exit/전체 modeled memory 차이 0;
+  AF 차이는 각각 96개, 다른 flags 차이 0. Existing specification 누락이지 IR 우위 증거는 아니다.
+- Strict FSL Clippy는 feature on/off에서 통과. Baseline은 CI-equivalent style/complexity
+  허용 조건에서 통과했다. Existing library lint debt는 변경하지 않는다.
+
+Memory immediate는 displacement와 literal의 별도 binding이 없어 거부한다. CALL/LEAVE,
+일반 ABI allocation, recovered CFG merge/loop 및 faults/MMU/ordering는 아직 미지원이다.
+실험은 세 supplied spans에 한정되며 full x86 migration이나 whole-function equivalence
+증명이 아니다. Hardware의 all-register/stack memory snapshot 비교도 아직 없다.
+
 ## 남은 문제와 다음 구현
 
 1. 원시 selector를 아키텍처별 레지스터·상수·특수 레지스터로 해석하고 유효 범위를 검증한다.

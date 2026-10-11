@@ -6,7 +6,7 @@
 
 ## 현재 방향과 구현 위치
 
-최신 x86 실험은 [메모리 피연산자·입력 근거와 실행 비교](experiments/x86/memory/README.md)다. [초기 자체 x86 연구 기록](experiments/x86/README.md)의 artifact도 유지한다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
+최신 x86 실험은 [store·스택 프레임·입력 근거와 실행 비교](experiments/x86/stateful/README.md)다. 이전 [readonly memory 단계](experiments/x86/memory/README.md)도 유지한다. [초기 자체 x86 연구 기록](experiments/x86/README.md)의 artifact도 유지한다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
 
 ### 연구 성숙도
 
@@ -16,8 +16,8 @@
 | FIR | 단일 의미 소유자 프로토타입; 정수 확장·절단, 스택·register/flag·masked lane 효과 |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 + 실행용 vector add 패턴 2개 |
 | JVM 디코드 | `iadd` 한 opcode |
-| 자체 x86 디코드 / 출력 | 외부 decoder 의존성 없이 46개 scalar 규칙; 초기 63개 / readonly memory 선택 pool 126개 FIR body; 추가 ELF 3개 span의 FIR/C/Rust 실행 비교 |
-| x86 입력 / ABI 복구 | FIR에서 entry ESP+4/+8, RDI+0/+8 메모리 읽기 후보와 origin 추적; ABI 선택·source prototype·일반 함수 복구는 미완료 |
+| 자체 x86 디코드 / 출력 | 외부 decoder 의존성 없이 stateful 48개 규칙 / 141개 FIR body; MOV store·PUSH/POP과 실제 O0 frame/O2 store ELF 3개의 실행 비교; 초기 46-rule artifact 유지 |
+| x86 입력 / ABI 복구 | FIR에서 entry ESP+4/+8, RDI+0/+8 및 stack spill/reload 후보·origin·가능한 별칭 추적; ABI 선택·source prototype·일반 함수 복구는 미완료 |
 | GPU 실행 의미 | scalar add/carry와 wave64 `v_add_u32` 구현; EXEC 쓰기·divergence·메모리·커널은 미구현 |
 | Sleigh / cspec 이관 | eBPF ADD64 한 leaf의 원문·직접 SLA 두 경로, ABI metadata 2개; SLA의 register layout도 이관 |
 | 레지스터 layout / ABI 연결 | 겹치는 byte view와 eBPF 이름·폭 연결; BPF stack-width는 거부, GPU layout·ABI allocator 미구현 |
@@ -25,7 +25,7 @@
 | FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택·register/flag reference/C/Rust 실행; nested domain region 미구현; x86의 caller 지정 함수 span lifting은 제한적으로 지원 |
 | 순차 명령 상태 / origin | 명시한 고정폭 window의 기존 FIR body 연결; 주소·바이트 범위·입력/패키지 해시와 spec evidence, reference/C/Rust 실행 |
 | SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
-| 동작 보존 재컴파일 | 제한된 JVM·GPU·eBPF·자체 CFG 및 x86 ELF 3개 leaf; 새 x86 상태 768개 / C·Rust O0·O2 실행 3,072회; 전체 함수 동치 증명은 아님 |
+| 동작 보존 재컴파일 | 제한된 JVM·GPU·eBPF·자체 CFG 및 x86 ELF 3개 leaf; stateful x86 상태 768개 / C·Rust O0·O2 성공·rollback 실행 6,144회; 전체 함수 동치 증명은 아님 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
 | AI 평가 | 계획·설계 단계 |
 

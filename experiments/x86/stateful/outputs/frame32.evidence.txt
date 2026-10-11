@@ -1,0 +1,13 @@
+input evidence mode=32 decoder=owned-x86-v1 input-sha256=95bdabe718268114efb3749ef9861a5fe045350c5054bd39695f597c61356263 package-sha256=9c9d8479202b7bd842f89ae0d8c17ef1c4d6b4a51c74d1e78b3138ca2fbbe10b
+status=bounded-candidates convention=unselected return-register=0 source-types=unknown
+binary file-sha256=9db3806444d0870bd071cb36b8c503b85aa702e7878449bd48f0bfe8334a2671 file-offset=4096 section=".text"
+entry-register slot=4 role=address/stack-context confidence=dependency-only
+memory-read id=0 instruction=0x401003 raw=8b450c fir-op=17 value-bits=32 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 8, bits: 32 })
+memory-read id=1 instruction=0x401006 raw=8b4508 fir-op=17 value-bits=32 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 4, bits: 32 })
+memory-read id=2 instruction=0x401009 raw=8b4508 fir-op=17 value-bits=32 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(4), offset: 4, bits: 32 })
+memory-read id=3 instruction=0x40100c raw=03450c fir-op=17 value-bits=32 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(4), offset: 8, bits: 32 })
+memory-read id=4 instruction=0x40100f raw=5d fir-op=2 value-bits=32 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 4294967292, bits: 32 })
+memory-read id=5 instruction=0x401010 raw=c3 fir-op=2 value-bits=32 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 0, bits: 32 })
+memory-read-forward id=4 exact-store=0
+memory-write id=0 instruction=0x401000 raw=55 fir-op=5 value-bits=32 address=Some(AffineAddress { entry_register: Some(4), offset: 4294967292, bits: 32 }) dependencies={Register(4), Register(5)}
+limits=flat-memory; no ABI selection, source prototype, argument count, signedness, pointer type or completeness proof; unknown control analysis refuses

@@ -1,0 +1,67 @@
+{
+  "format": "x86-stateful-v1",
+  "source_commit": "96fc71f75cecdee305faf9497561c577a8955468",
+  "fixture_compiler": "Homebrew clang/LLD 22.1.8",
+  "fixture_command": "clang --target={i386|x86_64}-pc-linux-gnu {-O0 -fno-omit-frame-pointer|-O2 -fomit-frame-pointer} -fno-asynchronous-unwind-tables -fno-stack-protector -fuse-ld=lld -nostdlib -static -Wl,-e,fsl_add -Wl,-Ttext=0x401000 -Wl,--build-id=none SOURCE -o ELF",
+  "fixtures": [
+    {
+      "name": "frame32",
+      "mode": 32,
+      "size": 17,
+      "hex": "5589e58b450c8b45088b450803450c5dc3",
+      "file_offset": 4096
+    },
+    {
+      "name": "frame64",
+      "mode": 64,
+      "size": 25,
+      "hex": "554889e548897df8488b45f8488b00488b4df8480341085dc3",
+      "file_offset": 4096
+    },
+    {
+      "name": "store64",
+      "mode": 64,
+      "size": 11,
+      "hex": "488b0748034708488907c3",
+      "file_offset": 4096
+    }
+  ],
+  "package_sha256": "9c9d8479202b7bd842f89ae0d8c17ef1c4d6b4a51c74d1e78b3138ca2fbbe10b",
+  "inputs": {
+    "fixtures/frame32.c": "ace2022b0fe17b8480fdacce123ae172af13eeeeedb6177266dd66ef43242912",
+    "fixtures/frame32.elf": "9db3806444d0870bd071cb36b8c503b85aa702e7878449bd48f0bfe8334a2671",
+    "fixtures/frame64.c": "b91dcdc73b32348dbe00169bdeb3a6f737b1765496045912111aab98fe30d2dc",
+    "fixtures/frame64.elf": "9b5c4396ab499ff6b82f8430661ee19c1e201b3ee7f7dd7d9862d40ded6f9945",
+    "fixtures/store64.c": "9816f23e3eed603a66fb5be79d366ef5d6263eae977057b7ddbc0a7388501b9b",
+    "fixtures/store64.elf": "cd9a6bf90f2e0d2586e87f32ea95fc5c0c20ea48c3e6250297030dd762053ab6",
+    "specs/migration.json": "5127c662da8dd2ea228785b950e917a114e1d22b6118fb6f18610d61f1b8f3b3",
+    "specs/scalar-bodies.fsl": "75cac13603f2bbc4f465659838a67b58c428b938441c80ce5e7e1a09d5feb968",
+    "specs/scalar.fslx": "08bcc29c2da664f53ad714c366cc9c2880d82d8338ce0ea424c77098f0736000",
+    "specs/x86-32.fslregs": "95b3b91c35787e56158794c2129dc99f992c227a6ef9b8502cd156cf03a61787",
+    "specs/x86-64.fslregs": "61454c365a8800027cc5d96e67d0e04919b57e52b101bcb17ffb18b46b64eb4b",
+    "oracle32.S": "3c4007545e8a7893e3675e0325021c1c8b9a66027f34a788465acafbee1300f3",
+    "oracle64.c": "b41d3d0b2bddeb15a41faab6f8f50b816218c6715a6ad7f14abd232df1af3fb0"
+  },
+  "output_sha256": {
+    "outputs/frame32.c": "fee5fe9e56f91cedf4e9c6f1c08492ebdb1b50ad250713a0b7f0ae1fb7e9a4a2",
+    "outputs/frame32.evidence.txt": "4dd091dcfd29d873d07def98ddb922a8057839c85ce246a44f9e1537d3c2e07f",
+    "outputs/frame32.fir": "a627db199e4515333cd822647f2e0b2a4bbf4db11cbc916579aab01547ca7489",
+    "outputs/frame32.rs": "ee5740c131d9be9d3e62e10aa72b02db62881ee41bd5d0d5c4fd7702e2465286",
+    "outputs/frame64.c": "7ad6a6bee6860f556f1f4020b2e63d26d64ccdf6e5b99ecefd9b019ea11d9fa0",
+    "outputs/frame64.evidence.txt": "8a33cfb667ce4cb8619813829d34dabe47956c1660db5e82cc7f96273d354426",
+    "outputs/frame64.fir": "66af10d4d4221e1efdd7914ae50d9dfec10645c81b44c037e28d01bebcb1654a",
+    "outputs/frame64.rs": "8d0b449b988424c99a7e82c0a6a46b245f76f6a0403c19a690da82d9c8d1bd49",
+    "outputs/store64.c": "166d2a5d81f3715d2947347720a3d3d16a0cfd3dc9dbf9ce16377c8ef66c734d",
+    "outputs/store64.evidence.txt": "9ffdc834de18cdd202b47e2fd332c2234aa8a32fd4d75084b2a2e7ceef05826d",
+    "outputs/store64.fir": "a2d5a4af1b6b04079bfcc7524d4403e2631d7bb0853ff9de6f097ba126542b7b",
+    "outputs/store64.rs": "0571e185e01936fa1194005597a15cf1253d3f73f74a2f7c4a3c7f60515a89a0"
+  },
+  "stack_contract": {
+    "generation": "modern IA-32 / Intel64; excludes 8086 PUSH SP",
+    "stack_address_width": "selected mode",
+    "ss_base": 0,
+    "source_url": "https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2b-manual.pdf",
+    "source_sha256": "036ae35aec4da9dd54ba3b683547f09963f69609a3b98eae15586a692c4cd3d2"
+  },
+  "native_compiler_commit": "8211a05610204670a4f5542298d8a4e0d9fe5983"
+}

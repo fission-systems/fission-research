@@ -1,0 +1,20 @@
+input evidence mode=64 decoder=owned-x86-v1 input-sha256=cef20a263b27e13e27c3730106f6d07229a55cb03812a85eeffc05366b212ff9 package-sha256=9c9d8479202b7bd842f89ae0d8c17ef1c4d6b4a51c74d1e78b3138ca2fbbe10b
+status=bounded-candidates convention=unselected return-register=0 source-types=unknown
+binary file-sha256=9b5c4396ab499ff6b82f8430661ee19c1e201b3ee7f7dd7d9862d40ded6f9945 file-offset=4096 section=".text"
+entry-register slot=4 role=address/stack-context confidence=dependency-only
+entry-register slot=5 role=return-data-candidate confidence=dependency-only
+entry-register slot=7 role=return-data-candidate confidence=dependency-only
+memory-read id=0 instruction=0x401008 raw=488b45f8 fir-op=16 value-bits=64 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 18446744073709551600, bits: 64 })
+memory-read id=1 instruction=0x40100c raw=488b00 fir-op=16 value-bits=64 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(7), offset: 0, bits: 64 })
+memory-read id=2 instruction=0x40100f raw=488b4df8 fir-op=16 value-bits=64 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 18446744073709551600, bits: 64 })
+memory-read id=3 instruction=0x401013 raw=48034108 fir-op=16 value-bits=64 role=return-data-candidate address=Some(AffineAddress { entry_register: Some(7), offset: 8, bits: 64 })
+memory-read id=4 instruction=0x401017 raw=5d fir-op=2 value-bits=64 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 18446744073709551608, bits: 64 })
+memory-read id=5 instruction=0x401018 raw=c3 fir-op=2 value-bits=64 role=control-or-other address=Some(AffineAddress { entry_register: Some(4), offset: 0, bits: 64 })
+memory-read-forward id=0 exact-store=1
+memory-read-alias id=1 possible-stores=[1, 0] confidence=overapproximation
+memory-read-forward id=2 exact-store=1
+memory-read-alias id=3 possible-stores=[1, 0] confidence=overapproximation
+memory-read-forward id=4 exact-store=0
+memory-write id=0 instruction=0x401000 raw=55 fir-op=4 value-bits=64 address=Some(AffineAddress { entry_register: Some(4), offset: 18446744073709551608, bits: 64 }) dependencies={Register(4), Register(5)}
+memory-write id=1 instruction=0x401004 raw=48897df8 fir-op=17 value-bits=64 address=Some(AffineAddress { entry_register: Some(4), offset: 18446744073709551600, bits: 64 }) dependencies={Register(4), Register(7)}
+limits=flat-memory; no ABI selection, source prototype, argument count, signedness, pointer type or completeness proof; unknown control analysis refuses
