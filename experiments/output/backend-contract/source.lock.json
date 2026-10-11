@@ -1,0 +1,25 @@
+{
+  "format": "fsl-backend-contract-v1",
+  "fixture_lock_sha256": "a43a5a4a0bc1c99f46c525b7214ff44083be86be21e6435bb0398768ad032096",
+  "native_compiler_commit": "cc02f3be760e43153ccb212d3640d45905e3b8c6",
+  "metadata_sha256": {
+    "imm16-c.plan.txt": "be8301149e1117646e06c1ea79507c388d929fff7cbb6bd870b410fa499e8d88",
+    "imm16-c.projection.txt": "cf5b7b64e2a03e924b6892ffa817d5b9bc4b21715f8b8c13ac443b864c005184",
+    "imm16-c.build.txt": "b1bda45b62207aa870f809dc748b345fa2d34c41c544acce039e438892397b0b",
+    "imm16-rust.plan.txt": "fcb173456084c1c00f0d166e4ea7e70d42ecdbebaa470522c4293f0d00324a2f",
+    "imm16-rust.projection.txt": "3a9a2696daa68f2c40ea06bd399efffe7518ed33f6e655fb539d21b0889552b3",
+    "imm16-rust.build.txt": "6b0f9eee4b1c5bfd1603df4e26bc8a284e8dc26d9c971d5ff9f1d657b86d40fa",
+    "imm32-c.plan.txt": "be8301149e1117646e06c1ea79507c388d929fff7cbb6bd870b410fa499e8d88",
+    "imm32-c.projection.txt": "e7ea5339ef0bf246b7d6c6c691775fe81feebda7fc3cff50af45a5e3b5c1ba09",
+    "imm32-c.build.txt": "b1bda45b62207aa870f809dc748b345fa2d34c41c544acce039e438892397b0b",
+    "imm32-rust.plan.txt": "fcb173456084c1c00f0d166e4ea7e70d42ecdbebaa470522c4293f0d00324a2f",
+    "imm32-rust.projection.txt": "3dcf5bcf70711167493ac4486db357441346d9daec609102f9a162874e849170",
+    "imm32-rust.build.txt": "6b0f9eee4b1c5bfd1603df4e26bc8a284e8dc26d9c971d5ff9f1d657b86d40fa",
+    "imm64-c.plan.txt": "be8301149e1117646e06c1ea79507c388d929fff7cbb6bd870b410fa499e8d88",
+    "imm64-c.projection.txt": "122b39b533422dfcd5da57f28ca9fd00c40e0342c5972b766b533239c6a983e8",
+    "imm64-c.build.txt": "b1bda45b62207aa870f809dc748b345fa2d34c41c544acce039e438892397b0b",
+    "imm64-rust.plan.txt": "fcb173456084c1c00f0d166e4ea7e70d42ecdbebaa470522c4293f0d00324a2f",
+    "imm64-rust.projection.txt": "ab960a955930ec23bca45987c528584d6e20f11a96de41d64932de909ac26a52",
+    "imm64-rust.build.txt": "6b0f9eee4b1c5bfd1603df4e26bc8a284e8dc26d9c971d5ff9f1d657b86d40fa"
+  }
+}

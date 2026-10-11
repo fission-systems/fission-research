@@ -1,0 +1,3 @@
+tool=rustc
+arguments=["--edition=2021", "--crate-type=lib", "output.rs", "-o", "output.rlib"]
+execution=not-performed

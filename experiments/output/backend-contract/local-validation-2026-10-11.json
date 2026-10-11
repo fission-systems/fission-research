@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "bundles": [
+    {
+      "fixture": "imm16",
+      "backend": "c",
+      "source_sha256": "baf11c7f953a94564ead5ec4d564d4eca8cc44901592bc0e959a69b18925578a",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    },
+    {
+      "fixture": "imm16",
+      "backend": "rust",
+      "source_sha256": "1c8d813ba08c010fc0e8959a6334b9e1730f01ee2dcdb7eb985e8af72083d7a2",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    },
+    {
+      "fixture": "imm32",
+      "backend": "c",
+      "source_sha256": "dd3f98d7475974f5cf900b8ed11899859f27049b1c0cfe803a7381fca02e6dc8",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    },
+    {
+      "fixture": "imm32",
+      "backend": "rust",
+      "source_sha256": "ad1e3878566844fc9a7cf3969908b2ad4a39b572a1747b6c62e07c88e93fafe6",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    },
+    {
+      "fixture": "imm64",
+      "backend": "c",
+      "source_sha256": "e9299b8f2dd9121b7c44800f092cf745b2aa2b49c0cc724445e451efde2fe347",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    },
+    {
+      "fixture": "imm64",
+      "backend": "rust",
+      "source_sha256": "47130583f73ed834d27f84b029f062e6a8f7e0740b6e6e51bf98a63b6227df7a",
+      "compilation": "passed",
+      "execution_equivalence": "not measured by this gate"
+    }
+  ],
+  "metadata_artifacts": 18,
+  "existing_directory_refusals": 6,
+  "unregistered_backend_refusals": 1,
+  "scope": "same C/Rust source bytes; backend admission metadata and compilation, not new instruction coverage or execution-equivalence proof",
+  "validator_sha256": "c45c80742b6d230bbabb8c9c63d6ee87278afa1a603ed35e2fa8a55ddbfe37d9",
+  "source_lock_sha256": "8afedd0b5661d744b0b14d3b9b05bf56d65c415735bcb3d6d7f29230ce633d38",
+  "compiler_executable_sha256": "3d82016a5085f94481bedfd728e2e169266d3b89fcb1de479a7ba4ccd0e20a42",
+  "tools": {
+    "cc": "Homebrew clang version 22.1.8",
+    "rustc": "rustc 1.97.0 (2d8144b78 2026-07-07)"
+  },
+  "compiler_source_provenance": {
+    "checkout_commit": "cc02f3be760e43153ccb212d3640d45905e3b8c6",
+    "checkout_dirty": false,
+    "source_sha256": {
+      "crates/fission-fsl/src/abi.rs": "7ef7b96547f4a092fa64948c4f03af8b56e3cbf2d43c26c7476b1444bb7c7dc3",
+      "crates/fission-fsl/src/backend.rs": "696d2c1ddb17383dea2b1e04aa8109a8b7fc48576d219ac8ed3db85e167e2c9e",
+      "crates/fission-fsl/src/control.rs": "fea8a6c3e2be7f869bdeba5af409dfa8962d5ca65ff44e28dedf64f6d0030b3c",
+      "crates/fission-fsl/src/encoding.rs": "3c4f34fd360e0e08ffdfc847de92770851c5c5e77f4f662375d14478b1f2096a",
+      "crates/fission-fsl/src/gpu_output.rs": "a4774438d61a0abd4cd05921f59d84abc4e317b761065a692547d857fc841789",
+      "crates/fission-fsl/src/jit.rs": "585711d25f5ac5c4930cc43587fd318e64bccfe35c4634812482e67ffceebe23",
+      "crates/fission-fsl/src/lib.rs": "a139997679abad1fbf6c7a9068bfe4c7d4f47f014b333ab24318263be9cad69b",
+      "crates/fission-fsl/src/library.rs": "25c7745e57437a13bbfda9a6bf863963ca7cc6fb25736425984b2685bfc2febe",
+      "crates/fission-fsl/src/main.rs": "193d81c9b3817148852d66c3eae65de5830d33cbffc45fca89d9f3b7afcfe96a",
+      "crates/fission-fsl/src/output.rs": "c7e3ad69f39a0b74c6a96f60c825ab94612741fcc6de26a0736266b9aeb2d4c1",
+      "crates/fission-fsl/src/package.rs": "8b48e2f25741c50633d66a7e1e25988e59ec21381c57d24c074ddaad935030b1",
+      "crates/fission-fsl/src/parser.rs": "78aadf29dcf8c202b67e312ee58da0b06eb90a6b5a6c79c9935fc8f8fd25db4e",
+      "crates/fission-fsl/src/recovery.rs": "07163dd696dc704ff8e6f1017c9942dcfece1fa2621dbdc204573a90aed0e15e",
+      "crates/fission-fsl/src/registers.rs": "ab71bdc1484b8b77ceb9629d10047a73eef871f79c6ab2904e5ab0428fdfd77e",
+      "crates/fission-fsl/src/semantics.rs": "a4273a0cbb8b7caee91c09d7fb68dc41b68b02484c5e12ce5e3f2bb22d46522c",
+      "crates/fission-fsl/src/sequence.rs": "f4851c33f709a6ed02ce64467c62ad6dfc964929b81f69f8621e452f5a98ee0f",
+      "crates/fission-fsl/src/state.rs": "6b9c8f7d0f938571ccc94becc14a882e9498c5631c3d8ff0290742d816a182c2",
+      "crates/fission-fsl/src/wave.rs": "a99605e7ace8315994e54cf30681d2545eef8b22a420d35b8d98a385b5c964e3",
+      "crates/fission-fsl/src/x86.rs": "580463e64f2b32289d037bf69523179e90fbc5fb0bd878432a4bfa2fc8ed4d9d",
+      "crates/fission-fsl/src/x86_decode.rs": "646e7ee09df2eebf0a072c8ebb98e5ea046cb1460e866109875a835f0009de3b",
+      "crates/fission-fsl/src/x86_main.rs": "e41c0a5b6539633eb30734dd6abcc629c718ee739c6c12d5564f69c698e12565"
+    },
+    "scope": "supplied checkout and executable snapshot, not reproducible-build attestation"
+  }
+}

@@ -1,7 +1,7 @@
 # 현재 x86 FSL/FIR 작업 이관 — 2026-10-11
 
-현재 native head는 `867dae1fa0f278e87f6dc3e8244ca4fd307cced5`이며, 최신
-[v2 변위·즉시값 분리 단계](../experiments/x86/immediate/README.md)와 이 문서
+현재 native head는 `cc02f3be760e43153ccb212d3640d45905e3b8c6`이며, 최신 [출력 backend 계약](../experiments/output/backend-contract/README.md)과
+[v2 변위·즉시값 분리 단계](../experiments/x86/immediate/README.md), 이 문서
 끝의 Follow-up을 먼저 읽는다. 아래 본문은 v1 stateful 단계의 보존 기록이다.
 
 이 문서는 이전 FirSequence 단계의 이관 자료보다 최신이다. 시작할 때 branch,
@@ -118,3 +118,13 @@ must be checked live separately from the local archived measurements.
 Next: CALL/return state-memory-control contract, callee ABI evidence and
 recovered guest CFG joins/loops. Keep unknown ABI/prototypes as candidates.
 Matched-coverage ablation is still required for an IR accuracy claim.
+
+## Follow-up: source backend interface
+
+Read `crates/fission-fsl/src/backend.rs` and the native output-backend contract.
+C/Rust calls now admit borrowed FIR through descriptor/plan/emit; rendering bytes
+remain locked. Registry extensions are in process and require explicit semantic
+contracts. Next language is Go with fixed-width bitvectors, state/runtime and
+compile/execution validation. Python/JVM/WASM frontends are separate domain work.
+General CALL/ABI/CFG and full x86 migration remain pending. Do not infer language
+support from a descriptor or admission from an emitted source file.

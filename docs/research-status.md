@@ -345,3 +345,28 @@ model and complete recovered CFG/type/x86 migration remain incomplete.
 Native continuation commit: `867dae1fa0f278e87f6dc3e8244ca4fd307cced5` on the experimental branch.
 Full x86 nextest **71 passed/0 skipped**, Python **29**, strict FSL Clippy
 with/without x86 and formatting passed. Native product main is unchanged.
+
+## 2026-10-11 — checked source output backend
+
+Native `cc02f3be760e43153ccb212d3640d45905e3b8c6` connects existing C/Rust renderers through borrowed canonical
+FIR `OutputBackend` plans. In-process registry, explicit dialect/runtime/memory/
+context admission, structured refusals, requirements and artifact bundles are
+implemented. x86 symbol origins retain addresses/raw bytes/offset/length.
+Statement source maps and dynamic plugins are not implemented. Existing CUDA/PTX
+outputs are not registered; Go/Python/Java support remains future work.
+
+Full x86 native suite: **77 passed / 0 skipped**. Six backend tests also passed
+after adding offset/length assertions. Strict Clippy with/without x86 and fmt
+passed; Python **31**. Six bundles reproduce unchanged source bytes and 18 new
+metadata goldens; six standalone compilations and seven refusal checks pass.
+Compilation and execution-equivalence fields in generated plans remain
+`not-performed`; observed validations belong to separate reports.
+
+[The maturity comparison](fsl-fir-maturity-comparison.md) identifies general
+CALL/ABI/CFG/type recovery and full ISA coverage as the largest gap to the
+existing product. No percentage maturity, speed or FIR accuracy superiority
+is claimed. [Backend evidence](../experiments/output/backend-contract/README.md)
+records the bounded regression and compiler pin: 768 FIR states, 6,144 C/Rust
+success/rollback comparisons and 768 Rosetta original-byte cases passed again
+with the clean native snapshot. The same legacy AF omission remains; no IR
+superiority claim. Remote CI is checked separately.

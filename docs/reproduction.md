@@ -193,3 +193,15 @@ This gate checks 768 modeled states, 6,144 compiled success/rollback rows and
 768 original-byte cases. Partial stores preserve neighboring bytes; imm32 is
 sign extended for 64-bit writes. Existing v1 hashes remain unchanged. See
 [format, accounting and limits](../experiments/x86/immediate/README.md).
+
+## Source backend plans and bundles
+
+```sh
+python3 tools/output_backend_reproduce.py --fsl-x86 /absolute/path/to/fsl-x86 \
+  --cc clang-18 --rustc 'rustup run 1.98.1 rustc'
+```
+
+This compares 18 locked metadata artifacts and six unchanged source files,
+compiles six bundles and checks seven refusals. It does not measure execution
+equivalence. The existing x86 immediate validator remains a separate regression
+gate. See [the contract and limits](../experiments/output/backend-contract/README.md).

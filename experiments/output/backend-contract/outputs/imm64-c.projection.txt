@@ -1,0 +1,12 @@
+projection-contract=1
+backend=c revision=1 dialect=c11
+support=admitted-under-explicit-contract
+requirements=[BitVectorSlots, BodyControl, RegistersAndFlags, GuestPc, TransactionalByteMemory, X86Window]
+runtime=embedded-in-source memory=bounded-flat-bytes
+limits=no guest fault/concurrency model; no source prototype or full ABI recovery
+compilation=not-performed equivalence=not-performed
+origin-mapping=symbol-level; statement positions unavailable
+origin body="mov64_load_a64" source-symbol="x86_body_119" guest-address=Some(4198400) raw=Some("488b4708") input-offset=Some(0) byte-length=Some(4)
+origin body="add64_load_a64" source-symbol="x86_body_120" guest-address=Some(4198404) raw=Some("480307") input-offset=Some(4) byte-length=Some(3)
+origin body="mov64_imm_store_a64" source-symbol="x86_body_149" guest-address=Some(4198407) raw=Some("48c74708f9ffffff") input-offset=Some(7) byte-length=Some(8)
+origin body="ret64" source-symbol="x86_body_59" guest-address=Some(4198415) raw=Some("c3") input-offset=Some(15) byte-length=Some(1)

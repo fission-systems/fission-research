@@ -1,0 +1,7 @@
+projection-contract=1
+backend=c revision=1 dialect=c11
+support=admitted-under-explicit-contract
+requirements=[BitVectorSlots, BodyControl, RegistersAndFlags, GuestPc, TransactionalByteMemory, X86Window]
+runtime=embedded-in-source memory=bounded-flat-bytes
+limits=no guest fault/concurrency model; no source prototype or full ABI recovery
+compilation=not-performed equivalence=not-performed

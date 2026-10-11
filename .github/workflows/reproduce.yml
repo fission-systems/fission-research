@@ -78,7 +78,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 867dae1fa0f278e87f6dc3e8244ca4fd307cced5
+          git -C .compiler fetch --depth=1 origin cc02f3be760e43153ccb212d3640d45905e3b8c6
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -149,6 +149,17 @@ jobs:
         with:
           name: x86-immediate-comparison
           path: artifacts/x86-immediate.json
+          if-no-files-found: ignore
+      - name: Reproduce checked C/Rust source backend bundles
+        run: |
+          cargo +1.98.1 test --manifest-path .compiler/Cargo.toml --locked -p fission-fsl --features x86 --test backend
+          python3 tools/output_backend_reproduce.py --fsl-x86 .compiler/target/debug/fsl-x86 --cc clang-18 --rustc 'rustup run 1.98.1 rustc'
+      - name: Preserve backend admission and compilation evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: output-backend-contract
+          path: artifacts/output-backend.json
           if-no-files-found: ignore
       - name: Reproduce structured FIR and execute native branches
         run: |
