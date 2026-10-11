@@ -74,6 +74,11 @@ Source/ELF/package/output/tool/hash/checkout 상태는
 [잠금과 보고서](../experiments/x86/stateful/README.md)에 있다.
 CI 결론은 live run과 보관 보고서를 확인하고 과거 결과와 구분한다.
 
+원격에서도 native `8211a0561`의 [Fission CI](https://github.com/fission-systems/Fission/actions/runs/38130023456),
+연구 `623a806`의 [보완된 oracle CI](https://github.com/fission-systems/fission-research/actions/runs/38130695902)가
+통과했다. 후자의 Linux original32/64 768회와 FIR 768/C·Rust 6,144회가 일치했다.
+Report 보관 이후의 data/doc-only head 재실행과 이 측정 head의 결과를 구분한다.
+
 ## 다음 구현의 경계
 
 1. 현재 normalized operand token은 displacement와 immediate가 같은 field를

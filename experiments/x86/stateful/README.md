@@ -85,6 +85,19 @@ style/complexity 허용 조건에서 통과했다.
 실행 보고서는 [local validation](validation-2026-10-11.json)에 보관했다. Native checkout의
 commit/clean 상태와 compiler source/executable SHA-256도 함께 기록했다.
 
+[Research CI 38130097795](https://github.com/fission-systems/fission-research/actions/runs/38130097795)는
+연구 `c718c31` / native `8211a0561`에서 통과했다. [Linux report](validation-linux-c718c31.json)의
+세 original-byte adapter는 각 256회, 총 768회가 일치했다. 이 실행은 64-bit adapter에
+명시적인 RBP input exclusion과 call alignment guard를 추가하기 전의 기록이다.
+그 보완과 report hash 확장은 연구 `623a806`에 있으며 local 512회도 다시 통과했다.
+[보완 후 CI 38130695902](https://github.com/fission-systems/fission-research/actions/runs/38130695902)도
+연구 `623a806`에서 통과했다. [보완 후 Linux report](validation-linux-623a806.json)는
+원본 768회, FIR 768 상태, C/Rust 6,144회와 같은 baseline 차이를 기록한다.
+Source lock/module/adapter executable hashes도 확인했다. Compiler/FIR와 oracle32는
+이 보완에서 변경하지 않았다.
+[Fission CI 38130023456](https://github.com/fission-systems/Fission/actions/runs/38130023456)도
+native `8211a0561`에서 통과했다. PR head는 이 커밋과 일치하며 병합하지 않았다.
+
 Memory comparison의 전체 160 bytes와 17 GPR transport slots는 FIR/C/Rust 및 SLA
 state에서 관찰한 것이다. Hardware adapter는 반환값/flags/frame balance/RBP와
 외부 두 word만 관찰한다. 실제 모든 레지스터·stack bytes·fault/concurrency·전체 ABI를

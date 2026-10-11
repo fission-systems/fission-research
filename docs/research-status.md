@@ -293,6 +293,17 @@ root의 disjoint range를 추적한다. Partial/unknown alias는 external-read�
 - Strict FSL Clippy는 feature on/off에서 통과. Baseline은 CI-equivalent style/complexity
   허용 조건에서 통과했다. Existing library lint debt는 변경하지 않는다.
 
+원격 관찰: [Fission CI 38130023456](https://github.com/fission-systems/Fission/actions/runs/38130023456),
+native `8211a0561` success. [Research CI 38130097795](https://github.com/fission-systems/fission-research/actions/runs/38130097795),
+연구 `c718c31` success. 후자는 original32/64 bytes 총 768회와 FIR 768 상태,
+C/Rust 6,144회 및 같은 baseline 차이를 관찰했다. Linux 보고서는 실험 폴더에 보관했다.
+연구 `623a806`은 oracle64의 RBP operand constraint/call alignment 및 source/executable
+hash를 보완하고 local 검사를 다시 통과했다.
+[CI 38130695902](https://github.com/fission-systems/fission-research/actions/runs/38130695902)도
+연구 `623a806`에서 success이며 보완 후 Linux original 768회, FIR 768 상태,
+C/Rust 6,144회와 같은 baseline 차이를 보관했다. Source lock/module/adapter executable
+hash를 확인했으며 두 CI 스냅샷을 구분한다.
+
 Memory immediate는 displacement와 literal의 별도 binding이 없어 거부한다. CALL/LEAVE,
 일반 ABI allocation, recovered CFG merge/loop 및 faults/MMU/ordering는 아직 미지원이다.
 실험은 세 supplied spans에 한정되며 full x86 migration이나 whole-function equivalence
