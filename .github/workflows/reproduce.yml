@@ -82,7 +82,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin 97366a84157afe163236a99e309fcd4fbfb8e2ae
+          git -C .compiler fetch --depth=1 origin bbf6a1992bba2a32aa4a0499ee59c03fdc76b222
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -310,4 +310,45 @@ jobs:
         with:
           name: gfx900-sop2-report
           path: artifacts/gfx900-sop2.json
+          if-no-files-found: ignore
+
+  owned-fsl-pipeline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
+        with:
+          go-version: '1.25.5'
+          cache: false
+      - name: Fetch compiler source without legacy asset trees
+        run: |
+          git init .owned-compiler
+          git -C .owned-compiler remote add origin https://github.com/fission-systems/Fission.git
+          git -C .owned-compiler sparse-checkout init --cone
+          git -C .owned-compiler sparse-checkout set crates .cargo
+          git -C .owned-compiler fetch --depth=1 --filter=blob:none origin bbf6a1992bba2a32aa4a0499ee59c03fdc76b222
+          git -C .owned-compiler checkout --detach FETCH_HEAD
+          test ! -e .owned-compiler/utils
+          test ! -e .owned-compiler/vendor
+          if find .owned-compiler -type f | rg '\.(sla|slaspec|sinc|cspec|pspec|ldefs|opinion|fpk|fidb)$'; then exit 1; fi
+      - name: Build the owned pipeline without legacy assets
+        run: |
+          rustup toolchain install 1.98.1 --profile minimal --no-self-update
+          cargo +1.98.1 build --manifest-path .owned-compiler/Cargo.toml --locked -p fission-fsl --features x86 --bin fsl-x86
+          cargo +1.98.1 test --manifest-path .owned-compiler/Cargo.toml --locked -p fission-fsl --features x86 --test pipeline
+          cargo +1.98.1 test --manifest-path .owned-compiler/Cargo.toml --locked -p fission-loader format_facts
+      - name: Reproduce in a filesystem without legacy assets
+        run: |
+          sudo apt-get update && sudo apt-get install -y strace clang-18
+          python3 tools/owned_pipeline_reproduce.py --compiler-root .owned-compiler --fsl-x86 .owned-compiler/target/debug/fsl-x86 --cargo 'rustup run 1.98.1 cargo' --rustc 'rustup run 1.98.1 rustc' --cc clang-18 --isolate
+      - name: Preserve source-only build and isolated runtime evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: owned-fsl-pipeline
+          path: artifacts/owned-pipeline.json
           if-no-files-found: ignore

@@ -10,6 +10,8 @@
 
 [SLEIGH/NIR/HIR 대비 성숙도 비교](docs/fsl-fir-maturity-comparison.md)와 [C/Rust 공통 출력 backend 실험](experiments/output/backend-contract/README.md)을 추가했다. 출력 admission·artifact bundle·컴파일·실행 증거를 각각 기록한다. [Go backend](experiments/output/go-backend/README.md)는 같은 FIR 계약의 instruction/window 출력을 지원한다. Python/Java 출력과 일반 함수 복구는 아직 미지원이다.
 
+[SLEIGH 자산 독립 ELF 파이프라인](experiments/pipeline/owned-elf/README.md)을 추가했다. 내장 FSL → FIR → C/Rust/Go 경로는 ELF 헤더 기반 아키텍처 선택을 사용한다. 일반 함수·ABI 복구와 전체 제품 전환은 아직 미완료다.
+
 ### 연구 성숙도
 
 | 항목 | 현재 구현 범위 |
@@ -26,7 +28,7 @@
 | 자체 자산 / library corpus | 988개 자산 인벤토리; FPK 한 파일의 31,418개 후보를 `.fslib` / `.fsldb`로 이관, native exact 조회 |
 | FIR block / region | semantic body의 block 인자·분기·join, 비순환 정수/스택·register/flag reference/C/Rust 실행; nested domain region 미구현; x86의 caller 지정 함수 span lifting은 제한적으로 지원 |
 | 순차 명령 상태 / origin | 명시한 고정폭 window의 기존 FIR body 연결; 주소·바이트 범위·입력/패키지 해시와 spec evidence, reference/C/Rust 실행 |
-| SLEIGH 대체 / Fission 통합 | 연구 목표; 실험 PR에서 개발 |
+| SLEIGH 대체 / Fission 통합 | 선택한 ELF span의 자산 독립 진입점 구현; 일반 함수 복구·전체 제품 전환은 연구 목표 |
 | 동작 보존 재컴파일 | 제한된 JVM·GPU·eBPF·자체 CFG 및 x86 ELF spans; 각 stateful/immediate gate의 x86 상태 768개 / C·Rust O0·O2 성공·rollback 실행 6,144회; 전체 함수 동치 증명은 아님 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
 | 범용 출력 인터페이스 | borrowed FIR 기반 descriptor/plan/emit과 registry; C11/Rust 2021/Go 1.25 연결; managed 언어 미구현 |

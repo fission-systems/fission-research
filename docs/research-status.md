@@ -399,3 +399,31 @@ bytes; the separate prior original/FIR/SLA gates remain in CI. Source prototypes
 complete ABI/CFG/x86 migration, semantic-body loops, guest faults/concurrency,
 GPU hardware, Go FirSequence and full Python/JVM/WASM frontend/output support
 are not established. No performance or IR-superiority claim.
+
+## 2026-10-16 — asset-independent owned ELF route
+
+Goal clarified: the eventual complete decompilation route must use FSL/FIR and
+require no SLEIGH/SLA. Native `bbf6a1992bba2a32aa4a0499ee59c03fdc76b222` adds `decompile-owned`, embedding the owned
+x86 v2 rules/FIR and returning C/Rust/Go bundles with portable package, diagnostic
+FIR, origins, build recipe and explicit route/validation reports. Unsupported
+input refuses without fallback. Existing output bytes and contracts remain.
+
+Found a hidden dependency in the previous file route: ELF architecture selection
+queried Ghidra opinion/ldefs despite owned instruction semantics. New opt-in
+LoaderPipeline/ELF policy validates raw machine/class/endian facts, leaves ABI
+unselected and produces no legacy LoadSpec. Existing map/relocation/symbol code
+is reused. Default product loader selection remains unchanged.
+
+Local: nine source/package/FIR artifacts agree with existing locks and compile;
+11 refusal checks pass from copied executable/inputs with empty resource roots.
+This is not a local filesystem jail. FSL full x86 suite **82**, loader suite
+**165**, Python **38**, strict FSL Clippy on/off and formatting passed. Loader
+metadata and pipeline focused tests passed after the constant/error propagation
+cleanup; downstream decompiler/CLI checks pass.
+
+[Experiment and limits](../experiments/pipeline/owned-elf/README.md) describes the
+new dedicated Linux source-only build and chroot/file-trace gate. Remote results
+are tracked separately. General function discovery/CALL/ABI/CFG/type recovery,
+full x86/other formats and whole Python/JVM/WASM methods remain incomplete. No
+decompiler accuracy, speed or IR-superiority claim. Previous Go native CI
+38141160429 and research CI38141467008 were rechecked and passed.

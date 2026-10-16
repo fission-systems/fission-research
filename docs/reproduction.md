@@ -219,3 +219,12 @@ This reuses six locked ELF fixtures and independent state/byte expectations.
 C/Rust O0/O2 run the same window cases. Synthetic domains are separate evidence.
 Linux host amd64/386 archive builds are not execution on those hosts.
 [Inputs, counts and limitations](../experiments/output/go-backend/README.md).
+
+## Asset-independent ELF route
+
+`tools/owned_pipeline_reproduce.py` accepts the compiler root and fsl-x86,
+checks the selected dependency closure, and reproduces nine package/FIR/source
+bundles without supplying specification assets. Portable mode leaves host files
+accessible. The dedicated Linux CI builds from a crates-only checkout and uses
+`--isolate` (sudo, strace, chroot) for a separate filesystem closure gate.
+[Exact contract and limitations](../experiments/pipeline/owned-elf/README.md).

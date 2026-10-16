@@ -1,6 +1,10 @@
-# 현재 x86 FSL/FIR 작업 이관 — 2026-10-11
+# 현재 x86 FSL/FIR 작업 이관 — 2026-10-16
 
-현재 native head는 `97366a84157afe163236a99e309fcd4fbfb8e2ae`이며, 최신 [Go 출력 backend 계약](../experiments/output/go-backend/README.md)과
+먼저 [자산 독립 ELF 경로](../experiments/pipeline/owned-elf/README.md)를 읽는다.
+새 `decompile-owned`는 내장 FSL과 no-LoadSpec ELF metadata 경로를 사용한다.
+일반 함수/ABI 복구와 제품 전체 전환은 아직 미완료다. 아래는 이전 단계 기록이다.
+
+현재 native head는 `bbf6a1992bba2a32aa4a0499ee59c03fdc76b222`이며, 최신 [Go 출력 backend 계약](../experiments/output/go-backend/README.md)과
 [v2 변위·즉시값 분리 단계](../experiments/x86/immediate/README.md), 이 문서
 끝의 Follow-up을 먼저 읽는다. 아래 본문은 v1 stateful 단계의 보존 기록이다.
 
