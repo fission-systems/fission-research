@@ -53,10 +53,15 @@ all missing instructions or an exhaustive architecture inventory. No GED/type/
 byte-match or execution-equivalence metric has been run; absence of a score
 must not be reported as a measured zero score.
 
-The archived [coverage.json](coverage.json) retains all 250 observations, tool/adapter/input
+The archived [coverage-v2.json](coverage-v2.json) retains all 250 observations, tool/adapter/input
 hashes and integrity checks. It excludes target binaries, private metadata,
 answer keys and source. SHA-256:
+`9f54b8db104c0ada314d93735906edb6bce1ebb8897b6e06b49a5300f5aab695`.
+[The first baseline](coverage.json) remains unchanged at its original hash
 `a06eca9c73f5ed7c1d36de20a1c7beead7617b7954340351558ed159642f4841`.
+V2 explicitly treats Rust panic/signal/unexpected exit codes as tool errors,
+with only the CLI's normal exit code 1 admitted as a refusal; no such errors
+occurred in either corpus run, and all category counts are identical.
 [source.lock.json](source.lock.json) locks reports/tools and the compiler pin;
 [local pipeline gate](owned-pipeline-local.json) records clean compiler provenance,
 nine compilations, three entry-only output comparisons and 11 refusals. This

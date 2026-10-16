@@ -459,7 +459,7 @@ do not implement the original function's ABI/return contract.
 
 [Evidence, reproduction and next gates](../experiments/decbench/sample-set/README.md).
 Three locked owned ELF fixtures separately admit entry-state bundles; they do
-not establish sample-set corpus support. Python **47** tests (native fixture
+not establish sample-set corpus support. Python **48** tests (native fixture
 integration enabled), Rust x86 **84** tests (one nextest process-leak warning on
 the final run; no failure/skip), strict FSL Clippy and formatting passed locally.
 The owned pipeline gate now also compares three entry-only C/FIR projections

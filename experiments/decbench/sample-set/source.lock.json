@@ -6,10 +6,19 @@
   "public_selection_sha256": "ad9c914865209625969318d9016289be7dde9f6b6acb90644b3f88b89352c296",
   "artifacts": {
     "coverage.json": "a06eca9c73f5ed7c1d36de20a1c7beead7617b7954340351558ed159642f4841",
-    "owned-pipeline-local.json": "8683db8acbf2b5725e62ab177c8c967722caea2c7fec3558cffabc460a86fe60"
+    "owned-pipeline-local.json": "8683db8acbf2b5725e62ab177c8c967722caea2c7fec3558cffabc460a86fe60",
+    "coverage-v2.json": "9f54b8db104c0ada314d93735906edb6bce1ebb8897b6e06b49a5300f5aab695"
   },
   "tools": {
-    "tools/decbench_fsl_evalkit.py": "76fcec2511e764e5bb2d3449e5b21c12ca646d5887ad9adb5bbf6c954448658f",
+    "tools/decbench_fsl_evalkit.py": "e4206d84f6fd75cafab079ed506c82995b95b1b7727f26b102f7f83bf25d1c61",
     "tools/owned_pipeline_reproduce.py": "f22bf66ad360c5fd9d49607265fec94d37d1ebe6dd559e8f2559476fb0367a1d"
-  }
+  },
+  "previous_measurements": {
+    "coverage.json": {
+      "research_commit": "f7c63c17900697001ac728b6b5b62af536bad0a9",
+      "adapter_sha256": "76fcec2511e764e5bb2d3449e5b21c12ca646d5887ad9adb5bbf6c954448658f",
+      "scope": "retained first baseline; superseded by process-error classification gate"
+    }
+  },
+  "coverage_artifact": "coverage-v2.json"
 }

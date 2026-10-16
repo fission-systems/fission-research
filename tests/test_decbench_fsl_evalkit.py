@@ -20,7 +20,7 @@ class EvalKitTests(unittest.TestCase):
             self.assertEqual(kit.digest(root / name), sha)
         for name, sha in lock["tools"].items():
             self.assertEqual(kit.digest(kit.ROOT / name), sha)
-        coverage = json.loads((root / "coverage.json").read_text())
+        coverage = json.loads((root / lock["coverage_artifact"]).read_text())
         native = json.loads((root / "owned-pipeline-local.json").read_text())
         self.assertTrue(coverage["complete"])
         self.assertTrue(all(coverage["integrity"].values()))
@@ -29,6 +29,9 @@ class EvalKitTests(unittest.TestCase):
         self.assertFalse(coverage["summary"]["submission_ready"])
         self.assertEqual(native["compiler_commit"], lock["compiler_commit"])
         self.assertFalse(native["compiler_dirty"])
+        self.assertEqual(
+            coverage["adapter_sha256"], lock["tools"]["tools/decbench_fsl_evalkit.py"]
+        )
         self.assertEqual(
             native["compiler_executable_sha256"],
             coverage["engine"]["executable_sha256"],
@@ -132,6 +135,17 @@ class EvalKitTests(unittest.TestCase):
             report = kit.evaluate(self.kit, tool, self.root / "changed")
         self.assertFalse(report["complete"])
         self.assertFalse(report["integrity"]["tool_unchanged"])
+
+    def test_panic_and_signal_are_tool_errors_not_unsupported_instructions(self):
+        for code in [101, -9]:
+            with patch.object(
+                kit.subprocess,
+                "run",
+                return_value=subprocess.CompletedProcess([], code, b"", b"crash"),
+            ):
+                report = kit.evaluate(self.kit, self.cli, self.root / f"crash-{code}")
+            self.assertEqual(report["functions"][0]["status"], "tool_error")
+            self.assertEqual(report["functions"][0]["category"], "tool_process_failure")
 
     def test_overwrite_kit_tool_and_invalid_timeout_refuse_before_invocation(self):
         output = self.root / "exists"

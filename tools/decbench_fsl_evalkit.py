@@ -150,8 +150,12 @@ def attempt(cli, path, address, bundle, cwd, timeout):
     if result.returncode:
         return dict(
             common,
-            status="refused" if result.returncode > 0 else "tool_error",
-            category=refusal_category(stderr),
+            status="refused" if result.returncode == 1 else "tool_error",
+            category=(
+                refusal_category(stderr)
+                if result.returncode == 1
+                else "tool_process_failure"
+            ),
         )
     expected = {
         "output.c",
