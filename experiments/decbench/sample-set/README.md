@@ -109,3 +109,15 @@ Alive2 is deferred. It verifies LLVM-IR refinement, not raw binary versus C by
 itself. Future use needs a trusted lifting boundary and matching ABI/memory/UB
 contracts; it does not independently prove the original-byte lifting correct.
 See [Alive2's own scope](https://github.com/AliveToolkit/alive2).
+
+## Linux owned-entry isolation result
+
+The `owned-fsl-pipeline` job in [research run 38855472809](https://github.com/fission-systems/fission-research/actions/runs/38855472809)
+passed at compiler `0fc6f6f98`: crates-only source build without legacy assets,
+static adapter/fixture integration, nine compiled span bundles, three byte-identical
+entry C/FIR bundles, 11 refusals and **23 file traces with zero attempted legacy
+asset accesses**. [Archived report](linux-isolation-38855472809.json), SHA-256
+`d5f6059c64b4895081514e1b658e546890a62cac4c99a655c8602a2b2884c1f2`.
+This is isolation evidence for owned safe fixtures, not target-corpus execution,
+DecBench scoring or original source ABI recovery. Other jobs were still running
+when this report was archived; no full CI result is implied.

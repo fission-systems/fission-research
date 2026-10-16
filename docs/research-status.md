@@ -475,3 +475,14 @@ product CI run. No new product-quality/equivalence claim is made.
 Alive2 is deferred per request. It can check LLVM-IR refinement once trustworthy
 lifting and matching ABI/memory/UB contracts exist; it does not directly compare
 raw binary bytes with C or prove lifting correctness by itself.
+
+The new native-pin owned-entry isolation job in research run **38855472809**
+passed: nine compiled span bundles, three entry-only C/FIR equality checks,
+11 refusals, 23 file traces and zero attempted legacy file accesses. The
+[immutable report](../experiments/decbench/sample-set/linux-isolation-38855472809.json)
+is locked with the corpus coverage reports. A second static corpus run with
+panic/signal classification hardened produced the same 250 refusals and zero
+tool crashes; the first coverage report is retained unchanged. Native PR-merge
+CI **38855161475** has the same legacy Sleigh context-test compile failure;
+this does not establish a green product integration. Remaining research jobs
+and the follow-up runner CI are tracked separately.
