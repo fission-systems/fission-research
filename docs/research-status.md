@@ -427,3 +427,9 @@ are tracked separately. General function discovery/CALL/ABI/CFG/type recovery,
 full x86/other formats and whole Python/JVM/WASM methods remain incomplete. No
 decompiler accuracy, speed or IR-superiority claim. Previous Go native CI
 38141160429 and research CI38141467008 were rechecked and passed.
+
+The dedicated Linux independence job at research `5a3c0e4` / native `bbf6a1992`
+passed in run 38833583316: source-only build, chroot execution, nine bundles,
+11 refusals, 20 traces and zero attempted legacy file accesses. The immutable
+[report](../experiments/pipeline/owned-elf/linux-isolation-38833583316.json) is
+archived separately. Other jobs were still in progress at archival time.

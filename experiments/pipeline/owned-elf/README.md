@@ -64,3 +64,7 @@ PE/Mach-O and other ISAs, full x86 coverage, guest fault/concurrency semantics,
 whole Python/JVM/WASM methods and full-product replacement remain incomplete.
 The research/SLA importer and independent legacy comparison gates remain offline
 references; they are not required to run this new entry point.
+
+## Linux isolation result
+
+The `owned-fsl-pipeline` job in [run 38833583316](https://github.com/fission-systems/fission-research/actions/runs/38833583316) passed: source-only build without legacy assets, nine C/Rust/Go bundles, 11 refusal checks and 20 file traces with zero attempted legacy asset accesses. [Archived immutable report](linux-isolation-38833583316.json), SHA-256 `234a94c7ad04ad12a6dcd2635a41395449fa0640db11c02b74369be12c8cd068`. Other jobs in the run were still in progress when this artifact was archived.
