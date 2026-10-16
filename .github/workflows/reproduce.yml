@@ -82,7 +82,7 @@ jobs:
         run: |
           git init .compiler
           git -C .compiler remote add origin https://github.com/fission-systems/Fission.git
-          git -C .compiler fetch --depth=1 origin bbf6a1992bba2a32aa4a0499ee59c03fdc76b222
+          git -C .compiler fetch --depth=1 origin 0fc6f6f98115cddb88077a71353a0462d28b1a0b
           git -C .compiler checkout --detach FETCH_HEAD
       - name: Install encoding oracle
         run: sudo apt-get update && sudo apt-get install -y llvm-18 clang clang-18
@@ -330,7 +330,7 @@ jobs:
           git -C .owned-compiler remote add origin https://github.com/fission-systems/Fission.git
           git -C .owned-compiler sparse-checkout init --cone
           git -C .owned-compiler sparse-checkout set crates .cargo
-          git -C .owned-compiler fetch --depth=1 --filter=blob:none origin bbf6a1992bba2a32aa4a0499ee59c03fdc76b222
+          git -C .owned-compiler fetch --depth=1 --filter=blob:none origin 0fc6f6f98115cddb88077a71353a0462d28b1a0b
           git -C .owned-compiler checkout --detach FETCH_HEAD
           test ! -e .owned-compiler/utils
           test ! -e .owned-compiler/vendor
@@ -341,6 +341,10 @@ jobs:
           cargo +1.98.1 build --manifest-path .owned-compiler/Cargo.toml --locked -p fission-fsl --features x86 --bin fsl-x86
           cargo +1.98.1 test --manifest-path .owned-compiler/Cargo.toml --locked -p fission-fsl --features x86 --test pipeline
           cargo +1.98.1 test --manifest-path .owned-compiler/Cargo.toml --locked -p fission-loader format_facts
+      - name: Check static DecBench adapter and owned entry fixture admission
+        env:
+          FSL_X86: ${{ github.workspace }}/.owned-compiler/target/debug/fsl-x86
+        run: python3 -m unittest discover -s tests -p test_decbench_fsl_evalkit.py -v
       - name: Reproduce in a filesystem without legacy assets
         run: |
           sudo apt-get update && sudo apt-get install -y strace clang-18

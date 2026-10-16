@@ -1,6 +1,6 @@
 # FSL/FIR 연구 진행 현황
 
-기준일: 2026-10-04. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
+기준일: 2026-10-16. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
 
 ## 채택한 방향
 
@@ -433,3 +433,45 @@ passed in run 38833583316: source-only build, chroot execution, nine bundles,
 11 refusals, 20 traces and zero attempted legacy file accesses. The immutable
 [report](../experiments/pipeline/owned-elf/linux-isolation-38833583316.json) is
 archived separately. Other jobs were still in progress at archival time.
+
+## 2026-10-16 — DecBench sample-set static integration baseline
+
+Native `0fc6f6f98115cddb88077a71353a0462d28b1a0b` adds address-only
+`decompile-owned-entry` through the same owned ELF/FSL/FIR/source pipeline.
+It scans only straight-line file-backed executable bytes to near RET, bounded
+by 65,536 bytes / 4,096 instructions, and rejects branches, unsupported bytes,
+missing RET, relocations or bad mapping. It does not recover a general function
+boundary or original source ABI. Existing span C/Rust/Go artifacts remain locked.
+
+The out-of-tree `tools/decbench_fsl_evalkit.py` selects only the eval kit's public
+entry addresses, statically analyzes all 250 functions / 224 binaries, records
+input/tool/adapter hashes and raw diagnostics, and checkpoints after each row.
+Target binaries are never executed/emulated. No private mapping/source/DWARF
+answer key or external/reference decoder/decompiler supplies candidate output.
+
+Baseline: **92** loader/architecture refusals, **148** owned-decode refusals,
+**10** entry-CFG refusals, **0** complete state projections and **0** ordinary C
+functions eligible for DecBench metrics. The 92 split into 84 mismatched ELF
+machine/class contracts and eight non-ELF. These are first-failure categories,
+not a full instruction inventory. No score, GED/type/byte-match run or submission
+archive exists. Explicit-state wrappers are deliberately ineligible because they
+do not implement the original function's ABI/return contract.
+
+[Evidence, reproduction and next gates](../experiments/decbench/sample-set/README.md).
+Three locked owned ELF fixtures separately admit entry-state bundles; they do
+not establish sample-set corpus support. Python **47** tests (native fixture
+integration enabled), Rust x86 **84** tests (one nextest process-leak warning on
+the final run; no failure/skip), strict FSL Clippy and formatting passed locally.
+The owned pipeline gate now also compares three entry-only C/FIR projections
+with locked span outputs, alongside nine source compilations / 11 refusals.
+Linux isolation results at this new pin are recorded after CI completion.
+
+Earlier research run 38833583316 completed successfully. Native run 38833458410
+failed while compiling legacy `fission-sleigh` lib tests: u128 context values are
+passed to u64 packed-context APIs in compiled-table walker tests. That failure
+is outside the owned route and has not been fixed or treated as a green full
+product CI run. No new product-quality/equivalence claim is made.
+
+Alive2 is deferred per request. It can check LLVM-IR refinement once trustworthy
+lifting and matching ABI/memory/UB contracts exist; it does not directly compare
+raw binary bytes with C or prove lifting correctness by itself.

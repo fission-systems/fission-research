@@ -1,0 +1,15 @@
+{
+  "contract": 1,
+  "compiler_commit": "0fc6f6f98115cddb88077a71353a0462d28b1a0b",
+  "scope": "static-only coverage; no submission or metric score",
+  "kit_manifest_sha256": "7ee7dbec2aef05f3458513f4a0b55dbf07934cbb5cde181fcbff08a5b9a0ddb5",
+  "public_selection_sha256": "ad9c914865209625969318d9016289be7dde9f6b6acb90644b3f88b89352c296",
+  "artifacts": {
+    "coverage.json": "a06eca9c73f5ed7c1d36de20a1c7beead7617b7954340351558ed159642f4841",
+    "owned-pipeline-local.json": "8683db8acbf2b5725e62ab177c8c967722caea2c7fec3558cffabc460a86fe60"
+  },
+  "tools": {
+    "tools/decbench_fsl_evalkit.py": "76fcec2511e764e5bb2d3449e5b21c12ca646d5887ad9adb5bbf6c954448658f",
+    "tools/owned_pipeline_reproduce.py": "f22bf66ad360c5fd9d49607265fec94d37d1ebe6dd559e8f2559476fb0367a1d"
+  }
+}

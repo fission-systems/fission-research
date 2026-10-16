@@ -46,6 +46,7 @@ def validate(cli, cc, rustc, go, isolate):
     lock = preflight()
     go_lock = json.loads((GO / "source.lock.json").read_text())
     reports = []
+    entry_reports = []
     with tempfile.TemporaryDirectory(prefix="fsl-owned-") as directory:
         work = Path(directory)
         runtime = work / "runtime"
@@ -199,6 +200,40 @@ def validate(cli, cc, rustc, go, isolate):
                         file_trace_sha256=digest(trace) if isolate else None,
                     )
                 )
+            # Address-only DecBench path must reach identical FIR/source without
+            # consulting a function-size oracle or any legacy assets.
+            label = name + "-entry"
+            folder = runtime / "out" / label
+            target = "/out/" + label if isolate else str(folder)
+            trace = work / (label + ".trace")
+            observed = invoke(
+                ["decompile-owned-entry", binary, "0x401000", "c", target], trace
+            )
+            if observed.returncode:
+                raise ValueError(observed.stderr.decode())
+            for emitted, golden in [
+                ("output.c", name + ".c"),
+                ("output.fir", name + ".fir"),
+            ]:
+                if (folder / emitted).read_bytes() != (
+                    FIXTURES / "outputs" / golden
+                ).read_bytes():
+                    raise ValueError("entry selection changed locked projection")
+            if digest(folder / "profile.fslxc") != lock["package_sha256"]:
+                raise ValueError("entry embedded profile mismatch")
+            if (
+                "source-function-boundary=unproven"
+                not in (folder / "pipeline.txt").read_text()
+            ):
+                raise ValueError("entry boundary limitation missing")
+            entry_reports.append(
+                dict(
+                    fixture=name,
+                    source_sha256=digest(folder / "output.c"),
+                    selection="entry-only straight-line to RET; no original ABI recovery",
+                    file_trace_sha256=digest(trace) if isolate else None,
+                )
+            )
         # Unsupported opcode and backend must not create partial output bundles.
         bad = bytearray((runtime / "inputs/imm64.elf").read_bytes())
         bad[4096] = 0xCC
@@ -226,6 +261,7 @@ def validate(cli, cc, rustc, go, isolate):
             else "copied executable and inputs; empty cwd/resource roots/PATH; host filesystem remains accessible"
         ),
         bundles=reports,
+        entry_bundles=entry_reports,
         refusals=11,
         legacy_file_accesses=[] if isolate else "not traced locally",
         traces=traces,

@@ -12,6 +12,8 @@
 
 [SLEIGH 자산 독립 ELF 파이프라인](experiments/pipeline/owned-elf/README.md)을 추가했다. 내장 FSL → FIR → C/Rust/Go 경로는 ELF 헤더 기반 아키텍처 선택을 사용한다. 일반 함수·ABI 복구와 전체 제품 전환은 아직 미완료다.
 
+[DecBench sample-set 연결과 기준선](experiments/decbench/sample-set/README.md)은 공개 진입 주소 250개를 자체 경로로 정적 분석한다. 현재 250개 모두 지원 경계에서 거부됐으며, 제출 가능한 일반 함수 C 출력은 **0개**다. 상태 wrapper는 평가 출력으로 제출하지 않는다.
+
 ### 연구 성숙도
 
 | 항목 | 현재 구현 범위 |
@@ -32,6 +34,7 @@
 | 동작 보존 재컴파일 | 제한된 JVM·GPU·eBPF·자체 CFG 및 x86 ELF spans; 각 stateful/immediate gate의 x86 상태 768개 / C·Rust O0·O2 성공·rollback 실행 6,144회; 전체 함수 동치 증명은 아님 |
 | CUDA C++ / PTX 출력 | 기존 stack FIR의 단일 owner reference 커널; device compile/scalar reference, GPU hardware 실행 미검증 |
 | 범용 출력 인터페이스 | borrowed FIR 기반 descriptor/plan/emit과 registry; C11/Rust 2021/Go 1.25 연결; managed 언어 미구현 |
+| DecBench sample-set | 정적 coverage adapter·주소 기반 제한형 entry 선택·체크포인트 구현; 250개 측정, 일반 함수 C 제출·점수 산출 미완료 |
 | AI 평가 | 계획·설계 단계 |
 
 [순차 명령·상태/origin 실험](experiments/fir/sequence/README.md)은 명시한 window의 두 scalar body와 세 register CFG body 연결을 검증했다. 실제 함수 발견·분기 대상 복원은 지원하지 않는다.
