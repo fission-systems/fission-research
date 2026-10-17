@@ -1,0 +1,21 @@
+{
+  "execution.fsl_sha256": "fcd7fbc47d8f47184c6ae7622e8cfdb44c16b7d2f546c4f5a2dd48b498390ee4",
+  "props_manila.json_sha256": "5c1e0fe721a8e2fc00584007740db1b3d14cdf0c03cd033369187d4d4e2b1c24",
+  "LICENSE.txt_sha256": "7b7de08c64b1824bdc2b9f4b530814a9d0b5905a38ad0e96a717f3dd46d2bbe7",
+  "package_sha256": "12a968fe9e6a6bfd37f48cde033fe0e921c02ca104633476ddf558c2c5fefcb7",
+  "snapshot_repository_commit": "7a7fa0f6d5fd2d284611b62d5546e12112a1985a",
+  "validator_sha256": "c741b2fca44b192d7b512dc03ac5ac1e76b7f0e0d5a1c086c73951170f2fabc4",
+  "dependencies": {
+    "quantum_validate.py": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56",
+    "quantum_channels_validate.py": "8bc0de1c40d44ebd0179ce0ff399a3f752a646d0e98e0b4f2d3070fd55033872"
+  },
+  "compiler_commit": "4a3c48297d5a3649774b70f5fff40e1857eb9beb",
+  "report_sha256": "3ba3b23beea5a7833a5c4441beff9f4eecce4ce1767f60a8737c28ebd4c778ac",
+  "files": {
+    "execution.fsl": "fcd7fbc47d8f47184c6ae7622e8cfdb44c16b7d2f546c4f5a2dd48b498390ee4",
+    "props_manila.json": "5c1e0fe721a8e2fc00584007740db1b3d14cdf0c03cd033369187d4d4e2b1c24",
+    "LICENSE.txt": "7b7de08c64b1824bdc2b9f4b530814a9d0b5905a38ad0e96a717f3dd46d2bbe7",
+    "ideal-regression-local.json": "9dbb721ccb1f0bb4be3ad45a34184345b199b72876321431b160c760d4f74959",
+    "channels-regression-local.json": "b30bdf9998803d3899f522139406e735111a7eb03539461d82fc254ad034014c"
+  }
+}

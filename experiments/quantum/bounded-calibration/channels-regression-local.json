@@ -1,0 +1,181 @@
+{
+  "status": "passed",
+  "source_sha256": "077bde4402c4e815698dfc3c4af6c843a714b4aab5b6c3020359fdba91d309c4",
+  "package_sha256": "6f1b08bba4702b2ae29946aacae93b96e919d6cadf22ec719ba95a937af91210",
+  "package_version": 13,
+  "tolerance": 2e-10,
+  "cases": [
+    {
+      "circuit": "bit_flip_0_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "bit_flip_0_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "bit_flip_1_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "bit_flip_1_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "bit_flip_1_2_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 5.57921783401803e-17
+    },
+    {
+      "circuit": "bit_flip_1_2_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "circuit": "bit_flip_1_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "bit_flip_1_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "bit_flip_254_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "bit_flip_254_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "phase_flip_0_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "phase_flip_0_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "phase_flip_1_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "phase_flip_1_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "phase_flip_1_2_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "circuit": "phase_flip_1_2_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "circuit": "phase_flip_1_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "phase_flip_1_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "phase_flip_254_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "phase_flip_254_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "circuit": "amplitude_damping_0_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_0_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_1_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_1_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_2_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_2_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_1_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "circuit": "amplitude_damping_254_255_q0",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "amplitude_damping_254_255_q1",
+      "comparisons": 21,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "circuit": "cfg_correct",
+      "comparisons": 21,
+      "maximum_absolute_error": 3.3306690738754696e-16
+    },
+    {
+      "circuit": "cfg_noise",
+      "comparisons": 21,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "circuit": "cfg_parameters",
+      "comparisons": 6,
+      "maximum_absolute_error": 2.220446049250313e-16
+    }
+  ],
+  "comparisons": 678,
+  "scope": "authored rational noise channels and acyclic u1 CFG; conditional density and SSA comparison; no hardware/calibration/binary/formal-equivalence claim",
+  "compiler_executable_sha256": "a1db4baed632d913dc417f82f789dce5f63d3e52cc0146faed98de13556c87ec",
+  "compiler_commit": "4a3c48297d5a3649774b70f5fff40e1857eb9beb",
+  "compiler_dirty": false,
+  "validator_sha256": "8bc0de1c40d44ebd0179ce0ff399a3f752a646d0e98e0b4f2d3070fd55033872",
+  "dense_oracle_sha256": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56"
+}
