@@ -1,0 +1,94 @@
+schema = 1
+fir_owner = "fission-fsl::CompiledInstruction"
+execution_model = "bounded combinational bit-vector function; recurrence advanced by caller"
+slot_order = "bottom of input stack first; output stack bottom first"
+hardware_execution = false
+
+[[axis]]
+id = "fpga"
+kernel = "fpga_add"
+opcode = 1
+inputs = ["a:u8", "b:u8"]
+outputs = ["sum:u8"]
+model = "(a+b) mod 256"
+projection = "Verilog combinational logic and generic synthesis"
+unsupported = ["board constraints", "place and route", "bitstream", "board execution"]
+
+[[axis]]
+id = "dsp"
+kernel = "dsp_sat_add"
+opcode = 2
+inputs = ["a:u8", "b:u8"]
+outputs = ["sum:u8"]
+model = "min(a+b,255), exact wider intermediate and comparison mask"
+projection = "authored arithmetic function; HDL and C/Rust"
+unsupported = ["DSP instruction decoding", "saturating vendor flags", "DSP runtime ABI"]
+
+[[axis]]
+id = "tensor"
+kernel = "tensor_dot2"
+opcode = 3
+inputs = ["a0:u8", "a1:u8", "b0:u8", "b1:u8"]
+outputs = ["dot:u32"]
+model = "a0*b0+a1*b1; promoted operands; no intermediate overflow"
+shape = [2]
+projection = "fixed-shape scalar elaboration into the existing FIR"
+unsupported = ["first-class tensor types", "tensor strides", "quantized rounding modes", "NPU or TPU ISA and runtime"]
+
+[[axis]]
+id = "asic"
+kernel = "asic_mac"
+opcode = 4
+inputs = ["a:u16", "b:u16", "c:u16"]
+outputs = ["mac:u16"]
+model = "(a*b+c) mod 65536"
+projection = "generic synthesized combinational netlist"
+unsupported = ["PDK or standard-cell mapping", "area and timing guarantees", "physical design", "fabrication"]
+
+[[axis]]
+id = "neuromorphic"
+kernel = "lif_step"
+opcode = 5
+inputs = ["membrane:u8", "input:u8"]
+outputs = ["next_membrane:u8", "spike:u1"]
+model = "pre=floor(3*membrane/4)+input; spike=(pre>=100); next=spike?0:pre"
+step_ms = 1
+membrane_unit = "authored integer model units; not a calibrated physical voltage"
+projection = "one discrete LIF state-transition function; caller supplies old state"
+unsupported = ["continuous LIF equivalence", "asynchronous events", "refractory periods", "synaptic delays", "neuromorphic hardware"]
+
+[[axis]]
+id = "pim"
+kernel = "pim_bank_xor"
+opcode = 6
+inputs = ["word0:u32", "word1:u32"]
+outputs = ["xor:u32"]
+model = "word0 xor word1; caller supplies both values"
+placement = "proposed same-bank word operands; metadata only, no memory effects"
+projection = "word-level arithmetic with an explicit placement hypothesis"
+unsupported = ["memory read and write contract", "DRAM row commands", "coherence", "bank atomics", "in-memory execution"]
+
+[[axis]]
+id = "analog"
+kernel = "rc_euler_step"
+opcode = 7
+inputs = ["state:u16", "input:u16"]
+outputs = ["next_state:u16"]
+model = "floor((3*state+input)/4) in unsigned Q8.8; widened u32 intermediate"
+voltage_unit = "volt; integer code divided by 256"
+step_ms = 1
+time_constant_ms = 4
+continuous_reference = "tau*dx/dt=u-x; piecewise constant input; x_next=u+(x-u)*exp(-dt/tau)"
+rounding = "floor to one Q8.8 code after each step"
+projection = "explicit discrete approximation; continuous trajectory is a separate comparison"
+unsupported = ["continuous-time FIR solver", "device nonidealities", "SPICE netlist", "analog hardware", "formal continuous error proof"]
+
+[[axis]]
+id = "dataflow"
+kernel = "dataflow_diamond"
+opcode = 8
+inputs = ["a:u16", "b:u16"]
+outputs = ["result:u16"]
+model = "((a+b) mod 65536)*((a-b) mod 65536) mod 65536"
+projection = "untimed acyclic FIR dependency graph and combinational HDL"
+unsupported = ["token rates", "backpressure", "stream firing semantics", "CGRA PE allocation", "routing", "CGRA execution"]

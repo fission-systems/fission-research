@@ -571,3 +571,50 @@ jobs:
             artifacts/ibm-integer-regression.json
             artifacts/ibm-hardware-replay.json
           if-no-files-found: ignore
+
+  computational-fabric:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install isolated reference synthesis and simulation tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y iverilog clang
+          python3 -m venv artifacts/fabric-tools
+          artifacts/fabric-tools/bin/pip install -r experiments/fabric/initial-slices/tool-requirements.lock.txt
+      - name: Fetch pinned owned compiler without legacy assets
+        run: |
+          git init .fabric-compiler
+          git -C .fabric-compiler remote add origin https://github.com/fission-systems/Fission.git
+          git -C .fabric-compiler sparse-checkout init --cone
+          git -C .fabric-compiler sparse-checkout set crates .cargo
+          git -C .fabric-compiler fetch --depth=1 --filter=blob:none origin cb7b12f5c0c5c6790de58db3d0ef0de05e826d91
+          git -C .fabric-compiler checkout --detach FETCH_HEAD
+          test ! -e .fabric-compiler/utils
+          test ! -e .fabric-compiler/vendor
+      - name: Build and check canonical fabric contracts
+        run: |
+          rustup toolchain install 1.98.1 --profile minimal --no-self-update
+          cargo +1.98.1 build --manifest-path .fabric-compiler/Cargo.toml --locked -p fission-fsl --bin fslc
+          cargo +1.98.1 test --manifest-path .fabric-compiler/Cargo.toml --locked -p fission-fsl --test fabric
+      - name: Compare authored FIR RTL netlists and C Rust executions
+        run: |
+          python3 tools/fabric_probe.py --fslc .fabric-compiler/target/debug/fslc --compiler-root .fabric-compiler --yosys artifacts/fabric-tools/bin/yowasp-yosys --work artifacts/fabric-ci --report artifacts/fabric-ci.json
+          python3 tools/fabric_capture_check.py --report artifacts/fabric-ci.json
+      - name: Preserve bounded computational evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: computational-fabric
+          path: |
+            artifacts/fabric-ci.json
+            artifacts/fabric-ci/*/design.v
+            artifacts/fabric-ci/*/dependencies.dot
+            artifacts/fabric-ci/*/netlist.v
+            artifacts/fabric-ci/*/synthesis-stat.json
+            artifacts/fabric-ci/*/synthesis.log
+          if-no-files-found: ignore

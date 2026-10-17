@@ -1,0 +1,40 @@
+digraph fsl_dsp_sat_add {
+  // Untimed dependency projection; no CGRA mapping.
+  in0 [label="input slot 0"];
+  in1 [label="input slot 1"];
+  v0 [label="FIR op 0: stack.pop (8 bits)"];
+  in1 -> v0;
+  v1 [label="FIR op 1: stack.pop (8 bits)"];
+  in0 -> v1;
+  v2 [label="FIR op 2: convert (16 bits)"];
+  v1 -> v2;
+  v3 [label="FIR op 3: convert (16 bits)"];
+  v0 -> v3;
+  v4 [label="FIR op 4: add.wrap (16 bits)"];
+  v2 -> v4;
+  v3 -> v4;
+  v5 [label="FIR op 5: constant (16 bits)"];
+  v6 [label="FIR op 6: compare (1 bits)"];
+  v5 -> v6;
+  v4 -> v6;
+  v7 [label="FIR op 7: convert (8 bits)"];
+  v6 -> v7;
+  v8 [label="FIR op 8: constant (8 bits)"];
+  v9 [label="FIR op 9: constant (8 bits)"];
+  v10 [label="FIR op 10: sub (8 bits)"];
+  v8 -> v10;
+  v7 -> v10;
+  v11 [label="FIR op 11: xor (8 bits)"];
+  v10 -> v11;
+  v9 -> v11;
+  v12 [label="FIR op 12: convert (8 bits)"];
+  v4 -> v12;
+  v13 [label="FIR op 13: and (8 bits)"];
+  v12 -> v13;
+  v11 -> v13;
+  v14 [label="FIR op 14: or (8 bits)"];
+  v13 -> v14;
+  v10 -> v14;
+  out0 [label="output slot 0"];
+  v14 -> out0;
+}

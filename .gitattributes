@@ -1,0 +1,2 @@
+# Preserve the exact trailing newline framing of captured Yosys JSON statistics.
+experiments/fabric/initial-slices/examples/*/synthesis-stat.json whitespace=-blank-at-eof

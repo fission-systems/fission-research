@@ -1,5 +1,8 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-18 후속: [여덟 계산 모델 초기 슬라이스](../experiments/fabric/initial-slices/README.md)와
+> [도메인 계약](computational-domains.md)을 추가했다. native v15 / 조합논리 HDL·일반 합성 단계이며 실제 장치 지원은 아니다.
+
 > 2026-10-17 후속: [첫 IBM 실제 QPU 관측](../experiments/quantum/ibm-hardware-bell-xx/README.md)이 추가됐다.
 > Bell XX 한 회로의 1,024 shots와 오프라인 재현이며, 이상적 분포 비교 기준은 미통과다.
 

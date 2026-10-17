@@ -1,0 +1,20 @@
+digraph fsl_dataflow_diamond {
+  // Untimed dependency projection; no CGRA mapping.
+  in0 [label="input slot 0"];
+  in1 [label="input slot 1"];
+  v0 [label="FIR op 0: stack.pop (16 bits)"];
+  in1 -> v0;
+  v1 [label="FIR op 1: stack.pop (16 bits)"];
+  in0 -> v1;
+  v2 [label="FIR op 2: add.wrap (16 bits)"];
+  v1 -> v2;
+  v0 -> v2;
+  v3 [label="FIR op 3: sub (16 bits)"];
+  v1 -> v3;
+  v0 -> v3;
+  v4 [label="FIR op 4: mul.wrap (16 bits)"];
+  v2 -> v4;
+  v3 -> v4;
+  out0 [label="output slot 0"];
+  v4 -> out0;
+}

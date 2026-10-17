@@ -1,0 +1,43 @@
+{
+   "creator": "Yosys 0.70 (git sha1 28ba3cb92, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\fsl_tensor_dot2": {
+         "num_wires":         148,
+         "num_wire_bits":     2085,
+         "num_pub_wires":     16,
+         "num_pub_wire_bits": 529,
+         "num_ports":         5,
+         "num_port_bits":     320,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         809,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 418,
+            "$_OR_": 118,
+            "$_XOR_": 273
+         }
+      }
+   },
+      "design": {
+         "num_wires":         148,
+         "num_wire_bits":     2085,
+         "num_pub_wires":     16,
+         "num_pub_wire_bits": 529,
+         "num_ports":         5,
+         "num_port_bits":     320,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         809,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 418,
+            "$_OR_": 118,
+            "$_XOR_": 273
+         }
+      }
+}
+

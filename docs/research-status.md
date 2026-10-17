@@ -793,3 +793,57 @@ retaining the failed ideal-model comparison. CI now invokes that offline replay
 without credentials or QPU jobs. That CI change has not yet been observed on Linux
 at this point in the record; this is local replay plus provider execution evidence.
 Older synthetic snapshots, locks and offline baseline reports remain unchanged.
+
+
+## 2026-10-18 — Eight computational axes and the first combinational fabric projection
+
+Native `cb7b12f5c0c5c6790de58db3d0ef0de05e826d91` adds wrapping multiply and
+unsigned logical shifts in the existing `IntBinaryOp` owner (FSLC v15). Large
+counts yield zero, signed logical shifts refuse, and old profiles select their
+previous version. The existing stack/control reference and C/Rust consumers now
+also admit canonical binary operations; no separate interpreter or IR was added.
+The HDL plan borrows the one canonical body and rejects effects/explicit CFG
+outside its combinational two-valued domain. C/Rust share guarded binary
+expressions; Go unsigned expressions were extended without a new dependency.
+
+[Domain contracts](computational-domains.md) and the [initial experiment](../experiments/fabric/initial-slices/README.md)
+add FPGA, DSP, tensor accelerator, ASIC, neuromorphic, PIM, analog and
+Dataflow/CGRA research axes. Eight authored FSL functions cover wrapping add,
+unsigned saturation, two-element dot product, wrapping MAC, discrete LIF,
+word XOR with a placement hypothesis, fixed-point RC Euler and an arithmetic
+fork/join. These are not eight hardware ISA implementations. Tensor is a scalar
+elaboration, LIF/RC are externally advanced discrete models, and PIM has no
+memory effects yet. All eight use source definitions; five reuse the new generic
+multiply/shift primitives and none uses a vendor-specific runtime escape.
+
+Local evidence: 118 native tests passed with x86 enabled (0 skipped), including
+four new fabric gates; strict Clippy default/x86, workspace fmt and diff checks
+passed. Independent integer oracle versus native FIR and RTL matched 184,424
+cases, with 737,696 C/Rust O0/O2 executions. C used undefined-behavior sanitizer.
+Eight generic Yosys syntheses and their netlist simulations matched 145,336
+fixture cases. Sixteen auxiliary width/signed-view fixtures were RTL/host checked
+but not synthesized. Four CLI refusals preserved sentinel output files.
+Previous actual IBM QPU capture replay still reproduced its package/QASM and
+recorded counts under the new compiler, retaining ideal_sampling_compatible=false.
+No additional QPU workload was submitted.
+
+The analog experiment separates exact discrete arithmetic from continuous
+approximation: 64-step full-scale RC step, maximum rounding error about 2.99934
+Q8.8 codes against rational Euler, and maximum Euler-versus-continuous step
+error about 13.17694 volts. This is authored mathematical-model evidence, not
+analog hardware or a continuous-time FIR solver. An exploratory Yosys
+`equiv_simple` MAC proof was manually stopped while pending; no formal result is
+claimed. Generic cell counts are not FPGA LUT, silicon area, timing or power.
+
+Icarus and YoWASP tools run only in research. No production dependency changed.
+The new Linux CI job is credential/hardware free and remains separate from local
+observations. Board constraints, PnR/bitstream, DSP/NPU/TPU device runtime,
+PDK/fabrication, event queues, PIM coherence, continuous solver and CGRA mapping
+remain unsupported. The compiler is on the experimental branch; research is
+committed on main. There is no new decompiler-quality or real-binary claim.
+
+Native [CI 39042999695](https://github.com/fission-systems/Fission/actions/runs/39042999695)
+completed successfully at `cb7b12f5c0c5c6790de58db3d0ef0de05e826d91`.
+The clean-pin local report uses fatal UBSan for the C executions. The publication
+checker matched 40 frozen files and regenerated package/HDL/DOT/C/Rust / case
+hashes. The new research Linux job has not yet been observed at this point.

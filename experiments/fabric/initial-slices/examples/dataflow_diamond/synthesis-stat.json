@@ -1,0 +1,45 @@
+{
+   "creator": "Yosys 0.70 (git sha1 28ba3cb92, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\fsl_dataflow_diamond": {
+         "num_wires":         208,
+         "num_wire_bits":     1852,
+         "num_pub_wires":     8,
+         "num_pub_wire_bits": 272,
+         "num_ports":         3,
+         "num_port_bits":     192,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         927,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 458,
+            "$_NOT_": 17,
+            "$_OR_": 142,
+            "$_XOR_": 310
+         }
+      }
+   },
+      "design": {
+         "num_wires":         208,
+         "num_wire_bits":     1852,
+         "num_pub_wires":     8,
+         "num_pub_wire_bits": 272,
+         "num_ports":         3,
+         "num_port_bits":     192,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         927,
+         "num_submodules":       0,
+         "num_cells_by_type": {
+            "$_AND_": 458,
+            "$_NOT_": 17,
+            "$_OR_": 142,
+            "$_XOR_": 310
+         }
+      }
+}
+
