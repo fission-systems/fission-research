@@ -5,5 +5,9 @@
   "validator_sha256": "8bc0de1c40d44ebd0179ce0ff399a3f752a646d0e98e0b4f2d3070fd55033872",
   "dense_oracle_sha256": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56",
   "report_sha256": "5687fcfe751647dca586ab5d7cb7a30bf7b187c39b4c355a5d61c8b51de11e92",
-  "ideal_regression_sha256": "7b6c1e649bf51670b48d163b53ddbe9a7714a8b203cadd9a530cecd817842c02"
+  "ideal_regression_sha256": "7b6c1e649bf51670b48d163b53ddbe9a7714a8b203cadd9a530cecd817842c02",
+  "linux_report_sha256": "6c28e5935c870827340b485573a632604a234d3f1720c565dd32396506b7c3b6",
+  "linux_ideal_regression_sha256": "9e08d4b72042dfe5424173e295d2d5bcdb9e5bd19c9cb2eccb0d252dd0d87f3e",
+  "linux_run": "https://github.com/fission-systems/fission-research/actions/runs/39019757014",
+  "linux_job": "quantum-channels-cfg"
 }

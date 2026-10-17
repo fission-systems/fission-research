@@ -40,7 +40,8 @@ and QASM hashes. Original archived ideal experiment reports are preserved.
 
 Native checks: quantum integration 15 passed; entire crate with x86 99 passed,
 0 skipped; strict Clippy with x86 and formatting passed. Research Python suite
-59 passed, including the native owned-entry adapter fixture.
+60 passed after adding the Linux archive integrity check, including the native
+owned-entry adapter fixture.
 SLEIGH library regression after integration with main: 359 passed, 3 skipped.
 These synthetic checks establish no new DecBench score or CPU decompiler quality.
 
@@ -68,3 +69,12 @@ binary research candidate and configuration gaps are recorded in the
 
 Channel formula reference: [Qiskit Aer definitions](https://github.com/Qiskit/qiskit-aer/blob/main/qiskit_aer/noise/errors/standard_errors.py).
 No Aer code is copied, linked or invoked by the simulator.
+
+## Linux CI evidence
+
+[Run 39019757014 / quantum-channels-cfg](https://github.com/fission-systems/fission-research/actions/runs/39019757014)
+passed with the same clean native pin, fixture/package/oracle hashes and 678
+comparisons. Maximum absolute error again 4.440892098500626e-16. The same job's
+ideal regression passed 308 comparisons with previous package/QASM locks. Both
+raw reports are archived here and hashed in source.lock.json. This job success
+is separate from the full Fission PR CI and other research jobs.

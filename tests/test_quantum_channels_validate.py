@@ -39,6 +39,29 @@ class QuantumChannels(unittest.TestCase):
         self.assertEqual(report["package_sha256"], lock["package_sha256"])
         self.assertEqual(report["validator_sha256"], lock["validator_sha256"])
 
+    def test_archived_linux_oracle_reports(self):
+        lock = json.loads(q.LOCK.read_text())
+        for name, key, count in [
+            ("validation-linux-39019757014.json", "linux_report_sha256", 678),
+            (
+                "ideal-regression-linux-39019757014.json",
+                "linux_ideal_regression_sha256",
+                308,
+            ),
+        ]:
+            path = q.FIXTURE.parent / name
+            self.assertEqual(q.dense.digest(path), lock[key])
+            report = json.loads(path.read_text())
+            self.assertEqual(report["compiler_commit"], lock["compiler_commit"])
+            self.assertFalse(report["compiler_dirty"])
+            self.assertEqual(report["comparisons"], count)
+            self.assertEqual(report["status"], "passed")
+        report = json.loads(
+            (q.FIXTURE.parent / "validation-linux-39019757014.json").read_text()
+        )
+        for key in ["package_sha256", "validator_sha256", "dense_oracle_sha256"]:
+            self.assertEqual(report[key], lock[key])
+
     def test_amplitude_damping_keeps_entangled_partner(self):
         h = 1 / math.sqrt(2)
         rho = [

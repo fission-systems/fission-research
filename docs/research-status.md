@@ -570,3 +570,11 @@ reference and identifies opcode/layout configuration differences from the paper.
 No physical binary decode/execution or calibrated device model was added. Cyclic
 quantum CFG, timing/pulses, general classical control, general OpenQASM and real
 hardware remain unsupported.
+
+Quantum channels Linux CI **39019757014 / quantum-channels-cfg** passed: native
+quantum integration, oracle unit checks, 678 channel/CFG comparisons and 308 ideal
+regression comparisons. Archived raw reports match clean native pin, package and
+oracle hashes; maximum error 4.440892098500626e-16. Full research Python suite is
+now 60 passed after adding Linux artifact integrity coverage (native adapter
+fixture enabled). The Fission PR Linux test job remains running at this archive;
+Clippy/security/debugger checks passed, but full-PR acceptance is not yet claimed.
