@@ -125,3 +125,14 @@ statistics. Executable hashes and tool versions remain platform-specific;
 netlist temporary names are not required to be byte-identical across hosts.
 `reference-provenance.json` pins upstream tool revisions, license-file hashes,
 the installed WASM object and local Icarus distribution metadata.
+
+## Linux reproduction
+
+[39044297236 / computational-fabric](https://github.com/fission-systems/fission-research/actions/runs/39044297236/job/117429845289)
+passed at research `70647185cf961a79e22ce3fc75a5c103e5057b92`, using the same
+clean native pin. All 184,424 cases, 737,696 C/Rust executions (fatal UBSan for C),
+eight syntheses / 145,336 netlist cases and four refusals reproduced. Package,
+HDL, DOT, input/reference rows and C/Rust source hashes matched the local capture.
+The archived `validation-linux-39044297236.json` records Linux tool versions and
+its different compiler executable hash. This is one successful job; the entire
+workflow conclusion is separate and is not certified by this record.

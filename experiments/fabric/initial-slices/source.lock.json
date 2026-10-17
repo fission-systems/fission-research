@@ -13,7 +13,7 @@
     "tools/fabric_capture_check.py": "def9377734d15cf2c8be2985454326fec9de4d33e10e22dfc1b6aaec91af5434"
   },
   "files": {
-    "README.md": "d08b2f1bd8c49b8b19941eb77baa944e649726a50de8ada09cafba624abb8992",
+    "README.md": "a0c4b9c2d5bd1fff5cd265209aac994c866aa2da573757f2095b53df29af0220",
     "axes.toml": "e71fa031e76e1eb4b0a16d3db48aa04524bcafea9b5ec320ecb58c7353c6b0db",
     "examples/asic_mac/dependencies.dot": "846dbeb1c3b93f111d4cb1463d67d7e5a2ba739b70abffa96a5ab0940778466f",
     "examples/asic_mac/design.v": "6c3c4ecc17c17fdf5ddeaa95ad2d7d8eb8ea62b1adb3f4341da80dea1d6bf854",
@@ -52,11 +52,20 @@
     "kernels.fslc": "5ab6ff4980e4ae4a561bb651099dde051a3cde0e9fa3f1adc407abbdc4174c98",
     "reference-provenance.json": "5e26481dd1b8691cf238ce934d9d03269c1965be00e00bf1b920eca1c72dfd91",
     "tool-requirements.lock.txt": "21cd3ed9de2bcec8fc09a722d6ad0a4e76361090903b33c05f666ed7ef8d1f69",
-    "validation-local.json": "36e32daa265da92a1649def81ea735fbb8ccb65c85f1df70c18f1fdd56f483cc"
+    "validation-local.json": "36e32daa265da92a1649def81ea735fbb8ccb65c85f1df70c18f1fdd56f483cc",
+    "validation-linux-39044297236.json": "83be1e47d145729873235745a060e839763ad46ef6c274c594e44406e06247d1"
   },
   "target_hardware_execution": false,
   "bitstreams_created": 0,
   "canonical_ir_owners": 1,
   "rust_dependencies_added": 0,
-  "scope": "Authored bit-vector kernels, scalar elaborations and approximation/placement contracts; not vendor device support or decompiler quality evidence"
+  "scope": "Authored bit-vector kernels, scalar elaborations and approximation/placement contracts; not vendor device support or decompiler quality evidence",
+  "linux_observation": {
+    "run_id": 39044297236,
+    "job_id": 117429845289,
+    "job": "computational-fabric",
+    "conclusion": "success",
+    "research_commit": "70647185cf961a79e22ce3fc75a5c103e5057b92",
+    "whole_workflow_conclusion": "not-certified-by-this-record"
+  }
 }

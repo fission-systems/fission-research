@@ -847,3 +847,9 @@ completed successfully at `cb7b12f5c0c5c6790de58db3d0ef0de05e826d91`.
 The clean-pin local report uses fatal UBSan for the C executions. The publication
 checker matched 40 frozen files and regenerated package/HDL/DOT/C/Rust / case
 hashes. The new research Linux job has not yet been observed at this point.
+
+Subsequently, research [39044297236 / computational-fabric](https://github.com/fission-systems/fission-research/actions/runs/39044297236/job/117429845289)
+passed at `70647185cf961a79e22ce3fc75a5c103e5057b92` with the same clean native
+pin and counts. Frozen/reproduced package, HDL, dependencies, CSV inputs/results,
+C/Rust sources, cell counts and approximation statistics matched. The parsed
+Linux report is archived; this job success is separate from the full workflow.
