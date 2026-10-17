@@ -4,7 +4,7 @@
   "package_sha256": "f4e3189df52192467dc04f8815533b88caa79c93e498cdcc5e094f50c526809b",
   "corpus.qisa_sha256": "b1a3652ca124711c77970f564a57bac031cdad84aea9de627656be4bd57033bb",
   "corpus.bin_sha256": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279",
-  "validator_sha256": "5497597cd1a40576184ea9cf0013578a8aa9e1669830fee0880852c5b1e2709d",
+  "validator_sha256": "18f7f40467aa3b0a7a0f4fcfcd1e26f9e7be08c3d128a17f43fdde70b66a9757",
   "dependencies": {
     "quantum_validate.py": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56"
   },
@@ -14,5 +14,6 @@
     "qisa.fsl": "e65ff25ab6da9a3f42fdc961a880886283c079181fcba652ea52eed73dc1f8e5",
     "corpus.qisa": "b1a3652ca124711c77970f564a57bac031cdad84aea9de627656be4bd57033bb",
     "corpus.bin": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279"
-  }
+  },
+  "local_validator_sha256": "5497597cd1a40576184ea9cf0013578a8aa9e1669830fee0880852c5b1e2709d"
 }

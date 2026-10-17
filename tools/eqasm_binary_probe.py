@@ -78,9 +78,11 @@ def build(source, output, bison, flex, cxx):
         output / "qisa-as",
     ]
     # Compilation may take longer than a single oracle invocation.
-    subprocess.run(
-        list(map(str, command)), check=True, capture_output=True, timeout=180
-    )
+    compiled = subprocess.run(list(map(str, command)), capture_output=True, timeout=180)
+    if compiled.returncode:
+        raise ValueError(
+            "reference C++ build failed:\n" + compiled.stderr.decode(errors="replace")
+        )
     shutil.copyfile(source / "qisa_opcodes.qmap", output / "pinned.qmap")
     return output / "qisa-as"
 
