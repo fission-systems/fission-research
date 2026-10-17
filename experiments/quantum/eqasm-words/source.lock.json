@@ -1,0 +1,18 @@
+{
+  "oracle_commit": "9b024494558287a937cdd5a8ccd63fcaa784b1c4",
+  "source_sha256": "e65ff25ab6da9a3f42fdc961a880886283c079181fcba652ea52eed73dc1f8e5",
+  "package_sha256": "f4e3189df52192467dc04f8815533b88caa79c93e498cdcc5e094f50c526809b",
+  "corpus.qisa_sha256": "b1a3652ca124711c77970f564a57bac031cdad84aea9de627656be4bd57033bb",
+  "corpus.bin_sha256": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279",
+  "validator_sha256": "5497597cd1a40576184ea9cf0013578a8aa9e1669830fee0880852c5b1e2709d",
+  "dependencies": {
+    "quantum_validate.py": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56"
+  },
+  "compiler_commit": "4a3c48297d5a3649774b70f5fff40e1857eb9beb",
+  "report_sha256": "9308fec0c3d7cb8ac93c5ac44a37f96e5d425f0405d641abdccd22b1b408e877",
+  "files": {
+    "qisa.fsl": "e65ff25ab6da9a3f42fdc961a880886283c079181fcba652ea52eed73dc1f8e5",
+    "corpus.qisa": "b1a3652ca124711c77970f564a57bac031cdad84aea9de627656be4bd57033bb",
+    "corpus.bin": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279"
+  }
+}
