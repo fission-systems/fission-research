@@ -430,3 +430,54 @@ jobs:
             artifacts/quantum-channels.json
             artifacts/quantum-ideal-regression.json
           if-no-files-found: ignore
+
+  quantum-bounded-and-inputs:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Fetch pinned owned compiler without legacy assets
+        run: |
+          git init .quantum-execution-compiler
+          git -C .quantum-execution-compiler remote add origin https://github.com/fission-systems/Fission.git
+          git -C .quantum-execution-compiler sparse-checkout init --cone
+          git -C .quantum-execution-compiler sparse-checkout set crates .cargo
+          git -C .quantum-execution-compiler fetch --depth=1 --filter=blob:none origin 4a3c48297d5a3649774b70f5fff40e1857eb9beb
+          git -C .quantum-execution-compiler checkout --detach FETCH_HEAD
+          test ! -e .quantum-execution-compiler/utils
+          test ! -e .quantum-execution-compiler/vendor
+          cmp experiments/quantum/eqasm-words/qisa.fsl .quantum-execution-compiler/crates/fission-fsl/specs/qisa-qelab-9b024494.fsl
+      - name: Build and check canonical quantum execution
+        run: |
+          rustup toolchain install 1.98.1 --profile minimal --no-self-update
+          cargo +1.98.1 build --manifest-path .quantum-execution-compiler/Cargo.toml --locked -p fission-fsl --bin fslc
+          cargo +1.98.1 test --manifest-path .quantum-execution-compiler/Cargo.toml --locked -p fission-fsl --test quantum
+          python3 -m unittest discover -s tests -p test_quantum_execution_probe.py -v
+          python3 -m unittest discover -s tests -p test_eqasm_binary_probe.py -v
+      - name: Reproduce bounded loops and historical idle models
+        run: |
+          python3 tools/quantum_execution_probe.py --fslc .quantum-execution-compiler/target/debug/fslc --compiler-root .quantum-execution-compiler
+          python3 tools/quantum_validate.py --fslc .quantum-execution-compiler/target/debug/fslc --compiler-root .quantum-execution-compiler --report artifacts/quantum-ideal-regression-v14.json
+          python3 tools/quantum_channels_validate.py --fslc .quantum-execution-compiler/target/debug/fslc --compiler-root .quantum-execution-compiler --report artifacts/quantum-channels-regression-v14.json
+      - name: Fetch and build a separate pinned binary-format oracle
+        run: |
+          sudo apt-get update && sudo apt-get install -y bison flex g++
+          git init Vendor/eqasm-assembler
+          git -C Vendor/eqasm-assembler remote add origin https://github.com/QE-Lab/eQASM_Assembler.git
+          git -C Vendor/eqasm-assembler fetch --depth=1 origin 9b024494558287a937cdd5a8ccd63fcaa784b1c4
+          git -C Vendor/eqasm-assembler checkout --detach FETCH_HEAD
+          python3 tools/eqasm_binary_probe.py --fslc .quantum-execution-compiler/target/debug/fslc --compiler-root .quantum-execution-compiler
+      - name: Preserve execution and binary-format evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: quantum-bounded-and-inputs
+          path: |
+            artifacts/quantum-execution.json
+            artifacts/eqasm-words.json
+            artifacts/quantum-ideal-regression-v14.json
+            artifacts/quantum-channels-regression-v14.json
+          if-no-files-found: ignore

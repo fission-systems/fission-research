@@ -74,6 +74,6 @@ source-backed compiler requirements and implementation order.
 `Vendor/eqasm-assembler` pins [QE-Lab/eQASM_Assembler](https://github.com/QE-Lab/eQASM_Assembler)
 at `9b024494558287a937cdd5a8ccd63fcaa784b1c4`. Its Apache-2.0 license, QMAP and
 driver source/header hashes are separately recorded under `quantum_repository`
-in the lock. It was not built or invoked. Its configuration differs from the
+in the lock. The initial capture was source-only. A later [separate reference build](../experiments/quantum/eqasm-words/README.md) checks generated word layouts; no linking into Fission. Its configuration differs from the
 CC-Light paper; neither opcode map is a universal physical gate specification.
 [Investigation and input contract](../docs/qpu-binary-boundary.md).

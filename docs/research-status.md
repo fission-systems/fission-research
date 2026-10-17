@@ -578,3 +578,51 @@ oracle hashes; maximum error 4.440892098500626e-16. Full research Python suite i
 now 60 passed after adding Linux artifact integrity coverage (native adapter
 fixture enabled). The Fission PR Linux test job remains running at this archive;
 Clippy/security/debugger checks passed, but full-PR acceptance is not yet claimed.
+
+## 2026-10-17 — bounded quantum loops, historical T1/T2 and QISA words
+
+Native `4a3c48297d5a3649774b70f5fff40e1857eb9beb` adds resource-bounded execution
+of cyclic canonical blocks in the existing u1 quantum subset. Incomplete runs
+retain completed and pending probability, branch states, canonical block/op
+positions and repeated measurement history. `into_complete` refuses and the CLI
+returns nonzero with `result:null` on a limit. Strict simulation still rejects
+cycles. No second IR or runtime dependency. Resume packaging and arbitrary
+classical counter arithmetic remain unsupported.
+
+[Bounded/calibration experiment](../experiments/quantum/bounded-calibration/README.md):
+six terminating loop input states and a retry loop stopped with 15/16 completed +
+1/16 pending passed. Twenty declared idle models from five IBM Manila snapshot
+rows (dated 2024-05-27) passed 420 joint-state comparisons against a direct
+exponential density map. Native composes amplitude damping and phase flip from
+integer-picosecond duration/T1/T2 (FSLC v14). Require T1,T2>0 and T2<=2T1; no
+clipping of invalid physical rows. Maximum native/oracle error
+2.7755575615628914e-16. Explicit <=0.5ps conversion residuals produce observed
+maximum density difference 8.820099595130415e-09 against the original parameters,
+within this experiment's 1e-7 finite-input admission bound. This is historical
+parameter transfer, **not** current-device noise calibration, fitting, correction,
+error mitigation or hardware validation. Physical snapshot qubits are explicitly
+modeled in logical reference slot 0; the test spectator is abstract.
+
+[QISA word experiment](../experiments/quantum/eqasm-words/README.md): built pinned
+QE-Lab assembler separately; 200 emitted words match source field calculation,
+upstream disassembly words and own FSL decode/re-encoding. Six format inputs
+refused. Three FSL rules, zero decoder/compiler primitive changes, zero runtime
+architecture code; this is an encoding-only KPI. The old assembler CLI warns
+that quantum layout is unset; target-dependent semantics are unverified. Generated
+Bison source-position equality compatibility is isolated to the reference build.
+All QWAIT/QWAITR and opaque bundle FIR bodies remain explicitly unsupported. No
+physical-device capture, QPU lifting/execution, timing or pulse identity claim.
+
+Local native quantum integration 21 passed; full fission-fsl with x86 105 passed,
+0 skipped; strict Clippy/fmt passed. Research Python 66 passed with native adapter
+fixture enabled. Old quantum ideal/rational-channel oracles rerun at this clean
+native pin: 308 / 678 comparisons passed with old package/QASM hashes unchanged.
+No new CPU execution corpus or DecBench score measured.
+
+Previous-head Fission full PR CI [39019512207](https://github.com/fission-systems/Fission/actions/runs/39019512207)
+**passed**, confirming the wide-context SLEIGH integration fix. Latest-head
+[39021009277](https://github.com/fission-systems/Fission/actions/runs/39021009277)
+is running; previous-head green does not certify the new implementation. A new
+pinned research job `quantum-bounded-and-inputs` covers this phase separately.
+Fission main was not committed/pushed; the experiment stays on
+`codex/fsl-jvm-iadd-parity`, PR #176 remains open.

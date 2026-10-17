@@ -57,3 +57,15 @@ reporting; it cannot claim equivalent physical-device execution.
 
 This investigation selects a tractable public target and records blockers. It
 does **not** add actual QPU binary decoding, firmware recovery or device support.
+
+## First measured binary-format slice
+
+The pinned assembler has now been built separately with Bison 3.8.2 and C++14.
+[200 generated words](../experiments/quantum/eqasm-words/README.md) match owned
+FSL decode/re-encoding and upstream word disassembly. The profile is specifically
+`qisa.qelab.9b024494.le`: strict canonical QWAIT/QWAITR and opaque bundle fields.
+All bodies remain unsupported, including timing. The upstream layout loader is
+disabled in its CLI and emits a recorded warning, so no target topology or gate
+meaning is validated. This advances format evidence, not physical binary capture
+or executable QPU lifting. Historical source-only statements above describe the
+initial investigation; the newer build record is separate and keeps source clean.

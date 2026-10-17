@@ -102,3 +102,18 @@ edge 인자는 동시에 전달한다. 합류 자체는 양자를 측정하지 �
 CFG·loop·quantum control superposition·timing·CPU/GPU 혼합 실행은 여전히
 미지원이다. OpenQASM 출력은 이 확장 효과를 보존할 수 없어 거부한다.
 [33개 회로의 조건부 상태·SSA 검증](../experiments/quantum/channels-cfg/README.md).
+
+## 2026-10-17 — cyclic u1 실행과 명시적 시간 모델
+
+기존 block/edge를 한도 있게 반복한다. 전체 step, 경로별 split, 보관 branch
+용량을 넘으면 완료 경로와 미실행 frontier의 위치·상태·확률을 보관한다.
+불완전한 ensemble을 완료 결과로 변환하거나 남은 확률을 재정규화하지 않는다.
+반복 measurement의 static ID는 그대로이며 history에 dynamic event를 추가한다.
+모든 path가 종료되어야 terminal result를 얻는다. 일반 정수 counter/managed
+runtime/전체 OpenQASM loop 지원은 아니다.
+
+FSLC v14 relaxation 효과는 정수 picosecond duration/T1/T2와 explicit joint
+state에 작용하는 영온 Markovian idle 모델이다. T1/T2 양수·T2<=2T1을 검증한다.
+장치의 현재 calibration 또는 오류 보정을 수행했다는 의미는 아니다. 과거
+스냅샷을 연결할 때도 시간 반올림 오차와 모델 출력 차이를 별도로 기록한다.
+[계약과 실제 수치 비교](../experiments/quantum/bounded-calibration/README.md).
