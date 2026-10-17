@@ -556,6 +556,8 @@ jobs:
           python3 tools/quantum_channels_validate.py --fslc .ibm-compiler/target/debug/fslc --compiler-root .ibm-compiler --report artifacts/ibm-channels-regression.json
           python3 tools/quantum_execution_probe.py --fslc .ibm-compiler/target/debug/fslc --compiler-root .ibm-compiler --report artifacts/ibm-execution-regression.json
           python3 tools/quantum_integer_probe.py --fslc .ibm-compiler/target/debug/fslc --compiler-root .ibm-compiler --report artifacts/ibm-integer-regression.json
+      - name: Replay captured IBM hardware evidence offline
+        run: python3 tools/ibm_hardware_replay.py --fslc .ibm-compiler/target/debug/fslc --report artifacts/ibm-hardware-replay.json
       - name: Preserve offline evidence without credentials or hardware jobs
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -567,4 +569,5 @@ jobs:
             artifacts/ibm-channels-regression.json
             artifacts/ibm-execution-regression.json
             artifacts/ibm-integer-regression.json
+            artifacts/ibm-hardware-replay.json
           if-no-files-found: ignore

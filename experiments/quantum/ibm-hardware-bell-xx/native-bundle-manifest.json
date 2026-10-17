@@ -1,0 +1,27 @@
+{
+  "schema": "fission.ibm.bundle.v1",
+  "backend": "ibm_marrakesh",
+  "instruction": "bell_coherent",
+  "physical_qubits": [
+    135,
+    139
+  ],
+  "initial_basis": 0,
+  "observation_axes": "XX",
+  "trace_values": [],
+  "entangler": "cz",
+  "shots": 1024,
+  "max_seconds": 60,
+  "api_version": "2026-04-15",
+  "compiler_executable_sha256": "3461bf944b95633d3085fd25dc3714cf63f78ee4d8b0dca75b092e3a3b461a80",
+  "hardware_execution": false,
+  "target_validation": "snapshot-only; live recheck required",
+  "files": {
+    "source.fslc": "253df71d1faf5ca190a90f03f62fa71fe4f8917653ff148851ee31f22b92f3c1",
+    "circuit.qasm": "023e48663221b0da8f04f1e3e3d244808c75954589a1f0a412463a17cec89b09",
+    "snapshot.json": "f5fd7c71c9a402e86c6a7fcb9918ca402471937572824a546b009e1a24f4c90d",
+    "reference.json": "1bb7535a8a2b747cc5514acecae4637592d99b9cd64f2095e601af1a6a773db2",
+    "request.json": "9574541bc56b60c1e9ae7cbf0e536c2bdc64621574f7cad3bd10ad55d23b3af8",
+    "expected.json": "32e54048c85558ce7029b29b0844e7f019c7c19b03bc41f4535083b94589794f"
+  }
+}

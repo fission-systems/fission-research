@@ -1,0 +1,49 @@
+{
+  "status": "compared",
+  "shots": 1024,
+  "counts": {
+    "0": 541,
+    "1": 3,
+    "2": 35,
+    "3": 445
+  },
+  "total_variation_distance": 0.0654296875,
+  "maximum_bin_difference": 0.06542968749999989,
+  "simultaneous_hoeffding_epsilon": 0.05713116986506013,
+  "alpha": 0.01,
+  "ideal_sampling_compatible": false,
+  "assumption": "IID shots from the ideal predicted distribution; device noise/drift can violate this model",
+  "scope": "statistical observation, not compiler equivalence or noise correction",
+  "hardware_execution": true,
+  "execution_evidence": "IBM provider reports completed non-dry-run job on physical backend; not independent hardware attestation",
+  "job_id": "db9m2vvi0auc7390t57g",
+  "backend": "ibm_marrakesh",
+  "physical_qubits": [
+    135,
+    139
+  ],
+  "observation_axes": "XX",
+  "dry_run": false,
+  "result_decoder_agreement": true,
+  "bundle_sha256": "94c0015d3dc5e6149634f61faf4a24c4a4b8dd93214da6065957ad4d8dbf8abf",
+  "result_raw_sha256": "89ed87329ecc95715ae17983a1ff38b5a2bc7de91af1053756b7a7f9927e02f3",
+  "preflight_properties_timestamp": "2026-10-17T10:10:00Z",
+  "calibration_id": null,
+  "reported_usage": {
+    "qpu_charge_time_seconds": 2,
+    "value": 0.032913,
+    "unit": "resource_units",
+    "status": "complete",
+    "details": [
+      {
+        "value": 0.032913,
+        "unit": "resource_units",
+        "metric": {
+          "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+          "value": 2
+        }
+      }
+    ]
+  },
+  "sdk_transport": "qiskit-ibm-runtime 0.50.0; no transpilation"
+}

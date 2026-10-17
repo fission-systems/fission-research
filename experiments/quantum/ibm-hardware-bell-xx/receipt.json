@@ -1,0 +1,19 @@
+{
+  "schema": "fission.ibm.sdk-receipt.v1",
+  "state": "completed",
+  "bundle_sha256": "94c0015d3dc5e6149634f61faf4a24c4a4b8dd93214da6065957ad4d8dbf8abf",
+  "backend": "ibm_marrakesh",
+  "shots": 1024,
+  "max_seconds": 60,
+  "job_tag": "fission-fir-bell-xx-20261017T115229Z",
+  "submitted_at": "2026-10-17T11:52:29.097721+00:00",
+  "transport": "official qiskit-ibm-runtime SamplerV2",
+  "source_path": "native FIR -> native physical QASM -> Qiskit parser -> SDK QPY wire",
+  "transpilation": false,
+  "hardware_execution": true,
+  "dry_run": false,
+  "sdk_wire_request_sha256": "b4d54865cc09c8bcbc619942822c121d9a181edf25b3ce8206c4d39bbf74e8e7",
+  "job_id": "db9m2vvi0auc7390t57g",
+  "submission_posts": 1,
+  "collected_at": "2026-10-17T11:53:07.266671+00:00"
+}

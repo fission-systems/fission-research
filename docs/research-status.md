@@ -752,3 +752,44 @@ integrity coverage, local research Python is **86 passed / 0 skipped** (14
 adapter-specific). These observations do not establish live API or QPU support.
 The user will set up the account; the guide includes dashboard/API-key/CRN steps
 and terminal-local zsh environment setup. No credential was requested in chat.
+
+
+## 2026-10-17 — First IBM physical QPU observation through the official SDK
+
+[Hardware capture and offline replay](../experiments/quantum/ibm-hardware-bell-xx/README.md)
+record one real non-dry-run job, `db9m2vvi0auc7390t57g`, on `ibm_marrakesh`.
+The existing native pin `4af9bf84b16d288798bde5794de38da8f50a061e` emitted physical
+QASM from the authored `bell_coherent` FIR body. The official parser preserved
+physical qubits 135/139, then SamplerV2 used QPY wire serialization with no
+transpilation. The earlier SDK-free modeled QASM request was not submitted.
+There was one job POST / one PUB / 1,024 shots, a requested 60-second ceiling,
+and no session, paid plan, twirling, dynamical decoupling or mitigation.
+
+IAM authentication and resource discovery succeeded. In the SDK run the IAM-issued
+token account claim matched the CRN account, and the active instance matched the
+explicit CRN. The SDK environment was separate: Python 3.12.1, Qiskit 2.6.0 and
+qiskit-ibm-runtime 0.50.0. No Fission core dependency or native source changed.
+Earlier urllib requests had authenticated Cloudflare 1010 JSON errors; IAM and
+transport both changed before SDK success, so the original cause is not isolated.
+
+IBM reported Completed, with 2 seconds charged and usage increasing from 0/600
+to 2/600 seconds. Observed XX counts (out[1] out[0]) were 00=541, 01=3, 10=35,
+11=445. The native reference predicts 00/11 with probability 0.5 each. TVD was
+0.0654296875. Maximum bin deviation was also 0.0654296875, above the existing
+alpha=0.01 simultaneous bound of 0.05713116986506013. `ideal_sampling_compatible:false` is retained. This
+observation is not evidence of ideal equivalence, Bell-state certification,
+tomography, noise correction or general quantum execution semantics.
+
+The original compressed per-shot result text, sanitized job metadata, metrics,
+actual SDK request, source/package/compiler hashes and selected live capability /
+preflight calibration fields are retained. Credentials and bearer tokens are not
+published; raw account-bearing snapshots remain in ignored local artifacts.
+The owned decoder agreed exactly with the SDK decoder. No calibration ID was
+reported; the preflight timestamp does not identify the calibration used.
+
+The new offline replay regenerated the source package and physical QASM exactly,
+recomputed FIR probabilities and reproduced captured counts/statistics while
+retaining the failed ideal-model comparison. CI now invokes that offline replay
+without credentials or QPU jobs. That CI change has not yet been observed on Linux
+at this point in the record; this is local replay plus provider execution evidence.
+Older synthetic snapshots, locks and offline baseline reports remain unchanged.

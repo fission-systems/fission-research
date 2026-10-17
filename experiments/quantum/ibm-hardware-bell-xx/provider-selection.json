@@ -1,0 +1,247 @@
+{
+  "schema": "fission.ibm.selected-hardware-evidence.v1",
+  "resubmittable": false,
+  "selection_scope": "Selected fields only; full raw snapshots retained in ignored local artifacts. This record is not a live submission snapshot.",
+  "captured_at": "2026-10-17T11:52:26.105147+00:00",
+  "backend": "ibm_marrakesh",
+  "physical_qubits": [
+    135,
+    139
+  ],
+  "crn_sha256": "aa102c7bf178dd45bfd5877b126e845ca3ad2635292885b3b1f7f986d790cfea",
+  "plan": {
+    "id": "850b21a7-71de-4e53-9441-1abdd202f35d",
+    "name": "open",
+    "kind": "plan"
+  },
+  "usage_before": {
+    "usage_consumed_seconds": 0,
+    "usage_limit_seconds": 600,
+    "usage_limit_reached": false
+  },
+  "status": {
+    "backend_name": "ibm_marrakesh",
+    "backend_version": "",
+    "status_msg": "active",
+    "operational": true,
+    "pending_jobs": 0
+  },
+  "simulator": false,
+  "n_qubits": 156,
+  "basis_gates": [
+    "cz",
+    "id",
+    "rx",
+    "rz",
+    "rzz",
+    "sx",
+    "x",
+    "xslow"
+  ],
+  "supported_instructions": [
+    "cz",
+    "id",
+    "delay",
+    "measure",
+    "measure_reset",
+    "measure_2",
+    "measure_reset_2",
+    "reset",
+    "reset_2",
+    "rz",
+    "sx",
+    "x",
+    "if_else",
+    "store",
+    "xslow",
+    "rx",
+    "rzz"
+  ],
+  "gates": [
+    {
+      "name": "rz",
+      "selected_coupling_map": [
+        [
+          135
+        ],
+        [
+          139
+        ]
+      ]
+    },
+    {
+      "name": "sx",
+      "selected_coupling_map": [
+        [
+          135
+        ],
+        [
+          139
+        ]
+      ]
+    },
+    {
+      "name": "x",
+      "selected_coupling_map": [
+        [
+          135
+        ],
+        [
+          139
+        ]
+      ]
+    },
+    {
+      "name": "cz",
+      "selected_coupling_map": [
+        [
+          135,
+          139
+        ],
+        [
+          139,
+          135
+        ]
+      ]
+    }
+  ],
+  "properties": {
+    "backend_name": "ibm_marrakesh",
+    "last_update_date": "2026-10-17T10:10:00Z",
+    "selected_qubits": {
+      "135": [
+        {
+          "date": "2026-10-16T10:16:56Z",
+          "name": "T1",
+          "unit": "us",
+          "value": 323.75816436699955
+        },
+        {
+          "date": "2026-10-16T10:16:58Z",
+          "name": "T2",
+          "unit": "us",
+          "value": 94.93677372212603
+        },
+        {
+          "date": "2026-10-17T09:30:41Z",
+          "name": "readout_error",
+          "unit": "",
+          "value": 0.051513671875
+        },
+        {
+          "date": "2026-10-17T09:30:34Z",
+          "name": "prob_meas0_prep1",
+          "unit": "",
+          "value": 0.10302734375
+        },
+        {
+          "date": "2026-10-17T09:30:38Z",
+          "name": "prob_meas1_prep0",
+          "unit": "",
+          "value": 0
+        },
+        {
+          "date": "2026-10-17T09:30:41Z",
+          "name": "readout_length",
+          "unit": "ns",
+          "value": 2684
+        }
+      ],
+      "139": [
+        {
+          "date": "2026-10-16T10:16:57Z",
+          "name": "T1",
+          "unit": "us",
+          "value": 95.68719982845373
+        },
+        {
+          "date": "2026-10-16T10:17:01Z",
+          "name": "T2",
+          "unit": "us",
+          "value": 100.23280452133957
+        },
+        {
+          "date": "2026-10-17T09:30:41Z",
+          "name": "readout_error",
+          "unit": "",
+          "value": 0.0078125
+        },
+        {
+          "date": "2026-10-17T07:35:08Z",
+          "name": "init_error",
+          "unit": "",
+          "value": 0.0052
+        },
+        {
+          "date": "2026-10-17T09:30:34Z",
+          "name": "prob_meas0_prep1",
+          "unit": "",
+          "value": 0.009765625
+        },
+        {
+          "date": "2026-10-17T09:30:38Z",
+          "name": "prob_meas1_prep0",
+          "unit": "",
+          "value": 0.005859375
+        },
+        {
+          "date": "2026-10-17T09:30:41Z",
+          "name": "readout_length",
+          "unit": "ns",
+          "value": 2684
+        }
+      ]
+    },
+    "selected_cz": [
+      {
+        "gate": "cz",
+        "name": "cz135_139",
+        "parameters": [
+          {
+            "date": "2026-10-16T11:58:43Z",
+            "name": "gate_error",
+            "unit": "",
+            "value": 0.0012256471673037783
+          },
+          {
+            "date": "2026-10-16T11:58:43Z",
+            "name": "gate_length",
+            "unit": "ns",
+            "value": 68
+          }
+        ],
+        "qubits": [
+          135,
+          139
+        ]
+      },
+      {
+        "gate": "cz",
+        "name": "cz139_135",
+        "parameters": [
+          {
+            "date": "2026-10-16T11:58:43Z",
+            "name": "gate_error",
+            "unit": "",
+            "value": 0.0012256471673037783
+          },
+          {
+            "date": "2026-10-16T11:58:43Z",
+            "name": "gate_length",
+            "unit": "ns",
+            "value": 68
+          }
+        ],
+        "qubits": [
+          139,
+          135
+        ]
+      }
+    ]
+  },
+  "private_raw_preflight_sha256": "8fce7f7644f58915f589c2af697164ab9a724fa3020ee32c82d7ad6fcb1beb11",
+  "private_raw_job_sha256": "f2f96d310ab793fa6a15f42a957bb852f898e7d9f10d582366d9905bb6bfe1c4",
+  "job_redactions": [
+    "user_id"
+  ]
+}

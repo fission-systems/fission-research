@@ -1,0 +1,153 @@
+{
+  "parser": "qiskit.qasm3.loads",
+  "transpilation": false,
+  "num_qubits": 140,
+  "operations": [
+    {
+      "name": "reset",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "reset",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "sx",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "sx",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "cz",
+      "qubits": [
+        135,
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "sx",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "sx",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        135
+      ],
+      "clbits": []
+    },
+    {
+      "name": "measure",
+      "qubits": [
+        135
+      ],
+      "clbits": [
+        0
+      ]
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "sx",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "rz",
+      "qubits": [
+        139
+      ],
+      "clbits": []
+    },
+    {
+      "name": "measure",
+      "qubits": [
+        139
+      ],
+      "clbits": [
+        1
+      ]
+    }
+  ],
+  "qpy_sha256": "0466d867e16aec8100cb84f5d7573000e850d33f0f1d3b7c1845b457098317a2"
+}

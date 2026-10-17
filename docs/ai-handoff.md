@@ -1,5 +1,8 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-17 후속: [첫 IBM 실제 QPU 관측](../experiments/quantum/ibm-hardware-bell-xx/README.md)이 추가됐다.
+> Bell XX 한 회로의 1,024 shots와 오프라인 재현이며, 이상적 분포 비교 기준은 미통과다.
+
 > 아래는 2026-10-05 스냅샷이다. 2026-10-11의 자체 x86 디코드·FIR 출력과 현재 한계는
 > [현재 x86 이관 계약](ai-handoff-x86.md)과 [research-status](research-status.md)를 먼저 읽는다.
 > 외부 instruction decoder 의존성 없이 진행한다. Branch/dirty 상태는 시작 시 다시 확인한다.

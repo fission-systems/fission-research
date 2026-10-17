@@ -1,0 +1,16 @@
+{
+  "backend": "ibm_marrakesh",
+  "created": "2026-10-17T11:52:31.386204Z",
+  "id": "db9m2vvi0auc7390t57g",
+  "cost": 60,
+  "program": {
+    "id": "sampler"
+  },
+  "state": {
+    "status": "Completed"
+  },
+  "status": "Completed",
+  "tags": [
+    "fission-fir-bell-xx-20261017T115229Z"
+  ]
+}

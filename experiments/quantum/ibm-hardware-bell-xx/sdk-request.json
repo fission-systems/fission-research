@@ -1,0 +1,38 @@
+{
+  "program_id": "sampler",
+  "params": {
+    "pubs": [
+      [
+        {
+          "__type__": "QuantumCircuit",
+          "__value__": "eJzt1vlPE0EUwPHZIlgRRDwriICIilpBQQEFObVU5GxVxIuybqVeQA8QyukJlH/Y+AN+X7sVCJRACgaTvuTTTidvZnY2zczrcbrane5cS4YyQxsZNVtnVaZXWWksw2J2yrdmtk/Ih+7z6yFf0F5VFZ8hPK1r0cw0bTgUVOtDW/crfdPe1eg1AkZQnufn9lMjKsNMS5ja7/AEjei0XrPLarO3un8X/2pQ8ReRaLCr7+/g5Bfa3uBIMk+5k9exxUKWjeOic7asbnEXV/sn29r/f5GDaxbabIIOwxMI+WOj9WjP//H2d7CviB7LkTQ5h5ZXCMlZSUUqUpGKPYw1x5Tcf2k4oGJVi5x/coxJfXQImTiMLGTjCHJwFLk4huMqVjOdxCmchg1nkId8JUWXUgU4h0IUoRjnUYILKMVFXMJllOEKruIa7LiOclTgBm6iElKl3cJtVKMGtbiDu6hDPe6hAY1oQjNa0Ir7eAAH2uDEQ7TjkRzf6EQXutEj9wFccOMxnuAp+vAM/XiOF3iJV3iNAXgwCLkK3sCAXCpvMQQf3uE9PuAjPmEYI5B7xI8ApB4NYQzj+IwJTCKMKUxjBrOYwzy+4Cu+4Tt+KLndlVrAIpYQ+QP3L/vC"
+        },
+        {
+          "__type__": "ndarray",
+          "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBuk2ahrqOgnpZfVFKUmBefX5SSChJ3S8wpTgWKF2ckFqQC+RoGOpo6CrUKFAAuAFOzG1s="
+        },
+        1024
+      ]
+    ],
+    "options": {
+      "dynamical_decoupling": {
+        "enable": false
+      },
+      "twirling": {
+        "enable_gates": false,
+        "enable_measure": false
+      },
+      "execution": {
+        "meas_type": "classified"
+      }
+    },
+    "version": 2,
+    "support_qiskit": true
+  },
+  "log_level": "WARNING",
+  "backend": "ibm_marrakesh",
+  "tags": [
+    "fission-fir-bell-xx-20261017T115229Z"
+  ],
+  "cost": 60
+}

@@ -1,5 +1,11 @@
 # FIR → IBM physical circuit → observed counts — 2026-10-17
 
+**Follow-up:** a separate official-SDK path subsequently completed one real IBM
+Bell XX job. See the [hardware capture](../ibm-hardware-bell-xx/README.md) for
+1,024 shots, 2 seconds reported QPU usage and the observed ideal-model mismatch.
+The frozen synthetic evidence and SDK-free REST adapter described below remain
+the earlier offline stage; the actual job used SDK QPY wire serialization.
+
 This stage implements the source projection and an independent submission tool.
 **No account was connected, no QPU job submitted, and no current calibration was
 fetched.** All committed snapshots and modeled results are explicitly synthetic.
