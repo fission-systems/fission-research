@@ -68,3 +68,22 @@ outcome       = 정상 종료 | trap | 예외 | 그 밖의 명시된 실행 결�
 4. 메모리, GPU 동기화, VM 객체·예외를 추가할 때 도메인별 전제와 관찰 trace를 명시한다. 지원하지 않는 backend는 정확한 거부를 반환한다.
 
 이 순서는 의미론 기반을 구현으로 확인하기 위한 계획이다. 최적화·출력·JIT/AOT가 규칙을 독자적으로 추측하지 않도록 같은 계약에 연결한다.
+
+## 2026-10-17 — 양자 도메인의 첫 구현
+
+같은 `FirOp` 안에 QuantumOp(H/X/Z/CX, Z 측정, reset, 고전 u1 조건부 X)를
+추가했다. qubit 인덱스는 공동 상태의 부분계를 가리키며 일반 정수 SSA에
+양자 상태를 저장하지 않는다. 현재는 기존 register/wave처럼 순서 있는
+암묵적 도메인 상태를 사용한다. 별도 양자 IR, 자원 allocator/linear type,
+effect SSA, 일반 quantum CFG를 구현했다는 뜻은 아니다.
+
+양자 의미는 가능한 결과 집합에 더해 **결과별 확률과 측정 후 상태**를
+보존해야 한다. 수학적 계약은 입력 밀도행렬 rho에 대해 결과 기록 r과
+비정규화 상태 E_r(rho)를 대응시키는 instrument로 정의할 수 있다. trace가
+그 결과의 확률이고, 정규화하면 조건부 상태가 된다. Reset 내부 결과는
+관찰 기록으로 내보내지 않고 해당 채널들을 합한다.
+
+첫 고전 호스트 reference는 최대 8 qubit의 순수 입력과 측정/reset 분기
+ensemble을 f64로 계산한다. 이것은 임의 양자 채널, noisy hardware 또는
+기호적 동치 증명이 아니다. 제한된 OpenQASM 입력은 같은 FSL compiler로
+내려오며 출력도 같은 FIR을 소비한다. [구현·수치 검증·미지원 범위](../experiments/quantum/ideal-circuits/README.md).

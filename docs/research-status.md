@@ -1,6 +1,6 @@
 # FSL/FIR 연구 진행 현황
 
-기준일: 2026-10-16. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
+기준일: 2026-10-17. 이 문서는 설계 결정, 구현 위치, 기존 관찰 결과와 미지원 범위를 구분한다. 각 실행 단계의 검증 범위를 별도로 기록한다.
 
 ## 채택한 방향
 
@@ -486,3 +486,36 @@ tool crashes; the first coverage report is retained unchanged. Native PR-merge
 CI **38855161475** has the same legacy Sleigh context-test compile failure;
 this does not establish a green product integration. Remaining research jobs
 and the follow-up runner CI are tracked separately.
+
+## 2026-10-17 — classical-host quantum reference in canonical FIR
+
+Native `1f5e4c5b0aa10f7fba29587699906e42dfc3878c` adds `FirOp::Quantum` in the same
+canonical op table and package v12 (older source/package bytes retain their own
+versions). H/X/Z/CX, measurement, reset and measured-bit-controlled X preserve
+joint state, classical SSA bits, probabilities and post-measurement state. No
+second semantic IR or new library dependency. PR #176 is now **Project Fission:
+A Unified Semantic Engine**; it remains open on the experimental branch.
+
+The reference enumerates ideal measurement branches on a classical host:
+1..8 qubits, <=256 linear ops, <=64 classical SSA values, <=12 measurement/reset
+ops. Larger logical indices remain representable in FIR; the host reference
+refuses unsupported extents. Restricted OpenQASM3.0 import passes through the
+ordinary FSL compiler; export consumes the same FIR. Declared qubit count and
+initial state remain explicit caller context, not a complete serialized QASM
+program envelope. Existing classical/GPU/native backends refuse quantum effects.
+
+Local Rust full x86 suite **93 passed /0 skipped**, strict Clippy with/without
+x86 and formatting pass. Independent Python dense-density/Kraus calculations
+compare seven authored circuits on **154 initial states /308 original-and-QASM-
+roundtrip observations**, including conditional density operators and classical
+records, within2e-10. Computational-basis distributions alone do not determine
+acceptance. Quantum hardware, noisy channels, general quantum CFG, QIR, full
+OpenQASM, physical machine-code decode and symbolic equivalence remain unimplemented.
+No performance or broad correctness/superiority claim. [Artifacts and reproduction](../experiments/quantum/ideal-circuits/README.md).
+
+Python **54** tests pass locally with native eval-kit fixture integration enabled.
+The separate owned-x86 regression gate at this native pin still reproduces nine
+compiled source bundles, three entry-only C/FIR outputs and11 refusals with
+unchanged package/source locks. That is output/compilation regression evidence,
+not a new original-x86 execution or DecBench score. A dedicated quantum CI job
+pins this native commit; completion is recorded separately.

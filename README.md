@@ -6,6 +6,8 @@
 
 ## 현재 방향과 구현 위치
 
+[양자 논리 회로 실험](experiments/quantum/ideal-circuits/README.md)을 같은 FIR에 추가했다. 최대 8 qubit의 고전 호스트 시뮬레이션, 제한된 OpenQASM 입출력, 측정 후 공동 상태·확률을 지원한다. QPU 바이너리·실제 양자 하드웨어 지원은 아니다.
+
 최신 x86 실험은 [변위·즉시값 분리와 16/32/64비트 메모리 쓰기](experiments/x86/immediate/README.md)다. 이전 [store·스택 프레임 실험](experiments/x86/stateful/README.md)과 [readonly memory 단계](experiments/x86/memory/README.md)도 유지한다. [초기 자체 x86 연구 기록](experiments/x86/README.md)의 artifact도 유지한다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
 
 [SLEIGH/NIR/HIR 대비 성숙도 비교](docs/fsl-fir-maturity-comparison.md)와 [C/Rust 공통 출력 backend 실험](experiments/output/backend-contract/README.md)을 추가했다. 출력 admission·artifact bundle·컴파일·실행 증거를 각각 기록한다. [Go backend](experiments/output/go-backend/README.md)는 같은 FIR 계약의 instruction/window 출력을 지원한다. Python/Java 출력과 일반 함수 복구는 아직 미지원이다.
@@ -22,6 +24,7 @@
 | FIR | 단일 의미 소유자 프로토타입; 정수 확장·절단, 스택·register/flag·masked lane 효과 |
 | GFX900 디코드 | 기존 4개 + SOP2 32개 + 실행용 vector add 패턴 2개 |
 | JVM 디코드 | `iadd` 한 opcode |
+| 양자 논리 회로 | 같은 FIR의 H/X/Z/CX·측정·reset·고전 bit 조건부 X; 최대 8 qubit reference, 제한된 OpenQASM 3.0 입출력; hardware/noise/QIR 미지원 |
 | 자체 x86 디코드 / 출력 | 외부 decoder 의존성 없이 v2 48개 규칙 / 150개 FIR body; MOV register/immediate store·PUSH/POP과 실제 ELF span 실행 비교; 초기 46-rule artifact 유지 |
 | x86 입력 / ABI 복구 | FIR에서 entry ESP+4/+8, RDI+0/+8 및 stack spill/reload 후보·origin·가능한 별칭 추적; ABI 선택·source prototype·일반 함수 복구는 미완료 |
 | GPU 실행 의미 | scalar add/carry와 wave64 `v_add_u32` 구현; EXEC 쓰기·divergence·메모리·커널은 미구현 |
@@ -47,7 +50,7 @@
 
 2026-10-03에 **FIR 자체를 독립 중간 의미론으로 정의**했다. 자체 타입·연산·상태·효과·오류 계약을 기준으로 분석과 재컴파일을 연결한다. SLA/P-code는 이관 입력으로 다루며 FIR의 표현 한계를 정하지 않는다. [의미론 계약](docs/fir-semantic-contract.md)은 설계 요구사항과 현재 구현 범위를 구분한다. [자체 자산·구조 FIR 결정](docs/owned-assets-and-structured-fir.md)은 SLEIGH/SLA/cspec/pspec/ldefs/FPK 각각의 대체 경로와 단일 FIR의 block·domain region·ordered effects를 정의한다.
 
-실험 Rust 컴파일러 `fission-fsl`은 별도 Fission 브랜치 `codex/fsl-jvm-iadd-parity`의 [PR #176 — FSL/FIR 실험지원](https://github.com/fission-systems/Fission/pull/176)에서 개발한다. 이 연구 리포는 독립 Python 프로브, 역사적 명세·관찰 자료, 참고 소스 인벤토리와 연구 설계를 보관한다. Rust 컴파일러의 코드를 이 리포에 복제하지 않는다. 두 저장소의 현재 구현과 증거 범위는 [진행 현황](docs/research-status.md)에 정리했다.
+실험 Rust 컴파일러 `fission-fsl`은 별도 Fission 브랜치 `codex/fsl-jvm-iadd-parity`의 [PR #176 — Project Fission: A Unified Semantic Engine](https://github.com/fission-systems/Fission/pull/176)에서 개발한다. 이 연구 리포는 독립 Python 프로브, 역사적 명세·관찰 자료, 참고 소스 인벤토리와 연구 설계를 보관한다. Rust 컴파일러의 코드를 이 리포에 복제하지 않는다. 두 저장소의 현재 구현과 증거 범위는 [진행 현황](docs/research-status.md)에 정리했다.
 
 | 경로 | 내용 |
 |---|---|
