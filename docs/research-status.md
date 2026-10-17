@@ -636,3 +636,47 @@ idle-model comparisons, six terminating loop inputs and the partial retry check,
 are archived under both new experiment directories with source/package/validator
 hashes and clean compiler revision. Earlier failed reference-build attempts are
 recorded in the QISA experiment; original local evidence remains preserved.
+
+
+## 2026-10-17 — integer-controlled quantum CFG
+
+Native `f15f0293da424b454bceeca7a2d4e4f16c86f5bb` broadens the quantum executor to
+existing canonical 1..64 bit integer constants, modular add/sub, bitwise
+and/or/xor, eq/ult/slt comparisons and extension/truncation. No new op, wire tag,
+IR or runtime dependency. Measurement/feed-forward/conditional branch values
+remain unsigned u1. Classical slots now preserve u64 bit patterns, signed two's
+complement and unexecuted None. Parallel block arguments carry counters through
+cycles. Strict execution still rejects cycles; bounded execution keeps its
+step/split/branch frontier contract. OpenQASM projection explicitly refuses
+arithmetic even on u1 instead of reaching an unsupported emission path.
+
+[New authored experiment](../experiments/quantum/integer-cfg/README.md): 42 bodies,
+882 inputs, 1,344 complete instrument comparisons. Python arbitrary-size integer
+formulas and closed-form loop summaries combine with dense unnormalized quantum
+operators. Native uses shared fixed-width FIR helpers and amplitude branches.
+Checks cover exact classical slots, ordered measurement history, conditional and
+aggregate density, probability, 42 projection refusals and one partial CLI stop.
+The finite corpus includes zero-trip counters, signed loops, u64 boundary values,
+measurement-selected trip counts and a two-entry cycle. Maximum absolute error
+4.440892098500626e-16 (tolerance 2e-10).
+
+At the clean native pin, old frozen oracles reran successfully: ideal 308,
+channels/acyclic CFG 678, historical idle model 420 comparisons, six terminating
+loop inputs and the partial retry check. Original sources, package hashes and
+historical evidence remain unchanged. New reports are archived separately.
+Local native quantum integration: 26 passed; full fission-fsl with x86: 110
+passed / 0 skipped; strict Clippy (default/x86) and fmt passed. Research Python:
+71 passed with native x86 adapter fixture enabled.
+
+The user confirmed no connected QPU. No QPU job or current calibration fetch was
+performed. Physical QPU execution, current-device noise correction/fitting,
+general OpenQASM, dynamic qubits, memory/calls, mixed CPU/GPU effects, pulse timing
+and general quantum-program support remain unsupported. This is bounded
+operation-subset CFG evidence, not hardware validation or formal equivalence.
+No new CPU corpus or DecBench score measured.
+
+Native branch was pushed and PR #176 remains open. Current-head Fission CI
+[39024315647](https://github.com/fission-systems/Fission/actions/runs/39024315647)
+is running; earlier green does not certify this head. New research job
+`quantum-integer-cfg` pins this compiler separately and reruns all four quantum
+experiments without legacy assets.

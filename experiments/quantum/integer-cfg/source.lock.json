@@ -1,0 +1,19 @@
+{
+  "compiler_commit": "f15f0293da424b454bceeca7a2d4e4f16c86f5bb",
+  "validator_sha256": "1129c53b81a69aaacfcde065d87519cb4f1d148d8469cbe53b98b571e31b9eac",
+  "dense_oracle_sha256": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56",
+  "package_sha256": "cc92474fc5a2e1ea1dcc8dd1f5d514d78e6d81048b7f72e4e99a64fd7b9102e5",
+  "files": {
+    "circuits.fsl": "a2bc1bb23a2b9f6aa2f1a7b01b5bbaccb1a9ea9f6f9eaf59056daa5cd3d0c659",
+    "validation-local.json": "70810bb524ce4a0087f086d724ed4aa387eb441d29ba3f7b990b29fcf55ab85a",
+    "ideal-regression-local.json": "7dedca6879f40856c5cd8ffc2a1acbd4aa188866a06296deae23c4e231b89589",
+    "channels-regression-local.json": "93aa5a42396eb3346137550dea1941b0e3a87820f20757cc6e4ed9c3c0bd37f5",
+    "execution-regression-local.json": "953ee92d92384ecac5fcdd111889efcb7856974f6f45024011c6bc1b4b51652e"
+  },
+  "scope": "authored integer-controlled quantum CFG on a classical host; no QPU or current-device calibration",
+  "cases": 42,
+  "inputs": 882,
+  "comparisons": 1344,
+  "runtime_dependencies_added": 0,
+  "canonical_operations_added": 0
+}
