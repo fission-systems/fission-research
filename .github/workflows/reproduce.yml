@@ -391,3 +391,42 @@ jobs:
           name: quantum-reference
           path: artifacts/quantum.json
           if-no-files-found: ignore
+
+  quantum-channels-cfg:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Fetch pinned canonical FIR compiler without legacy assets
+        run: |
+          git init .quantum-compiler
+          git -C .quantum-compiler remote add origin https://github.com/fission-systems/Fission.git
+          git -C .quantum-compiler sparse-checkout init --cone
+          git -C .quantum-compiler sparse-checkout set crates .cargo
+          git -C .quantum-compiler fetch --depth=1 --filter=blob:none origin 1fe65569e84e92bd6fd7d1a3b4772580ac8da975
+          git -C .quantum-compiler checkout --detach FETCH_HEAD
+          test ! -e .quantum-compiler/utils
+          test ! -e .quantum-compiler/vendor
+          cmp experiments/quantum/channels-cfg/circuits.fsl .quantum-compiler/crates/fission-fsl/specs/quantum-channels-cfg.fsl
+      - name: Build and check the quantum FIR contract
+        run: |
+          rustup toolchain install 1.98.1 --profile minimal --no-self-update
+          cargo +1.98.1 build --manifest-path .quantum-compiler/Cargo.toml --locked -p fission-fsl --bin fslc
+          cargo +1.98.1 test --manifest-path .quantum-compiler/Cargo.toml --locked -p fission-fsl --test quantum
+          python3 -m unittest discover -s tests -p test_quantum_channels_validate.py -v
+      - name: Compare conditional states against dense matrix and Kraus oracle
+        run: |
+          python3 tools/quantum_channels_validate.py --fslc .quantum-compiler/target/debug/fslc --compiler-root .quantum-compiler
+          python3 tools/quantum_validate.py --fslc .quantum-compiler/target/debug/fslc --compiler-root .quantum-compiler --report artifacts/quantum-ideal-regression.json
+      - name: Preserve bounded quantum reference evidence
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: quantum-channels-cfg
+          path: |
+            artifacts/quantum-channels.json
+            artifacts/quantum-ideal-regression.json
+          if-no-files-found: ignore
