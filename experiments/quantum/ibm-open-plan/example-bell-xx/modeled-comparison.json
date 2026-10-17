@@ -1,0 +1,17 @@
+{
+  "status": "compared",
+  "shots": 1024,
+  "counts": {
+    "0": 512,
+    "3": 512
+  },
+  "total_variation_distance": 1.1102230246251565e-16,
+  "maximum_bin_difference": 1.1102230246251565e-16,
+  "simultaneous_hoeffding_epsilon": 0.05713116986506013,
+  "alpha": 0.01,
+  "ideal_sampling_compatible": true,
+  "assumption": "IID shots from the ideal predicted distribution; device noise/drift can violate this model",
+  "scope": "statistical observation, not compiler equivalence or noise correction",
+  "hardware_execution": false,
+  "observation_origin": "deterministic modeled counts; not provider data"
+}

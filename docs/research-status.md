@@ -688,3 +688,57 @@ Raw Linux reports match local package/oracle hashes: 1,344 new comparisons,
 Reports are archived separately with integrity coverage. Local research suite is
 now 72 passed after adding archive checks. Overall workflow/PR statuses remain
 separate from this successful job; no device-level validation is implied.
+
+
+## 2026-10-17 — IBM circuit projection and separate Open Plan adapter
+
+Native `4af9bf84b16d288798bde5794de38da8f50a061e` adds a physical OpenQASM
+projection of linear ideal FIR. Explicit layout, basis preparation and terminal
+X/Y/Z observations use native RZ/SX/X and directed CX or CZ coupling. H/Z/CX
+lowering preserves the instrument up to global phase; no coherent control of
+that phase is admitted. Canonical measurement IDs map to trace bits. u1
+constants fold; CFG/arithmetic/noise/ECR/routing refuse. No new FIR op, package
+format, Cargo dependency or SDK. Native target declarations alone do not verify
+live device compatibility.
+
+[IBM experiment](../experiments/quantum/ibm-open-plan/README.md): seven authored
+circuits, basis inputs, all X/Y/Z observation settings and both entanglers produce
+684 instrument comparisons against independent dense physical-gate/reset-channel
+execution. Maximum absolute error 6.661338147750939e-16 (tolerance 2e-10). Another
+684 modeled Runtime codec comparisons preserve joint trace/final counts and shot
+order. No IBM parser, SDK roundtrip or provider response capture is claimed.
+A concrete synthetic Bell XX request/reference bundle is committed for review.
+
+`tools/ibm_quantum.py` is a separate Python stdlib REST adapter: snapshot,
+offline prepare, explicit one-job submit and collect. Current instance plan IDs
+resolve via Global Catalog and must identify Open Plan. Live target/allowance
+rechecks, 1..4096 shots, requested Runtime cost <=60 seconds, manifest hashes,
+pre-POST receipt and no automatic retry guard the submission path. Cost-field
+enforcement remains provider-defined. Results retain parsed provider metadata,
+preflight calibration time, actual job calibration/usage when reported, joint
+counts, total variation and simultaneous Hoeffding diagnostics. This statistic
+assumes IID ideal shots and cannot prove compiler equivalence or correct noise.
+Only the documented scalar compressed uint8 BitArray framing is admitted; unknown
+formats preserve the parsed response and refuse comparison.
+
+Local native: IBM projection 4 passed; full fission-fsl with x86 114 passed,
+0 skipped; strict Clippy default/x86 and workspace fmt passed. Earlier frozen
+quantum experiments reran at the clean native pin: 308 ideal, 678 channels,
+420 historical idle and 1,344 integer CFG comparisons, plus earlier loop/partial
+checks. Original package/source hashes are unchanged. Research Python results
+are recorded below after full-suite verification.
+
+No connected account, authenticated API request, live calibration capture or
+QPU submission occurred. Credentials/instance setup is still required for actual
+free-QPU comparison; SDK-free transport and provider parser acceptance are
+unverified live. No device noise correction, binary-QPU support, general quantum
+program or new DecBench/CPU corpus claim. Research CI job
+`ibm-circuit-projection` pins this native revision and uses no cloud credentials.
+
+The previous native head f15f0293d full PR CI **39024315647 passed**. Current
+native [39025675113](https://github.com/fission-systems/Fission/actions/runs/39025675113)
+is running. Fission main remains untouched; PR #176 remains open.
+
+Full local research Python suite: **85 passed / 0 skipped**, with FSLC/FSL_X86
+integration enabled; adapter-specific suite 13 passed. Clean native reports and a
+synthetic, non-submittable Bell XX review bundle are archived with hash coverage.

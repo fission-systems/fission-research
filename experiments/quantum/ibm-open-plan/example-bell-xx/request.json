@@ -1,0 +1,26 @@
+{
+  "program_id": "sampler",
+  "backend": "synthetic_ibm_cz",
+  "cost": 60,
+  "params": {
+    "pubs": [
+      [
+        "OPENQASM 3.0;\ninclude \"stdgates.inc\";\nbit[2] out;\n// Explicit computational-basis preparation\nreset $7;\nreset $3;\n// FIR operation 0\nrz(pi/2) $7;\nsx $7;\nrz(pi/2) $7;\n// FIR operation 1\nrz(pi/2) $3;\nsx $3;\nrz(pi/2) $3;\ncz $7, $3;\nrz(pi/2) $3;\nsx $3;\nrz(pi/2) $3;\n// Terminal observation; this wrapper is not a FIR effect\nrz(pi/2) $7;\nsx $7;\nrz(pi/2) $7;\nout[0] = measure $7;\nrz(pi/2) $3;\nsx $3;\nrz(pi/2) $3;\nout[1] = measure $3;\n"
+      ]
+    ],
+    "version": 2,
+    "options": {
+      "default_shots": 1024,
+      "execution": {
+        "init_qubits": true
+      },
+      "dynamical_decoupling": {
+        "enable": false
+      },
+      "twirling": {
+        "enable_gates": false,
+        "enable_measure": false
+      }
+    }
+  }
+}

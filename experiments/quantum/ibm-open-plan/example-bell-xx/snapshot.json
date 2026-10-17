@@ -1,0 +1,173 @@
+{
+  "schema": "fission.ibm.snapshot.v1",
+  "synthetic": true,
+  "captured_at": "2026-10-17T00:00:00+00:00",
+  "api_version": "2026-04-15",
+  "crn_sha256": "620ed8f607d9bf92f17a134015d0af2e96b4f6658695ae7170ef5fb5a8dc96aa",
+  "instance": {
+    "plan_id": "synthetic-open-plan",
+    "backends": [
+      "synthetic_ibm_cz"
+    ]
+  },
+  "catalog_plan": {
+    "id": "synthetic-open-plan",
+    "kind": "plan",
+    "name": "open"
+  },
+  "usage": {
+    "usage_consumed_seconds": 0,
+    "usage_limit_seconds": 600,
+    "usage_limit_reached": false
+  },
+  "configuration": {
+    "backend_name": "synthetic_ibm_cz",
+    "backend_version": "0.0.0",
+    "simulator": false,
+    "n_qubits": 8,
+    "basis_gates": [
+      "rz",
+      "sx",
+      "x",
+      "cz"
+    ],
+    "supported_instructions": [
+      "rz",
+      "sx",
+      "x",
+      "cz",
+      "reset",
+      "measure"
+    ],
+    "conditional": true,
+    "gates": [
+      {
+        "name": "rz",
+        "parameters": [
+          "theta"
+        ],
+        "coupling_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "name": "sx",
+        "parameters": [],
+        "coupling_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "name": "x",
+        "parameters": [],
+        "coupling_map": [
+          [
+            0
+          ],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ]
+        ]
+      },
+      {
+        "name": "cz",
+        "parameters": [],
+        "coupling_map": [
+          [
+            7,
+            3
+          ],
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            5
+          ]
+        ]
+      }
+    ]
+  },
+  "properties": {
+    "backend_name": "synthetic_ibm_cz",
+    "last_update_date": "2026-10-17T00:00:00Z",
+    "qubits": [
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      []
+    ]
+  },
+  "status": {
+    "operational": true
+  }
+}

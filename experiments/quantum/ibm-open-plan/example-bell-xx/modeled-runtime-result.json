@@ -1,0 +1,37 @@
+{
+  "__type__": "PrimitiveResult",
+  "__value__": {
+    "pub_results": [
+      {
+        "__type__": "SamplerPubResult",
+        "__value__": {
+          "data": {
+            "__type__": "DataBin",
+            "__value__": {
+              "field_names": [
+                "out"
+              ],
+              "shape": [],
+              "fields": {
+                "out": {
+                  "__type__": "BitArray",
+                  "__value__": {
+                    "num_bits": 2,
+                    "array": {
+                      "__type__": "ndarray",
+                      "__value__": "eJyb7BfqGxDJyFDGUK2eklqcXKRupaBeU2qorqOgnpZfVFKUmBefX5SSChJ3S8wpTgWKF2ckFqQC+RqGBkYmOgqGmrUK5AIuhlEwogHzKBjRAAAFTiHf"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "metadata": {}
+        }
+      }
+    ],
+    "metadata": {
+      "synthetic": true
+    }
+  }
+}

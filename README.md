@@ -6,7 +6,7 @@
 
 ## 현재 방향과 구현 위치
 
-[양자 노이즈·비순환 CFG 실험](experiments/quantum/channels-cfg/README.md)은 같은 FIR에서 명시적 bit/phase flip·amplitude damping과 block 분기·인자·join을 실행한다. 최대 8 qubit의 고전 호스트 reference이며 33개 회로 / 678개 입력을 독립 밀도행렬 계산과 비교했다. [기존 이상적 회로](experiments/quantum/ideal-circuits/README.md)의 제한된 OpenQASM 입출력도 유지한다. [한도 있는 양자 루프·과거 calibration 매개변수](experiments/quantum/bounded-calibration/README.md)와 [reference assembler 바이너리 200개 word의 FSL 디코드](experiments/quantum/eqasm-words/README.md)를 추가했다. [정수 제어 양자 CFG](experiments/quantum/integer-cfg/README.md)는 같은 FIR의 1~64비트 연산·비교·변환과 카운터 루프를 연결한다. 자체 명세 42개에서 1,344회 instrument 비교를 수행했다. 실제 QPU 실행·현재 장치 노이즈 보정·범용 quantum 프로그램 지원은 아니다.
+[양자 노이즈·비순환 CFG 실험](experiments/quantum/channels-cfg/README.md)은 같은 FIR에서 명시적 bit/phase flip·amplitude damping과 block 분기·인자·join을 실행한다. 최대 8 qubit의 고전 호스트 reference이며 33개 회로 / 678개 입력을 독립 밀도행렬 계산과 비교했다. [기존 이상적 회로](experiments/quantum/ideal-circuits/README.md)의 제한된 OpenQASM 입출력도 유지한다. [한도 있는 양자 루프·과거 calibration 매개변수](experiments/quantum/bounded-calibration/README.md)와 [reference assembler 바이너리 200개 word의 FSL 디코드](experiments/quantum/eqasm-words/README.md)를 추가했다. [정수 제어 양자 CFG](experiments/quantum/integer-cfg/README.md)는 같은 FIR의 1~64비트 연산·비교·변환과 카운터 루프를 연결한다. 자체 명세 42개에서 1,344회 instrument 비교를 수행했다. [IBM 회로 출력·별도 REST 제출 도구](experiments/quantum/ibm-open-plan/README.md)는 CX/CZ 기본 게이트·물리 배치·X/Y/Z 관측 변환과 결과 비교를 오프라인에서 검증했다. 실제 QPU 실행·현재 장치 노이즈 보정·범용 quantum 프로그램 지원은 아니다.
 
 최신 x86 실험은 [변위·즉시값 분리와 16/32/64비트 메모리 쓰기](experiments/x86/immediate/README.md)다. 이전 [store·스택 프레임 실험](experiments/x86/stateful/README.md)과 [readonly memory 단계](experiments/x86/memory/README.md)도 유지한다. [초기 자체 x86 연구 기록](experiments/x86/README.md)의 artifact도 유지한다. 전체 x86 이관과 source-level ABI 복구는 아직 미완료다.
 

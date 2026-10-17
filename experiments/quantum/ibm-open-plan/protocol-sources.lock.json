@@ -1,0 +1,52 @@
+{
+  "captured_at": "2026-10-17",
+  "api_version": "2026-04-15",
+  "purpose": "Protocol and bit/byte-order inspection only; no SDK import, copied implementation or runtime dependency. Live requests unverified.",
+  "sources": [
+    {
+      "repository": "https://github.com/Qiskit/qiskit-ibm-runtime",
+      "revision": "7a7fa0f6d5fd2d284611b62d5546e12112a1985a",
+      "path": "qiskit_ibm_runtime/json.py",
+      "sha256": "5e58c66e1e25bbaf6916c16a55db3fba91365da6ad93c99560f511eddb45972b",
+      "source_url": "https://raw.githubusercontent.com/Qiskit/qiskit-ibm-runtime/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/qiskit_ibm_runtime/json.py",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/LICENSE.txt"
+    },
+    {
+      "repository": "https://github.com/Qiskit/qiskit-ibm-runtime",
+      "revision": "7a7fa0f6d5fd2d284611b62d5546e12112a1985a",
+      "path": "qiskit_ibm_runtime/api/rest/runtime.py",
+      "sha256": "93a1f3386bde8b4908c4ee5f8896bf18a147fc5778355540343d407df4a28fd3",
+      "source_url": "https://raw.githubusercontent.com/Qiskit/qiskit-ibm-runtime/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/qiskit_ibm_runtime/api/rest/runtime.py",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/LICENSE.txt"
+    },
+    {
+      "repository": "https://github.com/Qiskit/qiskit-ibm-runtime",
+      "revision": "7a7fa0f6d5fd2d284611b62d5546e12112a1985a",
+      "path": "qiskit_ibm_runtime/options/sampler_options.py",
+      "sha256": "30319639cc13778841334416cd8778fed1ccb62fdba2edd38cbe3a72770360a5",
+      "source_url": "https://raw.githubusercontent.com/Qiskit/qiskit-ibm-runtime/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/qiskit_ibm_runtime/options/sampler_options.py",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/7a7fa0f6d5fd2d284611b62d5546e12112a1985a/LICENSE.txt"
+    },
+    {
+      "repository": "https://github.com/Qiskit/qiskit",
+      "revision": "c1c01ada399af13e495c27b9b22b4ff942bbad7e",
+      "tag_at_capture": "2.5.2",
+      "path": "qiskit/primitives/containers/bit_array.py",
+      "sha256": "aee3ece0c09149bf99a05c8c700f14c574232d987cac5e1ae194d37b383e7668",
+      "source_url": "https://raw.githubusercontent.com/Qiskit/qiskit/c1c01ada399af13e495c27b9b22b4ff942bbad7e/qiskit/primitives/containers/bit_array.py",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/Qiskit/qiskit/blob/c1c01ada399af13e495c27b9b22b4ff942bbad7e/LICENSE.txt"
+    }
+  ],
+  "documentation": [
+    "https://quantum.cloud.ibm.com/docs/en/api/qiskit-runtime-rest/tags/jobs",
+    "https://quantum.cloud.ibm.com/docs/en/api/qiskit-runtime-rest/tags/backends",
+    "https://quantum.cloud.ibm.com/docs/en/api/qiskit-runtime-rest/tags/instances",
+    "https://quantum.cloud.ibm.com/docs/en/guides/cloud-setup-rest-api",
+    "https://quantum.cloud.ibm.com/docs/en/guides/execute-dynamic-circuits",
+    "https://cloud.ibm.com/apidocs/resource-catalog/global-catalog"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "compiler_commit": "4af9bf84b16d288798bde5794de38da8f50a061e",
+  "package_sha256": "253df71d1faf5ca190a90f03f62fa71fe4f8917653ff148851ee31f22b92f3c1",
+  "inputs": {
+    "tools/ibm_projection_probe.py": "3baabaf858788bc5b819570a33345855454eb925bf45e8b722e4f40702dbb055",
+    "tools/ibm_quantum.py": "28315494f4dbcb84a8d478e4d0f72ef9600169ea5b1d1f37f7c0f83aab1f10ed",
+    "tools/quantum_validate.py": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56",
+    "experiments/quantum/ideal-circuits/circuits.fsl": "84abf69043bccb5f6b120188438f087f5dac5f20d458eea5a9241158859d1605",
+    "experiments/quantum/ibm-open-plan/synthetic-snapshot.json": "6e898b7f1dc5b9bd1e2b743ee700a2511514360f67677837292d6a6bf1f13f13",
+    "experiments/quantum/ibm-open-plan/protocol-sources.lock.json": "3600e1fbe57d18c291919419133b69b5479dfefacbfb5f9859bcbdfbc028040e"
+  },
+  "files": {
+    "channels-regression-local.json": "d2592b90a8d7b2c4f5033388c933cdf085ab7d8f5880d33fbecc54f5056b6812",
+    "example-bell-xx/circuit.qasm": "9c60313c7fab7895dac79f13c32749520c6a649100833c11f1ea7439ff399214",
+    "example-bell-xx/expected.json": "32e54048c85558ce7029b29b0844e7f019c7c19b03bc41f4535083b94589794f",
+    "example-bell-xx/manifest.json": "91812776810d6cebbfa009947d074b5c20db4641c77bb8a9e81e119e430db4ea",
+    "example-bell-xx/modeled-comparison.json": "cfe9712207c050c04ef07c9c7ce85497f9a401204abe92ad61a111cf2fe37a20",
+    "example-bell-xx/modeled-runtime-result.json": "24b6ea1b333ce5f50398989e876d931a65752f98a879281b46c24d5a41c09c48",
+    "example-bell-xx/reference.json": "1bb7535a8a2b747cc5514acecae4637592d99b9cd64f2095e601af1a6a773db2",
+    "example-bell-xx/request.json": "bc0cf3fc3dd6737c4b5f2457bdcc9e1d795480ac67a227cf644eb4bc58f06f28",
+    "example-bell-xx/snapshot.json": "6e898b7f1dc5b9bd1e2b743ee700a2511514360f67677837292d6a6bf1f13f13",
+    "example-bell-xx/source.fslc": "253df71d1faf5ca190a90f03f62fa71fe4f8917653ff148851ee31f22b92f3c1",
+    "execution-regression-local.json": "2d0d0fdf0f5fa91c453aa43ece431d9b0fd06f1bbd019a41c6fa3d1fec01d106",
+    "ideal-regression-local.json": "8a4804dc179b9238eabb394d0e227700fd04660e2978b4fe54307edf9de73e62",
+    "integer-regression-local.json": "ba8e847df90a5924cccdcd5c248126285322a13d944531961ba5799ee38d0d94",
+    "protocol-sources.lock.json": "3600e1fbe57d18c291919419133b69b5479dfefacbfb5f9859bcbdfbc028040e",
+    "synthetic-snapshot.json": "6e898b7f1dc5b9bd1e2b743ee700a2511514360f67677837292d6a6bf1f13f13",
+    "validation-local.json": "c6884fc52edfc061671996096b6acc0019cdac5a1039e7914614fc8c2c316c68"
+  },
+  "runtime_dependencies_added": 0,
+  "canonical_operations_added": 0,
+  "hardware_execution": false
+}
