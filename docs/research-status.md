@@ -680,3 +680,11 @@ Native branch was pushed and PR #176 remains open. Current-head Fission CI
 is running; earlier green does not certify this head. New research job
 `quantum-integer-cfg` pins this compiler separately and reruns all four quantum
 experiments without legacy assets.
+
+
+Research **39024432407 / quantum-integer-cfg passed** at clean native f15f0293d.
+Raw Linux reports match local package/oracle hashes: 1,344 new comparisons,
+308/678/420 earlier comparisons, six terminating loop inputs and partial retry.
+Reports are archived separately with integrity coverage. Local research suite is
+now 72 passed after adding archive checks. Overall workflow/PR statuses remain
+separate from this successful job; no device-level validation is implied.

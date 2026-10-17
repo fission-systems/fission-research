@@ -85,3 +85,32 @@ class QuantumInteger(unittest.TestCase):
         self.assertEqual(report["comparisons"], 1344)
         self.assertEqual(report["package_sha256"], lock["package_sha256"])
         self.assertEqual(report["validator_sha256"], lock["validator_sha256"])
+
+    def test_linux_reports_reproduce_local_packages_and_instruments(self):
+        lock = json.loads((q.FIXTURE / "source.lock.json").read_text())
+        for prefix in (
+            "validation",
+            "ideal-regression",
+            "channels-regression",
+            "execution-regression",
+        ):
+            local = json.loads((q.FIXTURE / (prefix + "-local.json")).read_text())
+            linux = json.loads(
+                (q.FIXTURE / (prefix + "-linux-39024432407.json")).read_text()
+            )
+            for key in (
+                "status",
+                "compiler_commit",
+                "validator_sha256",
+                "package_sha256",
+            ):
+                self.assertEqual(linux[key], local[key])
+            self.assertFalse(linux["compiler_dirty"])
+            self.assertEqual(linux["compiler_commit"], lock["compiler_commit"])
+        report = json.loads(
+            (q.FIXTURE / "validation-linux-39024432407.json").read_text()
+        )
+        self.assertEqual(report["comparisons"], 1344)
+        self.assertEqual(report["inputs"], 882)
+        self.assertEqual(report["projection_refusals"], 42)
+        self.assertEqual(report["partial_checks"], 1)

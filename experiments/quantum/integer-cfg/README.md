@@ -71,7 +71,7 @@ corpus measurement, speedup or formal equivalence claim.
 
 Clean native pin: 26 quantum integration tests; full crate with x86 110 passed,
 0 skipped; strict Clippy (default/x86) and workspace fmt passed. Research suite
-71 passed with the native x86 adapter fixture enabled. New maximum instrument
+72 passed with the native x86 adapter fixture enabled after adding Linux archive integrity coverage. New maximum instrument
 error is 4.440892098500626e-16 (tolerance 2e-10). Archived reports:
 
 - `validation-local.json`: 1,344 new comparisons, 42 projection refusals, partial stop.
@@ -79,5 +79,10 @@ error is 4.440892098500626e-16 (tolerance 2e-10). Archived reports:
 - `channels-regression-local.json`: old 678 comparisons, unchanged package hash.
 - `execution-regression-local.json`: old 420 idle comparisons, 6 loop inputs and partial retry.
 
-CI results will be recorded with their exact run and compiler revision; these
-local results do not certify unobserved remote jobs.
+Research [39024432407 / quantum-integer-cfg](https://github.com/fission-systems/fission-research/actions/runs/39024432407)
+passed at the same clean compiler pin: 26 native quantum tests, 1,344 new
+comparisons, 308/678/420 regressions plus six loop inputs and partial retry.
+Four raw reports are archived as `*-linux-39024432407.json`. Package and oracle
+hashes match the local reports; platform-specific executable hashes are recorded
+separately. This result identifies one successful job; overall workflow and
+Fission PR CI status must be checked independently.

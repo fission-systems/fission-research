@@ -8,12 +8,18 @@
     "validation-local.json": "70810bb524ce4a0087f086d724ed4aa387eb441d29ba3f7b990b29fcf55ab85a",
     "ideal-regression-local.json": "7dedca6879f40856c5cd8ffc2a1acbd4aa188866a06296deae23c4e231b89589",
     "channels-regression-local.json": "93aa5a42396eb3346137550dea1941b0e3a87820f20757cc6e4ed9c3c0bd37f5",
-    "execution-regression-local.json": "953ee92d92384ecac5fcdd111889efcb7856974f6f45024011c6bc1b4b51652e"
+    "execution-regression-local.json": "953ee92d92384ecac5fcdd111889efcb7856974f6f45024011c6bc1b4b51652e",
+    "validation-linux-39024432407.json": "20e315a56c042b157e5495adf451207423971a051855079fff6188f8ba64ed07",
+    "ideal-regression-linux-39024432407.json": "cc8729a49f386e143d50ed2afca8461f05d397137bb2ff04e07cad4f2ce8ff41",
+    "channels-regression-linux-39024432407.json": "6f6cdf98efa651f3d3a6868276d9ce9e848656a6734a108d9eea1e589110d5bd",
+    "execution-regression-linux-39024432407.json": "6e948e380aa08063738de5381fa77db446a3bebef6425d7336de6e3e36bec941"
   },
   "scope": "authored integer-controlled quantum CFG on a classical host; no QPU or current-device calibration",
   "cases": 42,
   "inputs": 882,
   "comparisons": 1344,
   "runtime_dependencies_added": 0,
-  "canonical_operations_added": 0
+  "canonical_operations_added": 0,
+  "linux_run": "https://github.com/fission-systems/fission-research/actions/runs/39024432407",
+  "linux_job_id": 117372514321
 }
