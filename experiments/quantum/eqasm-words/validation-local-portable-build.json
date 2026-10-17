@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "words": 200,
+  "field_comparisons": 200,
+  "roundtrips": 200,
+  "refusals": 6,
+  "source_sha256": "e65ff25ab6da9a3f42fdc961a880886283c079181fcba652ea52eed73dc1f8e5",
+  "package_sha256": "f4e3189df52192467dc04f8815533b88caa79c93e498cdcc5e094f50c526809b",
+  "corpus_sha256": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279",
+  "oracle_commit": "9b024494558287a937cdd5a8ccd63fcaa784b1c4",
+  "oracle_executable_sha256": "36c65fa1f6171ce045c507c8d1d1da6f2bfc9e7eb643505776831f6c7e35e839",
+  "compiler_executable_sha256": "a1db4baed632d913dc417f82f789dce5f63d3e52cc0146faed98de13556c87ec",
+  "upstream_warning": "Error: the quantum layout information is not read into assembler",
+  "scope": "reference-assembled quantum-control words; strict QWAIT/QWAITR and opaque bundle layout; all execution semantics unsupported; no device capture, gate/pulse identity or QPU execution",
+  "compiler_commit": "4a3c48297d5a3649774b70f5fff40e1857eb9beb",
+  "compiler_dirty": false,
+  "validator_sha256": "052f1c750eb8fbbeb486811f4c232e96cdbffe0d9a33c63ba8cbdcf6a3dab0ef",
+  "bison_version": "bison (GNU Bison) 3.8.2",
+  "cxx_version": "Apple clang version 17.0.0 (clang-1700.6.4.2)"
+}

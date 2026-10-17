@@ -62,3 +62,13 @@ The reference source/license provenance remains in `Vendor/references.lock.toml`
 Timing queues, feedback, gate definitions, pulse calibration, containers, real
 device binaries and whole-program lifting remain unsupported. See the
 [input contract](../../../docs/qpu-binary-boundary.md).
+
+## Portable reference build qualification
+
+Initial Linux attempts 39021222095 and 39021455363 exposed a missing standard
+`<limits>` include in upstream code. The separate build recipe now explicitly
+includes that header (`-include limits`) and exposes compiler diagnostics on
+failure. No upstream instruction logic or tracked source is changed. The original
+local report and its validator hash/revision are preserved;
+`validation-local-portable-build.json` records the adjusted recipe and again
+passes 200 words / six refusals at the same clean native pin.

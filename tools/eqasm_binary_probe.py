@@ -63,6 +63,8 @@ def build(source, output, bison, flex, cxx):
     command = [
         cxx,
         "-std=c++14",
+        "-include",
+        "limits",
         "-O2",
         "-Wno-deprecated-declarations",
         "-I",
