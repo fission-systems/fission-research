@@ -499,7 +499,7 @@ A Unified Semantic Engine**; it remains open on the experimental branch.
 The reference enumerates ideal measurement branches on a classical host:
 1..8 qubits, <=256 linear ops, <=64 classical SSA values, <=12 measurement/reset
 ops. Larger logical indices remain representable in FIR; the host reference
-refuses unsupported extents. Restricted OpenQASM3.0 import passes through the
+refuses unsupported extents. Restricted OpenQASM 3.0 import passes through the
 ordinary FSL compiler; export consumes the same FIR. Declared qubit count and
 initial state remain explicit caller context, not a complete serialized QASM
 program envelope. Existing classical/GPU/native backends refuse quantum effects.
@@ -508,14 +508,21 @@ Local Rust full x86 suite **93 passed /0 skipped**, strict Clippy with/without
 x86 and formatting pass. Independent Python dense-density/Kraus calculations
 compare seven authored circuits on **154 initial states /308 original-and-QASM-
 roundtrip observations**, including conditional density operators and classical
-records, within2e-10. Computational-basis distributions alone do not determine
+records, within 2e-10. Computational-basis distributions alone do not determine
 acceptance. Quantum hardware, noisy channels, general quantum CFG, QIR, full
 OpenQASM, physical machine-code decode and symbolic equivalence remain unimplemented.
 No performance or broad correctness/superiority claim. [Artifacts and reproduction](../experiments/quantum/ideal-circuits/README.md).
 
 Python **54** tests pass locally with native eval-kit fixture integration enabled.
 The separate owned-x86 regression gate at this native pin still reproduces nine
-compiled source bundles, three entry-only C/FIR outputs and11 refusals with
+compiled source bundles, three entry-only C/FIR outputs and 11 refusals with
 unchanged package/source locks. That is output/compilation regression evidence,
 not a new original-x86 execution or DecBench score. A dedicated quantum CI job
 pins this native commit; completion is recorded separately.
+
+Quantum-specific Linux CI **39015425831 / quantum-reference** passed at the exact
+native pin: nine native contract tests, six oracle tests, 154 inputs / 308 state
+comparisons, matching package/QASM locks. [Archived Linux report](../experiments/quantum/ideal-circuits/validation-linux-39015425831.json)
+is separately hashed. Other jobs were still in progress at archival time.
+Native PR-merge CI **39015128385** retains the earlier Sleigh test-build failure
+(u128 context arguments passed to u64 APIs); no full product CI success is claimed.

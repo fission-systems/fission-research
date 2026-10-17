@@ -105,3 +105,14 @@ pass. [Existing x86 output regression](x86-regression-local.json) also passes at
 the same clean compiler pin: nine source compilations, three entry-only output
 comparisons and 11 refusal checks. This gate does not rerun original-x86 machine
 execution or claim a DecBench score improvement.
+
+## Linux CI
+
+The `quantum-reference` job in [run 39015425831](https://github.com/fission-systems/fission-research/actions/runs/39015425831)
+passed at native 1f5e4c5b0: source build without legacy assets, nine native quantum
+contract tests, six oracle/artifact tests and 154 inputs / 308 state comparisons.
+[Archived Linux report](validation-linux-39015425831.json) has the same portable
+package/QASM hashes; its executable hash is host-specific. Other research jobs
+were still running at archival time. Full Fission PR-merge CI 39015128385 still
+fails compiling existing Sleigh tests due to the earlier u128/u64 context API
+mismatch; this experiment does not establish a green complete product integration.

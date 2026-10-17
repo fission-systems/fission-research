@@ -33,6 +33,14 @@ class QuantumReferenceTests(unittest.TestCase):
         self.assertEqual(report["compiler_commit"], lock["compiler_commit"])
         self.assertFalse(report["compiler_dirty"])
         self.assertEqual(report["comparisons"], 308)
+        self.assertEqual(
+            q.digest(root / "validation-linux-39015425831.json"),
+            lock["linux_report_sha256"],
+        )
+        linux = json.loads((root / "validation-linux-39015425831.json").read_text())
+        self.assertEqual(linux["compiler_commit"], lock["compiler_commit"])
+        self.assertEqual(linux["package_sha256"], lock["package_sha256"])
+        self.assertFalse(linux["compiler_dirty"])
 
     def test_fixture_hash_mismatch_refuses_before_native_execution(self):
         with patch.object(q, "digest", return_value="wrong"), patch.object(
