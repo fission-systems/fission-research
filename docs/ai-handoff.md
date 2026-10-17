@@ -1,5 +1,9 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-18 FPGA 후속: [iCE40 HX8K 실험](../experiments/fabric/ice40-hx8k/README.md)은
+> 같은 8개 함수의 RTL·수식 모델 SAT 증명과 자동 핀 배치 bitstream 생성까지 진행했다.
+> 실제 보드 실행·합성/bitstream 의미의 형식 증명은 아니다. 네이티브 pin은 기존 cb7b12f5c다.
+
 > 2026-10-18 후속: [여덟 계산 모델 초기 슬라이스](../experiments/fabric/initial-slices/README.md)와
 > [도메인 계약](computational-domains.md)을 추가했다. native v15 / 조합논리 HDL·일반 합성 단계이며 실제 장치 지원은 아니다.
 

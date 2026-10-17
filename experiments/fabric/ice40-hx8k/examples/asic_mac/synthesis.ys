@@ -1,0 +1,1 @@
+read_verilog design.v adapter.v; synth_ice40 -device hx -top fsl_target_asic_mac -json mapped.json; check -assert; write_verilog -noattr mapped.v; tee -o mapped-stat.json stat -json

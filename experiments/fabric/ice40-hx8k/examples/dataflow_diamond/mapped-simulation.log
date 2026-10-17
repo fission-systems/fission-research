@@ -1,0 +1,2 @@
+PASS rows=2468
+tb.v:12: $finish called at 2468 (1ps)

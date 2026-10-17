@@ -1,0 +1,244 @@
+
+-- Executing script file `oracle-proof.ys' --
+
+1. Executing Verilog-2005 frontend: design.v
+Parsing Verilog input from `design.v' to AST representation.
+Generating RTLIL representation for module `\fsl_dataflow_diamond'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: oracles.v
+Parsing Verilog input from `oracles.v' to AST representation.
+Generating RTLIL representation for module `\oracle_fpga_add'.
+Generating RTLIL representation for module `\oracle_dsp_sat_add'.
+Generating RTLIL representation for module `\oracle_tensor_dot2'.
+Generating RTLIL representation for module `\oracle_asic_mac'.
+Generating RTLIL representation for module `\oracle_lif_step'.
+Generating RTLIL representation for module `\oracle_pim_bank_xor'.
+Generating RTLIL representation for module `\oracle_rc_euler_step'.
+Generating RTLIL representation for module `\oracle_dataflow_diamond'.
+Successfully finished Verilog frontend.
+
+3. Executing MITER pass (creating miter circuit).
+Creating miter cell "miter" with gold cell "fsl_dataflow_diamond" and gate cell "oracle_dataflow_diamond".
+
+3.1. Executing FLATTEN pass (flatten design).
+<suppressed ~2 debug messages>
+
+3.2. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+Removed 0 unused cells and 6 unused wires.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1. Analyzing design hierarchy..
+Top module:  \miter
+
+4.2. Analyzing design hierarchy..
+Top module:  \miter
+Removing unused module `\oracle_dataflow_diamond'.
+Removing unused module `\oracle_rc_euler_step'.
+Removing unused module `\oracle_pim_bank_xor'.
+Removing unused module `\oracle_lif_step'.
+Removing unused module `\oracle_asic_mac'.
+Removing unused module `\oracle_tensor_dot2'.
+Removing unused module `\oracle_dsp_sat_add'.
+Removing unused module `\oracle_fpga_add'.
+Removing unused module `\fsl_dataflow_diamond'.
+Removed 9 unused modules.
+Module miter directly or indirectly contains formal properties -> setting "keep" attribute.
+
+5. Executing PROC pass (convert processes to netlists).
+
+5.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Removed a total of 0 dead cases.
+
+5.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+5.4. Executing PROC_INIT pass (extract init attributes).
+
+5.5. Executing PROC_ARST pass (detect async resets in processes).
+
+5.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+
+5.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+
+5.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+5.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+5.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+5.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+6. Executing OPT pass (performing simple optimizations).
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 11 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Computing hashes of 9 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Computing hashes of 8 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \miter..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \miter.
+Performed a total of 0 changes.
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 8 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Removed a total of 0 cells.
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \miter..
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+<suppressed ~2 debug messages>
+
+6.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \miter..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \miter.
+Performed a total of 0 changes.
+
+6.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 6 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Removed a total of 0 cells.
+
+6.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \miter..
+Removed 3 unused cells and 5 unused wires.
+<suppressed ~8 debug messages>
+
+6.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+6.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \miter..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+6.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \miter.
+Performed a total of 0 changes.
+
+6.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 3 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Removed a total of 0 cells.
+
+6.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \miter..
+
+6.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+6.23. Finished fast OPT passes. (There is nothing left to do.)
+
+7. Executing WREDUCE pass (reducing word size of cells).
+
+8. Executing OPT pass (performing simple optimizations).
+
+8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 3 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Removed a total of 0 cells.
+
+8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \miter..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \miter.
+Performed a total of 0 changes.
+
+8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\miter'.
+Computing hashes of 3 cells of `\miter'.
+Finding duplicate cells in `\miter'.
+Removed a total of 0 cells.
+
+8.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \miter..
+
+8.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module miter.
+
+8.9. Finished fast OPT passes. (There is nothing left to do.)
+
+9. Executing SAT pass (solving SAT problems in the circuit).
+Using SAT solver `minisat`.
+
+Setting up SAT problem:
+Final constraint equation: { } = { }
+Import def constraint for this timestep: \in_in1
+Import def constraint for this timestep: \in_in0
+Imported 3 cells to SAT database.
+Import proof for assert: 1'1 when 1'1.
+Import show expression: \in_in0
+Import show expression: \in_in1
+Import show expression: \trigger
+
+Solving problem with 260 variables and 136 clauses..
+SAT proof finished - no model found: SUCCESS!
+
+                  /$$$$$$      /$$$$$$$$     /$$$$$$$    
+                 /$$__  $$    | $$_____/    | $$__  $$   
+                | $$  \ $$    | $$          | $$  \ $$   
+                | $$  | $$    | $$$$$       | $$  | $$   
+                | $$  | $$    | $$__/       | $$  | $$   
+                | $$/$$ $$    | $$          | $$  | $$   
+                |  $$$$$$/ /$$| $$$$$$$$ /$$| $$$$$$$//$$
+                 \____ $$$|__/|________/|__/|_______/|__/
+                       \__/                              
+

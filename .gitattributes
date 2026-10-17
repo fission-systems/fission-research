@@ -1,2 +1,4 @@
 # Preserve the exact trailing newline framing of captured Yosys JSON statistics.
 experiments/fabric/initial-slices/examples/*/synthesis-stat.json -text whitespace=-blank-at-eof
+# Captured Yosys terminal logs retain their original ASCII banners and framing.
+experiments/fabric/ice40-hx8k/examples/*/*.log -text whitespace=-blank-at-eol,-blank-at-eof

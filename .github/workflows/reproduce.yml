@@ -585,7 +585,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install --no-install-recommends -y iverilog clang
           python3 -m venv artifacts/fabric-tools
-          artifacts/fabric-tools/bin/pip install -r experiments/fabric/initial-slices/tool-requirements.lock.txt
+          artifacts/fabric-tools/bin/pip install -r experiments/fabric/ice40-hx8k/tool-requirements.lock.txt
       - name: Fetch pinned owned compiler without legacy assets
         run: |
           git init .fabric-compiler
@@ -605,6 +605,10 @@ jobs:
         run: |
           python3 tools/fabric_probe.py --fslc .fabric-compiler/target/debug/fslc --compiler-root .fabric-compiler --yosys artifacts/fabric-tools/bin/yowasp-yosys --work artifacts/fabric-ci --report artifacts/fabric-ci.json
           python3 tools/fabric_capture_check.py --report artifacts/fabric-ci.json
+      - name: Prove authored RTL and produce unprogrammed iCE40 configurations
+        run: |
+          artifacts/fabric-tools/bin/python tools/fabric_ice40.py --fslc .fabric-compiler/target/debug/fslc --compiler-root .fabric-compiler --tool-dir artifacts/fabric-tools/bin --work artifacts/ice40-ci --report artifacts/ice40-ci.json
+          python3 tools/fabric_ice40_capture_check.py --report artifacts/ice40-ci.json
       - name: Preserve bounded computational evidence
         if: always()
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
@@ -617,4 +621,14 @@ jobs:
             artifacts/fabric-ci/*/netlist.v
             artifacts/fabric-ci/*/synthesis-stat.json
             artifacts/fabric-ci/*/synthesis.log
+            artifacts/ice40-ci.json
+            artifacts/ice40-ci/*/design.bin
+            artifacts/ice40-ci/*/design.asc
+            artifacts/ice40-ci/*/design.v
+            artifacts/ice40-ci/*/adapter.v
+            artifacts/ice40-ci/*/mapped.v
+            artifacts/ice40-ci/*/pnr-report.json
+            artifacts/ice40-ci/*/*.log
+            artifacts/ice40-ci/*/*.ys
+            artifacts/ice40-ci/*/*counterexample.json
           if-no-files-found: ignore

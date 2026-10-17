@@ -1,0 +1,632 @@
+{
+  "schema": "fission.fabric.ice40.v1",
+  "compiler_commit": "cb7b12f5c0c5c6790de58db3d0ef0de05e826d91",
+  "compiler_dirty": false,
+  "compiler_executable_sha256": "d0d15c75e7d921e3249e4ce04b19c0706252a06f5f18c8e11ed164762fb16624",
+  "package_sha256": "5ab6ff4980e4ae4a561bb651099dde051a3cde0e9fa3f1adc407abbdc4174c98",
+  "inputs": {
+    "tools/fabric_ice40.py": "0cd51f29b74c4cca80a1fe487fd69ec17efcad7a4e779b29bc5dcff835d1f4b8",
+    "tools/fabric_probe.py": "94fe0c3811006dff2eaa4665ed94879be846fd7123fb262130b3b74aa39ef7e7",
+    "experiments/fabric/initial-slices/axes.toml": "e71fa031e76e1eb4b0a16d3db48aa04524bcafea9b5ec320ecb58c7353c6b0db",
+    "experiments/fabric/initial-slices/kernels.fsl": "3ceb270ed237ba3309f42b336a325a5da995733dabc4a9b8b8b6f978ff5824a6",
+    "experiments/fabric/ice40-hx8k/oracles.v": "fd041fb36fc04c102766d7f699ab94f488d832bdab1f27b4f52b7a8a5cf3a92d",
+    "experiments/fabric/ice40-hx8k/tool-requirements.lock.txt": "6b3dc3870c0eea49644609435560ff981bd30628d0833d55ab48736f855cc1c9"
+  },
+  "tools": {
+    "yowasp-yosys": {
+      "version": "0.70.0.0.post1259",
+      "object_and_license_sha256": {
+        "yowasp_yosys/share/ice40/abc9_model.v": "c9becd1ccb295ccb8a79f70812739bf4bcd0bf846f77f22c2627ea802a3123ba",
+        "yowasp_yosys/share/ice40/arith_map.v": "65cb378d8fa70648fce6e5429fe57ac292394a03689395b3a483e0f8101a67a3",
+        "yowasp_yosys/share/ice40/brams.txt": "5b909e796ee26e7d18aca1637a4e396675d93b39300936dd31860490a6d3c13d",
+        "yowasp_yosys/share/ice40/brams_map.v": "b9f606a53b9fe24b1810601e4d74b057df287b8924989c0f1516ddc77b570d50",
+        "yowasp_yosys/share/ice40/cells_map.v": "4f3f2d0d036d3a494c5b433b0a2a1f1ea4fb5f170906a4b611d9e407c7c8ce92",
+        "yowasp_yosys/share/ice40/cells_sim.v": "b5b2bcd86c0d6eea269015aaebff1d5fb66e7ec3f7eded0bde07406e5ac99527",
+        "yowasp_yosys/share/ice40/dsp_map.v": "6297d8ea9049a47f2bfddd8a98f2e91c5a86bb7f1b76c6ad4da90572855abdc8",
+        "yowasp_yosys/share/ice40/ff_map.v": "d2292afa2d7f5154fac6e14b323d997e2970bbac33f2889b31db4f7a06654eb3",
+        "yowasp_yosys/share/ice40/latches_map.v": "57937005a20c2faf1e3a5843694254b3c5be82045e3e33ec0ed527de69d2a5aa",
+        "yowasp_yosys/share/ice40/spram.txt": "742455d1f95f26e9ef9ef295d10e4aab9341ae187f3e46465ef52debbe5a8889",
+        "yowasp_yosys/share/ice40/spram_map.v": "3bc7d1915b87d5d8005c402d609821f304c79d910aef97cf00c048f8f81856ab",
+        "yowasp_yosys/yosys.wasm": "a35c25e046acdccbbebe315d93fff65fd64747141a540ecc7e602549d154eb4f"
+      }
+    },
+    "yowasp-nextpnr-ice40": {
+      "version": "0.11.1.0.post826",
+      "object_and_license_sha256": {
+        "yowasp_nextpnr_ice40/icebram.wasm": "fef6ec2b49576b5247f7919277916edefe6d61ac54eacb532431ee40c06accde",
+        "yowasp_nextpnr_ice40/icemulti.wasm": "96c4799b677103cd1e6cbccaedbd93e41fc9e1e2fc13bf56773469e4a0e087af",
+        "yowasp_nextpnr_ice40/icepack.wasm": "d6789c91605437deea55cc9c04bd50f7aeac757e7bff597676f709080ffce2cd",
+        "yowasp_nextpnr_ice40/icepll.wasm": "47dfc30f14b4b748d89b7370190abf840e2d20f07ee36463305df667e913ecfd",
+        "yowasp_nextpnr_ice40/nextpnr-ice40.wasm": "a9848156103bd2202c23453ac2a467d2226b6a31387a7eaeb127a3af7c6c7cc6",
+        "yowasp_nextpnr_ice40/share/ice40/chipdb-1k.bin": "aa02964924bf24738564c50f56b1aaa2aaf68c29cd04cb7328eaf911f1a981d1",
+        "yowasp_nextpnr_ice40/share/ice40/chipdb-384.bin": "5ba3fae9f3bf82a1cc9d9fa6667b483f3e4e163543e6b5055fb8f93839b4f51b",
+        "yowasp_nextpnr_ice40/share/ice40/chipdb-5k.bin": "ef3d16940fad12cb3eb5104adf2fde4d2a3e43039b954e300689dfad9c2146f2",
+        "yowasp_nextpnr_ice40/share/ice40/chipdb-8k.bin": "9d6b5b39de8cfade7c7826fdfadb58bc223a85b97c2ab699b5d2cf6dda013f10",
+        "yowasp_nextpnr_ice40/share/ice40/chipdb-u4k.bin": "e3d3e68bc6d00dd7b71754471cae26946aaeb02109413c0fe69e81c356d2bfc8"
+      }
+    },
+    "yowasp-runtime": {
+      "version": "1.96",
+      "object_and_license_sha256": {
+        "yowasp_runtime-1.96.dist-info/licenses/LICENSE.txt": "dfc801f3db426280b60a2808c56b944e48f66025a2fcdd60826ae43084351800"
+      }
+    },
+    "wasmtime": {
+      "version": "47.0.1",
+      "object_and_license_sha256": {
+        "wasmtime-47.0.1.dist-info/licenses/LICENSE": "268872b9816f90fd8e85db5a28d33f8150ebb8dd016653fb39ef1f94f2686bc5"
+      }
+    }
+  },
+  "versions": {
+    "yosys": "Yosys 0.70 (git sha1 28ba3cb92, Release, Clang /workspace/YoWASP/yosys/wasi-sdk-33.0-x86_64-linux/share/cmake/../..//bin/clang++ 22.1.0)",
+    "nextpnr": "\"yowasp-nextpnr-ice40\" -- Next Generation Place and Route (Version nextpnr-0.11.1)",
+    "iverilog": "Icarus Verilog version 13.0 (stable) (v13_0)"
+  },
+  "results": [
+    {
+      "kernel": "fpga_add",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        8,
+        8
+      ],
+      "output_widths": [
+        8
+      ],
+      "mapped_simulation_cases": 65536,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 10
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 24
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "26cad85042ad8d76b06078c2dde9fb4fddfdf150210eac20d60992880589cb06",
+        "adapter.v": "889f5351d1ace605b57819aea777bc8b51aaf7d2c86a8f965a67ccd2a1a85b62",
+        "oracle-proof.ys": "05d257398327d112fa72b7991ce61731425595dac382adeb4b8448c7fe8300ea",
+        "oracle-proof.log": "83a2d9b97323b36d2f4053d5e962ae80fbb223f9dcefaf0d38fae6b37a692cbb",
+        "mutation.log": "9c81b42cd4a146b9dbc3dfb04be7fe6c93c287df5d3ca7ea0f9773154539f462",
+        "mutant.v": "e8abb301d2f2cdc9f04099ce0a0974c2ebdfeb298fbffe5efa321b2f958073a9",
+        "mutation.ys": "7d5d6213050a3251cf0c9148d25632b9df96a56ec866438779863b396ffc965f",
+        "mutation-counterexample.json": "4de0eac489c254837af306eee145f6113d8fdbb0fc2609771647a40c02c909d0",
+        "synthesis.ys": "e1f7d4dc9b4aededf7384f0f5a72584380f63b2c0d3bd27fbf27567ef2385183",
+        "mapped.json": "9a7b51391310f8c511ae190b90911c0a89ca8add66be8985fd4e8f320ddb04d6",
+        "mapped.v": "f0561973fa65face01950f36887b33c8482b368fb63f79bf8378891afc836d6a",
+        "mapped-stat.json": "a971d848aeae2835670225984f67c2c5caacb3d51fdbf99588172ea5119e6efe",
+        "mapped-simulation.log": "6aaa8369ac4ba6d4f8fc315d40512a6ac5a67e84d7f55061ec1a9296989077d2",
+        "pnr.log": "cfad52846e1353a88c1f789ad73247d5dd36e6616f976e7e70e487864a3bf3ec",
+        "pnr-report.json": "2f53be6ad6df8d30ac84bd861db6e34d790b881bee8911ff85e9be3c2cd78260",
+        "routed.json": "8435bdd10e0e7ec9b623cb723d831421160d46822f470e9e683731586fd0d801",
+        "design.asc": "c5d032816defb251853acf7ca1874e4a2b0bfd349e86b14a704ef86552bdb7d2",
+        "design.bin": "0d99b1ee390540b6ffd905ce5bab5b2292e05c5ff399e97bd6c92507db795877",
+        "input.csv": "adaa876addcd34d0a291a16b4d7c1d387c84d6682ccdc006c14df20b5b46e8a0",
+        "reference.csv": "d7f49efe81a96cfe18911c52fd32197e10481c6920fdee2eee35da3aa332a3e6",
+        "tb.v": "d2b0f30ba1b042b7d707dadeeaa8b7741c22525e8efdcaf12e940d71d6eac228"
+      }
+    },
+    {
+      "kernel": "dsp_sat_add",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        8,
+        8
+      ],
+      "output_widths": [
+        8
+      ],
+      "mapped_simulation_cases": 65536,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 11
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 24
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "853ace60ba7cd8d3bc67ceac76070d6ae31771569e076b4fec48b8b089d09967",
+        "adapter.v": "0c037967d00da0b4ea3c89c198b8b0d1c965ec4160909e7aa72ef20db0e59351",
+        "oracle-proof.ys": "5c82eebae943939bb872d62f8fa4e4cea65dd2a7c821eb1fca4671b596126475",
+        "oracle-proof.log": "2f8bbc159f6393be9e3faa5e4e99c84e2bc7275246e0fb460224f58334954224",
+        "mutation.log": "7515f5bc6f96356d0e7cec2087f1e5fe635f3fbb1128b5b832e81cb82a660293",
+        "mutant.v": "03d223c96470f6547edb22b692572e4b8364c9e9e545f8344d7ab9320e92609f",
+        "mutation.ys": "b2cced6a62d62a5dcdcd7e4500bf86a5bc7ae9a2c99f1d32cd333810c54deea4",
+        "mutation-counterexample.json": "4de0eac489c254837af306eee145f6113d8fdbb0fc2609771647a40c02c909d0",
+        "synthesis.ys": "cff6f44fe5b699ca3c0e75b0c020a2eac5ff9add98e999f975ab41c5fed440ab",
+        "mapped.json": "c38bc46a8a7545c13792a1a70a23bec5855841644d498677b95b5ed9d5ed1c3d",
+        "mapped.v": "5b0574a32a278fd44eb849a6930d978054566dc794f104e2c7e91fd576c415b1",
+        "mapped-stat.json": "1aa00da6a62b48011f4e075b4262ecf47706122ef1be01bf8a8743c634225ec9",
+        "mapped-simulation.log": "6aaa8369ac4ba6d4f8fc315d40512a6ac5a67e84d7f55061ec1a9296989077d2",
+        "pnr.log": "505d737b7970d8767683db14b00deca73e880209bc4accbd73979f84749adfde",
+        "pnr-report.json": "4704aac283587e71fee851728b3664c8d09d2289e9eaebc91375ab05a8e45357",
+        "routed.json": "30ed52e857fbd85eeeb2567d6598499fe5a08fa5dbc79d4cacb1d55503c51d1c",
+        "design.asc": "55d41f490b6946148045ac4a568d88dba38e24f2d66d7205d5da7e9a01728ab6",
+        "design.bin": "fda614c68af3bd8280ac3c86ef2ba8cf33fe1dcafa5f5b19b205da5e2e658aa4",
+        "input.csv": "adaa876addcd34d0a291a16b4d7c1d387c84d6682ccdc006c14df20b5b46e8a0",
+        "reference.csv": "7362efe86365d047ca201030897f9d7a6ea341aec584ae0c9d1b0f83a0b72916",
+        "tb.v": "44abce9d984d191e9a4e3204c184662808f377e924f52720f72c933dc9c5efeb"
+      }
+    },
+    {
+      "kernel": "tensor_dot2",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        8,
+        8,
+        8,
+        8
+      ],
+      "output_widths": [
+        32
+      ],
+      "mapped_simulation_cases": 2068,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 333
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 64
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "70d5c4f66134d16d3393ac5127c59fe5de6e906b2f5eb08374f351a0c7ec89af",
+        "adapter.v": "da539e6807f70c2e413b8e2c123cd075f90e1af1a491231e89c005856b0eedc3",
+        "oracle-proof.ys": "208d3b855c1580610ec0392773460a9b27ed15e57880aa600fd33e9e6ddbe737",
+        "oracle-proof.log": "088ecf930812a7f541137b0ee8664421becbe154e91cd0fa34ab92084e6f93da",
+        "mutation.log": "4c60b0ef92f5f3d583e7543d1c9c49deffceda02da5d7f09f5e4b78aafc99050",
+        "mutant.v": "4dc5d98c197d220a1548efcc3d66a953affd9524f4dfeb107082e40cf19c8e00",
+        "mutation.ys": "959ee86276b81774196a7e9fe57f1f3f2b6908b045d6b1f6092c317fb378beff",
+        "mutation-counterexample.json": "c50988878b160f33b01a799885600056a754d87a90e6f22066cf8a789547e99b",
+        "synthesis.ys": "f2ec517ddeeb2508624d3ef00b2fea728b3edf251bc5140a90375dfb3559823e",
+        "mapped.json": "adcf2864eec7fa652a95243993491194f6c21ddbbc41c80b782c75a54a8c9dce",
+        "mapped.v": "c3dee1b56bcece55a1d586ea79393cd906853beaf8d6993d601ba390e86f33c6",
+        "mapped-stat.json": "4a1314a94b440be15d30f86f7daa841fddc7d2f6c5607a4bf735e132e0e9273b",
+        "mapped-simulation.log": "86da5089defe18c7682dfb4662913d7260295144b9c3548b3ca2ac5e6cd71917",
+        "pnr.log": "4c2f5cab319836f137d4d21c30bfb648ef75642083c5d2c14418b7f8a714a43e",
+        "pnr-report.json": "c993770fca404f2a1c61bf7343306a9cea68c53594ed0279a4e8481d2dcb1541",
+        "routed.json": "b777327c141cc316d8c5122241ac667ab8974b6df8a3b9e0de5f91988971e128",
+        "design.asc": "543b1367b43361cde8f673ead5f99c81503532b90211a5402322cb6d04ffc774",
+        "design.bin": "881ab053652dfc16fe80c55a9e5c49d29b4989866a7cdf09912d43a3058e9228",
+        "input.csv": "342f2e8f01f9326b7d2bf35322ee1454e91521926e1efeab9428547478648663",
+        "reference.csv": "72874ee0074cd7aa3a8a6f52d5f0d5dda75ff9c7755640c85013a9ac9474ed50",
+        "tb.v": "337623c2be1f701b722805f06b63d83fb581453931b77c80470b69a6163738b6"
+      }
+    },
+    {
+      "kernel": "asic_mac",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        16,
+        16,
+        16
+      ],
+      "output_widths": [
+        16
+      ],
+      "mapped_simulation_cases": 2068,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 339
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 64
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "6c3c4ecc17c17fdf5ddeaa95ad2d7d8eb8ea62b1adb3f4341da80dea1d6bf854",
+        "adapter.v": "9f6f883a2f9ad5a4e7aa3d10233bf83cf9a191f51a673e6e89579b0f2bc17b6d",
+        "oracle-proof.ys": "1643867678ab3adf1d9642edc820ce6aadd969f101fb3262fdef3409d652aa63",
+        "oracle-proof.log": "7f49dbd3cc633ade7d60ef5ef8ca1916869322ff0f23d39a17a93db180883286",
+        "mutation.log": "e2166df45cf10cd1a976029f987d6886a79da687aa24a277ebae4d7bb3f9910f",
+        "mutant.v": "4c94438b3b4496d83a56a4af71176a1e90b3bba9fa918a2518a996b8c36eb705",
+        "mutation.ys": "490bc9985e0aeb2985bf5b602097483d392db3f4a38995a4de8d8ddee418f1c7",
+        "mutation-counterexample.json": "214c7ef76a9ea04a73653d9c1ec18011ac7f4851f4b3b3d468eaf9ece8e20889",
+        "synthesis.ys": "e26b5e723f3c6a73161f49a1e382af25471442e38871d28e93e013d1b690b721",
+        "mapped.json": "c831b5614298c721c376c1b46ac1323f78dd6a7c17ca5567cf194fd60dcaac55",
+        "mapped.v": "9194b504ab2021f1241d3dea4ec8108634a21142c0aceb62280f10032dc1cf22",
+        "mapped-stat.json": "d8fac8b4d39276edf4c9f856ef760711af9a4b2d0dd2e9698d7f46a5b45b98d4",
+        "mapped-simulation.log": "e361509fd3c3e4dd9da5fa376d6b2763551b79060a8341cde994ffb417ef8e5e",
+        "pnr.log": "744eee3325565e286c353a649eb71a3ed07d2e69a557a1174c2e52bbcba966a7",
+        "pnr-report.json": "163a764f8115037112fa6272852ac35f722f8e348fd53e8017b7b174ff95e03a",
+        "routed.json": "3083838ff06774549c1fcf5de0eeaefd408498b211c9f8255e8572467e8ae4ac",
+        "design.asc": "31a1e7b6b225e546dc9d1b54a71ef53bc202fd4b9baad46ab94c1a194b01ea2e",
+        "design.bin": "22eab6151bc92ec4cab7cf6ef2b9081cd09e1a1c8c17e5d47f89e66b84c58d69",
+        "input.csv": "809711cf21760969f103e5adf40ac64b6259f8e7fdb6643bbfca8e346d560a68",
+        "reference.csv": "bdbf16e6c178d95f6384b56890e7130a4064838abb0d6555aff52bf4d649ccad",
+        "tb.v": "862320088c1e68bbac7b205248c033e807283271928b9d10b0a19beecfa7fa08"
+      }
+    },
+    {
+      "kernel": "lif_step",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        8,
+        8
+      ],
+      "output_widths": [
+        8,
+        1
+      ],
+      "mapped_simulation_cases": 2596,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 32
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 25
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "fca3bd8e4d22324f6af5147f7394d6d43a0df5208cc19f240bcda5c052369027",
+        "adapter.v": "040e78e63970dc27c8766b54b237fdcd10e40f767f2d28ce9e4323f86301a5e6",
+        "oracle-proof.ys": "056e058d2887b8d3a44543bda48f24837f0e3566bea84a954054e0aa76cdc1bc",
+        "oracle-proof.log": "8ba9eb13d31e052fc4f30909c6e31f9cdb820b594d7c7b1d7dd5a15472be44da",
+        "mutation.log": "a71e3efb41451bd322f01cd718580ba5a792d4ee306c40eabc7fa119d0eec1a9",
+        "mutant.v": "f79955cfc1c08361b7222b6f7cf1f15528320259208be29e225b8eb37df25029",
+        "mutation.ys": "bff252fd8d69868f24b9f4066a0f55792f08362e6c70327a9c81c5d3cd0df592",
+        "mutation-counterexample.json": "261b607ea8625447b5873c10826f180918ecd2d69b208d1b8f636177d8db817e",
+        "synthesis.ys": "4d0bab6cf38fc591962a6f1383f1aea08f288a4d8c8245aeb208938123d10e1a",
+        "mapped.json": "0febf6bdd27401536445b29aa8978601b1d1808e914f3336f269a3f673320cd8",
+        "mapped.v": "35f0a4a26a8452a1bc99d636637e5b8bebfc3e6e0f5ccfef6d69716a2ed1afd6",
+        "mapped-stat.json": "379393f6f1aea19a41018ef31fc48fd99e2762de0c64ef9b4e895b1c294b5a69",
+        "mapped-simulation.log": "5a608e58723916e396b9ad88e20e0ae98a85eb42635e9fc6ac5f1b33a9f658a8",
+        "pnr.log": "086c1b3e07506741b8c33879da594879374e3d5f2470f6987b47018cc0946f62",
+        "pnr-report.json": "6b888e4b67ee4cbf8004956cc350338467ba29aa187ec50e49c0350c92def7e4",
+        "routed.json": "60a8e34c0440d857ee0a5065501ad265f8a82723f4df308b46b29bc482b28be9",
+        "design.asc": "398ffff5f678d7c7c05b65c6578aa396ef6a96543aa7d3ce31b6b630a6fc3909",
+        "design.bin": "e79844775b720ee275905ba8790a13c961251e407e566055229d09a50c13cb1b",
+        "input.csv": "c8e686bca7adb52ba543355d44671f320ee5e75302ebb0b11f8c68d21ef459bb",
+        "reference.csv": "0fe9a683dc52e5ae7d6a6ca610a5d9bdb0ba9667cf276cac67c0efd7652ccaf1",
+        "tb.v": "dc7ca0fcd11a343c94481fe362065ce7b24eeabe932e16aecfcef5a40bad9533"
+      }
+    },
+    {
+      "kernel": "pim_bank_xor",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        32,
+        32
+      ],
+      "output_widths": [
+        32
+      ],
+      "mapped_simulation_cases": 2468,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 34
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 96
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "4c2e167e7993bd9f0fd5d867d111a350d87062e7408903dafef6c71d8e639032",
+        "adapter.v": "36f371ff15e3689f2096d1abcf7f9b42d4948084c0f163ba6cedf037debed1ce",
+        "oracle-proof.ys": "a9b73b31b237010b7f60201690b0f9326b6ab2203d8d44394af82b34ab00f840",
+        "oracle-proof.log": "71ceafde264eb31114fd5349642283b5109dd105ef91772be5cc233ce43e9951",
+        "mutation.log": "2d58f240a7f7e9f900b8608fd6a6302c8421d159d725eacee46208c4900fd51d",
+        "mutant.v": "b5fdb8761a247b7ec883316d2fe262e21304a9cb312e37a04326c87455ffcf63",
+        "mutation.ys": "cc146cbfc4f45f3718cf99d7496b6b94bc12066e6bdef684975ec8df24954612",
+        "mutation-counterexample.json": "4de0eac489c254837af306eee145f6113d8fdbb0fc2609771647a40c02c909d0",
+        "synthesis.ys": "931d8fcc7bb12ca19420397a9b35fb75526dbe45ed725f19aa94d11a00827b9b",
+        "mapped.json": "ab71e29df7d7b5c2e31da8643d21e68b2058416fefe096048151a92abe6740d1",
+        "mapped.v": "93c4b1d4cf23457e765a196153e8f233c6ec050237934bc9814a089a4b40a476",
+        "mapped-stat.json": "fdebab4e407629575d876826daf2525c7cc20c381a5c8e9f3f988af0aa41290d",
+        "mapped-simulation.log": "d6a0befd30ed104c0d57dfb727cd438d1fdcdc18c85f7f497776923bebe49a62",
+        "pnr.log": "bea3a9c2d7f76aab650165e13f7fda6a79d5c4739dd0f7b7dd4c324925e0f376",
+        "pnr-report.json": "c471a82f42fbc53548960f304bc981f584987f30431c9c559201075943d6b074",
+        "routed.json": "9af807024b0849dc3833e5f19e2a02c89ccd6f4409f791bb7a410f800b32a257",
+        "design.asc": "8e38a7c9e27a6024d4c7f7d9b0467c78f28e68bddf5ae97e4cf2b110c1d875cd",
+        "design.bin": "d21e363b39fd650a3e18e8cbb426f316ccf930cadfbbef0f32409b48923f8ebd",
+        "input.csv": "89d38a61c25006e85df47680e423c0aaa6292178c0bdb2bdff8331b4356c2419",
+        "reference.csv": "9efb87fae2c9a9934dbeedbd7108853fa57345c305f45d0f776f8505da6f8997",
+        "tb.v": "feb5886161589d46596275a10d82ceb4f0f8a841be28ec3e1a2d38d732bf99f4"
+      }
+    },
+    {
+      "kernel": "rc_euler_step",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        16,
+        16
+      ],
+      "output_widths": [
+        16
+      ],
+      "mapped_simulation_cases": 2596,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 49
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 48
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "15e2400460038bf0051adca4dc729c8fe1decce83b10a7d6cd5c129327cd498a",
+        "adapter.v": "dbfeb57cf4c6bcb78099854e4f92282ba12c8d0b9491a9660ce8abbfcd5c02ff",
+        "oracle-proof.ys": "5a536251ab5ca1971d5cf741a45ed199b81856dc91cabb5a0fa4845112f4aaab",
+        "oracle-proof.log": "3a56a9847ea37b8a01391abd21396ed5eb87316c8391059fcfc3d2f936001efe",
+        "mutation.log": "c9b8960132e62857cb04b19c239f6d815c701662d2bd99d92f1f04ab596be6e7",
+        "mutant.v": "46caac74c6fd0e4669fb66a896b55700c0e2680eea487f87d4e9f442704e6a53",
+        "mutation.ys": "451fa99c119dd226df8a49def9d549374b01867cda763fb5d67119ac4e014184",
+        "mutation-counterexample.json": "4de0eac489c254837af306eee145f6113d8fdbb0fc2609771647a40c02c909d0",
+        "synthesis.ys": "0081088f0ddf3c34eb6ec4f82bb09759bef87b24229b20bad907c3b379ad0bc4",
+        "mapped.json": "a4fe29483ef655c1c7856c1a56f55f95af88c366747d46ade70e6a11b8fc9f9c",
+        "mapped.v": "49dff3fdfb52f6b0bb049740430e13f429fef86876e49d5ca5cfacbd6f5fb692",
+        "mapped-stat.json": "294dc0f4755b0a2b59e9a02f3ef85c3a2c15dcea8b6de38989e3675ff3913050",
+        "mapped-simulation.log": "2f68f051d2c2c3dc29d6f74c6876d07b6cd0baee8a6ee1ea3101e58b852a714f",
+        "pnr.log": "8cc1517cd3418ee250a0a560229855ec32a69b116278a83727ee1f4522fedb4f",
+        "pnr-report.json": "8cd941bd11654ffdd9c28e37f4eca1a329c4058675a6deb901612f9c634011de",
+        "routed.json": "39c88233accc12f65dbdc6aa8b9e6576ec0b9c45a7b34cc52b0105efdab3e2e1",
+        "design.asc": "866f6f5d24f0447a2072838ef42d68a70398c0f306bd5fc3b548f416f8f6e677",
+        "design.bin": "29d41c0b8090278cfecac487e9936d916199d80ab7420b6f666410d25f142b86",
+        "input.csv": "ce5364765f2459d4bd1c66c2ee2a63814ff1b751c0f210bb2c04c55a8f58e440",
+        "reference.csv": "4e3816e593e1acc33195af52abadf4d1f2f024c0bc19fb3d07a0b2b44a4b6b4a",
+        "tb.v": "248b9d1985cb1cc53517b389f89b5a749d7ae28b33b667968d7c3c4765d9a3fc"
+      }
+    },
+    {
+      "kernel": "dataflow_diamond",
+      "oracle_equivalence": "proved_all_two_valued_inputs",
+      "mutation_control": "counterexample",
+      "input_widths": [
+        16,
+        16
+      ],
+      "output_widths": [
+        16
+      ],
+      "mapped_simulation_cases": 2468,
+      "device": "iCE40HX8K",
+      "package": "CT256",
+      "pnr_seed": 1,
+      "utilization": {
+        "ICESTORM_LC": {
+          "available": 7680,
+          "used": 354
+        },
+        "ICESTORM_PLL": {
+          "available": 2,
+          "used": 0
+        },
+        "ICESTORM_RAM": {
+          "available": 32,
+          "used": 0
+        },
+        "SB_GB": {
+          "available": 8,
+          "used": 0
+        },
+        "SB_IO": {
+          "available": 206,
+          "used": 48
+        },
+        "SB_WARMBOOT": {
+          "available": 1,
+          "used": 0
+        }
+      },
+      "bitstream_bytes": 135100,
+      "pack_unpack_repack": "byte_identical",
+      "board_pin_constraints": false,
+      "device_execution": false,
+      "files": {
+        "design.v": "521ef101210a80c0c2762093a117af34cdf33924ce33ba828bcddd4fa010fb8e",
+        "adapter.v": "9d5df0375e8cdb1c4f31ee74d131891495ade3a87e57a84d6976256a6192550b",
+        "oracle-proof.ys": "75520a920428a19c7f51af652a0de71f36ccb8e7864d3c5205a981bbe101f8b4",
+        "oracle-proof.log": "3e3a6ebe29f7de5cd992ff825bf5e95b1259a1196139d5752ce0386a9735d2d0",
+        "mutation.log": "6d421ffe8198e84fc9cf3282e2cb07d1a2775b295ed9c88f9ea22eac165fe557",
+        "mutant.v": "369eea0531321cd78e75c5b2461ac075a391ab66f5f5d6a775fb2ecf9faf98ea",
+        "mutation.ys": "71bd47e88fa85eb8ea6f7988c5035011b54f6043dcec49ffbcb6e77f48d91c44",
+        "mutation-counterexample.json": "67d5aaa6bcbcd80c56b0d125111e55f4fded664fb015f61ee4177bf1b32ab99a",
+        "synthesis.ys": "57171aa8d8c280f06951c4caf55763c6c48ee00eb79b80830ac2621b7efc8bfa",
+        "mapped.json": "67972515fef076af38186fbdd5dcd62737362191feea49867a623726270f9806",
+        "mapped.v": "ad9c6a755acc1cd44eb68c1bec60a0f0592879cd0d0d55a7890020f701249b62",
+        "mapped-stat.json": "7240fbea4dbb90946bf2ec031badb69f5c2561aeaf34e214e72c752f0281e142",
+        "mapped-simulation.log": "d6a0befd30ed104c0d57dfb727cd438d1fdcdc18c85f7f497776923bebe49a62",
+        "pnr.log": "b540a61089e11fbcaebdeb6efaab8c3571e73d5b50aed33f9869c1182727d12f",
+        "pnr-report.json": "a5fb56b2cf73bf8d2a0575be8e5ecc469de480768fa76abb43aa69693e8dfb77",
+        "routed.json": "23979f4eaef736238f256ba612ff5be11e62b4efac123b98884d796a537f0c80",
+        "design.asc": "8b98abaa794b0e1ed8e5a4a589426c2ba99e3e3913bcb9b2c233673167a449c2",
+        "design.bin": "a12b7e4ad5590c0695217ea5b6ab3985cee8045b950c69c66f93f52c2fe43c1e",
+        "input.csv": "22e00237a8d82600f4f6d6f33d7747a0c901e196dfc5db18eb6fa91eddf1393e",
+        "reference.csv": "08c5bd66949387e6b4650d21fd71756dbefc471eea943bff0d94943ce30127a2",
+        "tb.v": "5c5a465f228cb60d61e63812f71a46a95cc5bafab7302c3196cd955cd507cb7b"
+      }
+    }
+  ],
+  "proofs": 8,
+  "counterexample_controls": 8,
+  "bitstreams_created": 8,
+  "mapped_simulation_cases": 145336,
+  "device_execution": false,
+  "board_pin_constraints": false,
+  "formal_scope": "Generated combinational RTL versus independently authored unsigned bit-vector fixture formulae; all two-valued 64-bit slot inputs; not a proof of the compiler, synthesis, routing, bitstream semantics, native binaries or continuous dynamics",
+  "timing_scope": "No clocks or external I/O delay constraints; no system timing closure claim"
+}

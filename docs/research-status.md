@@ -853,3 +853,37 @@ passed at `70647185cf961a79e22ce3fc75a5c103e5057b92` with the same clean native
 pin and counts. Frozen/reproduced package, HDL, dependencies, CSV inputs/results,
 C/Rust sources, cell counts and approximation statistics matched. The parsed
 Linux report is archived; this job success is separate from the full workflow.
+
+## 2026-10-18 — iCE40 placement, bitstreams and fixture-level RTL proofs
+
+[The iCE40 HX8K experiment](../experiments/fabric/ice40-hx8k/README.md) reuses the
+clean native `cb7b12f5c0c5c6790de58db3d0ef0de05e826d91` compiler. No native source
+or Rust dependency changed. All eight previously authored kernels now have
+SAT proofs against separate Verilog formulas for every two-valued 64-bit slot
+input. Eight intentionally corrupted RTL variants produced counterexamples.
+This does not prove arbitrary FIR compilation, synthesis, routing, bitstream
+semantics, source-binary equivalence or continuous physical models.
+
+Icarus simulations of the actual iCE40 LUT/carry-mapped netlists agree with the
+native FIR and integer oracle on 145,336 cases. Eight HX8K/CT256 place-and-route
+runs (seed 1) completed and produced 135,100-byte configurations. Pack/unpack/
+repack is byte-identical for each; separate local runs also reproduced each
+bitstream hash. Routed logic-cell counts range from 10 to 354 of 7,680 cells,
+with 24 to 96 of 206 IO cells. Counts describe these authored functions only.
+
+Pins are automatically assigned. There is no board pinout/electrical contract,
+clocked protocol, external IO timing constraint, device execution or accelerator
+runtime. Mapped simulation precedes routing and does not execute a bitstream.
+Exploratory mapped-cell formal attempts did not complete within 20/25-second
+subprocess bounds; no synthesis/bitstream proof is claimed. RC and LIF retain
+their discrete step contracts, tensor remains scalar elaboration and PIM has
+no memory effects. No ASIC PDK or other domain device backend was added.
+
+The driver locks native/source/tool hashes, records the HX8K chip database and
+primitive-model hashes, and fails closed on proof/counterexample/simulation/
+routing/configuration failures. Frozen evidence and actual configurations are
+published under the experiment; the new capture checker validates 111 files.
+The existing 41-file initial fabric evidence remains intact. Local checks passed;
+the updated Linux job must be observed independently after publication.
+Previous complete research CI at `cface3314d55ff163d14af468e9fcc910dde0578`
+(run 39044926114) was observed successful before this change.

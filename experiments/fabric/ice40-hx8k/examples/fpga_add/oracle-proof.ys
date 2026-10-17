@@ -1,0 +1,1 @@
+read_verilog design.v oracles.v; miter -equiv -make_assert -flatten fsl_fpga_add oracle_fpga_add miter; hierarchy -top miter; proc; opt; wreduce; opt; sat -verify -prove-asserts -set-def-inputs -timeout 15 -show-inputs -show-outputs -dump_json oracle-proof-counterexample.json

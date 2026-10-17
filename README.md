@@ -6,7 +6,7 @@
 
 ## 현재 방향과 구현 위치
 
-[계산 모델 확장](docs/computational-domains.md)은 FPGA·DSP·NPU/TPU·ASIC·neuromorphic·PIM·analog·dataflow/CGRA 여덟 연구 축의 초기 계약을 추가했다. [초기 슬라이스](experiments/fabric/initial-slices/README.md)는 단일 FIR에서 조합논리 HDL·의존성 그래프와 수치 모델을 실행하고 일반 논리 합성 결과를 비교한다. 이 단계는 자체 작성한 scalar/discrete 예제이며, 실제 여덟 계열 장치·ISA·bitstream 지원은 아니다.
+[계산 모델 확장](docs/computational-domains.md)은 FPGA·DSP·NPU/TPU·ASIC·neuromorphic·PIM·analog·dataflow/CGRA 여덟 연구 축의 초기 계약을 추가했다. [초기 슬라이스](experiments/fabric/initial-slices/README.md)에 이어 [iCE40 실험](experiments/fabric/ice40-hx8k/README.md)은 같은 FIR의 8개 함수에서 RTL·독립 수식 모델 SAT 동치와 HX8K/CT256 배치·배선·bitstream 생성을 수행했다. 자동 핀 배치이며 실제 보드 실행·여덟 계열 장치 ISA 지원은 아니다.
 
 [양자 노이즈·비순환 CFG 실험](experiments/quantum/channels-cfg/README.md)은 같은 FIR에서 명시적 bit/phase flip·amplitude damping과 block 분기·인자·join을 실행한다. 최대 8 qubit의 고전 호스트 reference이며 33개 회로 / 678개 입력을 독립 밀도행렬 계산과 비교했다. [기존 이상적 회로](experiments/quantum/ideal-circuits/README.md)의 제한된 OpenQASM 입출력도 유지한다. [한도 있는 양자 루프·과거 calibration 매개변수](experiments/quantum/bounded-calibration/README.md)와 [reference assembler 바이너리 200개 word의 FSL 디코드](experiments/quantum/eqasm-words/README.md)를 추가했다. [정수 제어 양자 CFG](experiments/quantum/integer-cfg/README.md)는 같은 FIR의 1~64비트 연산·비교·변환과 카운터 루프를 연결한다. 자체 명세 42개에서 1,344회 instrument 비교를 수행했다. [IBM 회로 출력·별도 REST 제출 도구](experiments/quantum/ibm-open-plan/README.md)는 CX/CZ 기본 게이트·물리 배치·X/Y/Z 관측 변환과 결과 비교를 오프라인에서 검증했다. 후속 [IBM 실제 QPU 관측](experiments/quantum/ibm-hardware-bell-xx/README.md)은 FIR Bell XX 회로를 1,024회 측정했다. 보고 사용량은 2초, 이상적 분포와의 TVD는 6.54%이며 현재 이상적 분포 비교 기준은 미통과다. 현재 장치 노이즈 보정·범용 quantum 프로그램 지원이나 동치 증명은 아니다.
 
@@ -27,7 +27,7 @@
 | GFX900 디코드 | 기존 4개 + SOP2 32개 + 실행용 vector add 패턴 2개 |
 | JVM 디코드 | `iadd` 한 opcode |
 | 양자 논리 회로 | 같은 FIR의 H/X/Z/CX·측정·reset·고전 bit 조건부 X; 최대 8 qubit reference, 명시적 3종 noise channel·비순환 u1 CFG; 제한된 OpenQASM 3.0 입출력은 CFG/noise 거부; 한도 있는 cyclic 정수(1~64비트) CFG·카운터·측정 기반 반복·과거 T1/T2 idle 모델; QPU 바이너리·현재 calibration 보정·범용 양자 프로그램·QIR 미지원 |
-| 추가 계산 모델 연구 | FPGA/DSP/tensor/ASIC/LIF/PIM/RC/dataflow의 8개 자체 작성 프로파일; FIR→RTL·일반 netlist·C/Rust 비교; tensor는 scalar elaboration, analog는 이산 근사, PIM은 placement 가설; 실제 장치 실행·bitstream 미지원 |
+| 추가 계산 모델 연구 | 8개 자체 작성 FIR 함수의 RTL·수식 모델 SAT 동치; HX8K/CT256 bitstream 8개 생성·매핑 netlist 145,336개 사례 비교; tensor는 scalar elaboration, analog는 이산 근사, PIM은 placement 가설; 보드 실행·장치 ISA·bitstream 동치 증명 미지원 |
 | 실제 IBM QPU 관측 | FIR Bell XX 한 회로 / 1,024 shots; 공식 SDK 사용, QPU 보고 사용량 2초; 이상적 분포 비교 기준 미통과, 동치 증명 아님 |
 | 자체 x86 디코드 / 출력 | 외부 decoder 의존성 없이 v2 48개 규칙 / 150개 FIR body; MOV register/immediate store·PUSH/POP과 실제 ELF span 실행 비교; 초기 46-rule artifact 유지 |
 | x86 입력 / ABI 복구 | FIR에서 entry ESP+4/+8, RDI+0/+8 및 stack spill/reload 후보·origin·가능한 별칭 추적; ABI 선택·source prototype·일반 함수 복구는 미완료 |

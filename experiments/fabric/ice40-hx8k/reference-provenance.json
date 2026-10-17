@@ -1,0 +1,35 @@
+{
+  "schema": "fission.fabric.ice40.reference.v1",
+  "scope": "External research tools only; no core dependency or copied target implementation",
+  "package": {
+    "name": "yowasp-nextpnr-ice40",
+    "version": "0.11.1.0.post826",
+    "source": "https://github.com/YoWASP/nextpnr",
+    "license_expression": "ISC",
+    "wheels": [
+      {
+        "filename": "yowasp_nextpnr_ice40-0.11.1.0.post826-py3-none-any.whl",
+        "sha256": "d220c8d6d936f3e6c91ed119d6ae58a638d0cd331e61be3e48b47fd743bd5607",
+        "url": "https://files.pythonhosted.org/packages/9c/5a/d026fbe2cfc362d353815671654cd93a35d732492ad71b0ab9d471811694/yowasp_nextpnr_ice40-0.11.1.0.post826-py3-none-any.whl"
+      }
+    ]
+  },
+  "nextpnr_release": {
+    "version": "0.11.1",
+    "repository": "https://github.com/YosysHQ/nextpnr",
+    "commit": "62e659ed6748e9f60b2a4aa25dd4fe79a9605881",
+    "license_file": "COPYING",
+    "license_sha256": "0b02f8f87d2db2b5cb3612f9a73295f0e15eb6e3464cb77d2b1a18b1d505aa24",
+    "relationship": "Upstream release corresponding to the tool version; package build wrapper is separately bound by wheel and installed object hashes."
+  },
+  "icestorm": {
+    "repository": "https://github.com/YosysHQ/icestorm",
+    "source_commit": null,
+    "scope": "icepack and iceunpack binaries bundled in the pinned YoWASP wheel; exact IceStorm build source revision not recovered"
+  },
+  "previous_yosys_provenance": "experiments/fabric/initial-slices/reference-provenance.json",
+  "documentation": [
+    "https://github.com/YosysHQ/nextpnr/blob/62e659ed6748e9f60b2a4aa25dd4fe79a9605881/README.md",
+    "https://yosyshq.readthedocs.io/projects/yosys/en/latest/cmd/sat.html"
+  ]
+}
