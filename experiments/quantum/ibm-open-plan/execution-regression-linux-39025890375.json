@@ -1,0 +1,399 @@
+{
+  "status": "passed",
+  "calibration_comparisons": 420,
+  "loop_inputs": 6,
+  "partial_retry_checks": 1,
+  "maximum_absolute_error": 2.7755575615628914e-16,
+  "maximum_time_quantization_density_error": 8.820099595130415e-09,
+  "tolerance": 2e-10,
+  "source_sha256": "fcd7fbc47d8f47184c6ae7622e8cfdb44c16b7d2f546c4f5a2dd48b498390ee4",
+  "package_sha256": "12a968fe9e6a6bfd37f48cde033fe0e921c02ca104633476ddf558c2c5fefcb7",
+  "package_version": 14,
+  "compiler_executable_sha256": "eff89872733d64879e7b8aa6508111dafa7804c19e2d1a0922908aeb6f40e964",
+  "inventory": [
+    {
+      "name": "idle_q0_0",
+      "physical_qubit": 0,
+      "logical_model_slot": 0,
+      "duration_ps": 0,
+      "t1_ps": 131528644,
+      "t2_ps": 102203901,
+      "rounding_residual_ps": {
+        "T1": "0.4531517000000",
+        "T2": "-0.45172618000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001315286444531517,
+      "raw_t2_seconds": 0.00010220390054827382,
+      "raw_duration_seconds": 0.0,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q0_35556",
+      "physical_qubit": 0,
+      "logical_model_slot": 0,
+      "duration_ps": 35556,
+      "t1_ps": 131528644,
+      "t2_ps": 102203901,
+      "rounding_residual_ps": {
+        "T1": "0.4531517000000",
+        "T2": "-0.45172618000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001315286444531517,
+      "raw_t2_seconds": 0.00010220390054827382,
+      "raw_duration_seconds": 3.555555555555556e-08,
+      "comparisons": 21,
+      "maximum_absolute_error": 5.551115123125783e-17
+    },
+    {
+      "name": "idle_q0_100000",
+      "physical_qubit": 0,
+      "logical_model_slot": 0,
+      "duration_ps": 100000,
+      "t1_ps": 131528644,
+      "t2_ps": 102203901,
+      "rounding_residual_ps": {
+        "T1": "0.4531517000000",
+        "T2": "-0.45172618000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001315286444531517,
+      "raw_t2_seconds": 0.00010220390054827382,
+      "raw_duration_seconds": 1e-07,
+      "comparisons": 21,
+      "maximum_absolute_error": 2.7755575615628914e-16
+    },
+    {
+      "name": "idle_q0_100000000",
+      "physical_qubit": 0,
+      "logical_model_slot": 0,
+      "duration_ps": 100000000,
+      "t1_ps": 131528644,
+      "t2_ps": 102203901,
+      "rounding_residual_ps": {
+        "T1": "0.4531517000000",
+        "T2": "-0.45172618000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001315286444531517,
+      "raw_t2_seconds": 0.00010220390054827382,
+      "raw_duration_seconds": 0.0001,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q1_0",
+      "physical_qubit": 1,
+      "logical_model_slot": 0,
+      "duration_ps": 0,
+      "t1_ps": 124535505,
+      "t2_ps": 79014705,
+      "rounding_residual_ps": {
+        "T1": "-0.12094918000000",
+        "T2": "-0.02875282000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001245355048790508,
+      "raw_t2_seconds": 7.901470497124718e-05,
+      "raw_duration_seconds": 0.0,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q1_35556",
+      "physical_qubit": 1,
+      "logical_model_slot": 0,
+      "duration_ps": 35556,
+      "t1_ps": 124535505,
+      "t2_ps": 79014705,
+      "rounding_residual_ps": {
+        "T1": "-0.12094918000000",
+        "T2": "-0.02875282000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001245355048790508,
+      "raw_t2_seconds": 7.901470497124718e-05,
+      "raw_duration_seconds": 3.555555555555556e-08,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.6653345369377348e-16
+    },
+    {
+      "name": "idle_q1_100000",
+      "physical_qubit": 1,
+      "logical_model_slot": 0,
+      "duration_ps": 100000,
+      "t1_ps": 124535505,
+      "t2_ps": 79014705,
+      "rounding_residual_ps": {
+        "T1": "-0.12094918000000",
+        "T2": "-0.02875282000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001245355048790508,
+      "raw_t2_seconds": 7.901470497124718e-05,
+      "raw_duration_seconds": 1e-07,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.6653345369377348e-16
+    },
+    {
+      "name": "idle_q1_100000000",
+      "physical_qubit": 1,
+      "logical_model_slot": 0,
+      "duration_ps": 100000000,
+      "t1_ps": 124535505,
+      "t2_ps": 79014705,
+      "rounding_residual_ps": {
+        "T1": "-0.12094918000000",
+        "T2": "-0.02875282000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001245355048790508,
+      "raw_t2_seconds": 7.901470497124718e-05,
+      "raw_duration_seconds": 0.0001,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q2_0",
+      "physical_qubit": 2,
+      "logical_model_slot": 0,
+      "duration_ps": 0,
+      "t1_ps": 158615237,
+      "t2_ps": 25150898,
+      "rounding_residual_ps": {
+        "T1": "0.4677565000000",
+        "T2": "-0.106061697000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001586152374677565,
+      "raw_t2_seconds": 2.5150897893938303e-05,
+      "raw_duration_seconds": 0.0,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q2_35556",
+      "physical_qubit": 2,
+      "logical_model_slot": 0,
+      "duration_ps": 35556,
+      "t1_ps": 158615237,
+      "t2_ps": 25150898,
+      "rounding_residual_ps": {
+        "T1": "0.4677565000000",
+        "T2": "-0.106061697000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001586152374677565,
+      "raw_t2_seconds": 2.5150897893938303e-05,
+      "raw_duration_seconds": 3.555555555555556e-08,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q2_100000",
+      "physical_qubit": 2,
+      "logical_model_slot": 0,
+      "duration_ps": 100000,
+      "t1_ps": 158615237,
+      "t2_ps": 25150898,
+      "rounding_residual_ps": {
+        "T1": "0.4677565000000",
+        "T2": "-0.106061697000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001586152374677565,
+      "raw_t2_seconds": 2.5150897893938303e-05,
+      "raw_duration_seconds": 1e-07,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q2_100000000",
+      "physical_qubit": 2,
+      "logical_model_slot": 0,
+      "duration_ps": 100000000,
+      "t1_ps": 158615237,
+      "t2_ps": 25150898,
+      "rounding_residual_ps": {
+        "T1": "0.4677565000000",
+        "T2": "-0.106061697000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001586152374677565,
+      "raw_t2_seconds": 2.5150897893938303e-05,
+      "raw_duration_seconds": 0.0001,
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "name": "idle_q3_0",
+      "physical_qubit": 3,
+      "logical_model_slot": 0,
+      "duration_ps": 0,
+      "t1_ps": 179102820,
+      "t2_ps": 54361012,
+      "rounding_residual_ps": {
+        "T1": "-0.42722782000000",
+        "T2": "-0.43523814000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001791028195727722,
+      "raw_t2_seconds": 5.436101156476186e-05,
+      "raw_duration_seconds": 0.0,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q3_35556",
+      "physical_qubit": 3,
+      "logical_model_slot": 0,
+      "duration_ps": 35556,
+      "t1_ps": 179102820,
+      "t2_ps": 54361012,
+      "rounding_residual_ps": {
+        "T1": "-0.42722782000000",
+        "T2": "-0.43523814000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001791028195727722,
+      "raw_t2_seconds": 5.436101156476186e-05,
+      "raw_duration_seconds": 3.555555555555556e-08,
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "name": "idle_q3_100000",
+      "physical_qubit": 3,
+      "logical_model_slot": 0,
+      "duration_ps": 100000,
+      "t1_ps": 179102820,
+      "t2_ps": 54361012,
+      "rounding_residual_ps": {
+        "T1": "-0.42722782000000",
+        "T2": "-0.43523814000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001791028195727722,
+      "raw_t2_seconds": 5.436101156476186e-05,
+      "raw_duration_seconds": 1e-07,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q3_100000000",
+      "physical_qubit": 3,
+      "logical_model_slot": 0,
+      "duration_ps": 100000000,
+      "t1_ps": 179102820,
+      "t2_ps": 54361012,
+      "rounding_residual_ps": {
+        "T1": "-0.42722782000000",
+        "T2": "-0.43523814000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.0001791028195727722,
+      "raw_t2_seconds": 5.436101156476186e-05,
+      "raw_duration_seconds": 0.0001,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q4_0",
+      "physical_qubit": 4,
+      "logical_model_slot": 0,
+      "duration_ps": 0,
+      "t1_ps": 144673162,
+      "t2_ps": 40332333,
+      "rounding_residual_ps": {
+        "T1": "0.23194067000000",
+        "T2": "-0.42724882000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.00014467316223194067,
+      "raw_t2_seconds": 4.033233257275118e-05,
+      "raw_duration_seconds": 0.0,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "name": "idle_q4_35556",
+      "physical_qubit": 4,
+      "logical_model_slot": 0,
+      "duration_ps": 35556,
+      "t1_ps": 144673162,
+      "t2_ps": 40332333,
+      "rounding_residual_ps": {
+        "T1": "0.23194067000000",
+        "T2": "-0.42724882000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.00014467316223194067,
+      "raw_t2_seconds": 4.033233257275118e-05,
+      "raw_duration_seconds": 3.555555555555556e-08,
+      "comparisons": 21,
+      "maximum_absolute_error": 5.551115123125783e-17
+    },
+    {
+      "name": "idle_q4_100000",
+      "physical_qubit": 4,
+      "logical_model_slot": 0,
+      "duration_ps": 100000,
+      "t1_ps": 144673162,
+      "t2_ps": 40332333,
+      "rounding_residual_ps": {
+        "T1": "0.23194067000000",
+        "T2": "-0.42724882000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.00014467316223194067,
+      "raw_t2_seconds": 4.033233257275118e-05,
+      "raw_duration_seconds": 1e-07,
+      "comparisons": 21,
+      "maximum_absolute_error": 2.220446049250313e-16
+    },
+    {
+      "name": "idle_q4_100000000",
+      "physical_qubit": 4,
+      "logical_model_slot": 0,
+      "duration_ps": 100000000,
+      "t1_ps": 144673162,
+      "t2_ps": 40332333,
+      "rounding_residual_ps": {
+        "T1": "0.23194067000000",
+        "T2": "-0.42724882000000"
+      },
+      "gate_length_residual_ps": "-0.44444444444000",
+      "snapshot_date": "2024-05-27T15:27:23-03:00",
+      "raw_t1_seconds": 0.00014467316223194067,
+      "raw_t2_seconds": 4.033233257275118e-05,
+      "raw_duration_seconds": 0.0001,
+      "comparisons": 21,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    }
+  ],
+  "scope": "bounded u1 measurement loops and zero-temperature Markovian idle models from a historical snapshot; no QPU binary execution, live calibration, readout/gate/crosstalk fitting, correction or hardware equivalence",
+  "compiler_commit": "4af9bf84b16d288798bde5794de38da8f50a061e",
+  "compiler_dirty": false,
+  "validator_sha256": "c741b2fca44b192d7b512dc03ac5ac1e76b7f0e0d5a1c086c73951170f2fabc4"
+}

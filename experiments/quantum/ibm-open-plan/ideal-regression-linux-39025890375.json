@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "fixture_sha256": "84abf69043bccb5f6b120188438f087f5dac5f20d458eea5a9241158859d1605",
+  "package_sha256": "253df71d1faf5ca190a90f03f62fa71fe4f8917653ff148851ee31f22b92f3c1",
+  "package_version": 12,
+  "tolerance": 2e-10,
+  "circuits": [
+    {
+      "circuit": "bell",
+      "qubits": 2,
+      "input_states": 21,
+      "native_and_roundtrip_comparisons": 42,
+      "maximum_absolute_error": 3.3306690738754696e-16,
+      "qasm_sha256": "b50088f79370717969e1e4ec49055a69ab7fcd322102a3af166cf380913b7b89"
+    },
+    {
+      "circuit": "bell_coherent",
+      "qubits": 2,
+      "input_states": 21,
+      "native_and_roundtrip_comparisons": 42,
+      "maximum_absolute_error": 6.661338147750939e-16,
+      "qasm_sha256": "12e99e87d3142c68184c5eda2bdeeec9d96ac672b485705ce56222f3a7075ad2"
+    },
+    {
+      "circuit": "hh",
+      "qubits": 1,
+      "input_states": 6,
+      "native_and_roundtrip_comparisons": 12,
+      "maximum_absolute_error": 7.771561172376096e-16,
+      "qasm_sha256": "f42fc0824153a20c8b8afd1ad8aebd19b49afd53fd8beb71eec6a6037b758bbe"
+    },
+    {
+      "circuit": "hzh",
+      "qubits": 1,
+      "input_states": 6,
+      "native_and_roundtrip_comparisons": 12,
+      "maximum_absolute_error": 7.771561172376096e-16,
+      "qasm_sha256": "98b95a21f3ea1e612cf4dcfef44047d553f1ecc0629596564f5dafa13ee011c8"
+    },
+    {
+      "circuit": "feedforward",
+      "qubits": 1,
+      "input_states": 6,
+      "native_and_roundtrip_comparisons": 12,
+      "maximum_absolute_error": 3.3306690738754696e-16,
+      "qasm_sha256": "9a1f6ebfbf3b347aed333309f74c0b15f54b87067366993119871d362057d3d8"
+    },
+    {
+      "circuit": "reset_entangled",
+      "qubits": 2,
+      "input_states": 21,
+      "native_and_roundtrip_comparisons": 42,
+      "maximum_absolute_error": 4.440892098500626e-16,
+      "qasm_sha256": "88ecc438d8c8eb7160b8592a0ed3a0c37dcdaf33635d05631cc3e3d18867f48b"
+    },
+    {
+      "circuit": "ghz",
+      "qubits": 3,
+      "input_states": 73,
+      "native_and_roundtrip_comparisons": 146,
+      "maximum_absolute_error": 2.220446049250313e-16,
+      "qasm_sha256": "ebad76806b9a334bf29b37088de7ea9b40f24fe14a73625d7c58f29634f018e9"
+    }
+  ],
+  "input_states": 154,
+  "comparisons": 308,
+  "scope": "authored ideal logical circuits; independent dense-density/Kraus calculation; own restricted QASM roundtrip; f64 finite-corpus evidence, not full equivalence or hardware execution",
+  "compiler_executable_sha256": "eff89872733d64879e7b8aa6508111dafa7804c19e2d1a0922908aeb6f40e964",
+  "validator_sha256": "2eaf5f10001a342f56f50a9d1f9e02d4ae23ecf4a235c7befe5d27bc0e3deb56",
+  "compiler_commit": "4af9bf84b16d288798bde5794de38da8f50a061e",
+  "compiler_dirty": false
+}

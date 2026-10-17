@@ -355,3 +355,27 @@ class ArchivedEvidence(unittest.TestCase):
         self.assertFalse(
             q.read_json(root / "modeled-comparison.json")["hardware_execution"]
         )
+
+    def test_linux_qualification_matches_local_pin_and_packages(self):
+        for prefix in (
+            "validation",
+            "ideal-regression",
+            "channels-regression",
+            "execution-regression",
+            "integer-regression",
+        ):
+            local = q.read_json(FIXTURE / (prefix + "-local.json"))
+            linux = q.read_json(FIXTURE / (prefix + "-linux-39025890375.json"))
+            for key in (
+                "status",
+                "compiler_commit",
+                "validator_sha256",
+                "package_sha256",
+            ):
+                self.assertEqual(local[key], linux[key])
+            self.assertFalse(linux["compiler_dirty"])
+        report = q.read_json(FIXTURE / "validation-linux-39025890375.json")
+        self.assertFalse(report["hardware_execution"])
+        self.assertEqual(report["network_requests"], 0)
+        self.assertEqual(report["comparisons"], 684)
+        self.assertEqual(report["codec_comparisons"], 684)

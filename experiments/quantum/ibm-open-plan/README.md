@@ -74,7 +74,23 @@ at 8 MiB. Archived JSON preserves parsed values, not original HTTP framing.
 
 Create an [IBM Quantum Open Plan instance](https://quantum.cloud.ibm.com/docs/en/guides/plans-overview)
 in us-east, then configure the two environment variables locally. Do not put the
-API key in a chat, command argument, source file or artifact. The current plan
+API key in a chat, command argument, source file or artifact.
+
+On the platform, select us-east, open Instances and create an Open Plan instance.
+Create the API key on the dashboard and copy the full instance CRN from Instances.
+In a macOS zsh terminal, enter the values interactively:
+
+```zsh
+read -s "IQP_API_TOKEN?IBM API key: "
+export IQP_API_TOKEN
+read "IBM_QUANTUM_CRN?Open Plan instance CRN: "
+export IBM_QUANTUM_CRN
+```
+
+The key input is hidden and is not placed in shell command history. These exports
+apply only to that terminal and its child processes; they do not update an
+already-running Codex app. Run the adapter commands below in the same terminal.
+No Qiskit installation is needed for this adapter. The current plan
 normally supplies 10 minutes per 28-day rolling window; account eligibility and
 any promotional allocation must be checked on the platform.
 
@@ -147,3 +163,15 @@ quantum regressions. Original package/source hashes are unchanged.
 Pinned research job `ibm-circuit-projection` reruns this stage without legacy
 assets or credentials. CI results are separate from these local observations;
 no unobserved run or hardware result is certified by this record.
+
+## Linux reproduction
+
+Research [39025890375 / ibm-circuit-projection](https://github.com/fission-systems/fission-research/actions/runs/39025890375)
+passed at the same clean native pin: 30 quantum/IBM native tests, 13 adapter
+checks, 684 physical-instrument and 684 modeled-codec comparisons, and frozen
+308/678/420/1,344 quantum regressions plus loop/partial checks. Five parsed JSON
+reports are archived as `*-linux-39025890375.json`; package/oracle/adapter hashes
+match local evidence. This job used no credentials or QPU requests. Entire
+workflow and native PR CI results are separate from this successful job.
+Local research suite after Linux integrity coverage: 86 passed / 0 skipped
+(14 adapter-specific), with FSLC/FSL_X86 integration enabled.

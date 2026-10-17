@@ -25,9 +25,16 @@
     "integer-regression-local.json": "ba8e847df90a5924cccdcd5c248126285322a13d944531961ba5799ee38d0d94",
     "protocol-sources.lock.json": "3600e1fbe57d18c291919419133b69b5479dfefacbfb5f9859bcbdfbc028040e",
     "synthetic-snapshot.json": "6e898b7f1dc5b9bd1e2b743ee700a2511514360f67677837292d6a6bf1f13f13",
-    "validation-local.json": "c6884fc52edfc061671996096b6acc0019cdac5a1039e7914614fc8c2c316c68"
+    "validation-local.json": "c6884fc52edfc061671996096b6acc0019cdac5a1039e7914614fc8c2c316c68",
+    "validation-linux-39025890375.json": "5f79c52188fb36469f22db024bc5547c5ed9786421b215571d6adfd76dc5b179",
+    "ideal-regression-linux-39025890375.json": "74cd716d763e41cae74b3af669951c8deb70c9349e0085c9acb13cea85633baa",
+    "channels-regression-linux-39025890375.json": "82ac8d24ece4986efa3ed80832aff62981ef82202b59524623473b18e54ff67b",
+    "execution-regression-linux-39025890375.json": "040f1336cc3bf5292f8c6394203e6eeffc6b68ddb57e2d00e9f0a2c85f5ca155",
+    "integer-regression-linux-39025890375.json": "a5d47a6225607c8ee22360214eaa3532ac54492b1cf4a11d8329f8a01452f953"
   },
   "runtime_dependencies_added": 0,
   "canonical_operations_added": 0,
-  "hardware_execution": false
+  "hardware_execution": false,
+  "linux_run": "https://github.com/fission-systems/fission-research/actions/runs/39025890375",
+  "linux_job_id": 117376668732
 }

@@ -742,3 +742,13 @@ is running. Fission main remains untouched; PR #176 remains open.
 Full local research Python suite: **85 passed / 0 skipped**, with FSLC/FSL_X86
 integration enabled; adapter-specific suite 13 passed. Clean native reports and a
 synthetic, non-submittable Bell XX review bundle are archived with hash coverage.
+
+Research **39025890375 / ibm-circuit-projection passed** at clean native 4af9bf84b:
+30 quantum/IBM native tests, 13 adapter checks, 684 physical-instrument and 684
+modeled-codec comparisons, and frozen 308/678/420/1,344 quantum regressions plus
+loop/partial checks. Five Linux reports are archived with matching native pin,
+package/oracle/adapter hashes and `hardware_execution:false`. After adding Linux
+integrity coverage, local research Python is **86 passed / 0 skipped** (14
+adapter-specific). These observations do not establish live API or QPU support.
+The user will set up the account; the guide includes dashboard/API-key/CRN steps
+and terminal-local zsh environment setup. No credential was requested in chat.

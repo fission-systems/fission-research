@@ -1,0 +1,103 @@
+{
+  "status": "passed",
+  "hardware_execution": false,
+  "network_requests": 0,
+  "comparisons": 684,
+  "codec_comparisons": 684,
+  "maximum_absolute_error": 4.440892098500626e-16,
+  "tolerance": 2e-10,
+  "source_sha256": "84abf69043bccb5f6b120188438f087f5dac5f20d458eea5a9241158859d1605",
+  "package_sha256": "253df71d1faf5ca190a90f03f62fa71fe4f8917653ff148851ee31f22b92f3c1",
+  "compiler_executable_sha256": "eff89872733d64879e7b8aa6508111dafa7804c19e2d1a0922908aeb6f40e964",
+  "inventory": [
+    {
+      "entangler": "cx",
+      "instruction": "bell",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "bell_coherent",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "hh",
+      "comparisons": 6,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "hzh",
+      "comparisons": 6,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "feedforward",
+      "comparisons": 6,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "reset_entangled",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cx",
+      "instruction": "ghz",
+      "comparisons": 216,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "bell",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "bell_coherent",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.6653345369377348e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "hh",
+      "comparisons": 6,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "hzh",
+      "comparisons": 6,
+      "maximum_absolute_error": 4.440892098500626e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "feedforward",
+      "comparisons": 6,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "reset_entangled",
+      "comparisons": 36,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    },
+    {
+      "entangler": "cz",
+      "instruction": "ghz",
+      "comparisons": 216,
+      "maximum_absolute_error": 1.1102230246251565e-16
+    }
+  ],
+  "scope": "authored seven linear logical circuits, basis inputs and every X/Y/Z terminal observation; native CX/CZ lowering, independent dense physical-gate oracle and modeled Runtime codec. No IBM parser, live API acceptance, QPU or noise validation.",
+  "compiler_commit": "4af9bf84b16d288798bde5794de38da8f50a061e",
+  "compiler_dirty": false,
+  "validator_sha256": "3baabaf858788bc5b819570a33345855454eb925bf45e8b722e4f40702dbb055",
+  "adapter_sha256": "28315494f4dbcb84a8d478e4d0f72ef9600169ea5b1d1f37f7c0f83aab1f10ed"
+}
