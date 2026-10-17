@@ -526,3 +526,47 @@ comparisons, matching package/QASM locks. [Archived Linux report](../experiments
 is separately hashed. Other jobs were still in progress at archival time.
 Native PR-merge CI **39015128385** retains the earlier Sleigh test-build failure
 (u128 context arguments passed to u64 APIs); no full product CI success is claimed.
+
+## 2026-10-17 — declared quantum channels, acyclic CFG and SLEIGH integration
+
+Native `1fe65569e84e92bd6fd7d1a3b4772580ac8da975` adds bit flip, phase flip and
+amplitude damping with rational unsigned 8-bit numerator/denominator (d>0, n<=d).
+FSLC v13 preserves these typed effects; ideal quantum packages retain v12 and
+original bytes. Hidden environment alternatives never become guest SSA values or
+measurement records. Acyclic existing FIR blocks, u1 conditions and parallel edge
+parameters execute with joint quantum state. All syntactic cycles refuse before
+execution, including untaken cycles. No separate quantum IR or SDK dependency.
+OpenQASM projection rejects noise/CFG; no silent effect erasure.
+
+[New archived experiment](../experiments/quantum/channels-cfg/README.md): 33 cases,
+678 input comparisons with a dense-density/Kraus oracle passed, tolerance 2e-10,
+maximum absolute error 4.440892098500626e-16. Measurement IDs/history, SSA slots,
+conditional density and probability are checked, including path-local undefined
+slots and hidden channel alternatives. These are authored logical fixtures and an
+independent numerical algorithm, not an independent ISA/parser or hardware oracle.
+The prior seven ideal cases also pass 308 original/roundtrip comparisons with
+unchanged portable package/QASM hashes. Both archived reports use clean native
+commit 1fe65569e. Previous experiment artifacts remain unchanged.
+
+Local: quantum integration 15 passed; full fission-fsl with x86 99 passed / 0
+skipped; strict Clippy with x86 and formatting passed. Research Python 59 passed
+with the native FSL_X86 adapter fixture enabled. No new real-x86 execution corpus
+or DecBench score was measured.
+
+Integration commit `d3737ba8f23489ef54589539354558a624fd2bd5` merged main into the
+experimental branch and changed the two newly introduced SLEIGH test calls to
+existing `apply_to_wide` / `new_wide`, preserving 128-bit context. The two targeted
+probe tests and SLEIGH library regression 359 passed (3 skipped). Product main
+was not committed or pushed. Prior failure run 39015128385 is historical; run
+39019223042 was superseded/cancelled by the next push. Latest-head PR CI
+[39019512207](https://github.com/fission-systems/Fission/actions/runs/39019512207)
+is still running at this record; local success is not full-PR CI acceptance.
+
+A separate pinned research CI job `quantum-channels-cfg` runs the new experiment
+and the ideal regression without legacy asset trees.
+
+[QPU binary investigation](qpu-binary-boundary.md) pins an eQASM assembler source
+reference and identifies opcode/layout configuration differences from the paper.
+No physical binary decode/execution or calibrated device model was added. Cyclic
+quantum CFG, timing/pulses, general classical control, general OpenQASM and real
+hardware remain unsupported.

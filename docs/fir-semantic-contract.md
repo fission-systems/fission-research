@@ -87,3 +87,18 @@ effect SSA, 일반 quantum CFG를 구현했다는 뜻은 아니다.
 ensemble을 f64로 계산한다. 이것은 임의 양자 채널, noisy hardware 또는
 기호적 동치 증명이 아니다. 제한된 OpenQASM 입력은 같은 FSL compiler로
 내려오며 출력도 같은 FIR을 소비한다. [구현·수치 검증·미지원 범위](../experiments/quantum/ideal-circuits/README.md).
+
+## 2026-10-17 — 명시적 채널과 비순환 양자 CFG
+
+같은 `FirOp::Quantum`에 bit flip·phase flip·amplitude damping을 추가했다.
+확률은 unsigned 8-bit 정수 두 개의 비율이며 0 <= n <= d, d > 0을 검증한다.
+환경의 숨은 결과를 SSA 값·측정 기록으로 노출하지 않는다. joint state에
+채널을 적용하고 관찰 시 숨은 대안의 밀도행렬을 합산한다. 이는 명시한
+수학 모델이며 실제 장치의 보정된 노이즈를 복구했다는 주장이 아니다.
+
+기존 block/edge/parameter/terminator를 그대로 실행한다. 조건은 고전 u1이며
+edge 인자는 동시에 전달한다. 합류 자체는 양자를 측정하지 않는다. 모든
+정적 경로에서 cycle을 검사하고 있으면 실행 전에 거부한다. 일반 quantum
+CFG·loop·quantum control superposition·timing·CPU/GPU 혼합 실행은 여전히
+미지원이다. OpenQASM 출력은 이 확장 효과를 보존할 수 없어 거부한다.
+[33개 회로의 조건부 상태·SSA 검증](../experiments/quantum/channels-cfg/README.md).

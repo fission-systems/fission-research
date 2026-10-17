@@ -68,3 +68,12 @@ copying a project's code or instruction databases into FSL.
 
 See [GPU FSL reference design](../docs/gpu-fsl-reference-design.md) for the
 source-backed compiler requirements and implementation order.
+
+## Quantum-control source reference (2026-10-17)
+
+`Vendor/eqasm-assembler` pins [QE-Lab/eQASM_Assembler](https://github.com/QE-Lab/eQASM_Assembler)
+at `9b024494558287a937cdd5a8ccd63fcaa784b1c4`. Its Apache-2.0 license, QMAP and
+driver source/header hashes are separately recorded under `quantum_repository`
+in the lock. It was not built or invoked. Its configuration differs from the
+CC-Light paper; neither opcode map is a universal physical gate specification.
+[Investigation and input contract](../docs/qpu-binary-boundary.md).

@@ -171,3 +171,25 @@ license = "MIT"
 copyright = "Copyright (c) 2026 Advanced Micro Devices, Inc., or its affiliates."
 instruction_records = 1264
 encoding_records = 46
+
+# Quantum-control reference captured separately from the original GPU snapshot.
+[[quantum_repository]]
+name = "eqasm-assembler"
+captured_at = "2026-10-17"
+path = "Vendor/eqasm-assembler"
+url = "https://github.com/QE-Lab/eQASM_Assembler.git"
+commit = "9b024494558287a937cdd5a8ccd63fcaa784b1c4"
+branch_at_capture = "develop"
+shallow = true
+license_file = "qisa-as/LICENSE"
+license_sha256 = "a8ad31b1c3f40dca5a84119351b8fa8ddc868edd77fad8a8ebf6d8f2d16fa4ae"
+working_tree_status = ""
+purpose = "source inspection only; not built, linked or executed; no device parity claim"
+qmap_file = "qisa-as/qisa_opcodes.qmap"
+qmap_sha256 = "16101a49c324f2d834809be38710c0e5a47687bf10428303ccbeec233c1d9108"
+driver_header_file = "qisa-as/qisa_driver.h"
+driver_header_sha256 = "973beb3ab3489ab833a095458310cadbf971ac9e9fd8ae107a9695d27bd112e3"
+driver_source_file = "qisa-as/qisa_driver.cpp"
+driver_source_sha256 = "b5cd6050f4900d7cf4b792c6767180b22aced2f0fb093f7e74a58ff1ab9f3d29"
+readme_file = "qisa-as/README.md"
+readme_sha256 = "f2ae99fed9b13efb2fef7dfadee362fdc7eb739de6b0f6f5d01538a937ac79de"
