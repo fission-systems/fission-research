@@ -53,6 +53,16 @@ class QuantumExecution(unittest.TestCase):
             self.assertEqual(report["status"], "passed")
             self.assertEqual(report["compiler_commit"], lock["compiler_commit"])
             self.assertEqual(
+                report["validator_sha256"],
+                lock.get("local_validator_sha256", lock["validator_sha256"]),
+            )
+            linux = json.loads((root / "validation-linux-39021701663.json").read_text())
+            self.assertEqual(linux["compiler_commit"], lock["compiler_commit"])
+            self.assertFalse(linux["compiler_dirty"])
+            self.assertEqual(linux["status"], "passed")
+            self.assertEqual(linux["validator_sha256"], lock["validator_sha256"])
+            self.assertEqual(linux["package_sha256"], lock["package_sha256"])
+            self.assertEqual(
                 q.common.digest(root / "validation-local.json"), lock["report_sha256"]
             )
 

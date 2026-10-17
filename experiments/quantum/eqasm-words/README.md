@@ -72,3 +72,13 @@ failure. No upstream instruction logic or tracked source is changed. The origina
 local report and its validator hash/revision are preserved;
 `validation-local-portable-build.json` records the adjusted recipe and again
 passes 200 words / six refusals at the same clean native pin.
+
+## Linux CI
+
+[Run 39021701663 / quantum-bounded-and-inputs](https://github.com/fission-systems/fission-research/actions/runs/39021701663)
+passed at the same clean native pin. Raw Linux reports are archived here and
+hashed in source.lock.json. Native quantum integration 21 passed; loop/idle-model
+checks and the separate reference GCC build + 200 word comparisons passed, along
+with old ideal/channel regressions. Latest-head Fission full PR CI
+[39021009277](https://github.com/fission-systems/Fission/actions/runs/39021009277)
+also passed. Research job evidence is separate from other research workflow jobs.

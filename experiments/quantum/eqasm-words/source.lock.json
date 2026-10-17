@@ -14,9 +14,12 @@
     "qisa.fsl": "e65ff25ab6da9a3f42fdc961a880886283c079181fcba652ea52eed73dc1f8e5",
     "corpus.qisa": "b1a3652ca124711c77970f564a57bac031cdad84aea9de627656be4bd57033bb",
     "corpus.bin": "5d51b8a8741463884e827417ca2ae9a8f7b95adab307f7e398dc572012748279",
-    "validation-local-portable-build.json": "08fc2b6132838c8dbf3600d95dcbc4a793abc0e61de542778e007bab1d7cf802"
+    "validation-local-portable-build.json": "08fc2b6132838c8dbf3600d95dcbc4a793abc0e61de542778e007bab1d7cf802",
+    "validation-linux-39021701663.json": "4908b8c0cdddb100f3ec83aef7f3a8fa520f6e0ec7f71b7459b14fa8abefcb99"
   },
   "local_validator_sha256": "5497597cd1a40576184ea9cf0013578a8aa9e1669830fee0880852c5b1e2709d",
   "local_validator_revision": "7901290851602ee471991628cdce5fa24aee80ad",
-  "portable_report_sha256": "08fc2b6132838c8dbf3600d95dcbc4a793abc0e61de542778e007bab1d7cf802"
+  "portable_report_sha256": "08fc2b6132838c8dbf3600d95dcbc4a793abc0e61de542778e007bab1d7cf802",
+  "linux_run": "https://github.com/fission-systems/fission-research/actions/runs/39021701663",
+  "linux_job": "quantum-bounded-and-inputs"
 }

@@ -626,3 +626,13 @@ is running; previous-head green does not certify the new implementation. A new
 pinned research job `quantum-bounded-and-inputs` covers this phase separately.
 Fission main was not committed/pushed; the experiment stays on
 `codex/fsl-jvm-iadd-parity`, PR #176 remains open.
+
+Latest-head Fission full PR CI **39021009277 passed** at 4a3c48297. Research
+**39021701663 / quantum-bounded-and-inputs passed** after qualifying the separate
+upstream GCC build with its missing `<limits>` header explicitly included. No
+instruction logic was modified. Linux reproduces native quantum 21 tests, 420
+idle-model comparisons, six terminating loop inputs and the partial retry check,
+200 word format comparisons/roundtrips and old 308/678 regressions. Raw reports
+are archived under both new experiment directories with source/package/validator
+hashes and clean compiler revision. Earlier failed reference-build attempts are
+recorded in the QISA experiment; original local evidence remains preserved.
