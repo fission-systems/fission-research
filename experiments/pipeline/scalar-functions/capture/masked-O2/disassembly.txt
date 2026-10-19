@@ -1,0 +1,10 @@
+
+/Users/sjkim1127/Documents/ChatGPT/fission-research/artifacts/scalar-functions/published/masked-O2/original.elf:	file format elf64-x86-64
+
+Disassembly of section .text:
+
+0000000000401000 <candidate>:
+  401000: 48 21 f7                     	andq	%rsi, %rdi
+  401003: 48 09 d7                     	orq	%rdx, %rdi
+  401006: 48 8d 47 11                  	leaq	0x11(%rdi), %rax
+  40100a: c3                           	retq

@@ -1,5 +1,14 @@
 # 현재 x86 FSL/FIR 작업 이관 — 2026-10-16
 
+> 2026-10-19 scalar function follow-up: [owned ELF → FIR → C](../experiments/pipeline/scalar-functions/README.md),
+> native `0364df063`. Restricted explicit SysV AMD64 integer leaf admission,
+> acyclic CFG, return/control inputs, stack/preserved GPR checks and ordinary C
+> machine-word signatures. Three authored functions × O1/O2; 24,576 C O0/O2
+> execution comparisons match extracted original bytes via Rosetta. No general
+> ABI/source prototype, calls, loops, data memory or DecBench eligibility claim.
+> Previous loader-only compile records below are historical. No new domains.
+
+
 먼저 [자산 독립 ELF 경로](../experiments/pipeline/owned-elf/README.md)를 읽는다.
 새 `decompile-owned`는 내장 FSL과 no-LoadSpec ELF metadata 경로를 사용한다.
 일반 함수/ABI 복구와 제품 전체 전환은 아직 미완료다. 아래는 이전 단계 기록이다.

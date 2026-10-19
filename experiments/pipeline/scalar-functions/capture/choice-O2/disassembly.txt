@@ -1,0 +1,14 @@
+
+/Users/sjkim1127/Documents/ChatGPT/fission-research/artifacts/scalar-functions/published/choice-O2/original.elf:	file format elf64-x86-64
+
+Disassembly of section .text:
+
+0000000000401000 <candidate>:
+  401000: 48 89 f0                     	movq	%rsi, %rax
+  401003: 48 85 ff                     	testq	%rdi, %rdi
+  401006: 74 07                        	je	0x40100f <candidate+0xf>
+  401008: 48 31 f8                     	xorq	%rdi, %rax
+  40100b: 48 01 d0                     	addq	%rdx, %rax
+  40100e: c3                           	retq
+  40100f: 48 83 c0 07                  	addq	$0x7, %rax
+  401013: c3                           	retq

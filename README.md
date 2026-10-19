@@ -103,17 +103,22 @@ architecture or device support. Detailed observations and revisions are in
 | Area | Implemented slice | Still open |
 |---|---|---|
 | **Owned x86 pipeline** | 48 encoding rules / 150 width-specific FIR bodies; selected ELF i386/x86-64 spans; register, flag, bounded memory and stack effects. No external instruction decoder or SLEIGH/P-code fallback in this route. | Full x86 coverage, function CFG discovery, calls and general source ABI recovery. |
-| **Loader profiles** | An opt-in owned catalog separates ELF header facts, profile selection and mapping; two authored rules compile to `.fslpc` and pin the encoding/FIR package. Build/static checks only. | Runtime validation, opinion/ldefs corpus import, compiler/ABI policy and product consumer migration. |
+| **Loader profiles** | An opt-in owned catalog separates ELF header facts, profile selection and mapping; two authored rules compile to `.fslpc` and pin the encoding/FIR package. Runtime selection and package binding are exercised by the scalar-function experiment. | opinion/ldefs corpus import, general compiler/ABI policy and product consumer migration. |
+| **Scalar C functions** | Owned ELF catalog → FIR CFG/dependency/ABI checks → C; three authored functions × O1/O2, 24,576 recompiled execution comparisons. | Calls, loops, data memory, source types and general function recovery. |
 | **GPU** | GFX900 encoding experiments; SGPR/SCC scalar add/carry and wave64 `v_add_u32` with masked lane writes; limited CUDA C++/PTX projections. | Kernel ABI/layout integration, memory, divergence and hardware execution validation. |
 | **VM** | JVM `iadd` decode and multiple FIR projections. | Complete JVM methods, CPython and WASM frontends. |
 | **Quantum** | Small reference circuits, declared noise channels, bounded control flow, limited OpenQASM and reference QISA words; one actual IBM Bell-circuit observation. | General QPU binaries, current device calibration correction and general quantum programs. |
 | **FPGA** | Eight authored FIR functions through Verilog, iCE40 synthesis, placement/routing and HX8K/CT256 bitstream generation. | Board pin/electrical contracts, clocked runtime, board execution and formal bitstream semantics. |
 | **Other computational models** | DSP saturation, scalar tensor dot, MAC, discrete LIF/RC steps, PIM placement metadata and a dataflow DAG. The same kernels can be mapped to FPGA. | Device ISAs/runtimes, tensor storage/layout, event timing, PIM memory effects, continuous dynamics and CGRA scheduling. |
-| **Output backends** | Checked C, Rust and Go state-code projections; bounded GPU and HDL outputs. | Ordinary recovered function signatures and complete Python/Java output. |
+| **Output backends** | Checked C, Rust and Go state-code projections; bounded GPU and HDL outputs; ordinary C machine-word functions for an explicit x86-64 integer leaf contract. | Original source prototypes, general ABI recovery and complete Python/Java output. |
 | **Legacy asset migration** | SLA structural parsing, one eBPF semantic leaf, register/ABI metadata and library candidate migration. | Complete replacement of SLEIGH/SLA/cspec and product integration. |
 | **DecBench** | Sample-set static coverage adapter and 250 measured entry addresses. | Submission-ready function C output and scored evaluation. Current eligible output: **0 / 250**. |
 
 ## Evidence
+
+The [scalar-function experiment](experiments/pipeline/scalar-functions/README.md)
+connects the owned loader catalog to ordinary C machine-word functions. Its
+compiler-constrained authored corpus is separate from DecBench eligibility.
 
 Experiments retain inputs, compiler pins, hashes, tool versions, outcomes and
 limitations. These results measure different contracts and are not a single
@@ -153,6 +158,7 @@ For actual regeneration, follow the experiment's prerequisites and commands:
 
 - [Owned ELF → FSL → FIR → source](experiments/pipeline/owned-elf/README.md)
 - [Owned loader profile catalog](experiments/migration/loader-profiles/README.md)
+- [Owned ELF → FIR → scalar C functions](experiments/pipeline/scalar-functions/README.md)
 - [FIR → RTL → iCE40 bitstream](experiments/fabric/ice40-hx8k/README.md)
 - [C/Rust/Go output contracts](experiments/output/backend-contract/README.md)
 - [Historical artifact reproduction](docs/reproduction.md), including `make reproduce`

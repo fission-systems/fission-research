@@ -1,0 +1,130 @@
+   Compiling fission-fsl v0.1.0 (/Users/sjkim1127/Fission.worktrees/fsl-jvm-iadd-parity/crates/fission-fsl)
+    Finished `test` profile [optimized + debuginfo] target(s) in 1.23s
+────────────
+ Nextest run ID 4b9a36f5-7101-4a2f-a488-cedaec495a5c with nextest profile: default
+    Starting 123 tests across 27 binaries
+        PASS [   0.014s] (  1/123) fission-fsl::backend registry_extension_is_open_and_duplicate_or_invalid_ids_refuse
+        PASS [   0.014s] (  2/123) fission-fsl::backend unsupported_operation_and_invalid_fir_never_produce_a_plan
+        PASS [   0.014s] (  3/123) fission-fsl::backend profile_runtime_memory_and_foreign_backend_plans_refuse
+        PASS [   0.015s] (  4/123) fission-fsl::control malformed_scopes_edges_types_ranges_and_terminators_refuse
+        PASS [   0.015s] (  5/123) fission-fsl::backend descriptor_contexts_are_admission_limits
+        PASS [   0.015s] (  6/123) fission-fsl::control cyclic_and_unbalanced_cfg_are_preserved_but_execution_refuses
+        PASS [   0.018s] (  7/123) fission-fsl::control v6_retains_blocks_and_legacy_versions_keep_their_bytes
+        PASS [   0.010s] (  8/123) fission-fsl::encoding foreign_or_tampered_observations_fail_before_reencoding
+        PASS [   0.010s] (  9/123) fission-fsl::encoding full_width_values_roundtrip_with_both_byte_orders
+        PASS [   0.012s] ( 10/123) fission-fsl::convert_state v7_round_trip_and_strict_conversion_validation
+        PASS [   0.012s] ( 11/123) fission-fsl::encoding decoded_gpu_semantics_cannot_execute_or_emit_native_code
+        PASS [   0.011s] ( 12/123) fission-fsl::encoding gpu_decode_roundtrip_and_edits_preserve_encoding
+        PASS [   0.013s] ( 13/123) fission-fsl::encoding unknown_profiles_truncation_extensions_and_invalid_edits_fail
+        PASS [   0.009s] ( 14/123) fission-fsl::fabric kernels_use_one_body_for_reference_hdl_and_dependencies
+        PASS [   0.009s] ( 15/123) fission-fsl::go_backend go_refuses_invalid_domains_and_foreign_plans
+        PASS [   0.010s] ( 16/123) fission-fsl::fabric fabric_refuses_state_quantum_cfg_and_unsupported_effects
+        PASS [   0.010s] ( 17/123) fission-fsl::fabric v15_package_and_eight_axes_keep_older_packages
+        PASS [   0.012s] ( 18/123) fission-fsl::fabric multiply_and_logical_shifts_mask_width_and_large_counts
+        PASS [   0.008s] ( 19/123) fission-fsl::go_backend go_uses_borrowed_fir_for_stack_register_and_wave_contexts
+        PASS [   0.008s] ( 20/123) fission-fsl::gpu_output gpu_contract_checks_peak_capacity_before_any_state_effects
+        PASS [   0.009s] ( 21/123) fission-fsl::gpu_output gpu_outputs_consume_the_same_packaged_fir_and_widths
+        PASS [   0.009s] ( 22/123) fission-fsl::gpu_output gpu_outputs_refuse_unmodeled_effects_invalid_ssa_and_wide_values
+        PASS [   0.012s] ( 23/123) fission-fsl::guest_control bad_targets_fail_closed_and_preserve_state
+        PASS [   0.007s] ( 24/123) fission-fsl::guest_control envelope_v2_round_trips_and_versions_are_enforced
+        PASS [   0.013s] ( 25/123) fission-fsl::guest_control reference_matches_independent_oracle_for_taken_untaken_join_and_alias
+        PASS [   0.011s] ( 26/123) fission-fsl::guest_control standalone_execution_and_emission_refuse_guest_pc_bodies
+        PASS [   0.057s] ( 27/123) fission-fsl::backend admitted_borrowed_plan_preserves_source_and_reports_unperformed_validation
+        PASS [   0.057s] ( 28/123) fission-fsl::backend x86_window_plans_keep_origin_mapping_and_transaction_contract
+        PASS [   0.010s] ( 29/123) fission-fsl::library owned_library_preserves_candidates_and_uncertainty
+        PASS [   0.009s] ( 30/123) fission-fsl::library owned_library_refuses_truncation_and_unknown_schema
+        PASS [   0.012s] ( 31/123) fission-fsl::memory_store store_version_roundtrip_typed_read_after_write_and_transaction_failure
+        PASS [   0.013s] ( 32/123) fission-fsl::migration migrated_cspec_has_typed_ordered_metadata_and_rejects_information_loss
+        PASS [   0.047s] ( 33/123) fission-fsl::go_backend go_x86_window_preserves_origins_and_mutable_transaction_requirement
+        PASS [   0.081s] ( 34/123) fission-fsl::convert_state register_state_cfg_exhaustive_aliasing_and_failure_preservation
+        PASS [   0.015s] ( 35/123) fission-fsl::quantum all_budgets_stop_before_the_unexecuted_effect
+        PASS [   0.064s] ( 36/123) fission-fsl::pipeline entry_selection_refuses_branch_unsupported_and_unterminated_input
+        PASS [   0.019s] ( 37/123) fission-fsl::quantum bell_coherence_measurement_and_reset_mixture_are_distinct
+        PASS [   0.050s] ( 38/123) fission-fsl::pipeline unsupported_selection_and_bytes_refuse_before_output_creation
+        PASS [   0.014s] ( 39/123) fission-fsl::quantum bit_constants_roundtrip_and_quantum_effects_never_enter_classical_control
+        PASS [   0.012s] ( 40/123) fission-fsl::quantum bounded_cycles_transfer_block_arguments_in_parallel
+        PASS [   0.072s] ( 41/123) fission-fsl::pipeline owned_catalog_selects_binds_and_projects_a_scalar_function
+        PASS [   0.013s] ( 42/123) fission-fsl::quantum bounded_loop_returns_only_after_every_path_terminates
+        PASS [   0.011s] ( 43/123) fission-fsl::quantum cfg_parameter_transfer_is_parallel_and_noise_outcomes_are_hidden
+        PASS [   0.009s] ( 44/123) fission-fsl::quantum damping_of_entangled_subsystem_preserves_partner_and_coherence
+        PASS [   0.012s] ( 45/123) fission-fsl::quantum channel_cfg_fixture_is_portable_and_all_bodies_have_bounded_execution
+        PASS [   0.009s] ( 46/123) fission-fsl::quantum explicit_noise_roundtrip_probability_and_projection_contracts
+        PASS [   0.009s] ( 47/123) fission-fsl::quantum h_involution_and_interference_on_complex_inputs
+        PASS [   0.012s] ( 48/123) fission-fsl::quantum input_and_expansion_bounds_refuse
+        PASS [   0.012s] ( 49/123) fission-fsl::quantum integer_cfg_fixture_roundtrips_and_executes_without_another_ir
+        PASS [   0.012s] ( 50/123) fission-fsl::quantum integer_counter_loops_reuse_canonical_arithmetic_and_keep_zero_trip_slots_absent
+        PASS [   0.013s] ( 51/123) fission-fsl::quantum invalid_resources_types_and_foreign_backends_refuse
+        PASS [   0.015s] ( 52/123) fission-fsl::quantum measurement_can_select_integer_loop_trip_count_and_all_paths_are_preflighted
+        PASS [   0.012s] ( 53/123) fission-fsl::quantum numerical_support_and_ir_extent_do_not_silently_truncate
+        PASS [   0.013s] ( 54/123) fission-fsl::quantum measurement_cfg_branches_join_through_canonical_block_parameters
+        PASS [   0.013s] ( 55/123) fission-fsl::quantum package_and_qasm_roundtrip_preserve_canonical_operations
+        PASS [   0.009s] ( 56/123) fission-fsl::quantum qasm_unknown_semantics_and_mutable_classical_slots_refuse
+        PASS [   0.187s] ( 57/123) fission-fsl::control compare_and_branch_evaluate_independently_and_failure_has_no_effects
+        PASS [   0.011s] ( 58/123) fission-fsl::quantum quantum_classical_integers_preserve_full_width_patterns_and_signed_conversions
+        PASS [   0.011s] ( 59/123) fission-fsl::quantum relaxation_package_and_decay_contract
+        PASS [   0.009s] ( 60/123) fission-fsl::quantum repeated_measurement_and_feedforward_use_post_measurement_state
+        PASS [   0.007s] ( 61/123) fission-fsl::quantum stopped_integer_loop_retains_counter_and_parallel_swaps_without_truncation
+        PASS [   0.012s] ( 62/123) fission-fsl::quantum stopped_loop_preserves_unfinished_probability_without_renormalizing
+        PASS [   0.011s] ( 63/123) fission-fsl::quantum untaken_cycles_and_cross_block_undefined_values_refuse
+        PASS [   0.011s] ( 64/123) fission-fsl::quantum upstream_qisa_word_formats_decode_but_execution_remains_unsupported
+        PASS [   0.010s] ( 65/123) fission-fsl::quantum_ibm measurement_slots_follow_canonical_ids_and_constant_conditions_are_folded
+        PASS [   0.010s] ( 66/123) fission-fsl::quantum_ibm directed_cx_never_uses_a_reverse_edge_as_a_forward_gate
+        PASS [   0.007s] ( 67/123) fission-fsl::quantum_ibm unsupported_semantics_or_ambiguous_preconditions_refuse
+        PASS [   0.008s] ( 68/123) fission-fsl::quantum_ibm physical_layout_preparation_observation_and_origins_are_explicit
+        PASS [   0.151s] ( 69/123) fission-fsl::pipeline embedded_spec_to_source_bundle_uses_only_owned_pipeline
+        PASS [   0.011s] ( 70/123) fission-fsl::recompilation rejects_malformed_ssa_and_types_at_all_boundaries
+        PASS [   0.012s] ( 71/123) fission-fsl::recompilation evaluator_matches_jvm_integer_wrap_and_preserves_failure_state
+        PASS [   0.010s] ( 72/123) fission-fsl::register_layout abi_links_ordered_register_identities_and_refuses_source_width_mismatch
+        PASS [   0.011s] ( 73/123) fission-fsl::register_layout binding_refusals_preserve_storage_before_effects
+        PASS [   0.014s] ( 74/123) fission-fsl::recompilation wider_fir_is_preserved_and_executable_outputs_reject_it
+        PASS [   0.007s] ( 75/123) fission-fsl::register_layout layout_validation_refuses_ambiguous_names_unknown_units_and_unbounded_storage
+        PASS [   0.009s] ( 76/123) fission-fsl::register_layout generic_flag_storage_binding_executes_carry_and_rejects_invalid_flag_bytes
+        PASS [   0.160s] ( 77/123) fission-fsl::pipeline entry_selection_stops_at_ret_and_preserves_span_semantics
+        PASS [   0.010s] ( 78/123) fission-fsl::register_layout source_views_share_storage_and_preserve_partial_write_bytes
+        PASS [   0.026s] ( 79/123) fission-fsl::register_layout bound_fir_matches_byte_storage_oracle_for_all_ebpf_selectors
+        PASS [   0.007s] ( 80/123) fission-fsl::register_state rejects_invalid_state_types_and_version_downgrade
+        PASS [   0.072s] ( 81/123) fission-fsl::register_state scalar_add_then_carry_input_matches_u64_addition
+        PASS [   0.309s] ( 82/123) fission-fsl::register_state refusal_preserves_all_state_and_cli_runs_decoded_fir
+        PASS [   0.316s] ( 83/123) fission-fsl::register_state carry_input_rejects_bad_types_versions_and_preserves_state
+        PASS [   0.324s] ( 84/123) fission-fsl::register_layout native_cli_links_and_executes_migrated_layout_without_sleigh
+        PASS [   0.545s] ( 85/123) fission-fsl::control native_cli_runs_packaged_branches_and_refuses_unsupported_backends
+        PASS [   0.027s] ( 86/123) fission-fsl::scalar_function branches_recover_both_return_paths_and_control_inputs
+        PASS [   0.031s] ( 87/123) fission-fsl::scalar_function c_symbol_and_abi_are_explicit_and_bounded
+        PASS [   0.039s] ( 88/123) fission-fsl::scalar_function leaf_recovers_observable_register_prefix
+        PASS [   0.106s] ( 89/123) fission-fsl::scalar_function refuses_unproved_function_contracts
+        PASS [   0.114s] ( 90/123) fission-fsl::sequence state_is_threaded_through_two_actual_scalar_bodies_with_independent_u128_oracle
+        PASS [   0.213s] ( 91/123) fission-fsl::sequence sequence_serialization_derives_origins_and_refuses_mismatched_inputs
+        PASS [   0.013s] ( 92/123) fission-fsl::sla_migration sla_derived_fir_executes_through_own_byte_storage_and_abi_link
+        PASS [   0.174s] ( 93/123) fission-fsl::sla_migration sla_derived_layout_and_canonical_fir_match_source_candidate
+        PASS [  16.382s] ( 94/123) fission-fsl::convert_state conversions_recompile_at_o0_o2_with_independent_widened_oracles
+        PASS [   0.008s] ( 95/123) fission-fsl::wave_state lane_domains_versions_and_invalid_observations_fail_closed
+        PASS [   0.007s] ( 96/123) fission-fsl::wave_state scalar_effects_run_once_at_zero_exec_and_generic_mask_bounds_are_checked
+        PASS [  16.713s] ( 97/123) fission-fsl::control block_arguments_and_comparisons_recompile_at_o0_o2_with_independent_oracles
+        PASS [   0.010s] ( 98/123) fission-fsl::wave_state wave_cli_executes_the_compiled_package
+        PASS [   0.057s] ( 99/123) fission-fsl::x86_immediate independent_displacement_literal_widths_and_flag_preservation
+        PASS [   0.027s] (100/123) fission-fsl::x86_immediate sib_rip_relative_and_address_override_consume_literal_before_next_pc
+        PASS [   0.042s] (101/123) fission-fsl::x86_immediate split_schema_is_validated_for_optional_bodies_and_fixed_bits
+        PASS [   0.022s] (102/123) fission-fsl::x86_immediate unsupported_immediates_truncation_and_late_failure_refuse_transactionally
+        PASS [   0.044s] (103/123) fission-fsl::x86_immediate versioned_split_binding_and_legacy_refusal
+        PASS [   0.023s] (104/123) fission-fsl::x86_memory cdecl_stack_dependencies_are_candidates_with_original_origins
+        PASS [   0.023s] (105/123) fission-fsl::x86_memory memory_read_guard_and_late_ret_failure_preserve_all_caller_state
+        PASS [   0.018s] (106/123) fission-fsl::x86_memory unknown_control_and_unmigrated_memory_effects_refuse
+        PASS [   0.029s] (107/123) fission-fsl::x86_stateful frame32_and_stack_store_forwarding_preserve_entry_frame
+        PASS [   0.021s] (108/123) fission-fsl::x86_stateful late_return_and_budget_failure_roll_back_registers_flags_and_memory
+        PASS [   0.039s] (109/123) fission-fsl::x86_stateful partial_and_unknown_store_aliases_remain_candidates
+        PASS [   0.045s] (110/123) fission-fsl::x86_stateful push_pop_stack_pointer_alias_and_extended_register_contracts
+        PASS [  16.974s] (111/123) fission-fsl::recompilation c_and_rust_recompile_same_fir_and_match_state_at_two_optimization_levels
+        PASS [  18.204s] (112/123) fission-fsl::convert_state register_cfg_recompiles_and_cli_runs_same_packaged_fir
+        PASS [  17.761s] (113/123) fission-fsl::sequence structured_bodies_share_state_and_keep_origins_in_sequence_cli
+        PASS [  18.176s] (114/123) fission-fsl::wave_state generic_mask_and_scalar_effect_contracts_recompile
+        PASS [  19.588s] (115/123) fission-fsl::register_state decoded_scalar_add_matches_independent_oracle_and_c_rust_recompilation
+        PASS [  23.040s] (116/123) fission-fsl::migration migrated_sleigh_leaf_executes_and_recompiles_without_sla_dependency
+        PASS [  23.174s] (117/123) fission-fsl::migration migrated_sla_template_executes_and_recompiles_without_sla_dependency
+        PASS [  29.014s] (118/123) fission-fsl::sequence empty_register_or_flag_banks_are_explicit_source_contracts
+        PASS [  30.781s] (119/123) fission-fsl::register_state structured_register_carry_preserves_effects_across_branch_and_join
+        PASS [  20.453s] (120/123) fission-fsl::wave_state wave64_matches_independent_oracle_and_c_rust_recompilation
+        PASS [  47.402s] (121/123) fission-fsl::register_state carry_input_matches_oracle_and_recompilation_across_widths
+        PASS [  52.695s] (122/123) fission-fsl::guest_control c_and_rust_recompilation_match_reference_and_oracle_at_o0_and_o2
+        PASS [  58.509s] (123/123) fission-fsl::sequence scalar_sequence_c_rust_recompilation_preserves_carry_and_aliases
+────────────
+     Summary [  59.082s] 123 tests run: 123 passed, 0 skipped

@@ -1,0 +1,233 @@
+{
+  "contract": 1,
+  "status": "passed",
+  "host": "macOS-26.5.1-arm64-arm-64bit",
+  "original_execution": "exact relocation-free ELF function bytes via Rosetta x86-64",
+  "source_reference_execution": "host-native compiled C",
+  "native_commit": "0364df0634299c8106b50dcdaa94daee4b181f32",
+  "native_dirty": false,
+  "cli_sha256": "22d2316ab3e88ac7d7b7ba10e21a1c95ad251d57a89d168184e142208b51bb22",
+  "catalog_sha256": "e05d4921a3cade814389e7c37a1de60fa2d76f51c3b2c3ca592430f51bd4c3f4",
+  "input_sha256": "0cc790001cbbbe9ec655510541a0140790a78ae8c7254ddb90f336998a344e88",
+  "resource_file_traces": [],
+  "attempted_legacy_asset_accesses": null,
+  "generated_c_ubsan": "fatal",
+  "clang": "Homebrew clang version 22.1.8",
+  "host_cc": "Apple clang version 17.0.0 (clang-1700.6.4.2)",
+  "functions": [
+    {
+      "name": "arithmetic",
+      "original_optimization": 1,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O1",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "9979430c1102a5db4f83995132efda5b62018e1ec8e88657025e5007207b7648",
+      "elf_sha256": "796531f6f693f05836889aaf23907741c7645da918922819e995ae3078b5935f",
+      "raw_hex": "488d04374831d0c3",
+      "size": 8,
+      "parameter_prefix": 3,
+      "cfg_edges": 2,
+      "return_paths": 1,
+      "c_sha256": "ece04696feafa416221dad2804cbde400d43cf7182340565a8d0414819fc4a80",
+      "fir_sha256": "3a6fbc1a470e8e938f35b35fbd518d8b7541f3e4b875f371e2fd1cef907bedf3",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "6bb49386fb39ff8179441bf63b66abe3d81a9ed8c80507d77b7ba2106685062b"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "6bb49386fb39ff8179441bf63b66abe3d81a9ed8c80507d77b7ba2106685062b"
+        }
+      ]
+    },
+    {
+      "name": "arithmetic",
+      "original_optimization": 2,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O2",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "9979430c1102a5db4f83995132efda5b62018e1ec8e88657025e5007207b7648",
+      "elf_sha256": "796531f6f693f05836889aaf23907741c7645da918922819e995ae3078b5935f",
+      "raw_hex": "488d04374831d0c3",
+      "size": 8,
+      "parameter_prefix": 3,
+      "cfg_edges": 2,
+      "return_paths": 1,
+      "c_sha256": "ece04696feafa416221dad2804cbde400d43cf7182340565a8d0414819fc4a80",
+      "fir_sha256": "3a6fbc1a470e8e938f35b35fbd518d8b7541f3e4b875f371e2fd1cef907bedf3",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "6bb49386fb39ff8179441bf63b66abe3d81a9ed8c80507d77b7ba2106685062b"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "6bb49386fb39ff8179441bf63b66abe3d81a9ed8c80507d77b7ba2106685062b"
+        }
+      ]
+    },
+    {
+      "name": "choice",
+      "original_optimization": 1,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O1",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "c8dd06020347e59ece33a24d7608359125cd4b60f0a76f437c48ec8ea7f67328",
+      "elf_sha256": "adaac705a84dfef0c172814a72b81a9bc6a9cdbd9f2d320827838d56d8df05ef",
+      "raw_hex": "4889f04885ff74074831f84801d0c34883c007c3",
+      "size": 20,
+      "parameter_prefix": 3,
+      "cfg_edges": 7,
+      "return_paths": 2,
+      "c_sha256": "467b3ee92fbb9b0d4323fd0903d527c783019c9724a04f685fec1a2a3e32a2fe",
+      "fir_sha256": "093d5f1125d069b0bd0055e74a963b1a70d84f4a991335cb22d95358a8c03622",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "d5492e0f1eb0c34c47d8f531934d0cef139c414eb5925df934dee45537ba0937"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "d5492e0f1eb0c34c47d8f531934d0cef139c414eb5925df934dee45537ba0937"
+        }
+      ]
+    },
+    {
+      "name": "choice",
+      "original_optimization": 2,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O2",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "c8dd06020347e59ece33a24d7608359125cd4b60f0a76f437c48ec8ea7f67328",
+      "elf_sha256": "adaac705a84dfef0c172814a72b81a9bc6a9cdbd9f2d320827838d56d8df05ef",
+      "raw_hex": "4889f04885ff74074831f84801d0c34883c007c3",
+      "size": 20,
+      "parameter_prefix": 3,
+      "cfg_edges": 7,
+      "return_paths": 2,
+      "c_sha256": "467b3ee92fbb9b0d4323fd0903d527c783019c9724a04f685fec1a2a3e32a2fe",
+      "fir_sha256": "093d5f1125d069b0bd0055e74a963b1a70d84f4a991335cb22d95358a8c03622",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "d5492e0f1eb0c34c47d8f531934d0cef139c414eb5925df934dee45537ba0937"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "d5492e0f1eb0c34c47d8f531934d0cef139c414eb5925df934dee45537ba0937"
+        }
+      ]
+    },
+    {
+      "name": "masked",
+      "original_optimization": 1,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O1",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "1a116cf8d2d091c4b79da7999078b93ddf9c464ecfab8dfb2539576d5be175e4",
+      "elf_sha256": "99ee4f1a170a672a06ad0ba5bcfab813c13eaab494b4939c8c6d8582798da1a1",
+      "raw_hex": "4821f74809d7488d4711c3",
+      "size": 11,
+      "parameter_prefix": 3,
+      "cfg_edges": 3,
+      "return_paths": 1,
+      "c_sha256": "4b249ed2f1c044d259f267c966c0b3120f12a19666b85b33c47e74564fd30434",
+      "fir_sha256": "86edbec9cb6ac9d21974aa3d337cb5fb1039b527fc4cbde8f6f28c3aa0ac8af4",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "df9af945d35e2670473cc047e56f7c6cd238e77b8a49001283f5ea38fb56ec7c"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "df9af945d35e2670473cc047e56f7c6cd238e77b8a49001283f5ea38fb56ec7c"
+        }
+      ]
+    },
+    {
+      "name": "masked",
+      "original_optimization": 2,
+      "compiler_flags": [
+        "--target=x86_64-unknown-linux-gnu",
+        "-ffreestanding",
+        "-O2",
+        "-mllvm",
+        "-x86-cmov-converter-force-all",
+        "-fno-stack-protector",
+        "-fno-asynchronous-unwind-tables"
+      ],
+      "source_sha256": "1a116cf8d2d091c4b79da7999078b93ddf9c464ecfab8dfb2539576d5be175e4",
+      "elf_sha256": "99ee4f1a170a672a06ad0ba5bcfab813c13eaab494b4939c8c6d8582798da1a1",
+      "raw_hex": "4821f74809d7488d4711c3",
+      "size": 11,
+      "parameter_prefix": 3,
+      "cfg_edges": 3,
+      "return_paths": 1,
+      "c_sha256": "4b249ed2f1c044d259f267c966c0b3120f12a19666b85b33c47e74564fd30434",
+      "fir_sha256": "86edbec9cb6ac9d21974aa3d337cb5fb1039b527fc4cbde8f6f28c3aa0ac8af4",
+      "executions": [
+        {
+          "optimization": 0,
+          "cases": 2048,
+          "result_sha256": "df9af945d35e2670473cc047e56f7c6cd238e77b8a49001283f5ea38fb56ec7c"
+        },
+        {
+          "optimization": 2,
+          "cases": 2048,
+          "result_sha256": "df9af945d35e2670473cc047e56f7c6cd238e77b8a49001283f5ea38fb56ec7c"
+        }
+      ]
+    }
+  ],
+  "recompiled_comparisons": 24576,
+  "source_reference_comparisons": 12288,
+  "limits": [
+    "authored C corpus; not DecBench",
+    "compiler constrained to existing FSL subset",
+    "explicit ABI and symbol-size boundaries",
+    "no original source prototype recovery",
+    "no loops, calls, data memory, faults or full ABI",
+    "empty resource environment; file tracing only when --trace is supplied; no formal equivalence proof"
+  ]
+}

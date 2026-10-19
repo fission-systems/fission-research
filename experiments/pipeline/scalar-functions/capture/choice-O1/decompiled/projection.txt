@@ -1,0 +1,31 @@
+scalar-function-contract=1
+abi=sysv-amd64-u64-leaf-v1 selection=explicit-caller-assertion
+abi-source-sha256=6c78d7d846aacc55b6af5dbb86354783c13b39caa1ef473280a289397f4bf4b4
+symbol=recovered_candidate
+parameter-prefix=3 input-slots={2, 6, 7}
+return-sites={4198414, 4198419} return-paths=2
+checks=acyclic CFG; all feasible-or-overapproximated paths; no memory except original return token; stack delta; preserved GPR identity; return/control entry dependencies
+limits=machine-word integer leaf; prefix is not original source argument count; no source signedness, pointers, float, aggregates, calls, loops or general ABI recovery
+cfg-edge 0x401000 -> 0x401003
+cfg-edge 0x401003 -> 0x401006
+cfg-edge 0x401006 -> 0x401008
+cfg-edge 0x401006 -> 0x40100f
+cfg-edge 0x401008 -> 0x40100b
+cfg-edge 0x40100b -> 0x40100e
+cfg-edge 0x40100f -> 0x401013
+projection-contract=1
+backend=c revision=1 dialect=c11
+support=admitted-under-explicit-contract
+requirements=[BitVectorSlots, BodyControl, RegistersAndFlags, GuestPc, ReadOnlyByteMemory, X86Window]
+runtime=embedded-in-source memory=bounded-flat-bytes
+limits=no guest fault/concurrency model; no source prototype or full ABI recovery
+compilation=not-performed equivalence=not-performed
+origin-mapping=symbol-level; statement positions unavailable
+origin body="mov64_reg" source-symbol="fsl_internal_recovered_candidate_body_40" guest-address=Some(4198400) raw=Some("4889f0") input-offset=Some(0) byte-length=Some(3)
+origin body="test64_reg" source-symbol="fsl_internal_recovered_candidate_body_54" guest-address=Some(4198403) raw=Some("4885ff") input-offset=Some(3) byte-length=Some(3)
+origin body="je" source-symbol="fsl_internal_recovered_candidate_body_61" guest-address=Some(4198406) raw=Some("7407") input-offset=Some(6) byte-length=Some(2)
+origin body="xor64_reg" source-symbol="fsl_internal_recovered_candidate_body_52" guest-address=Some(4198408) raw=Some("4831f8") input-offset=Some(8) byte-length=Some(3)
+origin body="add64_reg" source-symbol="fsl_internal_recovered_candidate_body_42" guest-address=Some(4198411) raw=Some("4801d0") input-offset=Some(11) byte-length=Some(3)
+origin body="ret64" source-symbol="fsl_internal_recovered_candidate_body_59" guest-address=Some(4198414) raw=Some("c3") input-offset=Some(14) byte-length=Some(1)
+origin body="add64_imm" source-symbol="fsl_internal_recovered_candidate_body_43" guest-address=Some(4198415) raw=Some("4883c007") input-offset=Some(15) byte-length=Some(4)
+origin body="ret64" source-symbol="fsl_internal_recovered_candidate_body_59" guest-address=Some(4198419) raw=Some("c3") input-offset=Some(19) byte-length=Some(1)

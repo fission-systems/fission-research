@@ -1,5 +1,14 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-19 scalar function follow-up: [owned ELF → FIR → C](../experiments/pipeline/scalar-functions/README.md),
+> native `0364df063`. Restricted explicit SysV AMD64 integer leaf admission,
+> acyclic CFG, return/control inputs, stack/preserved GPR checks and ordinary C
+> machine-word signatures. Three authored functions × O1/O2; 24,576 C O0/O2
+> execution comparisons match extracted original bytes via Rosetta. No general
+> ABI/source prototype, calls, loops, data memory or DecBench eligibility claim.
+> Previous loader-only compile records below are historical. No new domains.
+
+
 > 2026-10-19 loader implementation: [owned profile catalog](../experiments/migration/loader-profiles/README.md),
 > native `b8114a927`. Explicit ELF catalog route, two authored profiles, ABI
 > unselected; compilation/static checks only. Runtime/corpus validation and

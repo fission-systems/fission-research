@@ -1,0 +1,3 @@
+tool=cc
+arguments=["-std=c11", "-c", "output.c", "-o", "output.o"]
+execution=not-performed

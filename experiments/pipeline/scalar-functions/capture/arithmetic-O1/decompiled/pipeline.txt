@@ -1,0 +1,21 @@
+loader-profile-contract=1
+loader-route=owned-catalog
+selected-profile=fission.x86.elf64.scalar
+catalog-sha256=e05d4921a3cade814389e7c37a1de60fa2d76f51c3b2c3ca592430f51bd4c3f4
+bound-package-sha256=4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470
+loader-abi=unselected
+target-facts=BinaryTargetFacts { format: Elf, machine: 62, bitness: 64, endian: Little, flags: 0 }
+projection=checked-scalar-function-c
+abi-selection=explicit-caller-assertion; see projection.txt for admitted contract
+pipeline-contract=1
+profile=owned-x86-v2
+spec-input=embedded-fsl
+semantic-owner=canonical-fir
+loader-architecture=ELF-machine-class-endian-facts; no legacy LoadSpec
+route=file-loader -> owned-fsl-decode -> canonical-fir -> checked-source-backend
+legacy-fallback=none
+backend=c
+selection=caller-supplied-function-candidate-span
+coverage=48 encoding rules; 150 width-specific semantic bodies; not full x86
+limits=no general function discovery, source prototype or ABI recovery; bounded flat memory; no guest fault/concurrency model
+compilation=not-performed equivalence=not-performed

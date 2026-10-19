@@ -228,3 +228,17 @@ bundles without supplying specification assets. Portable mode leaves host files
 accessible. The dedicated Linux CI builds from a crates-only checkout and uses
 `--isolate` (sudo, strace, chroot) for a separate filesystem closure gate.
 [Exact contract and limitations](../experiments/pipeline/owned-elf/README.md).
+
+## Checked scalar C function execution
+
+`tools/scalar_function_validate.py` uses the owned ELF catalog and native
+`decompile-function` command. It compiles three authored C leaf functions at
+O1/O2, extracts exact ELF function bytes for a native-x86/Rosetta oracle,
+projects canonical FIR to C, and compares generated O0/O2 executions with fatal
+UBSan. ABI and function boundaries are explicit; source prototypes are not
+recovered. `--trace /usr/bin/strace` audits CLI file accesses on Linux.
+
+The `owned-scalar-functions` CI job uses a sparse native checkout without legacy
+assets and pins its own compiler revision. The frozen capture checker verifies
+published evidence separately from fresh behavioral comparison. See the
+[scope, commands and measured report](../experiments/pipeline/scalar-functions/README.md).

@@ -1,0 +1,30 @@
+{
+  "native_commit": "0364df0634299c8106b50dcdaa94daee4b181f32",
+  "native_branch": "codex/fsl-jvm-iadd-parity",
+  "checks": [
+    {
+      "command": "cargo nextest run -p fission-fsl --features x86 --status-level all",
+      "result": "123 passed; 0 skipped; no leaky diagnostics"
+    },
+    {
+      "command": "cargo clippy -p fission-fsl --features x86 --all-targets -- -D warnings",
+      "result": "passed"
+    },
+    {
+      "command": "cargo fmt --all --check",
+      "result": "passed"
+    },
+    {
+      "command": "cargo check -p fission-decompiler -p fission-cli",
+      "result": "passed"
+    },
+    {
+      "command": "cargo nextest run -p fission-fsl --features x86 --test pipeline --test scalar_function",
+      "result": "9 passed"
+    },
+    {
+      "command": "python3 tools/scalar_function_validate.py --fission NATIVE --cli NATIVE/target/debug/fsl-x86 --host-cc /usr/bin/clang --output experiments/pipeline/scalar-functions/validation-macos.json --keep artifacts/scalar-functions/published",
+      "result": "6 compilation cases; 24576 comparisons; fatal UBSan"
+    }
+  ]
+}

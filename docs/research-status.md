@@ -932,3 +932,35 @@ and resource-access tracing were not performed. No such validation result or
 quality improvement is claimed. Actual opinion/ldefs import, complete ABI,
 processor policy, injected effects, more format routes and product consumer
 migration remain open. No new architecture was added.
+
+## 2026-10-19 — Owned catalog to checked scalar C functions
+
+Native `0364df0634299c8106b50dcdaa94daee4b181f32` connects the owned catalog
+route to a restricted ordinary C function projection. Derived canonical-FIR
+analysis enumerates acyclic instruction CFG paths, tracks return/control entry
+dependencies, and checks an explicitly selected SysV AMD64 integer leaf
+contract: preserved GPR identity, eight-byte return-stack cleanup and the
+unmodified original stack return token. Unknown entry flags, non-argument
+observable state, data memory, indirect flow and cycles fail closed. No second
+executable IR, NIR/HIR route, external decoder or arithmetic semantics is added;
+C internals reuse the canonical FIR state backend.
+
+Three authored freestanding C functions at O1/O2 form six compilation cases.
+The local toolchain produces three distinct byte sequences. With compiler
+cmov-to-branch conversion explicitly enabled, selected symbol-sized ELF spans
+project successfully. 2,048 boundary/random input triples per case agree with
+unmodified extracted ELF function bytes executing via Rosetta and a separately
+compiled host-native source oracle. Generated C O0/O2 with fatal UBSan passes
+24,576 original/output comparisons; source-reference comparison adds 12,288.
+The native suite passes 123 tests (no skipped/leaky diagnostic in the clean-pin rerun), nine focused
+catalog/ABI/CFG checks, strict Clippy, formatting and downstream compilation.
+
+[The capture and reproduction driver](../experiments/pipeline/scalar-functions/README.md)
+preserve source, ELF, FIR, C, hashes and tool versions. The argument-register
+prefix is a machine-word projection contract, not original source parameter
+count/types. ABI selection and candidate boundaries remain caller supplied.
+This is not DecBench or general ABI recovery. Calls, loops, data memory,
+floating/aggregate/stack arguments, x86-32 function projection and formal
+original/output equivalence remain open. Product SLEIGH remains in place.
+A separate pinned Linux job adds fresh native execution and seven CLI file
+traces; its result is pending observation at this record's publication.
