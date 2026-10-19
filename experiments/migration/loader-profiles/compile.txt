@@ -1,0 +1,3 @@
+profile-package=1 source-sha256=db302dbc2255955a7a6b12ffc4c0c5be28216a21f809d18d226e17fc49ad4a6c profiles=2 abi=unselected
+profile=fission.x86.elf32.scalar format=ELF machine=3 bits=32 endian=Little flags-mask=0x0 flags-value=0x0 processor=x86 variant=scalar decoder=owned-x86-v2 package-sha256=4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470
+profile=fission.x86.elf64.scalar format=ELF machine=62 bits=64 endian=Little flags-mask=0x0 flags-value=0x0 processor=x86 variant=scalar decoder=owned-x86-v2 package-sha256=4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470

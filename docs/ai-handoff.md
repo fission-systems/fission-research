@@ -1,5 +1,10 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-19 loader implementation: [owned profile catalog](../experiments/migration/loader-profiles/README.md),
+> native `b8114a927`. Explicit ELF catalog route, two authored profiles, ABI
+> unselected; compilation/static checks only. Runtime/corpus validation and
+> consumer cutover remain open. Keep the existing product path operational.
+
 > 2026-10-19 migration decision: keep the existing product SLEIGH path operational;
 > migrate the existing Ghidra/Fission asset corpus and validate consumers before
 > final retirement. New computation-domain expansion is paused. Read the

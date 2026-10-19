@@ -1,0 +1,29 @@
+{
+  "schema": "fission.loader.profiles.build.v1",
+  "observed_date": "2026-10-19 Asia/Seoul",
+  "compiler_commit": "b8114a92789674584332d281c4a913a68e2a4316",
+  "compiler_dirty": false,
+  "compiler_executable_sha256": "61721d901969c966f03d3d8668f35acd56a261b03cfe313184692188dfc81181",
+  "source_sha256": "db302dbc2255955a7a6b12ffc4c0c5be28216a21f809d18d226e17fc49ad4a6c",
+  "catalog_sha256": "e05d4921a3cade814389e7c37a1de60fa2d76f51c3b2c3ca592430f51bd4c3f4",
+  "catalog_bytes": 310,
+  "compiled_profiles": 2,
+  "encoding_semantic_package_sha256": "4f21befdc46ff60cb74913f0e2dea88b770cc1edbcb414590c99a72b90a67470",
+  "abi": "unselected",
+  "source_kind": "self-authored, not an opinion/ldefs corpus import",
+  "static_checks": {
+    "loader_and_fsl_x86": "cargo check passed",
+    "fsl_loader_feature": "strict Clippy passed",
+    "fsl_x86_feature": "strict Clippy passed",
+    "downstream_decompiler_and_cli": "cargo check passed",
+    "formatting": "cargo fmt --all --check passed",
+    "cli_build": "cargo build --locked -p fission-fsl --features x86 --bin fsl-x86 passed"
+  },
+  "runtime_profile_selection": "not-performed",
+  "runtime_decompilation": "not-performed",
+  "regression_tests": "not-run",
+  "execution_equivalence": "not-performed",
+  "resource_access_tracing": "not-performed",
+  "product_default": "legacy SLEIGH",
+  "scope": "Compilation and structural ownership change only; no new decode coverage, runtime parity, loader format support or decompiler quality result"
+}

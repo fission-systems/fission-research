@@ -5,6 +5,11 @@ implementation. New computation-domain expansion is paused. Work now focuses
 on migrating the existing Ghidra/Fission asset corpus and the consumers that
 depend on it.
 
+Implementation follow-up: the [first owned loader catalog](../experiments/migration/loader-profiles/README.md)
+now separates header facts, matching and canonical ELF mapping. Two authored
+rules compile; runtime validation and actual opinion/ldefs corpus import remain
+open. This is not a completed profile/consumer migration.
+
 ## Transition contract
 
 Keep the existing product SLEIGH path operational while owned specifications,

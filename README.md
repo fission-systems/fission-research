@@ -96,13 +96,14 @@ New computation-domain expansion is paused. See the
 
 ## Current scope
 
-Snapshot: **2026-10-18**. These are bounded implementations, not complete
+Snapshot: **2026-10-19**. These are bounded implementations, not complete
 architecture or device support. Detailed observations and revisions are in
 [research status](docs/research-status.md).
 
 | Area | Implemented slice | Still open |
 |---|---|---|
 | **Owned x86 pipeline** | 48 encoding rules / 150 width-specific FIR bodies; selected ELF i386/x86-64 spans; register, flag, bounded memory and stack effects. No external instruction decoder or SLEIGH/P-code fallback in this route. | Full x86 coverage, function CFG discovery, calls and general source ABI recovery. |
+| **Loader profiles** | An opt-in owned catalog separates ELF header facts, profile selection and mapping; two authored rules compile to `.fslpc` and pin the encoding/FIR package. Build/static checks only. | Runtime validation, opinion/ldefs corpus import, compiler/ABI policy and product consumer migration. |
 | **GPU** | GFX900 encoding experiments; SGPR/SCC scalar add/carry and wave64 `v_add_u32` with masked lane writes; limited CUDA C++/PTX projections. | Kernel ABI/layout integration, memory, divergence and hardware execution validation. |
 | **VM** | JVM `iadd` decode and multiple FIR projections. | Complete JVM methods, CPython and WASM frontends. |
 | **Quantum** | Small reference circuits, declared noise channels, bounded control flow, limited OpenQASM and reference QISA words; one actual IBM Bell-circuit observation. | General QPU binaries, current device calibration correction and general quantum programs. |
@@ -151,6 +152,7 @@ These commands check archived file integrity; they do not rerun the experiments.
 For actual regeneration, follow the experiment's prerequisites and commands:
 
 - [Owned ELF → FSL → FIR → source](experiments/pipeline/owned-elf/README.md)
+- [Owned loader profile catalog](experiments/migration/loader-profiles/README.md)
 - [FIR → RTL → iCE40 bitstream](experiments/fabric/ice40-hx8k/README.md)
 - [C/Rust/Go output contracts](experiments/output/backend-contract/README.md)
 - [Historical artifact reproduction](docs/reproduction.md), including `make reproduce`

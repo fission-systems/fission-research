@@ -906,3 +906,29 @@ verified `96fc71f75cecdee305faf9497561c577a8955468` comparison checkout found 59
 `.opinion` files under `utils` outside that filter. Dependency closure and
 consumer auditing remain the next implementation unit. These observations do
 not establish new semantic migration, decoder coverage or product cutover.
+
+## 2026-10-19 — First owned loader/profile boundary
+
+Native `b8114a92789674584332d281c4a913a68e2a4316` adds an explicit owned catalog
+route to the canonical Fission loader. The existing product route remains
+SLEIGH-compatible. ELF schema probing provides typed machine/width/endian/flags
+facts; an immutable catalog selects a rule; existing mapping, relocation and
+symbol code creates the canonical `LoadedBinary`. A wrapper retains the selection
+without altering the serialized binary payload. Owned matching does not create
+a Ghidra language ID or legacy `BinaryLoadSpec`.
+
+The new generic `loader` feature in fission-fsl provides version-one text
+`.fslprofiles` and binary `.fslpc`. Two authored ELF x86 rules compile into a
+310-byte package, binding the existing x86-v2 encoding/FIR package by SHA-256.
+ABI is explicitly unselected. The opt-in `decompile-profiled` API/command connects
+this selection to existing x86 lifting and source backends, requiring the exact
+decoder/package identity before lifting. The old route remains available.
+
+[Source, compiled artifact and build record](../experiments/migration/loader-profiles/README.md)
+record loader/FSL compilation, strict FSL Clippy for loader/x86 features,
+downstream decompiler/CLI compilation, CLI build and formatting success.
+Runtime profile selection/decompilation, regression tests, execution equivalence
+and resource-access tracing were not performed. No such validation result or
+quality improvement is claimed. Actual opinion/ldefs import, complete ABI,
+processor policy, injected effects, more format routes and product consumer
+migration remain open. No new architecture was added.

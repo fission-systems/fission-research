@@ -1,0 +1,12 @@
+{
+  "schema": "fission.loader.profiles.source-lock.v1",
+  "compiler_commit": "b8114a92789674584332d281c4a913a68e2a4316",
+  "files": {
+    "README.md": "49e520b3ba8440ff013a486715289b78347d5c13a0a696336d001c8b88c3b63d",
+    "build-local.json": "5a7ad6d58581ab041b351e43b168fc6041d4366a578b6a961a2ee75e4d08942b",
+    "compile.txt": "58d3e8cdc6f6f67624bc2445756c5b2de1358f64e9a4a98f0c844200546e9322",
+    "elf.fslpc": "e05d4921a3cade814389e7c37a1de60fa2d76f51c3b2c3ca592430f51bd4c3f4",
+    "elf.fslprofiles": "db302dbc2255955a7a6b12ffc4c0c5be28216a21f809d18d226e17fc49ad4a6c"
+  },
+  "coverage": "authored catalog compilation and static/build checks only; runtime validation not performed"
+}
