@@ -1,0 +1,29 @@
+6899  execve("/home/runner/work/fission-research/fission-research/.scalar-compiler/target/debug/fsl-x86", ["/home/runner/work/fission-resear"..., "decompile-function", "/home/runner/work/fission-resear"..., "/home/runner/work/fission-resear"..., "0x401000", "8", "sysv-amd64-u64-leaf-v1", "recovered_candidate", "/home/runner/work/fission-resear"...], 0x7fff535bc9b8 /* 123 vars */) = 0
+6899  access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v4/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  newfstatat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v4/", 0x7ffd6bce5110, 0) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v3/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  newfstatat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v3/", 0x7ffd6bce5110, 0) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v2/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  newfstatat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/glibc-hwcaps/x86-64-v2/", 0x7ffd6bce5110, 0) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  newfstatat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/", {st_mode=S_IFDIR|0777, st_size=4096, ...}, 0) = 0
+6899  openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+6899  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libgcc_s.so.1", O_RDONLY|O_CLOEXEC) = 3
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/libm.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libm.so.6", O_RDONLY|O_CLOEXEC) = 3
+6899  openat(AT_FDCWD, "/opt/hostedtoolcache/Python/3.12.15/x64/lib/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+6899  openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+6899  openat(AT_FDCWD, "/proc/self/maps", O_RDONLY|O_CLOEXEC) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/elf.fslpc", O_RDONLY|O_CLOEXEC) = 3
+6899  statx(3, "", AT_STATX_SYNC_AS_STAT|AT_EMPTY_PATH, STATX_ALL, {stx_mask=STATX_ALL|STATX_MNT_ID, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=310, ...}) = 0
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/original.elf", O_RDONLY|O_CLOEXEC) = 3
+6899  statx(3, "", AT_STATX_SYNC_AS_STAT|AT_EMPTY_PATH, STATX_ALL, {stx_mask=STATX_ALL|STATX_MNT_ID, stx_attributes=0, stx_mode=S_IFREG|0755, stx_size=4696, ...}) = 0
+6899  mkdir("/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled", 0777) = 0
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/output.c", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/output.fir", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/profile.fslxc", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/projection.txt", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/pipeline.txt", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  openat(AT_FDCWD, "/home/runner/work/fission-research/fission-research/artifacts/scalar-functions-linux/arithmetic-O1/decompiled/build.txt", O_WRONLY|O_CREAT|O_TRUNC|O_CLOEXEC, 0666) = 3
+6899  +++ exited with 0 +++

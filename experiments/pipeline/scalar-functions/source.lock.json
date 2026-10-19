@@ -2,7 +2,7 @@
   "schema": "fission.scalar-functions.capture.v1",
   "native_commit": "0364df0634299c8106b50dcdaa94daee4b181f32",
   "files": {
-    "README.md": "2b3b6cc9ab996a3613278f71801bebea726822481d0061b7e8c51e67328f90a1",
+    "README.md": "3e0c77352a49cb41feae4a22802a59662243a7921894a9f18ecb899ec8e3fb23",
     "build-local.json": "0691e05280095bf9a4e49b47cc98bf195f28b216b82da6ff4b9dfe0edf0b212a",
     "capture/arithmetic-O1/decompiled/build.txt": "b1bda45b62207aa870f809dc748b345fa2d34c41c544acce039e438892397b0b",
     "capture/arithmetic-O1/decompiled/output.c": "ece04696feafa416221dad2804cbde400d43cf7182340565a8d0414819fc4a80",
@@ -85,8 +85,17 @@
     "elf.fslpc": "e05d4921a3cade814389e7c37a1de60fa2d76f51c3b2c3ca592430f51bd4c3f4",
     "elf.fslprofiles": "db302dbc2255955a7a6b12ffc4c0c5be28216a21f809d18d226e17fc49ad4a6c",
     "inputs.bin": "0cc790001cbbbe9ec655510541a0140790a78ae8c7254ddb90f336998a344e88",
+    "linux-ci.json": "b86f4e67730d8e15075707fb3b2de2465ffc2f39badf1db54ef84006b29491a9",
+    "linux-traces/arithmetic-O1.trace": "8e1fc046675c38da8b2081fef4099ceb30a2db35957ccfd562f43f2106d22929",
+    "linux-traces/arithmetic-O2.trace": "18ddbf9ab1f5a2e1bd7f8f739954edddbcdef86c54a11d0a7f6927c20372f310",
+    "linux-traces/choice-O1.trace": "f6b82e36e81c7144adafa978472bf1e04cf3e78a56f963ce33269e2e8265e6cb",
+    "linux-traces/choice-O2.trace": "4eb7e158759d622d7490cdee9b3db77ceb43cc46bdf4f8b1f27a87f4a17fb85b",
+    "linux-traces/compile-profiles.trace": "7f9b53999ff32fb1c04c94d1a132d001c35ed0bf7c9d0bb31a40b01397f6633e",
+    "linux-traces/masked-O1.trace": "a80170388211708cf50eaf612248443a3ec2cd9022a5bb4af56d7d8a87e8822f",
+    "linux-traces/masked-O2.trace": "5a261deb72f618d06a34686d945ff946da0aa383cd879a07c230792dff123cda",
     "nextest-clean-pin.log": "b1ce0d7d0b56997b8ac89f162fb5b436d4655ddef07266cc936d5dd09c4bda60",
     "sysv-amd64-u64-leaf.fslabi": "6c78d7d846aacc55b6af5dbb86354783c13b39caa1ef473280a289397f4bf4b4",
+    "validation-linux.json": "884cbc5f66af309a4c3feaf7609943188c3c9a46159aec6e8e4f5bc1de3917d8",
     "validation-macos.json": "3584cb789a172859995c8331d00ac9960817e63a2a8128a80a81febccaa62819"
   }
 }

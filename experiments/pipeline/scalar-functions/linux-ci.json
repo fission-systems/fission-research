@@ -1,0 +1,11 @@
+{
+  "id": 118009129115,
+  "run_id": 39237226570,
+  "head_sha": "c788321f23419e12b8d1f9cf57792290670542d8",
+  "html_url": "https://github.com/fission-systems/fission-research/actions/runs/39237226570/job/118009129115",
+  "name": "owned-scalar-functions",
+  "status": "completed",
+  "conclusion": "success",
+  "started_at": "2026-10-19T10:24:26Z",
+  "completed_at": "2026-10-19T10:26:54Z"
+}

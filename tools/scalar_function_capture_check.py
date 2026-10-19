@@ -71,6 +71,28 @@ def main():
                 raise ValueError("recorded result differs")
             if result.read_bytes() != (folder / "original-results.bin").read_bytes():
                 raise ValueError("captured original/recompiled outputs differ")
+    linux_path = BASE / "validation-linux.json"
+    if linux_path.exists():
+        linux = json.loads(linux_path.read_text())
+        if (
+            linux["native_commit"] != lock["native_commit"]
+            or linux["native_dirty"]
+            or linux["status"] != "passed"
+        ):
+            raise ValueError("Linux capture compiler/status differs")
+        if (
+            linux["recompiled_comparisons"] != 24576
+            or linux["source_reference_comparisons"] != 12288
+        ):
+            raise ValueError("Linux comparison count differs")
+        if (
+            len(linux["resource_file_traces"]) != 7
+            or linux["attempted_legacy_asset_accesses"] != 0
+        ):
+            raise ValueError("Linux asset isolation report differs")
+        for trace in linux["resource_file_traces"]:
+            if digest(BASE / "linux-traces" / trace["name"]) != trace["sha256"]:
+                raise ValueError("Linux trace/report hash differs")
     print(f"verified {len(lock['files'])} captured files; historical comparisons=24576")
 
 

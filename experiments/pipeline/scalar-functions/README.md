@@ -73,8 +73,20 @@ host or macOS with Rosetta. On macOS, `--host-cc /usr/bin/clang` uses the SDK
 compiler for host executables. Linux supports optional `--trace /usr/bin/strace`.
 The new `owned-scalar-functions` CI job fetches only crates/build configuration,
 checks absence of `utils`/`vendor`, executes on Linux x86-64 and audits seven
-CLI file traces for attempted legacy specification access. Its result must be
-observed independently; the local report has no file tracing.
+CLI file traces for attempted legacy specification access. [Linux job 118009129115](https://github.com/fission-systems/fission-research/actions/runs/39237226570/job/118009129115)
+passed at research `c788321f23419e12b8d1f9cf57792290670542d8` with Clang 18.1.3:
+24,576 fresh native-x86 comparison cases, 12,288 source-reference comparisons,
+nine focused Rust checks and seven CLI file traces with zero attempted legacy
+asset accesses. [The Linux report](validation-linux.json),
+[job metadata](linux-ci.json) and `linux-traces/` preserve that observation.
+This is success of this job, independently of the complete research workflow.
+The local macOS report has no file tracing.
+
+The full native Fission workflow at `0364df063` separately observed an
+`interactive_native_attach_replies_and_detaches_on_eof` debugger failure
+(`Failed to get registers: ESRCH: No such process`); that file is outside this
+patch. Its other Linux test job was still running at this observation. Full PR
+CI success is not claimed.
 
 ## Remaining limits
 

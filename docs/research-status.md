@@ -964,3 +964,14 @@ floating/aggregate/stack arguments, x86-32 function projection and formal
 original/output equivalence remain open. Product SLEIGH remains in place.
 A separate pinned Linux job adds fresh native execution and seven CLI file
 traces; its result is pending observation at this record's publication.
+
+
+Follow-up: [research Linux scalar-function job](https://github.com/fission-systems/fission-research/actions/runs/39237226570/job/118009129115)
+passed at research `c788321` using the same clean native pin and Clang 18.1.3.
+Its fresh 24,576 C recompilation and 12,288 source-reference comparisons match;
+seven CLI file traces contain zero attempted legacy asset accesses. The parsed
+Linux report, job metadata and trace hashes are archived in the experiment.
+This confirms that job, not the complete research/native workflows. Native run
+39236863358 separately failed the existing interactive debugger attach test with
+ESRCH while its other Linux tests were still in progress; no full PR CI success
+is claimed, and no debugger code was changed by this experiment.
