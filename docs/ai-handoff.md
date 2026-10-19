@@ -1,5 +1,11 @@
 # Fission FSL/FIR 연구 — AI 작업 이관
 
+> 2026-10-19 migration decision: keep the existing product SLEIGH path operational;
+> migrate the existing Ghidra/Fission asset corpus and validate consumers before
+> final retirement. New computation-domain expansion is paused. Read the
+> [current migration plan](sleigh-asset-migration-plan.md), including `.opinion`,
+> compiler/processor policies and injected behavior, before continuing.
+
 > 2026-10-18 FPGA 후속: [iCE40 HX8K 실험](../experiments/fabric/ice40-hx8k/README.md)은
 > 같은 8개 함수의 RTL·수식 모델 SAT 증명과 자동 핀 배치 bitstream 생성까지 진행했다.
 > 실제 보드 실행·합성/bitstream 의미의 형식 증명은 아니다. 네이티브 pin은 기존 cb7b12f5c다.

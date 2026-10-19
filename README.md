@@ -80,6 +80,20 @@ Read the [semantic contract](docs/fir-semantic-contract.md),
 [accuracy and evidence rules](docs/fir-evidence-and-accuracy.md), and
 [computational domain contracts](docs/computational-domains.md).
 
+## Migration strategy
+
+Keep the existing SLEIGH product path operational while migrating the complete
+existing Ghidra/Fission asset corpus into owned specifications. This includes
+decoding and semantics, register/context policies, ABI/compiler models,
+loader/profile selection and injected behavior. Importing `.sla` files alone
+does not replace these responsibilities.
+
+The transition is **inventory → import → validate → migrate consumers → retire
+SLEIGH**. Final owned builds must compile and run without legacy tools or assets;
+legacy removal comes after the full migration and cutover gates pass.
+New computation-domain expansion is paused. See the
+[asset migration and replacement plan](docs/sleigh-asset-migration-plan.md).
+
 ## Current scope
 
 Snapshot: **2026-10-18**. These are bounded implementations, not complete
@@ -169,6 +183,7 @@ The ignored `Fission/` checkout is used by historical comparison experiments.
 | [Research status](docs/research-status.md) | Observations, exact revisions, measured results and remaining limits. |
 | [FIR semantic contract](docs/fir-semantic-contract.md) | The semantic owner and domain requirements. |
 | [Owned assets and structured FIR](docs/owned-assets-and-structured-fir.md) | Replacement paths for legacy specifications and assets. |
+| [SLEIGH asset migration plan](docs/sleigh-asset-migration-plan.md) | Existing-path retention, complete asset responsibilities, common decoding and retirement gates. |
 | [Computational domains](docs/computational-domains.md) | FPGA, DSP, tensor, ASIC, neuromorphic, PIM, analog and dataflow research contracts. |
 | [Semantic pattern database](docs/pattern-database.md) | Provenance, confidence and corpus design. |
 | [GPU references](docs/gpu-fsl-reference-design.md) · [reference lock](Vendor/references.lock.toml) | NVIDIA, AMD and Intel source evidence. |

@@ -887,3 +887,22 @@ The existing 41-file initial fabric evidence remains intact. Local checks passed
 the updated Linux job must be observed independently after publication.
 Previous complete research CI at `cface3314d55ff163d14af468e9fcc910dde0578`
 (run 39044926114) was observed successful before this change.
+
+## 2026-10-19 — Retain SLEIGH during complete asset migration
+
+The accepted [migration plan](sleigh-asset-migration-plan.md) retains the existing
+product SLEIGH path while the existing Ghidra/Fission asset corpus is imported
+into reviewable owned sources, independently compiled, validated and adopted
+by its consumers. SLEIGH retirement follows the complete migration/cutover gate.
+New computation-domain expansion is paused; common decoder/specification and
+asset migration work takes priority.
+
+The target includes encoding/semantic constructors, register/context and
+processor policy, ABI/compiler models, loader/profile selection and userop/
+fixup/injection behavior. Some responsibilities belong to surrounding Ghidra
+services rather than the SLEIGH engine. The existing inventory remains a
+historical 988-file, seven-extension snapshot. Read-only inspection of the
+verified `96fc71f75cecdee305faf9497561c577a8955468` comparison checkout found 59
+`.opinion` files under `utils` outside that filter. Dependency closure and
+consumer auditing remain the next implementation unit. These observations do
+not establish new semantic migration, decoder coverage or product cutover.

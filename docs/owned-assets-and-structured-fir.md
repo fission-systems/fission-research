@@ -1,5 +1,10 @@
 # 자체 자산 체계와 구조를 보존하는 단일 FIR
 
+> 2026-10-19: [SLEIGH asset migration plan](sleigh-asset-migration-plan.md) clarifies
+> the staged transition: retain the existing product path, migrate the complete
+> referenced asset/consumer set, then retire SLEIGH. The 988-file inventory below
+> excludes `.opinion`; it is not the complete asset dependency closure.
+
 결정일: 2026-10-03. 목표는 기존 자산의 기능을 자체 계약으로 대체하는 것이다. 전체 자산 이관이나 새로운 제어 흐름 구현 완료를 뜻하지 않는다.
 
 ## 자산별 소유 경계
